@@ -12,8 +12,8 @@ mgoSim(GO1, GO2, ont = "MF", weight.isa = 0.8, weight.partof = 0.6)
   \item{GO1}{ a set of go terms. }
   \item{GO2}{ another set of go terms.}
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
-  \item{weight.isa} {the contribution factor for 'is-a' relation}
-  \item{weight.partof} {the contribution factor for 'part-of' relation}
+  \item{weight.isa}{the contribution factor for 'is-a' relation}
+  \item{weight.partof}{the contribution factor for 'part-of' relation}
 }
 \value{
   \item{mgoSim }{Semantic similarity.}

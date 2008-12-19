@@ -13,8 +13,8 @@
   \item{gene2}{ another entrez gene id.}
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
   \item{drop}{A set of evidence codes based on which certain annotations are dropped. Use NULL to keep all GO annotations.}
-  \item{weight.isa} {the contribution factor for 'is-a' relation}
-  \item{weight.partof} {the contribution factor for 'part-of' relation}
+  \item{weight.isa}{the contribution factor for 'is-a' relation}
+  \item{weight.partof}{the contribution factor for 'part-of' relation}
 }
 \value{
   \item{geneSim }{Semantic similarity.}
