@@ -11,8 +11,8 @@ goSim(GOID1, GOID2, ont = "MF", weight.isa = 0.8, weight.partof = 0.6)
   \item{GOID1}{GO ID 1.}
   \item{GOID2}{GO ID 2.}
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
-  \item{weight.isa} {the contribution factor for 'is-a' relation}
-  \item{weight.partof} {the contribution factor for 'part-of' relation}
+  \item{weight.isa}{the contribution factor for 'is-a' relation}
+  \item{weight.partof}{the contribution factor for 'part-of' relation}
 }
 \value{
   \item{goSim}{Semantic similarity.}

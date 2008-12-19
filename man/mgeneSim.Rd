@@ -11,8 +11,8 @@ mgeneSim(genes, ont = "MF", drop= "IEA", weight.isa = 0.8, weight.partof = 0.6)
   \item{genes}{ a list of entrez gene IDs. }
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
   \item{drop}{A set of evidence codes based on which certain annotations are dropped. Use NULL to keep all GO annotations.}  
-  \item{weight.isa} {the contribution factor for 'is-a' relation}
-  \item{weight.partof} {the contribution factor for 'part-of' relation}
+  \item{weight.isa}{the contribution factor for 'is-a' relation}
+  \item{weight.partof}{the contribution factor for 'part-of' relation}
 }
 \value{
   \item{simMatrix }{A Matrix of Pairwise Semantic Similarity}
