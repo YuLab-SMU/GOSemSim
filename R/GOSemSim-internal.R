@@ -26,18 +26,21 @@ function(query.go, weight.isa = 0.8, weight.partof = 0.6)
 {
 	sv <- 1
 	sw <- 1
-	sequence <- seq(1, length(query.go)-3, by=2)	##drop the 'all' node
-	w <- 1
-	for(i in sequence) {
-		old.w <- w
-		for (j in query.go[[i+1]]) {
-			if (j == "isa") {
-				w <- old.w * weight.isa
-			} else {
-				w <- old.w*weight.partof
+	n <- length(query.go)
+	if (n > 3) {
+		sequence <- seq(1, n-3, by=2)	##drop the 'all' node
+		w <- 1
+		for(i in sequence) {
+			old.w <- w
+			for (j in query.go[[i+1]]) {
+				if (j == "isa") {
+					w <- old.w * weight.isa
+				} else {
+					w <- old.w*weight.partof
+				}
+				sw <- c(sw, w)
+				sv <- sv + w
 			}
-			sw <- c(sw, w)
-			sv <- sv + w
 		}
 	}
 	return (list(sv=sv, sw=sw))
@@ -58,7 +61,9 @@ function(query.go, weight.isa = 0.8, weight.partof = 0.6)
 `ygcGetOnt` <-
   function(gene, ontology, dropCodes) {
     allGO <- org.Hs.egGO[[gene]]
-    
+    if (sum(!is.na(allGO)) == 0) {
+    	return (NA)
+    }
     if(!is.null(dropCodes)) { 
       evidence<-sapply(allGO, function(x) x$Evidence) 
       drop<-evidence %in% dropCodes
@@ -66,5 +71,5 @@ function(query.go, weight.isa = 0.8, weight.partof = 0.6)
     }
     
     category<-sapply(allGO, function(x) x$Ontology)
-    unlist(unique(names(allGO[category %in% ontology])))
+    return (unlist(unique(names(allGO[category %in% ontology]))))
 }
