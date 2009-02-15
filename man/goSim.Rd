@@ -5,14 +5,13 @@
 Given two GO IDs, this function calculates their semantic similarity.
 }
 \usage{
-goSim(GOID1, GOID2, ont = "MF", weight.isa = 0.8, weight.partof = 0.6)
+goSim(GOID1, GOID2, ont = "MF", measure="Resnik")
 }
 \arguments{
   \item{GOID1}{GO ID 1.}
   \item{GOID2}{GO ID 2.}
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
-  \item{weight.isa}{the contribution factor for 'is-a' relation}
-  \item{weight.partof}{the contribution factor for 'part-of' relation}
+  \item{measure} {One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 }
 \value{
   \item{goSim}{Semantic similarity.}
@@ -24,8 +23,8 @@ goSim(GOID1, GOID2, ont = "MF", weight.isa = 0.8, weight.partof = 0.6)
   \code{\link{mgeneSim}}
 }
 \examples{
-	goSim("GO:0004022", "GO:0005515")
-	goSim("GO:0004022", "GO:0005515", ont="MF")
+	goSim("GO:0043121", "GO:0019838", measure="Resnik")
+	goSim("GO:0043121", "GO:0019838", ont="MF", measure="Resnik")
 }
 \references{
 Wang et al.(2007)

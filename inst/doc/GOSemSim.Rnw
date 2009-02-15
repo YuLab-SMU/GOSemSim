@@ -60,7 +60,7 @@ The \textit{GOSemSim} package contains functions to estimate graph structure bas
 
 <<>>=
 library(GOSemSim)
-goSim("GO:0004022", "GO:0005515", ont="MF")
+goSim("GO:0004022", "GO:0005515", ont="MF", measure="Wang")
 @
 
 The function goSim generates one score for a pair of GO terms. 
@@ -69,13 +69,13 @@ The function goSim generates one score for a pair of GO terms.
 go1 = c("GO:0004022","GO:0004024","GO:0004174")
 go2 = c("GO:0009055","GO:0005515")
 
-mgoSim(go1, go2, ont="MF")
+mgoSim(go1, go2, ont="MF", measure="Wang")
 @
 
 The function mgoSim generates the similarity score of two GO terms lists.
 
 <<>>=
-geneSim("241", "2561", ont="MF")
+geneSim("241", "2561", ont="MF", measure="Wang")
 @
 
 The function geneSim estimate two genes's semantic similarity. 
@@ -86,7 +86,7 @@ The function geneSim estimate two genes's semantic similarity.
 Given GO based similarity scores, gene products may be clustered by their function. \textit{GOSemSim} package provides a function, mgeneSim, that returns pairwise similarity scores  for a list of genes. It can be used by other functions to perform clustering.
 
 <<>>=
-sim <- mgeneSim(c("835", "5261","241", "934"), ont="MF")
+sim <- mgeneSim(c("835", "5261","241", "934"), ont="MF", measure="Wang")
 sim
 
 library(cluster)
