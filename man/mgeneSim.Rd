@@ -5,14 +5,13 @@
   Given a list of genes, this function calculates pairwise semantic similarity.
 }
 \usage{
-mgeneSim(genes, ont = "MF", drop= "IEA", weight.isa = 0.8, weight.partof = 0.6)
+mgeneSim(genes, ont = "MF", drop= "IEA",  measure="Resnik")
 }
 \arguments{
   \item{genes}{ a list of entrez gene IDs. }
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
   \item{drop}{A set of evidence codes based on which certain annotations are dropped. Use NULL to keep all GO annotations.}  
-  \item{weight.isa}{the contribution factor for 'is-a' relation}
-  \item{weight.partof}{the contribution factor for 'part-of' relation}
+  \item{measure} {One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 }
 \value{
   \item{simMatrix }{A Matrix of Pairwise Semantic Similarity}
@@ -23,7 +22,7 @@ mgeneSim(genes, ont = "MF", drop= "IEA", weight.isa = 0.8, weight.partof = 0.6)
 	\code{\link{geneSim}}
 }
 \examples{
-	mgeneSim(c("835", "5261","241", "934"), ont="MF")
+	mgeneSim(c("835", "5261","241", "934"), ont="MF", measure="Wang")
 }
 \references{
 Wang et al.(2007)

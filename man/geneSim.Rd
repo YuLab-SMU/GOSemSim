@@ -5,7 +5,7 @@
  Given two genes, this function will calculate the semantic similarity between them,  and return their semantic similarity and the corresponding GO terms
 }
 \usage{
-	geneSim(gene1, gene2, ont = "MF",  drop= "IEA", weight.isa = 0.8, weight.partof = 0.6)
+	geneSim(gene1, gene2, ont = "MF",  drop= "IEA",measure="Resnik")
 }
 
 \arguments{
@@ -13,8 +13,7 @@
   \item{gene2}{ another entrez gene id.}
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
   \item{drop}{A set of evidence codes based on which certain annotations are dropped. Use NULL to keep all GO annotations.}
-  \item{weight.isa}{the contribution factor for 'is-a' relation}
-  \item{weight.partof}{the contribution factor for 'part-of' relation}
+  \item{measure} {One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 }
 \value{
   \item{geneSim }{Semantic similarity.}
@@ -27,7 +26,7 @@
 	\code{\link{mgeneSim}}
 }
 \examples{
-	geneSim("241", "2561", ont="MF")
+	geneSim("241", "2561", measure="Wang", ont="MF")
 }
 \references{
 Wang et al.(2007)
