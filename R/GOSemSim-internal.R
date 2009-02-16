@@ -102,8 +102,8 @@ function(GOID1, GOID2, ont="MF"){
 	sv1 <- ygcSemVal(go1, weight.isa, weight.partof)
 	sv2 <- ygcSemVal(go2, weight.isa, weight.partof)
 	
-	ancestor1 <- unlist(go1[seq(1, length(go1)-3, by=2)])
-	ancestor2 <- unlist(go2[seq(1, length(go2)-3, by=2)])
+	ancestor1 <- unlist(go1[seq(1, length(go1)-1, by=2)])
+	ancestor2 <- unlist(go2[seq(1, length(go2)-1, by=2)])
 	ancestor1 <- c(GOID1, ancestor1)
 	ancestor2 <- c(GOID2, ancestor2)
 	
