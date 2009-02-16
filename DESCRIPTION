@@ -1,7 +1,7 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-Version: 0.9.5
+Version: 0.9.6
 Date: 2008-12-26
 Author: Guangchuang Yu
 Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
@@ -9,4 +9,4 @@ Depends: AnnotationDbi, GO.db, org.Hs.eg.db
 biocViews: GO, Clustering, Pathways
 Description: A new method to measure the semantic similarity of GO terms.
 License: GPL version 2
-Packaged: Fri Dec 26 17:07:27 2008; ygc
+Packaged: Mon Feb 16 11:06:54 2009; ygc
