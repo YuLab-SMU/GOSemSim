@@ -8,10 +8,10 @@
 mgeneSim(genes, ont = "MF", drop= "IEA",  measure="Resnik")
 }
 \arguments{
-  \item{genes}{ a list of entrez gene IDs. }
+  \item{genes}{ A list of entrez gene IDs. }
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
   \item{drop}{A set of evidence codes based on which certain annotations are dropped. Use NULL to keep all GO annotations.}  
-  \item{measure} {One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
+  \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 }
 \value{
   \item{simMatrix }{A Matrix of Pairwise Semantic Similarity}
@@ -27,8 +27,9 @@ mgeneSim(genes, ont = "MF", drop= "IEA",  measure="Resnik")
 \references{
 Wang et al.(2007)
 A new method to measure the semantic similarity of go terms.
-Bioinformatics (Oxford, England), 23:0 1274--81, May  2007. ISSN 1460-2059.
-http://www.ncbi.nlm.nih.gov/pubmed/17344234.
+\emph{Bioinformatics} (Oxford, England), 23:0 1274--81, May  2007. ISSN
+1460-2059. 
+\url{http://www.ncbi.nlm.nih.gov/pubmed/17344234}.
 PMID: 17344234.
 }
 \keyword{ manip}

@@ -17,8 +17,8 @@
 \tabular{ll}{
 Package: \tab GOSemSim\cr
 Type: \tab Package\cr
-Version: \tab 0.9.3\cr
-Date: \tab 12-26-2008\cr
+Version: \tab 0.9.7\cr
+Date: \tab 12-28-2008\cr
 biocViews:\tab GO, Clustering\cr
 Depends:\tab GO.db\cr
 Suggests:\tab Clustering, org.Hs.eg.db\cr
@@ -29,7 +29,7 @@ License: \tab GPL Version 2\cr
 \author{
 Guangchuang Yu
 
-Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
+Maintainer: Guangchuang Yu \email{guangchuangyu@gmail.com}
 }
 \seealso{
 	\code{\link{goSim}}
