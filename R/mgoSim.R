@@ -30,13 +30,19 @@ function(GO1, GO2, ont="MF", measure="Resnik"){
 			} 
 		}
 	}
+
+	if (!sum(!is.na(scores))) return (NA)	
 	if (n ==1 || m == 1) {
 		return (max(scores))
 	}
 	
-	sim <- (sum(sapply(1:m,function(x) {max(scores[x,])})) + sum(sapply(1:n, function(x) {max(scores[,x])})))/(m+n) 
+	sim <- switch (wh_measure,
+			Wang = (sum(sapply(1:m,function(x) {max(scores[x,])})) + sum(sapply(1:n, function(x) {max(scores[,x])})))/(m+n),
+			Jiang = min(scores, na.rm=TRUE),
+			max(scores, na.rm=TRUE) )
+			
 	if (exists("flag") && flag==1 && exists("Ancestor", envir=GOSemSimenvironment)) {
 		rm(Ancestor)
 	}
-	return (sim)
+	return (round(sim,digits=3))
 }
