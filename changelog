@@ -4,6 +4,10 @@
 - update documentations
 
 ### version 0.9.7
+- fix Rd issues
+- enclosed url address by \url{ } in Rd 
+
+### version 0.9.6
 - fix bug
 
 ### version 0.9.5
