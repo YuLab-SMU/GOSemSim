@@ -9,10 +9,10 @@ mgoSim(GO1, GO2, ont = "MF", measure="Resnik")
 }
 
 \arguments{
-  \item{GO1}{A set of go terms. }
-  \item{GO2}{Another set of go terms.}
+  \item{GO1}{ a set of go terms. }
+  \item{GO2}{ another set of go terms.}
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
-  \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
+  \item{measure} {One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 }
 \value{
   \item{mgoSim }{Semantic similarity.}
@@ -30,10 +30,15 @@ mgoSim(GO1, GO2, ont = "MF", measure="Resnik")
 }
 \references{
 Wang et al.(2007)
-A new method to measure the semantic similarity of go terms.
-\emph{Bioinformatics} (Oxford, England), 23:0 1274--81, May  2007. ISSN
-  1460-2059. 
-\url{http://www.ncbi.nlm.nih.gov/pubmed/17344234}.
-PMID: 17344234.
+A new method to measure the semantic similarity of go terms
+Bioinformatics (Oxford, England), 23:0 1274--81, May  2007. ISSN 1460-2059
+http://www.ncbi.nlm.nih.gov/pubmed/17344234
+PMID: 17344234
+
+P W Lord et al.(2003)
+Semantic similarity measures as tools for exploring the gene ontology
+Pacific Symposium on Biocomputing. Pacific Symposium on Biocomputing, 2003:601-12, ISSN 1793-5091
+http://www.ncbi.nlm.nih.gov/pubmed/12603061
+PMID: 12603061
 }
 \keyword{ manip }

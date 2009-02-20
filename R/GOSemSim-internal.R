@@ -119,6 +119,8 @@ function(GOID1, GOID2, ont="MF"){
 
 `InfoContentMethod` <- function(GOID1, GOID2, ont, measure) {
 	cnt <- "Count"
+	GOCount <- NULL
+	rm(GOCount)
 	data("GOCount", package="GOSemSim")
 	rootCount <- switch(ont, 
                      MF=GOCount["GO:0003674", cnt],
