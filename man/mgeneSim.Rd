@@ -8,10 +8,10 @@
 mgeneSim(genes, ont = "MF", drop= "IEA",  measure="Resnik")
 }
 \arguments{
-  \item{genes}{ a list of entrez gene IDs. }
+  \item{genes}{A list of entrez gene IDs. }
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
   \item{drop}{A set of evidence codes based on which certain annotations are dropped. Use NULL to keep all GO annotations.}  
-  \item{measure} {One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
+  \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 }
 \value{
   \item{simMatrix }{A Matrix of Pairwise Semantic Similarity}

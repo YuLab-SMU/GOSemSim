@@ -9,11 +9,11 @@
 }
 
 \arguments{
-  \item{gene1}{ entrez gene id. }
-  \item{gene2}{ another entrez gene id.}
+  \item{gene1}{ Entrez gene id. }
+  \item{gene2}{ Another entrez gene id.}
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
   \item{drop}{A set of evidence codes based on which certain annotations are dropped. Use NULL to keep all GO annotations.}
-  \item{measure} {One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
+  \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 }
 \value{
   \item{geneSim }{Semantic similarity.}
