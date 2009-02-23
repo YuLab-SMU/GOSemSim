@@ -11,7 +11,7 @@ goSim(GOID1, GOID2, ont = "MF", measure="Resnik")
   \item{GOID1}{GO ID 1.}
   \item{GOID2}{GO ID 2.}
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
-  \item{measure} {One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
+  \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 }
 \value{
   \item{goSim}{Semantic similarity.}
