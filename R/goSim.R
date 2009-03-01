@@ -8,6 +8,6 @@ function(GOID1, GOID2, ont="MF", measure="Resnik"){
 	} else {
 		sim <- InfoContentMethod(GOID1, GOID2, ont=wh_ont, measure=wh_measure)
 	}
-	return (sim)
+	return(round(sim, digits=3))
 }
 

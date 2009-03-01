@@ -27,6 +27,7 @@ As GO allows multiple parents for each concept, two terms can share parents by m
 
 \textit{$p_{ms}(t1,t2)$} $= \displaystyle\min_{t \in S(t1,t2)} \{p(t)\})$
  
+ 
 where S(t1,t2) is the set of parent terms shared by t1 and t2.
 
 
@@ -34,19 +35,24 @@ The first method Resnik\citep{philip_semantic_1999} is defined as:
 
 $sim(t1,t2) = -\ln p_{ms}(t1,t2)$
 
+
 The second method Lin\citep{lin_information-theoretic_1998} is defined as:
 
 $sim(t1,t2)=\displaystyle\frac{2 \times \ln (p_{ms}(t1,t2))}{\ln p(t1) + \ln p(c2)}$
+
 
 The third method Rel\citep{schlicker_new_2006} combine Resnik's and Lin's method is defined as:
 
 $sim=\displaystyle\frac{2 \times \ln p_{ms}(t1,t2)} {\ln p(t1) + \ln p(p2)}$ 
 
 
-The last method Jiang\citep{jiang_semantic_1997} is defined as:
+The last method Jiang\citep{jiang_semantic_1997} define a semantic distance as:
 
-$sim(t1,t2)=2 \times \ln p_{ms}(t1,t2) - \ln p(t1) - \ln p(p2)$
+$d(t1,t2)= \ln p(t1) + \ln p(p2) - 2 \times \ln p_{ms}(t1,t2)$
 
+and the corresponding similarity measure for d(t1, t2) is given by:
+
+$sim(t1,t2) = \displaystyle\frac{1}{d(t1,t2) + 1}$
 
 		
 
