@@ -7,18 +7,6 @@ function(GO1, GO2, ont="MF", measure="Resnik"){
 	GO2 <- unlist(GO2)
 	m <- length(GO1)
 	n <- length(GO2)
-
-	if (measure== "Wang") {
-		allGO <- unlist(c(GO1,GO2))
-		flag <- 0
-		if (!exists("GOSemSimenvironment")) 
-			.initial()
-		if (!exists("Ancestor", envir=GOSemSimenvironment)) {
-			Ancestor <- assign("Ancestor", GOSemSimenvironment)
-			Ancestor <- ygcStoreAncestor(allGO, wh_ont)
-			flag <- 1
-		}
-	}
 	 
 	scores <- matrix(nrow=m, ncol=n)
 	rownames(scores) <- GO1
@@ -41,8 +29,6 @@ function(GO1, GO2, ont="MF", measure="Resnik"){
 			Jiang = min(scores, na.rm=TRUE),
 			max(scores, na.rm=TRUE) )
 			
-	if (exists("flag") && flag==1 && exists("Ancestor", envir=GOSemSimenvironment)) {
-		rm(Ancestor)
-	}
+			
 	return (round(sim,digits=3))
 }
