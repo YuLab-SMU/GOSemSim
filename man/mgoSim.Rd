@@ -5,7 +5,7 @@
  Given two GO term sets, this function will calculate the semantic similarity between them,  and return their semantic similarity
 }
 \usage{
-mgoSim(GO1, GO2, ont="MF", measure="Resnik")
+mgoSim(GO1, GO2, ont="MF", measure="Wang", organism="human")
 }
 
 \arguments{
@@ -13,6 +13,7 @@ mgoSim(GO1, GO2, ont="MF", measure="Resnik")
   \item{GO2}{Another set of go terms.}
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
   \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
+  \item{organism}{One of "human", "rat", "mouse", "fly" and "yeast".}
 }
 \value{
   \item{mgoSim }{Semantic similarity.}
@@ -25,8 +26,8 @@ mgoSim(GO1, GO2, ont="MF", measure="Resnik")
 \examples{
 	go1 <- c("GO:0004022", "GO:0004024", "GO:0004023")
 	go2 <- c("GO:0009055", "GO:0020037")
-	mgoSim("GO:0003824", go2, measure="Resnik")
-	mgoSim(go1, go2, measure="Resnik", ont="MF")
+	mgoSim("GO:0003824", go2, measure="Wang")
+	mgoSim(go1, go2, measure="Wang", ont="MF", organism="human")
 }
 \references{
 Wang et al.(2007)

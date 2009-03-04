@@ -5,13 +5,14 @@
   Given a list of genes, this function calculates pairwise semantic similarity.
 }
 \usage{
-mgeneSim(genes, ont = "MF", drop= "IEA",  measure="Resnik")
+mgeneSim(genes, ont = "MF", drop= "IEA",  organism="human", measure="Wang")
 }
 \arguments{
   \item{genes}{A list of entrez gene IDs. }
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
   \item{drop}{A set of evidence codes based on which certain annotations are dropped. Use NULL to keep all GO annotations.}  
   \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
+  \item{organism}{One of "human", "rat", "mouse", "fly" and "yeast".}  
 }
 \value{
   \item{simMatrix }{A Matrix of Pairwise Semantic Similarity}
@@ -22,8 +23,9 @@ mgeneSim(genes, ont = "MF", drop= "IEA",  measure="Resnik")
 	\code{\link{geneSim}}
 }
 \examples{
-	mgeneSim(c("835", "5261","241", "934"), ont="MF", measure="Wang")
+	mgeneSim(c("835", "5261","241", "994"), ont="MF", measure="Wang", organism="human")
 }
+
 \references{
 Wang et al.(2007)
 A new method to measure the semantic similarity of go terms
