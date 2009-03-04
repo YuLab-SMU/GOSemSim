@@ -5,7 +5,7 @@
  Given two genes, this function will calculate the semantic similarity between them,  and return their semantic similarity and the corresponding GO terms
 }
 \usage{
-	geneSim(gene1, gene2, ont = "MF",  drop= "IEA",measure="Resnik")
+	geneSim(gene1, gene2, ont = "MF",  drop= "IEA",measure="Wang", organism="human")
 }
 
 \arguments{
@@ -14,6 +14,7 @@
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
   \item{drop}{A set of evidence codes based on which certain annotations are dropped. Use NULL to keep all GO annotations.}
   \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
+  \item{organism}{One of "human", "rat", "mouse", "fly" and "yeast".}
 }
 \value{
   \item{geneSim }{Semantic similarity.}
@@ -26,7 +27,8 @@
 	\code{\link{mgeneSim}}
 }
 \examples{
-	geneSim("241", "2561", measure="Wang", ont="MF")
+	geneSim("241", "2561", measure="Wang", ont="MF", organism="human")
+	geneSim("snR18", "YPR062W", measure="Wang", ont="MF", organism="yeast")
 }
 \references{
 Wang et al.(2007)

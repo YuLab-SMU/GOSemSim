@@ -20,13 +20,100 @@
 \section{Introduction}
 
 Functional similarity of gene products can estimated by controlled biological vocabularies, such as Gene Ontology (GO). GO comprises of three orthogonal ontologies, molecular function (MF), biological process (BP), and cellular component (CC). 
-
+\\
 Four methods proposed by Resnik\citep{philip_semantic_1999}, Jiang\citep{jiang_semantic_1997}, Lin\citep{lin_information-theoretic_1998} and Schlicker\citep{schlicker_new_2006} respectively have presented to determine the semantic similarity of two GO terms based on the annotation statistics of their common ancestor terms.  Wang \citep{wang_new_2007} proposed a new method to measure the similarity based on the graph structure of GO . Each of these methods has its own strengths and weaknesses. The \textit{GOSemSim} package implemented all these five methods.
-
-
+\\
+\par
 \section{Semantic Similarity Measures}
-				
+
 The \textit{GOSemSim} package contains functions to estimate graph structure based  similarity scores of GO terms. Details about Wang's method can be seen in \citep{wang_new_2007}, details about Rel method can be seen in \citep{schlicker_new_2006} and the details about Resnik, Lin, and Jiang's methods can be seen in \citep{lord_semantic_2003}. Resnik, Lin, Rel, and Jiang's methods based on the information content of the GO terms while Wang's method determines the semantic similarity of two GO terms  based on both the locations of these terms in the GO graph and their relations with their ancestor terms.
+\\
+The method proposed by \citep{wang_new_2007} is based on the graph structure of each term.
+\\
+Formally, a GO term A can be represented as $DAG_{A}=(A,T_{A},E_{A})$ where $T_{A}$ is the set of GO terms in $DAG_{A}$, including term A and all of its ancestor terms in the GO graph, and $E_{A}$ is the set of edges connecting the GO terms in $DAG_{A}$.
+\\
+To encode the semantics of a GO term in a measurable format to enable a quantitative comparison of two term's semantics, we firstly defined the semantic value of term A as the aggregate contribution of all terms in $DAG_{A}$ to the semantics of term A.  Terms closer to term A in $DAG_{A}$ contribute more to its semantics. Thus, define the contribution of a GO term \textit{t} to the semantics of GO term A as the S-value of GO term \textit{t} related to term A. For any of term \textit{t} in $DAG_{A}=(A,T_{A},E_{A})$, its S-value related to term A. $S_{A}(\textit{t})$ is defined as:
+\\
+\begin{center}
+\[\left\{ 
+	\begin{array}{l}
+		S_{A}(A)=1 \\
+		S_{A}(\textit{t})=\max\{w_{e} \times S_{A}(\textit{t}') | \textit{t}' \in childrenof(\textit{t}) \}$ if $\textit{t} \ne A
+	\end{array}
+\right.\]
+\end{center}
+
+where $w_{e}$ is the semantic contribution factor for edge $e \in E_{A}$ linking term \textit{t} with its child term \textit{t}'.  We defined term A contribute to its own as one. After obtaining the S-values for all terms in $DAG_{A}$, we calculate the semantic value of GO term A, SV(A), as:
+\\
+\begin{center}
+					$SV(A)=\displaystyle\sum_{t \in T_{A}} S_{A}(t)$ 
+\end{center}
+
+Given two GO terms A and B, the semantic similarity between these two terms, $GO_{A,B}$, is defined as:
+\\
+\begin{center}
+					$S_{GO}(A,B)=\displaystyle\sum_{t \in T_{A} \cap T_{B}} \frac{S_{A}(t) + S_{B}(t)}{SV(A) + SV(B)}$
+\end{center}
+
+where $S_{A}(\textit{t})$ is the S-value of GO term \textit{t} related to term A and $S_{B}(\textit{t})$ is the S-value of GO term \textit{t} related to term B.
+\\
+The semantic similarity of one GO term \textit{go} and a GO terms set $GO=\{go_{1},go_{2} \ldots go_{k}\}$ is defined as:
+\\
+\begin{center}
+					$Sim(go, GO) = \displaystyle\max_{1 \le i \le k}(S_{GO}(go, GO_{i}))$
+\end{center}
+
+Therefore, given two GO terms sets $GO_{1}=\{go_{11},go_{12} \ldots go_{1m}\}$ and $GO_{2}=\{go_{21},go_{22} \ldots go_{2n}\}$, the semantic similarity between them is defined as:
+\\
+\begin{center}
+					$Sim(GO1, GO2) = \frac{\displaystyle\sum_{1 \le i \le m} Sim(\textit(go_{1i}), \textit(GO2)) + sum_{1 \le j \le n} Sim(\textit(go_{2j}), \textit(GO1))} {m+n}$
+\end{center}
+		
+The \textit{GOSemSim} package contains functions to estimate graph structure based  similarity scores of GO terms. Details about this method can be seen in \citep{wang_new_2007}. This method determines the semantic similarity of two GO terms  based on both the locations of these terms in the GO graph and their relations with their ancestor terms.
+\\
+The GOSemSim package implemented four other methods which are based on information content were proposed by Resnik\citep{philip_semantic_1999}, Jiang\citep{jiang_semantic_1997}, Lin\citep{lin_information-theoretic_1998} and Schlicker\citep{schlicker_new_2006} respectively.
+\\
+Information content is defined as frequency of each term occurs in the corpus. We used Bioconductor package org.Hs.eg.db, org.Dm.eg.db, org.Mm.eg.db, org.Rn.eg.db, org.Sc.sgd.db to calculate the information content of human, fly, mouse, rat and yeast species respectively. The information content will update regularly.
+\\
+Given the information content, we applied the four measures to estimate the semantic similarity between terms. 
+\\
+As GO allows multiple parents for each concept, two terms can share parents by multiple paths. We take the mininmum p(t), where there is more than on shared parents. We defined \textit{$p_{ms}$} as :
+\\
+\begin{center}
+\textit{$p_{ms}(t1,t2)$} $= \displaystyle\min_{t \in S(t1,t2)} \{p(t)\})$
+\end{center}
+ 
+where S(t1,t2) is the set of parent terms shared by t1 and t2.
+\\
+The first method Resnik\citep{philip_semantic_1999} is defined as:
+\\
+\begin{center}
+$sim(t1,t2) = -\ln p_{ms}(t1,t2)$
+\end{center}
+
+The second method Lin\citep{lin_information-theoretic_1998} is defined as:
+\\
+\begin{center}
+$sim(t1,t2)=\displaystyle\frac{2 \times \ln (p_{ms}(t1,t2))}{\ln p(t1) + \ln p(c2)}$
+\end{center}
+
+The third method Rel\citep{schlicker_new_2006} combine Resnik's and Lin's method is defined as:
+\\
+\begin{center}
+$sim=\displaystyle\frac{2 \times \ln p_{ms}(t1,t2)} {\ln p(t1) + \ln p(p2)}$ 
+\end{center}
+
+The last method Jiang\citep{jiang_semantic_1997} define a semantic distance as:
+\\
+\begin{center}
+$d(t1,t2)= \ln p(t1) + \ln p(p2) - 2 \times \ln p_{ms}(t1,t2)$
+\end{center}
+
+and the corresponding similarity measure for d(t1, t2) is given by:
+\begin{center}
+$sim(t1,t2) = 1-\min(1, d(t1,t2))$
+\end{center}
+
 
 <<>>=
 library(GOSemSim)
@@ -42,21 +129,21 @@ go2 = c("GO:0009055","GO:0005515")
 mgoSim(go1, go2, ont="MF", measure="Wang")
 @
 
-The function mgoSim generates the similarity score of two GO terms lists. The mapping from Entrez Gene IDs to GO IDs can be restricted based on evidence codes. 
+The function mgoSim generates the similarity score of two GO terms lists. 
 
 <<>>=
-geneSim("241", "2561", ont="MF", drop="IEA", measure="Wang")
+geneSim("241", "2561", ont="MF", drop="IEA", organism="human", measure="Wang")
 @
 
-The function geneSim estimate two genes's semantic similarity. 
-
-
+The function geneSim estimate two genes's semantic similarity. The mapping from Gene IDs to GO IDs can be restricted based on evidence codes. It supports five species, which are "human", "rat", "mouse", "fly", and "yeast". 
+\\
+\par
 \section{Functional Clustering}
 
 Given GO based similarity scores, gene products may be clustered by their function. \textit{GOSemSim} package provides a function, mgeneSim, that returns pairwise similarity scores  for a list of genes. It can be used by other functions to perform clustering.
 
 <<>>=
-sim <- mgeneSim(c("835", "5261","241", "934"), ont="MF", measure="Wang")
+sim <- mgeneSim(c("835", "5261","241", "934"), ont="MF", organism="human", measure="Wang")
 sim
 
 library(cluster)

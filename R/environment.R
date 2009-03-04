@@ -1,3 +1,3 @@
 .initial <- function() {
-	assign("GOSemSimenvironment", new.env(),.GlobalEnv)
+	assign("GOSemSimEnv", new.env(),.GlobalEnv)
 }
