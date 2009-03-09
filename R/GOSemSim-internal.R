@@ -46,11 +46,11 @@ ygcGetAncestors <- function(ont="MF") {
 ygcGetGOMap <- function(organism="human") {
 	if(!exists("GOSemSimEnv")) .initial()
 	species <- switch(organism,
-		human <- "Hs",
-		fly <- "Dm",
-		mouse <- "Mm",
-		rat <- "Rn",
-		yeast <- "Sc"
+		human = "Hs",
+		fly = "Dm",
+		mouse = "Mm",
+		rat = "Rn",
+		yeast = "Sc"
 	)	
 	gomap <- switch(organism,
 		human = org.Hs.egGO,
@@ -65,10 +65,10 @@ ygcGetGOMap <- function(organism="human") {
 `ygcGetOnt` <-  function(gene, organism, ontology, dropCodes) {
 	if(!exists("GOSemSimEnv")) .initial()
 	species <- switch(organism,
-		human <- "Hs",
-		fly <- "Dm",
-		mouse <- "Mm",
-		rat <- "Rn",
+		human = "Hs",
+		fly = "Dm",
+		mouse = "Mm",
+		rat = "Rn",
 		yeast <- "Sc"
 	)
 	if (!exists(species, envir=GOSemSimEnv)) {
