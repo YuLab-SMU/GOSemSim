@@ -17,7 +17,7 @@
 \tabular{ll}{
 Package: \tab GOSemSim\cr
 Type: \tab Package\cr
-Version: \tab 1.1.0\cr
+Version: \tab 1.1.2\cr
 Date: \tab 03-04-2009\cr
 biocViews:\tab GO, Clustering\cr
 Depends:\tab GO.db\cr
@@ -36,6 +36,8 @@ Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
 	\code{\link{mgoSim}}
 	\code{\link{geneSim}}
 	\code{\link{mgeneSim}}
+	\code{\link{clusterSim}}
+	\code{\link{mclusterSim}}	
 }
 
 \keyword{ package }

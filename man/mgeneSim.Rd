@@ -2,28 +2,30 @@
 \alias{mgeneSim}
 \title{Pairwise Semantic Similarity for a List of Genes}
 \description{
-  Given a list of genes, this function calculates pairwise semantic similarity.
+  Given a list of genes, this function calculates pairwise semantic similarities.
 }
 \usage{
-mgeneSim(genes, ont = "MF", drop= "IEA",  organism="human", measure="Wang")
+mgeneSim(genes, ont = "MF",  organism="human", measure="Wang", drop= "IEA")
 }
 \arguments{
   \item{genes}{A list of entrez gene IDs. }
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
-  \item{drop}{A set of evidence codes based on which certain annotations are dropped. Use NULL to keep all GO annotations.}  
   \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
   \item{organism}{One of "human", "rat", "mouse", "fly" and "yeast".}  
+  \item{drop}{A set of evidence codes based on which certain annotations are dropped. Use NULL to keep all GO annotations.}  
 }
 \value{
-  \item{simMatrix }{A Matrix of Pairwise Semantic Similarity}
+  \item{simMatrix }{A Matrix of Pairwise Semantic Similarities}
 }
 \seealso{
 	\code{\link{goSim}}
 	\code{\link{mgoSim}}
 	\code{\link{geneSim}}
+	\code{\link{clusterSim}}
+	\code{\link{mclusterSim}}
 }
 \examples{
-	mgeneSim(c("835", "5261","241", "994"), ont="MF", measure="Wang", organism="human")
+	mgeneSim(c("835", "5261","241", "994"), ont="MF", organism="human", measure="Wang")
 }
 
 \references{
