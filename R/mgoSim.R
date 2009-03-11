@@ -1,8 +1,8 @@
 `mgoSim` <- 
-function(GO1, GO2, ont="MF", measure="Wang", organism="human"){
+function(GO1, GO2, ont="MF", organism="human", measure="Wang"){
 	wh_ont <- match.arg(ont, c("MF", "BP", "CC"))
+	wh_organism <- match.arg(organism, c("human", "fly", "mouse", "rat", "yeast") )
 	wh_measure <- match.arg(measure, c("Resnik", "Jiang", "Lin", "Rel", "Wang"))
-	wh_organism <- match.arg(organism, c("human", "fly", "mouse", "rat", "yeast"))
 
 	GO1 <- unlist(GO1)
 	GO2 <- unlist(GO2)
@@ -15,7 +15,7 @@ function(GO1, GO2, ont="MF", measure="Wang", organism="human"){
 	for( i in 1:m) {
 		for (j in 1:n) {
 			if(is.na(scores[i,j])) {
-				scores[i,j] <- goSim(GO1[i], GO2[j], ont=wh_ont, measure=wh_measure, organism=wh_organism)
+				scores[i,j] <- goSim(GO1[i], GO2[j], wh_ont, wh_organism, wh_measure)
 			} 
 		}
 	}

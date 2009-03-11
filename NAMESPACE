@@ -2,5 +2,7 @@ export(
 	goSim,
 	mgoSim,
 	geneSim,
-	mgeneSim
+	mgeneSim,
+	clusterSim,
+	mclusterSim
 )
