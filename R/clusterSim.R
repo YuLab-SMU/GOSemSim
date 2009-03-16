@@ -21,6 +21,6 @@ function(cluster1, cluster2, ont="MF", organism="human", measure="Wang", drop="I
 		return (NA)
 	}
 	
-	result <- max(allSim, na.rm=TRUE)
+	result <- sum(allSim, na.rm=TRUE)/sum(!is.na(allSim))
 	return (round(result, digits=3))
 }

@@ -27,8 +27,9 @@ function(GO1, GO2, ont="MF", organism="human", measure="Wang"){
 	
 	sim <- switch (wh_measure,
 			Wang = (sum(sapply(1:m,function(x) {max(scores[x,])})) + sum(sapply(1:n, function(x) {max(scores[,x])})))/(m+n),
-			Jiang = min(scores, na.rm=TRUE),
-			max(scores, na.rm=TRUE) 
+			sum(scores,na.rm=TRUE)/sum(!is.na(scores))
+#			Jiang = min(scores, na.rm=TRUE),
+#			max(scores, na.rm=TRUE) 
 	)			
 			
 	return (round(sim,digits=3))
