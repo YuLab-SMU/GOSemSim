@@ -141,6 +141,8 @@ uniqsv <- function(sv) {
 ygcSemVal <- function(goid, Parents, sv, w, weight.isa, weight.partof) {
 	p <- Parents[goid]
 	p <- unlist(p[[1]])
+	if (length(p) == 0)
+		return(0)
 	relations <- names(p)
 	old.w <- w
 	for (i in 1:length(p)) {
