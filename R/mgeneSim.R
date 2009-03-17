@@ -5,9 +5,6 @@
 	
 	genes <- genes[!is.na(genes)]
 	n <- length(genes)
-	gos <- sapply(genes, organism=wh_organism, ontology=wh_ont, dropCodes=drop, ygcGetOnt)
-	gos <- gos[!is.na(gos)]
-	genes <- genes[!is.na(gos)]
 	
 	simMatrix <- matrix(NA, nrow=n, ncol=n)
 	colnames(simMatrix) <- genes

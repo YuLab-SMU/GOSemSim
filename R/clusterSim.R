@@ -11,16 +11,8 @@ function(cluster1, cluster2, ont="MF", organism="human", measure="Wang", drop="I
 	}
 	allid <- unique(unlist(c(cluster1,cluster2)))
 
-	if (!exists("GOSemSimEnv")) {
-		.initial()
-	}
+	allgenesim <- mgeneSim(allid, wh_ont, wh_organism, wh_measure)
 
-	if (exists("allgenesim", envir=GOSemSimEnv)) {
-		allgenesim <- get("allgenesim", envir=GOSemSimEnv)
-	} 
-	else {
-		allgenesim <- mgeneSim(allid, wh_ont, wh_organism, wh_measure)
-	}
 	
 	allSim <- matrix(data=NA, nrow=size1, ncol=size2)
 	for (i in 1:size1) {
