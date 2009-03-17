@@ -14,9 +14,7 @@ function(GO1, GO2, ont="MF", organism="human", measure="Wang"){
 	colnames(scores) <- GO2
 	for( i in 1:m) {
 		for (j in 1:n) {
-			if(is.na(scores[i,j])) {
-				scores[i,j] <- goSim(GO1[i], GO2[j], wh_ont, wh_organism, wh_measure)
-			} 
+			scores[i,j] <- goSim(GO1[i], GO2[j], wh_ont, wh_organism, wh_measure)
 		}
 	}
 
@@ -25,12 +23,7 @@ function(GO1, GO2, ont="MF", organism="human", measure="Wang"){
 		return (max(scores))
 	}
 	
-	sim <- switch (wh_measure,
-			Wang = (sum(sapply(1:m,function(x) {max(scores[x,])})) + sum(sapply(1:n, function(x) {max(scores[,x])})))/(m+n),
-			sum(scores,na.rm=TRUE)/sum(!is.na(scores))
-#			Jiang = min(scores, na.rm=TRUE),
-#			max(scores, na.rm=TRUE) 
-	)			
+	sim <- sum(sapply(1:m, function(x) {max(scores[x,], na.rm=TRUE)})) + sum(sapply(1:n, function(x) {max(scores[,x], na.rm=TRUE)})))/(m+n)	
 			
 	return (round(sim,digits=3))
 }
