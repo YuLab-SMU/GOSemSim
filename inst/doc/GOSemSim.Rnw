@@ -120,7 +120,7 @@ The semantic similarity of one GO term \textit{go} and a GO terms set $GO=\{go_{
 Therefore, given two GO terms sets $GO_{1}=\{go_{11},go_{12} \ldots go_{1m}\}$ and $GO_{2}=\{go_{21},go_{22} \ldots go_{2n}\}$, the semantic similarity between them is defined as:
 \\
 \begin{center}
-					$Sim(GO1, GO2) = \frac{\displaystyle\sum_{1 \le i \le m} Sim(\textit(go_{1i}), \textit(GO2)) + \displaystyle\sum_{1 \le j \le n} Sim(\textit(go_{2j}), \textit(GO1))} {m+n}$
+					$Sim(GO1, GO2) = \frac{\displaystyle\sum_{1 \le i \le m} Sim(\textit(go_{1i}), \textit(GO_{2})) + \displaystyle\sum_{1 \le j \le n} Sim(\textit(go_{2j}), \textit(GO_{1}))} {m+n}$
 \end{center}
 
 <<>>=
