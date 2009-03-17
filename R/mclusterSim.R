@@ -5,12 +5,6 @@ function(clusters, ont="MF", organism="human", measure="Wang", drop="IEA") {
 	wh_organism <- match.arg(organism, c("human", "fly", "mouse", "rat", "yeast"))
 	
 	size <- length(clusters)
-	allid <- unique(unlist(clusters))
-	allgenesim <- mgeneSim(allid, wh_ont, wh_organism, wh_measure)
-	if (!exists("GOSemSimEnv")) {
-		.initial()
-	}
-	assign("allgenesim", allgenesim, envir=GOSemSimEnv)
 	
 	simmat <- matrix(NA, nrow=size, ncol=size)
 	rownames(simmat) <- names(clusters)
