@@ -60,18 +60,6 @@ Given two GO terms A and B, the semantic similarity between these two terms, $GO
 
 where $S_{A}(\textit{t})$ is the S-value of GO term \textit{t} related to term A and $S_{B}(\textit{t})$ is the S-value of GO term \textit{t} related to term B.
 \\
-\indent
-The semantic similarity of one GO term \textit{go} and a GO terms set $GO=\{go_{1},go_{2} \ldots go_{k}\}$ is defined as:
-\\
-\begin{center}
-					$Sim(go, GO) = \displaystyle\max_{1 \le i \le k}(S_{GO}(go, GO_{i}))$
-\end{center}
-
-Therefore, given two GO terms sets $GO_{1}=\{go_{11},go_{12} \ldots go_{1m}\}$ and $GO_{2}=\{go_{21},go_{22} \ldots go_{2n}\}$, the semantic similarity between them is defined as:
-\\
-\begin{center}
-					$Sim(GO1, GO2) = \frac{\displaystyle\sum_{1 \le i \le m} Sim(\textit(go_{1i}), \textit(GO2)) + sum_{1 \le j \le n} Sim(\textit(go_{2j}), \textit(GO1))} {m+n}$
-\end{center}
 \indent		
 The \textit{GOSemSim} package contains functions to estimate graph structure based  similarity scores of GO terms. Details about this method can be seen in \citep{wang_new_2007}. This method determines the semantic similarity of two GO terms  based on both the locations of these terms in the GO graph and their relations with their ancestor terms.
 \\
@@ -123,14 +111,24 @@ and the corresponding similarity measure for d(t1, t2) is given by:
 \begin{center}
 $sim(t1,t2) = 1-\min(1, d(t1,t2))$
 \end{center}
-
+\indent
+The semantic similarity of one GO term \textit{go} and a GO terms set $GO=\{go_{1},go_{2} \ldots go_{k}\}$ is defined as:
+\\
+\begin{center}
+					$Sim(go, GO) = \displaystyle\max_{1 \le i \le k}(S_{GO}(go, GO_{i}))$
+\end{center}
+Therefore, given two GO terms sets $GO_{1}=\{go_{11},go_{12} \ldots go_{1m}\}$ and $GO_{2}=\{go_{21},go_{22} \ldots go_{2n}\}$, the semantic similarity between them is defined as:
+\\
+\begin{center}
+					$Sim(GO1, GO2) = \frac{\displaystyle\sum_{1 \le i \le m} Sim(\textit(go_{1i}), \textit(GO2)) + \displaystyle\sum_{1 \le j \le n} Sim(\textit(go_{2j}), \textit(GO1))} {m+n}$
+\end{center}
 
 <<>>=
 library(GOSemSim)
 goSim("GO:0004022", "GO:0005515", ont="MF", measure="Wang")
 @
 
-The function goSim generates one score for a pair of GO terms. 
+The function goSim generates the semantic similarity score for a pair of GO terms. 
 
 <<>>=
 go1 = c("GO:0004022","GO:0004024","GO:0004174")
@@ -161,7 +159,7 @@ pamCluster <- pam(as.dist(1-sim[complete.cases(sim), complete.cases(sim)]), 2)
 pamCluster$clustering
 @
   				
-We also implemented two functions for estimating similarities among gene clusters. \textit{clusterSim} for calculating semantic similarity between two gene clusters and \textit{mclusterSim} for calculating pairwise similarities of a set of gene clusters.	For caculate two gene clusters similarities, we first calculate pairwise similarities among genes, and the maximum similarity score was taken.  This strategy is based on WordNet\citep{fellbaum_wordnet:electronic_1998}.
+We also implemented two functions for estimating similarities among gene clusters. \textit{clusterSim} for calculating semantic similarity between two gene clusters and \textit{mclusterSim} for calculating pairwise similarities of a set of gene clusters.	For caculate two gene clusters similarities, we first calculate pairwise similarities among genes, and the average similarity between all gene products was taken since all genes contribute to the gene cluster. 
 
 <<>>=
 cluster1 <- c("snR67","snR40","snR48", "snR17a","snR8")
