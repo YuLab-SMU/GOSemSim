@@ -121,12 +121,14 @@ ygcWangMethod <- function(GOID1, GOID2, ont="MF", organism="human") {
 	sv.a <- ygcSemVal(GOID1, Parents, sv.a, sw, weight.isa, weight.partof)
 	sv.b <- ygcSemVal(GOID2, Parents, sv.b, sw, weight.isa, weight.partof)
 	
+	sv.a <- unlist(sv.a)
+	sv.b <- unlist(sv.b)
 	sv.a <- uniqsv(sv.a)
 	sv.b <- uniqsv(sv.b)
 	
 	idx <- intersect(names(sv.a), names(sv.b))
-	inter.sva <- sv.a[idx]
-	inter.svb <- sv.b[idx]
+	inter.sva <- unlist(sv.a[idx])
+	inter.svb <- unlist(sv.b[idx])
 	sim <- sum(inter.sva,inter.svb) / sum(sv.a, sv.b)
 	return(sim)
 }
@@ -135,7 +137,8 @@ ygcWangMethod <- function(GOID1, GOID2, ont="MF", organism="human") {
 
 uniqsv <- function(sv) {
 	una <- unique(names(sv))
-	sv <- sapply(una, function(x) {max(sv[names(sv)==x])})
+	sv <- unlist(sapply(una, function(x) {max(sv[names(sv)==x])}))
+	return (sv)
 }
 
 ygcSemVal <- function(goid, Parents, sv, w, weight.isa, weight.partof) {
