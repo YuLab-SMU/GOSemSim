@@ -23,7 +23,7 @@ function(GO1, GO2, ont="MF", organism="human", measure="Wang"){
 		return (max(scores))
 	}
 	
-	sim <- sum(sapply(1:m, function(x) {max(scores[x,], na.rm=TRUE)})) + sum(sapply(1:n, function(x) {max(scores[,x], na.rm=TRUE)}))/(m+n)	
+	sim <- (sum(sapply(1:m, function(x) {max(scores[x,], na.rm=TRUE)})) + sum(sapply(1:n, function(x) {max(scores[,x], na.rm=TRUE)})))/(m+n)	
 			
 	return (round(sim,digits=3))
 }

@@ -19,8 +19,6 @@ function(clusters, ont="MF", organism="human", measure="Wang", drop="IEA") {
 		}
 	}	
 	
-	rm(allgenesim)
-	rm("allgenesim", envir=GOSemSimEnv)
 	removeNA <- apply(!is.na(simmat), 1, sum) > 0
 	return(simmat[removeNA, removeNA])
 }
