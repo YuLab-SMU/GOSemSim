@@ -9,16 +9,11 @@ function(cluster1, cluster2, ont="MF", organism="human", measure="Wang", drop="I
 	if (size1 == 0 || size2 == 0) {
 		return (NA)
 	}
-	allid <- unique(unlist(c(cluster1,cluster2)))
-
-	allgenesim <- mgeneSim(allid, wh_ont, wh_organism, wh_measure)
-
 	
 	allSim <- matrix(data=NA, nrow=size1, ncol=size2)
 	for (i in 1:size1) {
 		for (j in 1:size2){
-#			allSim[i,j] <- geneSim(cluster1[i], cluster2[j], wh_ont, wh_organism, wh_measure, drop)$geneSim
-			allSim[i,j] <- allgenesim[cluster1[i],cluster2[j]]
+			allSim[i,j] <- geneSim(cluster1[i], cluster2[j], wh_ont, wh_organism, wh_measure, drop)$geneSim
 		}
 	}	
 	
