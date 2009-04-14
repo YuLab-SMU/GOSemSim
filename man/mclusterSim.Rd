@@ -1,6 +1,6 @@
 \name{mclusterSim}
 \alias{mclusterSim}
-\title{Pairwise Semantic Similarity for a List of Gene Clusters}
+\title{Pairwise Semantic Similarities for a List of Gene Clusters}
 \description{
   Given a list of gene clusters, this function calculates pairwise semantic similarities.
 }
