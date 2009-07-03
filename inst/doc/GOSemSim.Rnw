@@ -98,7 +98,7 @@ $sim(t1,t2)=\displaystyle\frac{2 \times \ln (p_{ms}(t1,t2))}{\ln p(t1) + \ln p(c
 The third method Rel\citep{schlicker_new_2006} combine Resnik's and Lin's method is defined as:
 \\
 \begin{center}
-$sim=\displaystyle\frac{2 \times \ln p_{ms}(t1,t2)} {\ln p(t1) + \ln p(p2)}$ 
+$sim(t1,t2)=\displaystyle\frac{2 \times \ln p_{ms}(t1,t2)}{\ln p(t1) + \ln p(p2)} \times (1-p_{ms}(t1,t2))$ 
 \end{center}
 \indent
 The last method Jiang\citep{jiang_semantic_1997} define a semantic distance as:
