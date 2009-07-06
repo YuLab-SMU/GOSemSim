@@ -22,7 +22,7 @@ mclusterSim(clusters, ont = "MF",  organism="human", measure="Wang", drop= "IEA"
 	\code{\link{mgoSim}}
 	\code{\link{geneSim}}
 	\code{\link{mgeneSim}}
-	\code{\linke{clusterSim}}
+	\code{\link{clusterSim}}
 }
 \examples{
 	cluster1 <- c("snR67","snR40","snR48", "snR17a","snR8")
