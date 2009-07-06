@@ -18,8 +18,8 @@
 \tabular{ll}{
 Package: \tab GOSemSim\cr
 Type: \tab Package\cr
-Version: \tab 1.3.1\cr
-Date: \tab 07-03-2009\cr
+Version: \tab 1.3.2\cr
+Date: \tab 07-06-2009\cr
 biocViews:\tab GO, Clustering\cr
 Depends:\tab GO.db\cr
 Suggests:\tab Clustering, org.Hs.eg.db\cr
