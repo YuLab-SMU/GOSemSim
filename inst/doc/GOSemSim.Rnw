@@ -35,7 +35,7 @@ The method proposed by \citep{wang_new_2007} is based on the graph structure of 
 Formally, a GO term A can be represented as $DAG_{A}=(A,T_{A},E_{A})$ where $T_{A}$ is the set of GO terms in $DAG_{A}$, including term A and all of its ancestor terms in the GO graph, and $E_{A}$ is the set of edges connecting the GO terms in $DAG_{A}$.
 \\
 \indent
-To encode the semantics of a GO term in a measurable format to enable a quantitative comparison of two term's semantics. Firstly define the semantic value of term A as the aggregate contribution of all terms in $DAG_{A}$ to the semantics of term A.  Terms closer to term A in $DAG_{A}$ contribute more to its semantics. Thus, define the contribution of a GO term \textit{t} to the semantics of GO term A as the S-value of GO term \textit{t} related to term A. For any of term \textit{t} in $DAG_{A}=(A,T_{A},E_{A})$, its S-value related to term A. $S_{A}(\textit{t})$ is defined as:
+To encode the semantics of a GO term in a measurable format to enable a quantitative comparison between two term's semantics, firstly define the semantic value of term A as the aggregate contribution of all terms in $DAG_{A}$ to the semantics of term A, terms closer to term A in $DAG_{A}$ contribute more to its semantics, thus, define the contribution of a GO term \textit{t} to the semantics of GO term A as the S-value of GO term \textit{t} related to term A. For any of term \textit{t} in $DAG_{A}=(A,T_{A},E_{A})$, its S-value related to term A. $S_{A}(\textit{t})$ is defined as:
 \\
 \begin{center}
 \[\left\{ 
@@ -46,7 +46,7 @@ To encode the semantics of a GO term in a measurable format to enable a quantita
 \right.\]
 \end{center}
 
-where $w_{e}$ is the semantic contribution factor for edge $e \in E_{A}$ linking term \textit{t} with its child term \textit{t}'. Term A contribute to its own is defined as one. After obtaining the S-values for all terms in $DAG_{A}$, the semantic value of GO term A, SV(A), is calculated as:
+where $w_{e}$ is the semantic contribution factor for edge $e \in E_{A}$ linking term \textit{t} with its child term \textit{t}'. Term A contributes to its own is defined as one. After obtaining the S-values for all terms in $DAG_{A}$, the semantic value of GO term A, SV(A), is calculated as:
 \\
 \begin{center}
 					$SV(A)=\displaystyle\sum_{t \in T_{A}} S_{A}(t)$ 
@@ -61,7 +61,7 @@ Given two GO terms A and B, the semantic similarity between these two terms, $GO
 where $S_{A}(\textit{t})$ is the S-value of GO term \textit{t} related to term A and $S_{B}(\textit{t})$ is the S-value of GO term \textit{t} related to term B.
 \\
 \indent		
-Details about this method can be seen in \citep{wang_new_2007}. This method determines the semantic similarity of two GO terms  based on both the locations of these terms in the GO graph and their relations with their ancestor terms.
+Details about this method can be seen in \citep{wang_new_2007}. This method determines the semantic similarity of two GO terms based on both the locations of these terms in the GO graph and their relations with their ancestor terms.
 \\
 \indent
 The GOSemSim package implemented four other methods which are based on information content were proposed by Resnik\citep{philip_semantic_1999}, Jiang\citep{jiang_semantic_1997}, Lin\citep{lin_information-theoretic_1998} and Schlicker\citep{schlicker_new_2006} respectively.
@@ -73,14 +73,14 @@ Information content is defined as frequency of each term occurs in the GO corpus
 Given the information content, we applied the four measures to estimate the semantic similarity between terms. 
 \\
 \indent
-As GO allows multiple parents for each concept, two terms can share parents by multiple paths. We take the mininmum p(t), where there is more than on shared parents. The \textit{$p_{ms}$} is defined as :
+As GO allow multiple parents for each concept, two terms can share parents by multiple paths. We take the mininmum p(t), where there is more than on shared parents. The \textit{$p_{ms}$} is defined as:
 \\
 \indent
 \begin{center}
 \textit{$p_{ms}(t1,t2)$} $= \displaystyle\min_{t \in S(t1,t2)} \{p(t)\})$
 \end{center}
  
-where S(t1,t2) is the set of parent terms shared by t1 and t2.
+Where S(t1,t2) is the set of parent terms shared by t1 and t2.
 \\
 \indent
 The first method Resnik\citep{philip_semantic_1999} is defined as:
@@ -148,7 +148,7 @@ The function geneSim estimate two genes's semantic similarity. The mapping from 
 \par
 \section{Functional Clustering}
 
-Given GO based similarity scores, gene products may be clustered by their function. \textit{GOSemSim} package provides a function, mgeneSim, that returns pairwise similarities scores  for a list of genes. It can be used by other functions to perform clustering.
+Given GO based similarity scores, gene products may be clustered by their function. \textit{GOSemSim} package provides a function, mgeneSim, which returns pairwise similarities scores for a list of genes. It can be used by other functions to perform clustering.
 
 <<>>=
 sim <- mgeneSim(c("835", "5261","241", "934"), ont="MF", organism="human", measure="Wang")
@@ -159,7 +159,7 @@ pamCluster <- pam(as.dist(1-sim[complete.cases(sim), complete.cases(sim)]), 2)
 pamCluster$clustering
 @
   				
-We also implemented two functions for estimating similarities among gene clusters. \textit{clusterSim} for calculating semantic similarity between two gene clusters and \textit{mclusterSim} for calculating pairwise similarities of a set of gene clusters.	For caculate two gene clusters similarities, we first calculate pairwise similarities among genes, and the average similarity between all gene products was taken since all genes contribute to the gene cluster. 
+We also implemented two functions for estimating similarities among gene clusters. \textit{clusterSim} for calculating semantic similarity between two gene clusters and \textit{mclusterSim} for calculating pairwise similarities of a set of gene clusters.	For calculate two gene clusters similarity, we first calculate pairwise similarities among genes, and the average similarity between all gene products was taken since all genes contribute to the gene cluster. 
 
 <<>>=
 cluster1 <- c("snR67","snR40","snR48", "snR17a","snR8")
