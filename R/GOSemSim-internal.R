@@ -69,7 +69,7 @@ ygcGetGOMap <- function(organism="human") {
 		fly = "Dm",
 		mouse = "Mm",
 		rat = "Rn",
-		yeast <- "Sc"
+		yeast = "Sc"
 	)
 	if (!exists(species, envir=GOSemSimEnv)) {
 		ygcGetGOMap(organism)
