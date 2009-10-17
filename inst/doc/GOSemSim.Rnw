@@ -122,7 +122,6 @@ Therefore, given two GO terms sets $GO_{1}=\{go_{11},go_{12} \cdots go_{1m}\}$ a
 \begin{center}
 					$Sim(GO1, GO2) = \frac{\displaystyle\sum_{1 \le i \le m} Sim(\textit(go_{1i}), \textit(GO_{2})) + \displaystyle\sum_{1 \le j \le n} Sim(\textit(go_{2j}), \textit(GO_{1}))} {m+n}$
 \end{center}
-
 <<>>=
 library(GOSemSim)
 goSim("GO:0004022", "GO:0005515", ont="MF", measure="Wang")
