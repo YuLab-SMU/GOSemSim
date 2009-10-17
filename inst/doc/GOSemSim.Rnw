@@ -26,7 +26,7 @@ Four methods proposed by Resnik\citep{philip_semantic_1999}, Jiang\citep{jiang_s
 \par
 \section{Semantic Similarity Measures}
 \indent
-The \textit{GOSemSim} package contains functions to estimate similarity scores of GO terms. Details about Wang's method can be seen in \citep{wang_new_2007}, details about Rel method can be seen in \citep{schlicker_new_2006} and the details about Resnik, Lin, and Jiang's methods can be seen in \citep{lord_semantic_2003}. Resnik, Lin, Rel, and Jiang's methods based on the information content of the GO terms while Wang's method based on both the locations of these terms in the GO graph and their relations with their ancestor terms.
+The \textit{GOSemSim} package contains functions to estimate similarity scores of GO terms. Details about Wang's method can be referred to \citep{wang_new_2007}, details about Rel method can be referred to \citep{schlicker_new_2006} and the details about Resnik, Lin, and Jiang's methods can be referred to \citep{lord_semantic_2003}. Resnik, Lin, Schlicker, and Jiang's methods based on the information content of the GO terms while Wang's method based on both the locations of these terms in the GO graph and their relations with their ancestor terms.
 \\
 \indent
 The method proposed by \citep{wang_new_2007} is based on the graph structure of each term.
