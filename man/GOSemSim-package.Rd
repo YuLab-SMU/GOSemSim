@@ -12,14 +12,14 @@
 \details{
 	Quantitative measure of functional similarities among gene products is important for post-genomics study. and widely used in gene function prediction, cluster analysis and pathway modeling.
 	This package is designed to estimate the GO terms' and genes' semantic similarities. 
-	Implemented five methods proposed by Resnik, Schlicker(Rel), Jiang, Lin and Wang respectively. 
+	Implemented five methods proposed by Resnik, Schlicker, Jiang, Lin and Wang respectively. 
 	Support five species: human, rat, mouse, fly, and yeast.
 
 \tabular{ll}{
 Package: \tab GOSemSim\cr
 Type: \tab Package\cr
-Version: \tab 1.3.2\cr
-Date: \tab 07-06-2009\cr
+Version: \tab 1.4.0\cr
+Date: \tab 10-28-2009\cr
 biocViews:\tab GO, Clustering\cr
 Depends:\tab GO.db\cr
 Suggests:\tab Clustering, org.Hs.eg.db\cr
