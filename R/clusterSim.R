@@ -9,14 +9,26 @@ function(cluster1, cluster2, ont="MF", organism="human", measure="Wang", drop="I
 	if (size1 == 0 || size2 == 0) {
 		return (NA)
 	}
-	
+	gos1 <- sapply(cluster1, function(x) ygcGetOnt(x, organism= wh_organism, ontology= wh_ont, dropCodes=drop))
+	gos2 <- sapply(cluster2, function(x) ygcGetOnt(x, organism= wh_organism, ontology= wh_ont, dropCodes=drop))
+
 	allSim <- matrix(data=NA, nrow=size1, ncol=size2)
+	assign("GOSemSimCache", new.env(hash=TRUE),envir=.GlobalEnv)
 	for (i in 1:size1) {
 		for (j in 1:size2){
-			allSim[i,j] <- geneSim(cluster1[i], cluster2[j], wh_ont, wh_organism, wh_measure, drop)$geneSim
+			#allSim[i,j] <- geneSim(cluster1[i], cluster2[j], wh_ont, wh_organism, wh_measure, drop)$geneSim
+
+			allSim[i,j] <- NA
+			if(any(!is.na(gos1[i])) &&  any(!is.na(gos2[j])))
+			{
+				sim <- mgoSim(gos1[i],gos2[j], wh_ont, wh_organism, wh_measure)
+				sim <- round(sim, digits=3)
+				allSim[i,j] <- sim
+			}
 		}
 	}	
 	
+	remove("GOSemSimCache", envir=.GlobalEnv)
 	if (!sum(!is.na(allSim))) {
 		return (NA)
 	}

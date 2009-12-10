@@ -88,9 +88,11 @@ ygcGetGOMap <- function(organism="human") {
       drop<-evidence %in% dropCodes
       allGO<-allGO[!drop]
     }
-    
     category<-sapply(allGO, function(x) x$Ontology)
-    return (unlist(unique(names(allGO[category %in% ontology]))))
+    allGO<-allGO[category %in% ontology]
+
+    if(length(allGO)==0) return (NA)
+    return (unlist(unique(names(allGO))))
 }
 
 
@@ -141,7 +143,7 @@ uniqsv <- function(sv) {
 	return (sv)
 }
 
-ygcSemVal <- function(goid, Parents, sv, w, weight.isa, weight.partof) {
+ygcSemVal_internal <- function(goid, Parents, sv, w, weight.isa, weight.partof) {
 	p <- Parents[goid]
 	p <- unlist(p[[1]])
 	if (length(p) == 0)
@@ -157,13 +159,23 @@ ygcSemVal <- function(goid, Parents, sv, w, weight.isa, weight.partof) {
 		names(w) <- p[i]
 		sv <- c(sv,w)
 		if (p[i] != "all") {
-			sv <- ygcSemVal(p[i], Parents, sv, w, weight.isa, weight.partof)
+			sv <- ygcSemVal_internal(p[i], Parents, sv, w, weight.isa, weight.partof)
 		}
 	}
 	return (sv)
 }
-
-
+ygcSemVal <- function(goid, Parents, sv, w, weight.isa, weight.partof) {
+	if(!exists("GOSemSimCache")) return(ygcSemVal_internal(goid, Parents, sv, w, weight.isa, weight.partof))
+	if (!exists(goid, envir=GOSemSimCache)) {
+	  	value <- ygcSemVal_internal(goid, Parents, sv, w, weight.isa, weight.partof)
+	  	assign(goid, value, envir=GOSemSimCache)
+		#cat("recompute ", goid, value, "\n")
+	}
+	else{
+		#cat("cache ", goid, get(goid, envir=GOSemSimCache), "\n")
+	}
+	return(get(goid, envir=GOSemSimCache))
+}
 
 `ygcInfoContentMethod` <- function(GOID1, GOID2, ont, measure, organism) {
 	if(!exists("GOSemSimEnv")) .initial()
