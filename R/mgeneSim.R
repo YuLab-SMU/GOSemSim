@@ -34,5 +34,6 @@
 	
 	removeNA <- apply(!is.na(simMatrix), 1, sum)>0
 
-	return(simMatrix[removeNA, removeNA])
+	#return(simMatrix[removeNA, removeNA])
+	return("We try to redesign this package, please use the release version. This version will coming soon!")
 }
