@@ -47,5 +47,5 @@ function(clusters, ont="MF", organism="human", measure="Wang", drop="IEA") {
 	remove("GOSemSimCache", envir=.GlobalEnv)
 	removeNA <- apply(!is.na(simmat), 1, sum) > 0
 	#return(simmat[removeNA, removeNA])
-	return("We try to redesign this package, please use the release version. This version will coming soon!")
+	return("We try to redesign this package, please wait, it will coming soon!")
 }

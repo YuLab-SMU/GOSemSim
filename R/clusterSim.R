@@ -35,5 +35,5 @@ function(cluster1, cluster2, ont="MF", organism="human", measure="Wang", drop="I
 	
 	result <- sum(allSim, na.rm=TRUE)/sum(!is.na(allSim))
 	#return (round(result, digits=3))
-	return("We try to redesign this package, please use the release version. This version will coming soon!")
+	return("We try to redesign this package, please wait, it will coming soon!")
 }
