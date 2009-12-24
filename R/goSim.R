@@ -9,6 +9,7 @@ function(GOID1, GOID2, ont="MF", organism="human", measure="Wang"){
 		sim <- ygcInfoContentMethod(GOID1, GOID2, ont=wh_ont, measure=wh_measure, wh_organism)
 	}
 	sim <- unname(sim, force=TRUE)
-	return(round(sim, digits=3))
+	#return(round(sim, digits=3))
+	return("We try to redesign this package, please use the release version. This version will coming soon!")
 }
 
