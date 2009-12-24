@@ -29,7 +29,7 @@ function(clusters, ont="MF", organism="human", measure="Wang", drop="IEA") {
 				for (n in 1:size2){
 					if(any(!is.na(gos1[m])) &&  any(!is.na(gos2[n]))){
 						sim <- mgoSim(gos1[m],gos2[n], wh_ont, wh_organism, wh_measure)
-						sim <- round(sim, digits=3)
+						#sim <- round(sim, digits=3)
 						allSim[m,n] <- sim
 					}
 				}
@@ -37,8 +37,8 @@ function(clusters, ont="MF", organism="human", measure="Wang", drop="IEA") {
 			if (!sum(!is.na(allSim))) {
 				return (NA)
 			}
-			result <- sum(allSim, na.rm=TRUE)/sum(!is.na(allSim))
-			simmat[i,j] <- round(result, digits=3)
+			#result <- sum(allSim, na.rm=TRUE)/sum(!is.na(allSim))
+			#simmat[i,j] <- round(result, digits=3)
 			if ( i != j) {
 				simmat[j, i] <- simmat[i,j]
 			} 

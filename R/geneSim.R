@@ -10,7 +10,7 @@ function(gene1, gene2, ont="MF", organism="human", measure="Wang", drop="IEA"){
 		return (list(geneSim=NA, GO1=go1, GO2=go2))
 	}
 	sim <- mgoSim(go1,go2, wh_ont, wh_organism, wh_measure)
-	sim <- round(sim, digits=3)
+	#sim <- round(sim, digits=3)
 	#return (list(geneSim=sim, GO1=go1, GO2=go2))
 	return("We try to redesign this package, please wait, it will coming soon!")
 }
