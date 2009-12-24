@@ -10,6 +10,6 @@ function(GOID1, GOID2, ont="MF", organism="human", measure="Wang"){
 	}
 	sim <- unname(sim, force=TRUE)
 	#return(round(sim, digits=3))
-	return("We try to redesign this package, please use the release version. This version will coming soon!")
+	return("We try to redesign this package, please wait, it will coming soon!")
 }
 
