@@ -22,7 +22,7 @@ function(cluster1, cluster2, ont="MF", organism="human", measure="Wang", drop="I
 			if(any(!is.na(gos1[i])) &&  any(!is.na(gos2[j])))
 			{
 				sim <- mgoSim(gos1[i],gos2[j], wh_ont, wh_organism, wh_measure)
-				#sim <- round(sim, digits=3)
+				sim <- round(sim, digits=3)
 				allSim[i,j] <- sim
 			}
 		}
@@ -33,7 +33,7 @@ function(cluster1, cluster2, ont="MF", organism="human", measure="Wang", drop="I
 		return (NA)
 	}
 	
-	#result <- sum(allSim, na.rm=TRUE)/sum(!is.na(allSim))
-	#return (round(result, digits=3))
-	return("We try to redesign this package, please wait, it will coming soon!")
+	result <- sum(allSim, na.rm=TRUE)/sum(!is.na(allSim))
+	return (round(result, digits=3))
+
 }
