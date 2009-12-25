@@ -22,7 +22,7 @@
 			if(any(!is.na(gos[i])) &&  any(!is.na(gos[j])))
 			{
 				sim <- mgoSim(gos[i],gos[j], wh_ont, wh_organism, wh_measure)
-				#sim <- round(sim, digits=3)
+				sim <- round(sim, digits=3)
 				simMatrix[i,j] <- sim
 			}
 			if (i != j)	{
@@ -32,8 +32,8 @@
 	}
 	remove("GOSemSimCache", envir=.GlobalEnv)
 	
-	#removeNA <- apply(!is.na(simMatrix), 1, sum)>0
+	removeNA <- apply(!is.na(simMatrix), 1, sum)>0
 
-	#return(simMatrix[removeNA, removeNA])
-	return("We try to redesign this package, please wait, it will coming soon!")
+	return(simMatrix[removeNA, removeNA])
+	
 }
