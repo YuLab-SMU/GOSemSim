@@ -37,8 +37,8 @@ function(clusters, ont="MF", organism="human", measure="Wang", drop="IEA") {
 			if (!sum(!is.na(allSim))) {
 				return (NA)
 			}
-			#result <- sum(allSim, na.rm=TRUE)/sum(!is.na(allSim))
-			#simmat[i,j] <- round(result, digits=3)
+			result <- sum(allSim, na.rm=TRUE)/sum(!is.na(allSim))
+			simmat[i,j] <- round(result, digits=3)
 			if ( i != j) {
 				simmat[j, i] <- simmat[i,j]
 			} 
@@ -46,6 +46,6 @@ function(clusters, ont="MF", organism="human", measure="Wang", drop="IEA") {
 	}	
 	remove("GOSemSimCache", envir=.GlobalEnv)
 	removeNA <- apply(!is.na(simmat), 1, sum) > 0
-	#return(simmat[removeNA, removeNA])
-	return("We try to redesign this package, please wait, it will coming soon!")
+	return(simmat[removeNA, removeNA])
+
 }
