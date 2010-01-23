@@ -131,7 +131,7 @@ mgoSim(go1, go2, ont="MF", measure="Wang")
 @
 
 \indent
-The function \textit{geneSim} estimate semantic similarity of two genes. The mapping from Gene IDs to GO IDs can be restricted based on evidence codes. Gene IDs and species are needed for the function. For human, rat, mouse and fly, the Gene IDs is refer to Entrez Gene IDs, while for yeast, the Gene IDs is refer to ORF identifiers from Saccharomyces Genome Database (SGD). For example:
+The function \textit{geneSim} estimate semantic similarity of two genes. The mapping from Gene IDs to GO IDs can be restricted based on evidence codes. Gene IDs and species are needed for the function. For human, rat, mouse, zebrafish, fly, worm and e coli strain 12, the Gene IDs is refer to Entrez Gene IDs, while for yeast, the Gene IDs is refer to ORF identifiers from Saccharomyces Genome Database (SGD), and for arabidopsis, the Gene IDs is refer to TAIR gene identifiers from The Arabidopsis Information Resource (TAIR). For example:
 
 <<>>=
 geneSim("241", "2561", ont="MF", organism="human", measure="Wang")

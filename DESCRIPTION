@@ -1,11 +1,11 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-Version: 1.5.9
+Version: 1.5.10
 Author: Guangchuang Yu, Chuanle Xiao
 Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
-Depends: AnnotationDbi, GO.db, org.Hs.eg.db, org.Dm.eg.db, org.Mm.eg.db, org.Rn.eg.db, org.Sc.sgd.db
+Depends: AnnotationDbi, GO.db, org.Hs.eg.db, org.Dm.eg.db, org.Mm.eg.db, org.Rn.eg.db, org.Sc.sgd.db, org.Dr.eg.db, org.Ce.eg.db, org.EcK12.eg.db, org.At.tair.db
 biocViews: GO, Clustering, Pathways
-Description: Implemented five methods proposed by Resnik, Schlicker, Jiang, Lin and Wang respectively for estimating GO semantic similarities. Support five species: human, rat, mouse, fly, and yeast.
+Description: Implemented five methods proposed by Resnik, Schlicker, Jiang, Lin and Wang respectively for estimating GO semantic similarities. Support nine species: Human, Rat, Mouse, Zebrafish, Fly, Worm, Yeast, E coli strain K12 and Arabidopsis.
 License: GPL-2
 
