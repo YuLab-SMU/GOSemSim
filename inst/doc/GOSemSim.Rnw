@@ -137,7 +137,7 @@ The function \textit{geneSim} estimate semantic similarity of two genes. The map
 geneSim("241", "2561", ont="MF", organism="human", measure="Wang")
 @
 
-For reduce the dependences of \textit{GOSemSim}, it only depends on species specific annotation package org.Hs.eg.db for human. When calculated semantic similarities of other species, \textit{GOSemSim} will auto load the corresponding annotation package if it was installed or download and install the package automatically if it was not installed.
+For reducing the dependences of \textit{GOSemSim}, it only depends on species specific annotation package org.Hs.eg.db for human. When calculated semantic similarities of other species, \textit{GOSemSim} will auto load the corresponding annotation package if it was installed or download and install the package automatically if it was not installed.
 
 \indent
 Given GO based similarity scores, gene products may be clustered by their function. GOSemSim package provides \textit{mgeneSim} function to compute pairwise similarity scores for a list of genes. The \textit{mgeneSim} function will automatically remove the genes without annotations. Gene IDs and species are needed for the function. For human, rat, mouse, zebrafish, fly, worm and e coli strain 12, the Gene IDs is refer to Entrez Gene IDs, while for yeast, the Gene IDs is refer to ORF identifiers from Saccharomyces Genome Database (SGD), and for arabidopsis, the Gene IDs is refer to TAIR gene identifiers from The Arabidopsis Information Resource (TAIR). The mgeneSim function can be used for large-scale analysis, such as gene clustering. For example:
