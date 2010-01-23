@@ -26,8 +26,8 @@ clusterSim(cluster1, cluster2, ont = "MF",  organism="human", measure="Wang", dr
 	\code{\link{mclusterSim}}
 }
 \examples{
-	cluster1 <- c("snR67","snR40","snR48", "snR17a","snR8")
-	cluster2 <- c("YOR251C", "YPR137C-B", "YPR010C", "YPR072W")
+	cluster1 <- c("835", "5261","241", "994")
+	cluster2 <- c("307", "308", "317", "321", "506", "540", "378", "388", "396")
 	clusterSim(cluster1, cluster2, ont="MF", organism="yeast", measure="Wang")
 }
 
