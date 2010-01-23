@@ -43,8 +43,42 @@ ygcGetAncestors <- function(ont="MF") {
 	assign(eval(wh_Ancestors), Ancestors, envir=GOSemSimEnv)
 }
 
+ygcCheckAnnotationPackage <- function(species){
+	pkgname <- switch (species,
+		human = "org.Hs.eg.db",
+		fly = "org.Dm.eg.db",
+		mouse = "org.Mm.eg.db",
+		rat = "org.Rn.eg.db",
+		yeast = "org.Sc.sgd.db",
+		zebrafish = "org.Dr.eg.db",
+		worm = "org.Ce.eg.db",
+		arabidopsis = "org.At.tair.db",
+		ecolik12 = "org.EcK12.eg.db"			
+	)
+	p <- installed.packages()
+	pn <- p[,1]
+	if (sum(pn==pkgname) == 0) {
+		print("The corresponding annotation package did not installed in this machine.")
+		print("GOSemSim will install and load it automatically.")
+		source("http://bioconductor.org/biocLite.R")
+		biocLite(pkgname)
+	}
+	switch (species,
+		human = library("org.Hs.eg.db"),
+		fly = library("org.Dm.eg.db"),
+		mouse = library("org.Mm.eg.db"),
+		rat = library("org.Rn.eg.db"),
+		yeast = library("org.Sc.sgd.db"),
+		zebrafish = library("org.Dr.eg.db"),
+		worm = library("org.Ce.eg.db"),
+		arabidopsis = library("org.At.tair.db"),
+		ecolik12 = library("org.EcK12.eg.db")			
+	)
+}
+
 ygcGetGOMap <- function(organism="human") {
 	if(!exists("GOSemSimEnv")) .initial()
+	ygcCheckAnnotationPackage(organism)
 	species <- switch(organism,
 		human = "Hs",
 		fly = "Dm",
