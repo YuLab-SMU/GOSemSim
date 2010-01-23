@@ -50,14 +50,22 @@ ygcGetGOMap <- function(organism="human") {
 		fly = "Dm",
 		mouse = "Mm",
 		rat = "Rn",
-		yeast = "Sc"
-	)	
+		yeast = "Sc",
+		zebrafish = "Dr",
+		worm = "Ce",
+		arabidopsis = "At",
+		ecolik12 = "EcK12"
+	)
 	gomap <- switch(organism,
 		human = org.Hs.egGO,
 		fly = org.Dm.egGO,
 		mouse = org.Mm.egGO,
 		rat = org.Rn.egGO,
-		yeast = org.Sc.sgdGO
+		yeast = org.Sc.sgdGO,
+		zebrafish = org.Dr.egGO,
+		worm = org.Ce.egGO,
+		arabidopsis = org.At.tairGO,
+		ecoli = org.EcK12.egGO
 	)
 	assign(eval(species), gomap, envir=GOSemSimEnv)
 }
@@ -69,7 +77,11 @@ ygcGetGOMap <- function(organism="human") {
 		fly = "Dm",
 		mouse = "Mm",
 		rat = "Rn",
-		yeast = "Sc"
+		yeast = "Sc",
+		zebrafish = "Dr",
+		worm = "Ce",
+		arabidopsis = "At",
+		ecolik12 = "EcK12"
 	)
 	if (!exists(species, envir=GOSemSimEnv)) {
 		ygcGetGOMap(organism)
@@ -225,13 +237,17 @@ ygcSemVal <- function(goid, Parents, sv, w, weight.isa, weight.partof) {
 
 ygcCompute_Information_Content <- function(dropCodes="NULL", ont, organism) {
 	wh_ont <- match.arg(ont, c("MF", "BP", "CC"))
-	wh_organism <- match.arg(organism, c("human", "fly", "mouse", "rat", "yeast"))
+	wh_organism <- match.arg(organism, c("human", "fly", "mouse", "rat", "yeast", "zebrafish", "worm", "arabidopsis", "ecolik12"))
 	gomap <- switch(wh_organism,
 		human = org.Hs.egGO,
 		fly = org.Dm.egGO,
 		mouse = org.Mm.egGO,
 		rat = org.Rn.egGO,
-		yeast = org.Sc.sgdGO
+		yeast = org.Sc.sgdGO,
+		zebrafish = org.Dr.egGO,
+		worm = org.Ce.egGO,
+		arabidopsis = org.At.tairGO,
+		ecolik12 = org.EcK12.egGO
 	)
 	mapped_genes <- mappedkeys(gomap)
 	gomap = AnnotationDbi::as.list(gomap[mapped_genes])
@@ -270,5 +286,22 @@ ygcCompute_Information_Content <- function(dropCodes="NULL", ont, organism) {
 	names(cnt) <- goids	
 	IC<- -log(cnt/sum(gocount))		
 	save(IC, file=paste(paste("Info_Contents", wh_ont, organism, sep="_"), ".rda", sep=""))
-	print ("done...")
+}
+
+rebuildICdata <- function(){
+	ont <- c("MF","CC", "BP")
+	species <- c("human", "rat", "mouse", "fly", "yeast", "zebrafish", "arabidopsis","worm", "ecolik12") 
+	cat("------------------------------------\n")
+	cat("calulating Information Content...\n species: ")
+	for (i in ont) {
+		for (j in species) {
+			cat(j)
+			cat("\t ontology: ")
+			cat(i)
+			cat("\n")
+			ygcCompute_Information_Content(ont=i, organism=j)
+		}
+	}
+	cat("------------------------------------\n")
+	print("done...")
 }

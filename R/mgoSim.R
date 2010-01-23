@@ -1,7 +1,7 @@
 `mgoSim` <- 
 function(GO1, GO2, ont="MF", organism="human", measure="Wang"){
 	wh_ont <- match.arg(ont, c("MF", "BP", "CC"))
-	wh_organism <- match.arg(organism, c("human", "fly", "mouse", "rat", "yeast") )
+	wh_organism <- match.arg(organism, c("human", "fly", "mouse", "rat", "yeast", "zebrafish", "worm", "arabidopsis", "ecolik12") )
 	wh_measure <- match.arg(measure, c("Resnik", "Jiang", "Lin", "Rel", "Wang"))
 
 	GO1 <- unlist(GO1)

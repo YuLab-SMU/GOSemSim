@@ -11,7 +11,7 @@ mclusterSim(clusters, ont = "MF",  organism="human", measure="Wang", drop= "IEA"
   \item{clusters}{A list of gene clusters. }
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
   \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
-  \item{organism}{One of "human", "rat", "mouse", "fly" and "yeast".}  
+  \item{organism}{One of "human", "rat", "mouse", "fly", "zebrafish", "worm", "arabidopsis", "ecolik12" and "yeast".}
   \item{drop}{A set of evidence codes based on which certain annotations are dropped. Use NULL to keep all GO annotations.}  
 }
 \value{
