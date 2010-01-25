@@ -53,7 +53,17 @@ ygcCheckAnnotationPackage <- function(species){
 		zebrafish = "org.Dr.eg.db",
 		worm = "org.Ce.eg.db",
 		arabidopsis = "org.At.tair.db",
-		ecolik12 = "org.EcK12.eg.db"			
+		ecolik12 = "org.EcK12.eg.db", 
+		bovine	= "org.Bt.eg.db",
+		canine	= "org.Cf.eg.db", 
+		anopheles	=	"org.Ag.eg.db", 
+		ecsakai	=	"org.EcSakai.eg.db", 
+		chicken	=	"org.Gg.eg.db", 
+		chimp	=	"org.Pt.eg.db", 
+		malaria	=	"org.Pf.plasmo.db", 
+		rhesus	=	"org.Mmu.eg.db", 
+		pig	= "org.Ss.eg.db", 
+		xenopus	=	"org.Xl.eg.db"
 	)
 	p <- installed.packages()
 	pn <- p[,1]
@@ -72,7 +82,17 @@ ygcCheckAnnotationPackage <- function(species){
 		zebrafish = library("org.Dr.eg.db"),
 		worm = library("org.Ce.eg.db"),
 		arabidopsis = library("org.At.tair.db"),
-		ecolik12 = library("org.EcK12.eg.db")			
+		ecolik12 = library("org.EcK12.eg.db"),
+		bovine	= library("org.Bt.eg.db"),
+		canine	= library("org.Cf.eg.db"), 
+		anopheles	=	library("org.Ag.eg.db"), 
+		ecsakai	=	library("org.EcSakai.eg.db"), 
+		chicken	=	library("org.Gg.eg.db"), 
+		chimp	=	library("org.Pt.eg.db"), 
+		malaria	=	library("org.Pf.plasmo.db"), 
+		rhesus	=	library("org.Mmu.eg.db"), 
+		pig	= library("org.Ss.eg.db"), 
+		xenopus	=	library("org.Xl.eg.db")			
 	)
 }
 
@@ -88,7 +108,17 @@ ygcGetGOMap <- function(organism="human") {
 		zebrafish = "Dr",
 		worm = "Ce",
 		arabidopsis = "At",
-		ecolik12 = "EcK12"
+		ecolik12 = "EcK12",
+		bovine	= "Bt",
+		canine	= "Cf", 
+		anopheles	=	"Ag", 
+		ecsakai	=	"EcSakai", 
+		chicken	=	"Gg", 
+		chimp	=	"Pt", 
+		malaria	=	"Pf", 
+		rhesus	=	"Mmu", 
+		pig	= "Ss", 
+		xenopus	=	"Xl"
 	)
 	gomap <- switch(organism,
 		human = org.Hs.egGO,
@@ -99,7 +129,17 @@ ygcGetGOMap <- function(organism="human") {
 		zebrafish = org.Dr.egGO,
 		worm = org.Ce.egGO,
 		arabidopsis = org.At.tairGO,
-		ecoli = org.EcK12.egGO
+		ecoli = org.EcK12.egGO,
+		bovine	= org.Bt.egGO,
+		canine	= org.Cf.egGO, 
+		anopheles	=	org.Ag.egGO, 
+		ecsakai	=	org.EcSakai.egGO, 
+		chicken	=	org.Gg.egGO, 
+		chimp	=	org.Pt.egGO, 
+		malaria	=	org.Pf.plasmoGO, 
+		rhesus	=	org.Mmu.egGO, 
+		pig	= org.Ss.egGO, 
+		xenopus	=	org.Xl.egGO		
 	)
 	assign(eval(species), gomap, envir=GOSemSimEnv)
 }
@@ -115,7 +155,17 @@ ygcGetGOMap <- function(organism="human") {
 		zebrafish = "Dr",
 		worm = "Ce",
 		arabidopsis = "At",
-		ecolik12 = "EcK12"
+		ecolik12 = "EcK12",
+		bovine	= "Bt",
+		canine	= "Cf", 
+		anopheles	=	"Ag", 
+		ecsakai	=	"EcSakai", 
+		chicken	=	"Gg", 
+		chimp	=	"Pt", 
+		malaria	=	"Pf", 
+		rhesus	=	"Mmu", 
+		pig	= "Ss", 
+		xenopus	=	"Xl"
 	)
 	if (!exists(species, envir=GOSemSimEnv)) {
 		ygcGetGOMap(organism)
@@ -271,7 +321,8 @@ ygcSemVal <- function(goid, Parents, sv, w, weight.isa, weight.partof) {
 
 ygcCompute_Information_Content <- function(dropCodes="NULL", ont, organism) {
 	wh_ont <- match.arg(ont, c("MF", "BP", "CC"))
-	wh_organism <- match.arg(organism, c("human", "fly", "mouse", "rat", "yeast", "zebrafish", "worm", "arabidopsis", "ecolik12"))
+	wh_organism <- match.arg(organism, c("human", "fly", "mouse", "rat", "yeast", "zebrafish", "worm", "arabidopsis", "ecolik12", "bovine","canine","anopheles","ecsakai","chicken","chimp","malaria","rhesus","pig","xenopus"))
+	ygcCheckAnnotationPackage(wh_organism)
 	gomap <- switch(wh_organism,
 		human = org.Hs.egGO,
 		fly = org.Dm.egGO,
@@ -281,7 +332,17 @@ ygcCompute_Information_Content <- function(dropCodes="NULL", ont, organism) {
 		zebrafish = org.Dr.egGO,
 		worm = org.Ce.egGO,
 		arabidopsis = org.At.tairGO,
-		ecolik12 = org.EcK12.egGO
+		ecolik12 = org.EcK12.egGO,
+		bovine	= org.Bt.egGO,
+		canine	= org.Cf.egGO, 
+		anopheles	=	org.Ag.egGO, 
+		ecsakai	=	org.EcSakai.egGO, 
+		chicken	=	org.Gg.egGO, 
+		chimp	=	org.Pt.egGO, 
+		malaria	=	org.Pf.plasmoGO, 
+		rhesus	=	org.Mmu.egGO, 
+		pig	= org.Ss.egGO, 
+		xenopus	=	org.Xl.egGO		
 	)
 	mapped_genes <- mappedkeys(gomap)
 	gomap = AnnotationDbi::as.list(gomap[mapped_genes])
@@ -324,13 +385,13 @@ ygcCompute_Information_Content <- function(dropCodes="NULL", ont, organism) {
 
 rebuildICdata <- function(){
 	ont <- c("MF","CC", "BP")
-	species <- c("human", "rat", "mouse", "fly", "yeast", "zebrafish", "arabidopsis","worm", "ecolik12") 
+	species <- c("human", "rat", "mouse", "fly", "yeast", "zebrafish", "arabidopsis","worm", "ecolik12", "bovine","canine","anopheles","ecsakai","chicken","chimp","malaria","rhesus","pig","xenopus") 
 	cat("------------------------------------\n")
-	cat("calulating Information Content...\n species: ")
+	cat("calulating Information Content...\nSpecies:\t\tOntology\n")
 	for (i in ont) {
 		for (j in species) {
 			cat(j)
-			cat("\t ontology: ")
+			cat("\t\t\t")
 			cat(i)
 			cat("\n")
 			ygcCompute_Information_Content(ont=i, organism=j)
