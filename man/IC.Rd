@@ -28,6 +28,36 @@
 \alias{Info_Contents_MF_worm}
 \alias{Info_Contents_BP_worm}
 \alias{Info_Contents_CC_worm}
+\alias{Info_Contents_MF_xenopus}
+\alias{Info_Contents_BP_xenopus}
+\alias{Info_Contents_CC_xenopus}
+\alias{Info_Contents_MF_bovine}
+\alias{Info_Contents_BP_bovine}
+\alias{Info_Contents_CC_bovine}
+\alias{Info_Contents_MF_canine}
+\alias{Info_Contents_BP_canine}
+\alias{Info_Contents_CC_canine}
+\alias{Info_Contents_MF_anopheles}
+\alias{Info_Contents_BP_anopheles}
+\alias{Info_Contents_CC_anopheles}
+\alias{Info_Contents_MF_ecsakai}
+\alias{Info_Contents_BP_ecsakai}
+\alias{Info_Contents_CC_ecsakai}
+\alias{Info_Contents_MF_chicken}
+\alias{Info_Contents_BP_chicken}
+\alias{Info_Contents_CC_chicken}
+\alias{Info_Contents_MF_malaria}
+\alias{Info_Contents_BP_malaria}
+\alias{Info_Contents_CC_malaria}
+\alias{Info_Contents_MF_chimp}
+\alias{Info_Contents_BP_chimp}
+\alias{Info_Contents_CC_chimp}
+\alias{Info_Contents_MF_rhesus}
+\alias{Info_Contents_BP_rhesus}
+\alias{Info_Contents_CC_rhesus}
+\alias{Info_Contents_MF_pig}
+\alias{Info_Contents_BP_pig}
+\alias{Info_Contents_CC_pig}
 \title{Information content of GO terms}
 \description{  
 	These datasets are the information contents of GOterms.

@@ -12,7 +12,7 @@
   \item{gene1}{ Entrez gene id. }
   \item{gene2}{ Another entrez gene id.}
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
-  \item{organism}{One of "human", "rat", "mouse", "fly", "zebrafish", "worm", "arabidopsis", "ecolik12" and "yeast".}
+  \item{organism}{One of "human","chimp","bovine","canine","pig","chicken", "rat", "mouse", "zebrafish", "fly", "worm","yeast", "arabidopsis","anopheles","malaria","rhesus","xenopus","ecolik12" and "ecsakai".}
   \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
   \item{drop}{A set of evidence codes based on which certain annotations are dropped. Use NULL to keep all GO annotations.}
 }
