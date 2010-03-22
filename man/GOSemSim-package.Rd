@@ -13,13 +13,13 @@
 	Quantitative measure of functional similarities among gene products is important for post-genomics study. and widely used in gene function prediction, cluster analysis and pathway modeling.
 	This package is designed to estimate the GO terms' and genes' semantic similarities. 
 	Implemented five methods proposed by Resnik, Schlicker, Jiang, Lin and Wang respectively. 
-	Support nine species: Human, Rat, Mouse, Zebrafish, Fly, Worm, Yeast, E coli strain K12 and Arabidopsis.
+	Support many species, including Anopheles, Arabidopsis, Bovine, Canine, Chicken, Chimp, E coli strain K12 and strain Sakai, Fly, Human, Malaria, Mouse, Pig, Rhesus, Rat, Worm, Xenopus, Yeast, Zebrafish.
 
 \tabular{ll}{
 Package: \tab GOSemSim\cr
 Type: \tab Package\cr
 Version: \tab 1.6.0\cr
-Date: \tab 1-23-2010\cr
+Date: \tab 3-22-2010\cr
 biocViews:\tab GO, Clustering\cr
 Depends:\tab GO.db\cr
 Suggests:\tab Clustering, org.Hs.eg.db\cr
