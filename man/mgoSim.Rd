@@ -12,7 +12,7 @@ mgoSim(GO1, GO2, ont="MF", organism="human", measure="Wang")
   \item{GO1}{A set of go terms. }
   \item{GO2}{Another set of go terms.}
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
-  \item{organism}{One of "human","chimp","bovine","canine","pig","chicken", "rat", "mouse", "zebrafish", "fly", "worm","yeast", "arabidopsis","anopheles","malaria","rhesus","xenopus","ecolik12" and "ecsakai".}
+  \item{organism}{One of "anopheles", "arabidopsis", "bovine", "canine", "chicken", "chimp", "ecolik12", "ecsakai", "fly", "human", "malaria", "mouse", "pig", "rat", "rhesus", "worm", "xenopus", "yeast" and "zebrafish".}
   \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 }
 \value{
