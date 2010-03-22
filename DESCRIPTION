@@ -1,12 +1,12 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-Version: 1.5.12
+Version: 1.5.14
 Author: Guangchuang Yu, Chuanle Xiao
 Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
 Depends: AnnotationDbi, GO.db, org.Hs.eg.db
-Suggests: org.Dm.eg.db, org.Mm.eg.db, org.Rn.eg.db, org.Sc.sgd.db, org.Dr.eg.db, org.Ce.eg.db, org.EcK12.eg.db, org.At.tair.db, org.Bt.eg.db, org.Cf.eg.db, org.Ag.eg.db, org.EcSakai.eg.db, org.Gg.eg.db, org.Pt.eg.db, org.Pf.plasmo.db, org.Mmu.eg.db, org.Ss.eg.db, org.Xl.eg.db
+Suggests: org.Ag.eg.db, org.At.tair.db, org.Bt.eg.db, org.Ce.eg.db, org.Cf.eg.db, org.Dm.eg.db, org.Dr.eg.db, org.EcK12.eg.db, org.EcSakai.eg.db, org.Gg.eg.db, org.Mm.eg.db, org.Mmu.eg.db, org.Pf.plasmo.db, org.Pt.eg.db, org.Rn.eg.db, org.Sc.sgd.db, org.Ss.eg.db, org.Xl.eg.db
 biocViews: GO, Clustering, Pathways
-Description: Implemented five methods proposed by Resnik, Schlicker, Jiang, Lin and Wang respectively for estimating GO semantic similarities. Support many species, including Human, Chimp, Bovine, Canine, Pig, Rat, Mouse, Chicken, Zebrafish, Fly, Worm, Yeast,Arabidopsis, Rhesus, Malaria, Xenopus, Anopheles, E coli strain K12 and strain Sakai.
+Description: Implemented five methods proposed by Resnik, Schlicker, Jiang, Lin and Wang respectively for estimating GO semantic similarities. Support many species, including Anopheles, Arabidopsis, Bovine, Canine, Chicken, Chimp, E coli strain K12 and strain Sakai, Fly, Human, Malaria, Mouse, Pig, Rhesus, Rat, Worm, Xenopus, Yeast, Zebrafish.
 License: GPL-2
 
