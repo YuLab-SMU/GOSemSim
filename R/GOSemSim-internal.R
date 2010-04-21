@@ -62,7 +62,7 @@ ygcCheckAnnotationPackage <- function(species){
 		chimp	=	"org.Pt.eg.db", 
 		malaria	=	"org.Pf.plasmo.db", 
 		rhesus	=	"org.Mmu.eg.db", 
-		pig	= "org.Ss.eg.db", 
+		pig	= 	"org.Ss.eg.db", 
 		xenopus	=	"org.Xl.eg.db"
 	)
 	p <- installed.packages()
@@ -70,8 +70,9 @@ ygcCheckAnnotationPackage <- function(species){
 	if (sum(pn==pkgname) == 0) {
 		print("The corresponding annotation package did not installed in this machine.")
 		print("GOSemSim will install and load it automatically.")
-		source("http://bioconductor.org/biocLite.R")
-		biocLite(pkgname)
+		#source("http://bioconductor.org/biocLite.R")
+		#biocLite(pkgname)
+		install.packages(pkgname,repos="http://www.bioconductor.org/packages/2.6/data/annotation",type="source")
 	}
 	switch (species,
 		human = library("org.Hs.eg.db"),
