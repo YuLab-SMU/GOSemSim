@@ -72,7 +72,7 @@ ygcCheckAnnotationPackage <- function(species){
 		print("GOSemSim will install and load it automatically.")
 		#source("http://bioconductor.org/biocLite.R")
 		#biocLite(pkgname)
-		install.packages(pkgname,repos="http://www.bioconductor.org/packages/2.6/data/annotation",type="source")
+		install.packages(pkgname,repos="http://www.bioconductor.org/packages/2.7/data/annotation",type="source")
 	}
 	switch (species,
 		human = library("org.Hs.eg.db"),
