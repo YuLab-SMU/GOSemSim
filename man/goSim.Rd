@@ -11,7 +11,7 @@ goSim(GOID1, GOID2, ont = "MF", organism="human", measure="Wang")
   \item{GOID1}{GO ID 1.}
   \item{GOID2}{GO ID 2.}
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
-  \item{organism}{One of "anopheles", "arabidopsis", "bovine", "canine", "chicken", "chimp", "ecolik12", "ecsakai", "fly", "human", "malaria", "mouse", "pig", "rat", "rhesus", "worm", "xenopus", "yeast" and "zebrafish".}
+  \item{organism}{One of "anopheles", "arabidopsis", "bovine", "canine", "chicken", "chimp", "coelicolor", "ecolik12", "ecsakai", "fly", "human", "malaria", "mouse", "pig", "rat", "rhesus", "worm", "xenopus", "yeast" and "zebrafish".}
   \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 }
 \value{

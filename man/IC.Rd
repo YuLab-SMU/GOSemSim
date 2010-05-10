@@ -58,6 +58,9 @@
 \alias{Info_Contents_MF_pig}
 \alias{Info_Contents_BP_pig}
 \alias{Info_Contents_CC_pig}
+\alias{Info_Contents_MF_coelicolor}
+\alias{Info_Contents_BP_coelicolor}
+\alias{Info_Contents_CC_coelicolor}
 \title{Information content of GO terms}
 \description{  
 	These datasets are the information contents of GOterms.
