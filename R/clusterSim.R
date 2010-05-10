@@ -1,7 +1,7 @@
-`clusterSim` <- 
+clusterSim <- 
 function(cluster1, cluster2, ont="MF", organism="human", measure="Wang", drop="IEA"){
 	wh_ont <- match.arg(ont, c("MF", "BP", "CC"))
-	wh_organism <- match.arg(organism, c("human", "fly", "mouse", "rat", "yeast", "zebrafish", "worm", "arabidopsis", "ecolik12", "bovine","canine","anopheles","ecsakai","chicken","chimp","malaria","rhesus","pig","xenopus"))
+	wh_organism <- match.arg(organism, get("SupportedSpecies",envir=GOSemSimEnv))
 	wh_measure <- match.arg(measure, c("Resnik", "Jiang", "Lin", "Rel", "Wang"))
 	
 	size1 <- length(cluster1)
