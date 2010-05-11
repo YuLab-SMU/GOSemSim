@@ -5,7 +5,7 @@
  Given two genes, this function will calculate the semantic similarity between them,  and return their semantic similarity and the corresponding GO terms
 }
 \usage{
-	geneSim(gene1, gene2, ont = "MF", organism="human",measure="Wang",  drop= "IEA")
+	geneSim(gene1, gene2, ont = "MF", organism="human",measure="Wang",  drop= "IEA", combine="rcmax.avg")
 }
 
 \arguments{
@@ -15,6 +15,7 @@
   \item{organism}{One of "anopheles", "arabidopsis", "bovine", "canine", "chicken", "chimp", "coelicolor", "ecolik12", "ecsakai", "fly", "human", "malaria", "mouse", "pig", "rat", "rhesus", "worm", "xenopus", "yeast" and "zebrafish".}
   \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
   \item{drop}{A set of evidence codes based on which certain annotations are dropped. Use NULL to keep all GO annotations.}
+  \item{combine}{One of "max", "average", "rcmax", "rcmax.avg" methods, for combining semantic similarity scores of multiple GO terms associated with protein or multiple proteins assiciated with protein cluster.}
 }
 \value{
   \item{geneSim }{Semantic similarity.}
@@ -29,7 +30,7 @@
 	\code{\link{mclusterSim}}	
 }
 \examples{
-	geneSim("241", "2561", ont="MF", organism="human", measure="Wang")
+	geneSim("241", "251", ont="MF", organism="human", measure="Wang")
 	geneSim("snR18", "YPR062W", ont="MF", organism="yeast", measure="Wang")
 }
 \references{

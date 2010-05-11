@@ -1,9 +1,11 @@
 mgoSim <- 
-function(GO1, GO2, ont="MF", organism="human", measure="Wang"){
+function(GO1, GO2, ont="MF", organism="human", measure="Wang", combine="rcmax.avg"){
 	wh_ont <- match.arg(ont, c("MF", "BP", "CC"))
-	wh_organism <- match.arg(organism, get("SupportedSpecies",envir=GOSemSimEnv))
 	wh_measure <- match.arg(measure, c("Resnik", "Jiang", "Lin", "Rel", "Wang"))
-
+	if(!exists("GOSemSimEnv")) .initial()
+	wh_organism <- match.arg(organism, get("SupportedSpecies",envir=GOSemSimEnv))
+	wh_combine <- match.arg(combine, c("max", "average", "rcmax", "rcmax.avg"))
+	
 	GO1 <- unlist(GO1)
 	GO2 <- unlist(GO2)
 	m <- length(GO1)
@@ -20,11 +22,12 @@ function(GO1, GO2, ont="MF", organism="human", measure="Wang"){
 
 	if (!sum(!is.na(scores))) return (NA)	
 	if (n ==1 || m == 1) {
-		return (max(scores))
+		if (wh_combine == "average") {
+			return (round(mean(scores),digits=3))
+		}
+		return (round(max(scores),digits=3))
 	}
 	
-	sim <- (sum(sapply(1:m, function(x) {max(scores[x,], na.rm=TRUE)})) + sum(sapply(1:n, function(x) {max(scores[,x], na.rm=TRUE)})))/(m+n)	
-			
+	sim <- ygcCombine(scores, wh_combine)
 	return (round(sim,digits=3))
-
 }
