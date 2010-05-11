@@ -5,7 +5,7 @@
  Given two GO term sets, this function will calculate the semantic similarity between them,  and return their semantic similarity
 }
 \usage{
-mgoSim(GO1, GO2, ont="MF", organism="human", measure="Wang")
+mgoSim(GO1, GO2, ont="MF", organism="human", measure="Wang", combine="rcmax.avg")
 }
 
 \arguments{
@@ -14,6 +14,7 @@ mgoSim(GO1, GO2, ont="MF", organism="human", measure="Wang")
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
   \item{organism}{One of "anopheles", "arabidopsis", "bovine", "canine", "chicken", "chimp", "coelicolor", "ecolik12", "ecsakai", "fly", "human", "malaria", "mouse", "pig", "rat", "rhesus", "worm", "xenopus", "yeast" and "zebrafish".}
   \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
+  \item{combine}{One of "max", "average", "rcmax", "rcmax.avg" methods, for combining semantic similarity scores of multiple GO terms associated with protein or multiple proteins assiciated with protein cluster.}
 }
 \value{
   \item{mgoSim }{Semantic similarity.}

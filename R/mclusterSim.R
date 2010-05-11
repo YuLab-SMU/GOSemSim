@@ -1,8 +1,10 @@
 mclusterSim <- 
-function(clusters, ont="MF", organism="human", measure="Wang", drop="IEA") {
+function(clusters, ont="MF", organism="human", measure="Wang", drop="IEA", combine="rcmax.avg") {
 	wh_ont <- match.arg(ont, c("MF", "BP", "CC"))
 	wh_measure <- match.arg(measure, c("Resnik", "Jiang", "Lin", "Rel", "Wang"))
+	if(!exists("GOSemSimEnv")) .initial()
 	wh_organism <- match.arg(organism, get("SupportedSpecies",envir=GOSemSimEnv))
+	wh_combine <- match.arg(combine, c("max", "average", "rcmax", "rcmax.avg"))
 	
 	size <- length(clusters)
 	cluster_gos=list()
@@ -28,7 +30,7 @@ function(clusters, ont="MF", organism="human", measure="Wang", drop="IEA") {
 			for (m in 1:size1) {
 				for (n in 1:size2){
 					if(any(!is.na(gos1[m])) &&  any(!is.na(gos2[n]))){
-						sim <- mgoSim(gos1[m],gos2[n], wh_ont, wh_organism, wh_measure)
+						sim <- mgoSim(gos1[m],gos2[n], wh_ont, wh_organism, wh_measure, wh_combine)
 						#sim <- round(sim, digits=3)
 						allSim[m,n] <- sim
 					}
@@ -37,7 +39,8 @@ function(clusters, ont="MF", organism="human", measure="Wang", drop="IEA") {
 			if (!sum(!is.na(allSim))) {
 				return (NA)
 			}
-			result <- sum(allSim, na.rm=TRUE)/sum(!is.na(allSim))
+			result <- ygcCombine(allSim, wh_combine)
+			#result <- sum(allSim, na.rm=TRUE)/sum(!is.na(allSim))
 			simmat[i,j] <- round(result, digits=3)
 			if ( i != j) {
 				simmat[j, i] <- simmat[i,j]
