@@ -5,7 +5,7 @@
   Given two gene clusters, this function calculates semantic similarity between them.
 }
 \usage{
-clusterSim(cluster1, cluster2, ont = "MF",  organism="human", measure="Wang", drop= "IEA")
+clusterSim(cluster1, cluster2, ont = "MF",  organism="human", measure="Wang", drop= "IEA", combine="rcmax.avg")
 }
 \arguments{
   \item{cluster1}{A set of gene IDs. }
@@ -13,7 +13,8 @@ clusterSim(cluster1, cluster2, ont = "MF",  organism="human", measure="Wang", dr
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
   \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
   \item{organism}{One of "anopheles", "arabidopsis", "bovine", "canine", "chicken", "chimp", "coelicolor", "ecolik12", "ecsakai", "fly", "human", "malaria", "mouse", "pig", "rat", "rhesus", "worm", "xenopus", "yeast" and "zebrafish".}
-  \item{drop}{A set of evidence codes based on which certain annotations are dropped. Use NULL to keep all GO annotations.}  
+  \item{drop}{A set of evidence codes based on which certain annotations are dropped. Use NULL to keep all GO annotations.}
+  \item{combine}{One of "max", "average", "rcmax", "rcmax.avg" methods, for combining semantic similarity scores of multiple GO terms associated with protein or multiple proteins assiciated with protein cluster.}
 }
 \value{
   \item{sim}{Semantic Similarity.}

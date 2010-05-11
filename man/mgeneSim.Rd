@@ -5,7 +5,7 @@
   Given a list of genes, this function calculates pairwise semantic similarities.
 }
 \usage{
-mgeneSim(genes, ont = "MF",  organism="human", measure="Wang", drop= "IEA")
+mgeneSim(genes, ont = "MF",  organism="human", measure="Wang", drop= "IEA", combine="rcmax.avg")
 }
 \arguments{
   \item{genes}{A list of entrez gene IDs. }
@@ -13,6 +13,7 @@ mgeneSim(genes, ont = "MF",  organism="human", measure="Wang", drop= "IEA")
   \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
   \item{organism}{One of "anopheles", "arabidopsis", "bovine", "canine", "chicken", "chimp", "coelicolor", "ecolik12", "ecsakai", "fly", "human", "malaria", "mouse", "pig", "rat", "rhesus", "worm", "xenopus", "yeast" and "zebrafish".}
   \item{drop}{A set of evidence codes based on which certain annotations are dropped. Use NULL to keep all GO annotations.}  
+  \item{combine}{One of "max", "average", "rcmax", "rcmax.avg" methods, for combining semantic similarity scores of multiple GO terms associated with protein or multiple proteins assiciated with protein cluster.}
 }
 \value{
   \item{simMatrix }{A Matrix of Pairwise Semantic Similarities}

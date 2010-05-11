@@ -19,7 +19,7 @@
 Package: \tab GOSemSim\cr
 Type: \tab Package\cr
 Version: \tab 1.8.0\cr
-Date: \tab 3-22-2010\cr
+Date: \tab 5-10-2010\cr
 biocViews:\tab GO, Clustering\cr
 Depends:\tab GO.db\cr
 Suggests:\tab Clustering, org.Hs.eg.db\cr

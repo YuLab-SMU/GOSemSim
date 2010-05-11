@@ -1,7 +1,9 @@
-mgeneSim <- function (genes, ont="MF", organism="human", measure="Wang", drop="IEA"){
+mgeneSim <- function (genes, ont="MF", organism="human", measure="Wang", drop="IEA", combine="rcmax.avg"){
 	wh_ont <- match.arg(ont, c("MF", "BP", "CC"))
 	wh_measure <- match.arg(measure, c("Resnik", "Jiang", "Lin", "Rel", "Wang"))
+	if(!exists("GOSemSimEnv")) .initial()
 	wh_organism <- match.arg(organism, get("SupportedSpecies",envir=GOSemSimEnv))
+	wh_combine <- match.arg(combine, c("max", "average", "rcmax", "rcmax.avg"))
 	
 	genes <- genes[!is.na(genes)]
 	n <- length(genes)
@@ -21,7 +23,7 @@ mgeneSim <- function (genes, ont="MF", organism="human", measure="Wang", drop="I
 			simMatrix[i,j] <- NA
 			if(any(!is.na(gos[i])) &&  any(!is.na(gos[j])))
 			{
-				sim <- mgoSim(gos[i],gos[j], wh_ont, wh_organism, wh_measure)
+				sim <- mgoSim(gos[i],gos[j], wh_ont, wh_organism, wh_measure, wh_combine)
 				sim <- round(sim, digits=3)
 				simMatrix[i,j] <- sim
 			}

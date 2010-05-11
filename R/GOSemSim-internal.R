@@ -310,7 +310,39 @@ ygcSemVal <- function(goid, Parents, sv, w, weight.isa, weight.partof) {
 	return (sim)
 }
 
-
+ygcCombine <- function(SimMatrix, combine="average") {
+	wh_combine <- match.arg(combine, c("max", "average", "rcmax", "rcmax.avg"))
+        if(!sum(!is.na(SimMatrix))) return (NA)
+        if (is.vector(SimMatrix)) {
+                if (wh_combine == "average") {
+                  return(round(mean(SimMatrix), digits=3))
+                } else {
+                  return (round(max(SimMatrix), digits=3)) 
+                }
+        }
+        m <- nrow(SimMatrix)
+        n <- ncol(SimMatrix)
+        if (n==1 || m==1) {
+                if (wh_combine == "average") {
+                  return(round(mean(SimMatrix), digits=3))
+                } else {
+                  return (round(max(SimMatrix), digits=3)) 
+                }
+        }
+        if (wh_combine == "average") {
+		result <- mean(SimMatrix, na.rm=TRUE)
+	} else if (wh_combine == "max") {
+		result <- max(SimMatrix, na.rm=TRUE)
+	} else if (wh_combine == "rcmax") {
+		rowScore <- mean(apply(SimMatrix, 1, max, na.rm=TRUE))
+		colScore <- mean(apply(SimMatrix, 2, max, na.rm=TRUE))
+		result <- max(rowScore, colScore)
+	} else if (wh_combine == "rcmax.avg") {
+		result <- sum( apply(SimMatrix, 1, max, na.rm=TRUE), apply(SimMatrix, 2, max, na.rm=TRUE) ) / sum(dim(SimMatrix))
+	}
+	
+	return (round(result, digits=3))
+}
 
 ygcCompute_Information_Content <- function(dropCodes="NULL", ont, organism) {
 	wh_ont <- match.arg(ont, c("MF", "BP", "CC"))

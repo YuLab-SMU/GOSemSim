@@ -1,8 +1,9 @@
-goSim <-
-function(GOID1, GOID2, ont="MF", organism="human", measure="Wang"){
+goSim <- function(GOID1, GOID2, ont="MF", organism="human", measure="Wang"){
 	wh_ont <- match.arg(ont, c("MF", "BP", "CC"))
 	wh_measure <- match.arg(measure, c("Resnik", "Jiang", "Lin", "Rel", "Wang"))
+	if(!exists("GOSemSimEnv")) .initial()
 	wh_organism <- match.arg(organism, get("SupportedSpecies",envir=GOSemSimEnv))
+	
 	if (wh_measure == "Wang") {
 		sim <- ygcWangMethod(GOID1, GOID2, ont=wh_ont, wh_organism)
 	} else {
@@ -10,6 +11,4 @@ function(GOID1, GOID2, ont="MF", organism="human", measure="Wang"){
 	}
 	sim <- unname(sim, force=TRUE)
 	return(round(sim, digits=3))
-	
 }
-
