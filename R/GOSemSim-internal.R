@@ -233,11 +233,13 @@ uniqsv <- function(sv) {
 	return (sv)
 }
 
-ygcSemVal_internal <- function(goid, Parents, sv, w, weight.isa, weight.partof) {
+ygcSemVal_internal <- function(goid, ont, Parents, sv, w, weight.isa, weight.partof) {
 	p <- Parents[goid]
 	p <- unlist(p[[1]])
-	if (length(p) == 0)
+	if (length(p) == 0) {
+		warning(goid, " may not belong to Ontology ", ont)
 		return(0)
+	}
 	relations <- names(p)
 	old.w <- w
 	for (i in 1:length(p)) {
@@ -255,10 +257,10 @@ ygcSemVal_internal <- function(goid, Parents, sv, w, weight.isa, weight.partof) 
 	return (sv)
 }
 ygcSemVal <- function(goid, ont, Parents, sv, w, weight.isa, weight.partof) {
-	if(!exists("GOSemSimCache")) return(ygcSemVal_internal(goid, Parents, sv, w, weight.isa, weight.partof))
+	if(!exists("GOSemSimCache")) return(ygcSemVal_internal(goid, ont, Parents, sv, w, weight.isa, weight.partof))
 	goid.ont <- paste(goid, ont, sep=".")
 	if (!exists(goid.ont, envir=GOSemSimCache)) {
-	  	value <- ygcSemVal_internal(goid, Parents, sv, w, weight.isa, weight.partof)
+	  	value <- ygcSemVal_internal(goid, ont, Parents, sv, w, weight.isa, weight.partof)
 	  	assign(goid.ont, value, envir=GOSemSimCache)
 		#cat("recompute ", goid, value, "\n")
 	}
