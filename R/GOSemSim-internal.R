@@ -187,21 +187,22 @@ ygcGetOnt <-  function(gene, organism, ontology, dropCodes) {
 
 ygcWangMethod <- function(GOID1, GOID2, ont="MF", organism="human") {
 	if(!exists("GOSemSimEnv")) .initial()
+
+	Parents.name <- switch(ont,
+		MF = "MFParents",
+		BP = "BPParents",
+		CC = "CCParents"
+	)
+	if (!exists(Parents.name, envir=GOSemSimEnv)) {
+		ygcGetParents(ont)
+	}
+	Parents <- get(Parents.name, envir=GOSemSimEnv)	
+	
 	weight.isa = 0.8
 	weight.partof = 0.6
 
 	if (GOID1 == GOID2)
-		return (gosim=1)
-		
-	Parents.name <- switch(ont,
-		MF = "MFParents",
-		BP = "BPParents",
-		CC = "CCParents"	
-	)	
-	if (!exists(Parents.name, envir=GOSemSimEnv)) {
-		ygcGetParents(ont)
-	}
-	Parents <- get(Parents.name, envir=GOSemSimEnv)			
+		return (gosim=1)		
 
 	sv.a <- 1
 	sv.b <- 1
@@ -209,8 +210,8 @@ ygcWangMethod <- function(GOID1, GOID2, ont="MF", organism="human") {
 	names(sv.a) <- GOID1
 	names(sv.b) <- GOID2 
 	
-	sv.a <- ygcSemVal(GOID1, Parents, sv.a, sw, weight.isa, weight.partof)
-	sv.b <- ygcSemVal(GOID2, Parents, sv.b, sw, weight.isa, weight.partof)
+	sv.a <- ygcSemVal(GOID1, ont, Parents, sv.a, sw, weight.isa, weight.partof)
+	sv.b <- ygcSemVal(GOID2, ont, Parents, sv.b, sw, weight.isa, weight.partof)
 	
 	sv.a <- unlist(sv.a)
 	sv.b <- unlist(sv.b)
@@ -253,20 +254,21 @@ ygcSemVal_internal <- function(goid, Parents, sv, w, weight.isa, weight.partof) 
 	}
 	return (sv)
 }
-ygcSemVal <- function(goid, Parents, sv, w, weight.isa, weight.partof) {
+ygcSemVal <- function(goid, ont, Parents, sv, w, weight.isa, weight.partof) {
 	if(!exists("GOSemSimCache")) return(ygcSemVal_internal(goid, Parents, sv, w, weight.isa, weight.partof))
-	if (!exists(goid, envir=GOSemSimCache)) {
+	goid.ont <- paste(goid, ont, sep=".")
+	if (!exists(goid.ont, envir=GOSemSimCache)) {
 	  	value <- ygcSemVal_internal(goid, Parents, sv, w, weight.isa, weight.partof)
-	  	assign(goid, value, envir=GOSemSimCache)
+	  	assign(goid.ont, value, envir=GOSemSimCache)
 		#cat("recompute ", goid, value, "\n")
 	}
 	else{
 		#cat("cache ", goid, get(goid, envir=GOSemSimCache), "\n")
 	}
-	return(get(goid, envir=GOSemSimCache))
+	return(get(goid.ont, envir=GOSemSimCache))
 }
 
-`ygcInfoContentMethod` <- function(GOID1, GOID2, ont, measure, organism) {
+ygcInfoContentMethod <- function(GOID1, GOID2, ont, measure, organism) {
 	if(!exists("GOSemSimEnv")) .initial()
 	fname <- paste("Info_Contents", ont, organism, sep="_")
 	tryCatch(utils::data(list=fname, package="GOSemSim", envir=GOSemSimEnv))
