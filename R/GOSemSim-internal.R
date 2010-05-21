@@ -187,6 +187,11 @@ ygcGetOnt <-  function(gene, organism, ontology, dropCodes) {
 
 ygcWangMethod <- function(GOID1, GOID2, ont="MF", organism="human") {
 	if(!exists("GOSemSimEnv")) .initial()
+	weight.isa = 0.8
+	weight.partof = 0.6
+
+	if (GOID1 == GOID2)
+		return (gosim=1)		
 
 	Parents.name <- switch(ont,
 		MF = "MFParents",
@@ -196,14 +201,8 @@ ygcWangMethod <- function(GOID1, GOID2, ont="MF", organism="human") {
 	if (!exists(Parents.name, envir=GOSemSimEnv)) {
 		ygcGetParents(ont)
 	}
-	Parents <- get(Parents.name, envir=GOSemSimEnv)	
+	Parents <- get(Parents.name, envir=GOSemSimEnv)
 	
-	weight.isa = 0.8
-	weight.partof = 0.6
-
-	if (GOID1 == GOID2)
-		return (gosim=1)		
-
 	sv.a <- 1
 	sv.b <- 1
 	sw <- 1
@@ -237,13 +236,13 @@ ygcSemVal_internal <- function(goid, ont, Parents, sv, w, weight.isa, weight.par
 	p <- Parents[goid]
 	p <- unlist(p[[1]])
 	if (length(p) == 0) {
-		warning(goid, " may not belong to Ontology ", ont)
+		#warning(goid, " may not belong to Ontology ", ont)
 		return(0)
 	}
 	relations <- names(p)
 	old.w <- w
 	for (i in 1:length(p)) {
-		if (relations[i] == "isa") {
+		if (relations[i] == "is_a") {
 			w <- old.w * weight.isa
 		} else {
 			w <- old.w * weight.partof
@@ -251,7 +250,7 @@ ygcSemVal_internal <- function(goid, ont, Parents, sv, w, weight.isa, weight.par
 		names(w) <- p[i]
 		sv <- c(sv,w)
 		if (p[i] != "all") {
-			sv <- ygcSemVal_internal(p[i], Parents, sv, w, weight.isa, weight.partof)
+			sv <- ygcSemVal_internal(p[i], ont, Parents, sv, w, weight.isa, weight.partof)
 		}
 	}
 	return (sv)
