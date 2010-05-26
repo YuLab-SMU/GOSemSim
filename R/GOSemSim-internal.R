@@ -323,8 +323,13 @@ ygcCombine <- function(SimMatrix, combine="average") {
                   return (round(max(SimMatrix), digits=3)) 
                 }
         }
+		#removeNA <- apply(!is.na(SimMatrix), 1, sum) > 0
+		#SimMatrix <- SimMatrix[removeNA, removeNA]
         m <- nrow(SimMatrix)
         n <- ncol(SimMatrix)
+		if (m == 0 || n == 0) {
+			return (NA)
+		}
         if (n==1 || m==1) {
                 if (wh_combine == "average") {
                   return(round(mean(SimMatrix), digits=3))
