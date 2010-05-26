@@ -27,7 +27,7 @@ function(clusters, ont="MF", organism="human", measure="Wang", drop="IEA", combi
 			gos1 <- cluster_gos[[i]]
 			gos2 <- cluster_gos[[j]]
 			if ( all(is.na(gos1)) || all(is.na(gos2))) {
-					mirsim[j, i] <- NA
+					simmat[j, i] <- NA
 			} else {
 				allSim <- matrix(data=NA, nrow=size1, ncol=size2)
 				for (m in 1:size1) {
