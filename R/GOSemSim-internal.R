@@ -367,7 +367,10 @@ ygcCompute_Information_Content <- function(dropCodes="NULL", ont, organism) {
 		gomap <- sapply(gomap,function(x) sapply(x,function(y) y$Ontology %in% wh_ont))
 	}
 	
-	goterms<-unlist(sapply(gomap, function(x) names(x)), use.names=FALSE) # all GO terms appearing in an annotation	
+	######### all GO terms appearing in an annotation ###########
+	goterms<-unlist(sapply(gomap, function(x) names(x)), use.names=FALSE) 
+	
+	
 	require(GO.db)
 	goids <- toTable(GOTERM)
 	# all go terms which belong to the corresponding category..
@@ -391,7 +394,7 @@ ygcCompute_Information_Content <- function(dropCodes="NULL", ont, organism) {
 		ygcGetOffsprings(wh_ont)
 	}
 	Offsprings <- get(Offsprings.name, envir=GOSemSimEnv)	
-	cnt <- sapply(goids,function(x){ c=gocount[unlist(Offsprings[x])]; gocount[x]+sum(c[!is.na(c)])})		
+	cnt <- sapply(goids,function(x){ n=gocount[unlist(Offsprings[x])]; gocount[x]+sum(n[!is.na(n)])})		
 	names(cnt) <- goids	
 	IC<- -log(cnt/sum(gocount))		
 	save(IC, file=paste(paste("Info_Contents", wh_ont, organism, sep="_"), ".rda", sep=""))
