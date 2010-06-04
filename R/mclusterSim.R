@@ -17,38 +17,22 @@ function(clusters, ont="MF", organism="human", measure="Wang", drop="IEA", combi
 	assign("GOSemSimCache", new.env(hash=TRUE),envir=.GlobalEnv)
 	for (i in 1:size) {
 		for (j in 1:i) {
-			#simmat[i,j] <- clusterSim(clusters[[i]], clusters[[j]], wh_ont, wh_organism, wh_measure, drop)
-			size1 <- length(clusters[[i]])
-			size2 <- length(clusters[[j]])
+			gos1 <- unlist(cluster_gos[[i]])
+			gos2 <- unlist(cluster_gos[[j]])
+			gos1 <- gos1[!is.na(gos1)]
+			gos2 <- gos2[!is.na(gos2)]
+			size1 <- length(gos1)
+			size2 <- length(gos2)
 			if (size1 == 0 || size2 == 0) {
 				simmat[i,j] <- NA
-			}
-
-			gos1 <- cluster_gos[[i]]
-			gos2 <- cluster_gos[[j]]
-			if ( all(is.na(gos1)) || all(is.na(gos2))) {
-					simmat[j, i] <- NA
 			} else {
-				allSim <- matrix(data=NA, nrow=size1, ncol=size2)
-				for (m in 1:size1) {
-					for (n in 1:size2){
-						if(any(!is.na(gos1[m])) &&  any(!is.na(gos2[n]))){
-							sim <- mgoSim(gos1[m],gos2[n], wh_ont, wh_organism, wh_measure, wh_combine)
-							#sim <- round(sim, digits=3)
-							allSim[m,n] <- sim
-						}
-					}
-				}
-				if (!sum(!is.na(allSim))) {
-					return (NA)
-				}
-				result <- ygcCombine(allSim, wh_combine)
-				#result <- sum(allSim, na.rm=TRUE)/sum(!is.na(allSim))
-				simmat[i,j] <- round(result, digits=3)
+				sim <- mgoSim(gos1,gos2, wh_ont, wh_organism, wh_measure, wh_combine)
+				simmat[i,j] <- round(sim, digits=3)
 			}
 			if ( i != j) {
 				simmat[j, i] <- simmat[i,j]
 			} 
+			
 		}
 	}	
 	remove("GOSemSimCache", envir=.GlobalEnv)
