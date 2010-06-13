@@ -1,5 +1,7 @@
 clusterSim <- 
 function(cluster1, cluster2, ont="MF", organism="human", measure="Wang", drop="IEA", combine="rcmax.avg"){
+	cluster1 <- as.character(cluster1)
+	cluster2 <- as.character(cluster2)
 	wh_ont <- match.arg(ont, c("MF", "BP", "CC"))
 	wh_measure <- match.arg(measure, c("Resnik", "Jiang", "Lin", "Rel", "Wang"))
 	if(!exists("GOSemSimEnv")) .initial()
