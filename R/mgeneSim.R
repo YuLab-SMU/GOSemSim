@@ -1,4 +1,5 @@
 mgeneSim <- function (genes, ont="MF", organism="human", measure="Wang", drop="IEA", combine="rcmax.avg"){
+	genes <- as.character(genes)
 	wh_ont <- match.arg(ont, c("MF", "BP", "CC"))
 	wh_measure <- match.arg(measure, c("Resnik", "Jiang", "Lin", "Rel", "Wang"))
 	if(!exists("GOSemSimEnv")) .initial()
