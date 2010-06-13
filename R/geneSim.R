@@ -1,5 +1,7 @@
 geneSim <-
 function(gene1, gene2, ont="MF", organism="human", measure="Wang", drop="IEA", combine="rcmax.avg"){
+	gene1 <- as.character(gene1)
+	gene2 <- as.character(gene2)
 	wh_ont <- match.arg(ont, c("MF", "BP", "CC"))
 	wh_measure <- match.arg(measure, c("Resnik", "Jiang", "Lin", "Rel", "Wang"))
 	if(!exists("GOSemSimEnv")) .initial()
