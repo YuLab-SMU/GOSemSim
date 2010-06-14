@@ -180,8 +180,14 @@ ygcCompute_Information_Content <- function(dropCodes="NULL", ont, organism) {
 	Offsprings <- get(Offsprings.name, envir=GOSemSimEnv)	
 	cnt <- sapply(goids,function(x){ n=gocount[ Offsprings[[x]] ]; gocount[x]+sum(n[!is.na(n)])})		
 	names(cnt) <- goids	
-	IC<- -log(cnt/sum(gocount))
-	IC<-IC/max(IC[IC!=Inf])
+	# the probabilities of occurrence of GO terms in a specific corpus.
+	p <- cnt/sum(gocount) 
+	# IC of GO terms was quantified as the negative log likelihood. 	
+	IC<- -log(p)
+	# more specific term, larger IC value.
+	# Weighted, all divide the most informative IC.
+	# the IC of the most informative node is 1, and root node is 0.			
+	IC<-IC/max(IC[IC!=Inf])	
 	IC["all"]=0
 	save(IC, file=paste(paste("Info_Contents", wh_ont, organism, sep="_"), ".rda", sep=""))
 }
