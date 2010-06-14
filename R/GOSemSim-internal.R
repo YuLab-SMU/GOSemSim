@@ -114,10 +114,15 @@ ygcInfoContentMethod <- function(GOID1, GOID2, ont, measure, organism) {
 		commonAncestor <- intersect(ancestor1, ancestor2)
 	}
 	if (length(commonAncestor) == 0) return (NA)
-	pms <- max(IC[commonAncestor])
-
+	
+	#Information Content of the most informative common ancestor (MICA)
+	pms <- max(IC[commonAncestor])  
+	
+	## IC is biased
+	## because the IC of a term is dependent of its children but not on its parents.
 	sim<-switch(measure,
-   	    Resnik = pms,
+   	    Resnik = pms, ## Resnik does not consider how distant the terms are from their common ancestor.
+   	    ## Lin and Jiang take that distance into account.
    	    Lin = 2*pms/(p1+p2),
    	    Jiang = 1 - min(1, -2*pms + p1 + p2), 
    	    Rel = 2*pms/(p1+p2)*(1-exp(-pms))
