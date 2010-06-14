@@ -7,26 +7,26 @@
 
 ygcCheckAnnotationPackage <- function(species){
 	pkgname <- switch (species,
-		human = "org.Hs.eg.db",
-		fly = "org.Dm.eg.db",
-		mouse = "org.Mm.eg.db",
-		rat = "org.Rn.eg.db",
-		yeast = "org.Sc.sgd.db",
-		zebrafish = "org.Dr.eg.db",
-		worm = "org.Ce.eg.db",
+		anopheles	=	"org.Ag.eg.db",
 		arabidopsis = "org.At.tair.db",
-		ecolik12 = "org.EcK12.eg.db", 
 		bovine	= "org.Bt.eg.db",
 		canine	= "org.Cf.eg.db", 
-		anopheles	=	"org.Ag.eg.db", 
-		ecsakai	=	"org.EcSakai.eg.db", 
 		chicken	=	"org.Gg.eg.db", 
-		chimp	=	"org.Pt.eg.db", 
-		malaria	=	"org.Pf.plasmo.db", 
-		rhesus	=	"org.Mmu.eg.db", 
-		pig	= 	"org.Ss.eg.db", 
+		chimp	=	"org.Pt.eg.db",
 		coelicolor = "org.Sco.eg.db",
-		xenopus	=	"org.Xl.eg.db"
+		ecolik12 = "org.EcK12.eg.db", 		
+		ecsakai	=	"org.EcSakai.eg.db", 
+		fly = "org.Dm.eg.db",
+		human = "org.Hs.eg.db",
+		malaria	=	"org.Pf.plasmo.db", 
+		mouse = "org.Mm.eg.db",
+		pig	= 	"org.Ss.eg.db", 
+		rat = "org.Rn.eg.db",
+		rhesus	=	"org.Mmu.eg.db",
+		worm = "org.Ce.eg.db", 
+		xenopus	=	"org.Xl.eg.db",
+		yeast = "org.Sc.sgd.db",
+		zebrafish = "org.Dr.eg.db",
 	)
 	p <- installed.packages()
 	pn <- p[,1]
@@ -38,77 +38,77 @@ ygcCheckAnnotationPackage <- function(species){
 		install.packages(pkgname,repos="http://www.bioconductor.org/packages/release/data/annotation",type="source")
 	}
 	switch (species,
-		human = require("org.Hs.eg.db"),
-		fly = require("org.Dm.eg.db"),
-		mouse = require("org.Mm.eg.db"),
-		rat = require("org.Rn.eg.db"),
-		yeast = require("org.Sc.sgd.db"),
-		zebrafish = require("org.Dr.eg.db"),
-		worm = require("org.Ce.eg.db"),
-		arabidopsis = require("org.At.tair.db"),
-		ecolik12 = require("org.EcK12.eg.db"),
-		bovine	= require("org.Bt.eg.db"),
-		canine	= require("org.Cf.eg.db"), 
 		anopheles	=	require("org.Ag.eg.db"), 
-		ecsakai	=	require("org.EcSakai.eg.db"), 
+		arabidopsis = require("org.At.tair.db"),
+		bovine	= require("org.Bt.eg.db"),
+		canine	= require("org.Cf.eg.db"), 		
 		chicken	=	require("org.Gg.eg.db"), 
 		chimp	=	require("org.Pt.eg.db"), 
-		malaria	=	require("org.Pf.plasmo.db"), 
-		rhesus	=	require("org.Mmu.eg.db"), 
-		pig	= require("org.Ss.eg.db"), 
 		coelicolor = require("org.Sco.eg.db"),
-		xenopus	=	require("org.Xl.eg.db")			
+		ecolik12 = require("org.EcK12.eg.db"),
+		ecsakai	=	require("org.EcSakai.eg.db"), 		
+		fly = require("org.Dm.eg.db"),
+		human = require("org.Hs.eg.db"),
+		malaria	=	require("org.Pf.plasmo.db"), 
+		mouse = require("org.Mm.eg.db"),
+		pig	= require("org.Ss.eg.db"), 
+		rat = require("org.Rn.eg.db"),
+		rhesus	=	require("org.Mmu.eg.db"), 
+		worm = require("org.Ce.eg.db"),
+		xenopus	=	require("org.Xl.eg.db"),	
+		yeast = require("org.Sc.sgd.db"),
+		zebrafish = require("org.Dr.eg.db"),		
 	)
 }
 
 ygcConvOrgName <- function(organism = "human") {
 	species <- switch(organism,
-		human = "Hs",
-		fly = "Dm",
-		mouse = "Mm",
-		rat = "Rn",
-		yeast = "Sc",
-		zebrafish = "Dr",
-		worm = "Ce",
+		anopheles	=	"Ag", 
 		arabidopsis = "At",
-		ecolik12 = "EcK12",
 		bovine	= "Bt",
 		canine	= "Cf", 
-		anopheles	=	"Ag", 
-		ecsakai	=	"EcSakai", 
 		chicken	=	"Gg", 
 		chimp	=	"Pt", 
-		malaria	=	"Pf", 
-		rhesus	=	"Mmu", 
-		pig	= "Ss", 
 		coelicolor = "Sco",
-		xenopus	=	"Xl"
+		ecolik12 = "EcK12",
+		ecsakai	=	"EcSakai", 
+		fly = "Dm",
+		human = "Hs",
+		malaria	=	"Pf", 
+		mouse = "Mm",
+		pig	= "Ss", 
+		rat = "Rn",
+		rhesus	=	"Mmu", 
+		worm = "Ce",
+		xenopus	=	"Xl",
+		yeast = "Sc",
+		zebrafish = "Dr",			
 	)
 	return (species)
 }
 
 ygcGOMapName <- function(organism="human") {
 	gomap <- switch(organism,
-		human = org.Hs.egGO,
-		fly = org.Dm.egGO,
-		mouse = org.Mm.egGO,
-		rat = org.Rn.egGO,
-		yeast = org.Sc.sgdGO,
-		zebrafish = org.Dr.egGO,
-		worm = org.Ce.egGO,
+		anopheles	=	org.Ag.egGO, 
 		arabidopsis = org.At.tairGO,
-		ecoli = org.EcK12.egGO,
 		bovine	= org.Bt.egGO,
 		canine	= org.Cf.egGO, 
-		anopheles	=	org.Ag.egGO, 
-		ecsakai	=	org.EcSakai.egGO, 
 		chicken	=	org.Gg.egGO, 
 		chimp	=	org.Pt.egGO, 
-		malaria	=	org.Pf.plasmoGO, 
-		rhesus	=	org.Mmu.egGO, 
-		pig	= org.Ss.egGO, 
 		coelicolor = org.Sco.egGO,
-		xenopus	=	org.Xl.egGO		
+		ecolik12 = org.EcK12.egGO,
+		ecsakai	=	org.EcSakai.egGO, 
+		fly = org.Dm.egGO,
+		human = org.Hs.egGO,
+		malaria	=	org.Pf.plasmoGO,
+		mouse = org.Mm.egGO,
+		pig	= org.Ss.egGO, 
+		rat = org.Rn.egGO,
+		rhesus	=	org.Mmu.egGO, 
+		worm = org.Ce.egGO,
+		xenopus	=	org.Xl.egGO,
+		yeast = org.Sc.sgdGO,
+		zebrafish = org.Dr.egGO,
 	)
 	return(gomap)
 }
@@ -117,11 +117,10 @@ ygcGetOnt <-  function(gene, organism, ontology, dropCodes) {
 	gene <- as.character(gene)
 	if(!exists("GOSemSimEnv")) .initial()
 	species <- ygcConvOrgName(organism)
-	species.ont <- paste(species, ontology, sep=".")
-	if (!exists(species.ont, envir=GOSemSimEnv)) {
-		ygcGetGOMap(organism, dropCodes, ontology)
+	if (!exists(species, envir=GOSemSimEnv)) {
+		ygcGetGOMap(organism, dropCodes)
 	}	
-	gomap <- get(species.ont, envir=GOSemSimEnv)
+	gomap <- get(species, envir=GOSemSimEnv)
 
 	qGO	<- gomap[[gene]]
 
@@ -132,7 +131,7 @@ ygcGetOnt <-  function(gene, organism, ontology, dropCodes) {
     	return (NA)
     }
     
-	qGO	<- qGO[qGO]	
+	qGO	<- qGO[qGO == ontology]	
 	if (length(qGO) == 0) {
 		return (NA)
 	}    
@@ -145,24 +144,23 @@ ygcCompute_Information_Content <- function(dropCodes="NULL", ont, organism) {
 	ygcCheckAnnotationPackage(wh_organism)
 	if(!exists("GOSemSimEnv")) .initial()
 	species <- ygcConvOrgName(wh_organism)
-	species.ont <- paste(species, ont, sep=".")
-	if (!exists(species.ont, envir=GOSemSimEnv)) {
-		ygcGetGOMap(organism, dropCodes, ont)
+	if (!exists(species, envir=GOSemSimEnv)) {
+		ygcGetGOMap(wh_organism, dropCodes)
 	}	
-	gomap <- get(species.ont, envir=GOSemSimEnv)
-
+	gomap <- get(species, envir=GOSemSimEnv)
 	
 	
-	######### all GO terms appearing in an annotation ###########
-	goterms<-unlist(sapply(gomap, function(x) names(x)), use.names=FALSE) 
+	######### all GO terms appearing in an given ontology ###########
+	goterms <- unlist(sapply(gomap, function(x) names(x[x == ont])), use.names=FALSE) 
 	
 	
 	require(GO.db)
 	goids <- toTable(GOTERM)
-	# all go terms which belong to the corresponding category..
+	# all go terms which belong to the corresponding ontology..
 	goids <- unique(goids[goids[,"Ontology"] == wh_ont, "go_id"])  	
 	gocount <- table(goterms)
 	goname <- names(gocount) #goid of specific organism and selected category.
+	
 	## ensure goterms not appearing in the specific annotation have 0 frequency..
 	go.diff <- setdiff(goids, goname)
 	m <- double(length(go.diff)) 
@@ -180,14 +178,17 @@ ygcCompute_Information_Content <- function(dropCodes="NULL", ont, organism) {
 		ygcGetOffsprings(wh_ont)
 	}
 	Offsprings <- get(Offsprings.name, envir=GOSemSimEnv)	
-	cnt <- sapply(goids,function(x){ n=gocount[unlist(Offsprings[x])]; gocount[x]+sum(n[!is.na(n)])})		
+	cnt <- sapply(goids,function(x){ n=gocount[ Offsprings[[x]] ]; gocount[x]+sum(n[!is.na(n)])})		
 	names(cnt) <- goids	
-	IC<- -log(cnt/sum(gocount))		
+	IC<- -log(cnt/sum(gocount))
+	IC<-IC/max(IC[IC!=Inf])
+	IC["all"]=0
 	save(IC, file=paste(paste("Info_Contents", wh_ont, organism, sep="_"), ".rda", sep=""))
 }
 
 rebuildICdata <- function(){
-	ont <- c("MF","CC", "BP")
+	.initial()
+	ont <- c("BP","CC", "MF")
 	species <- get("SupportedSpecies",envir=GOSemSimEnv)
 	cat("------------------------------------\n")
 	cat("calulating Information Content...\nSpecies:\t\tOntology\n")
