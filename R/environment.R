@@ -65,3 +65,14 @@ ygcGetGOMap <- function(organism="human", dropCodes) {
 	}
 	assign(eval(species), gomap, envir=GOSemSimEnv)
 }
+
+ygcLoadIC <- function(ont, organism) {
+	if(!exists("GOSemSimEnv")) .initial()
+	fname <- paste("Info_Contents", ont, organism, sep="_")
+	tryCatch(utils::data(list=fname, package="GOSemSim"))
+	IC <- get("IC")
+	org.ont.IC <- paste(organism, ont, "IC", sep="")
+	assign(eval(org.ont.IC), IC, envir=GOSemSimEnv)
+	rm (IC)
+}
+

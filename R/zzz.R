@@ -183,14 +183,11 @@ ygcCompute_Information_Content <- function(dropCodes="NULL", ont, organism) {
 	# the probabilities of occurrence of GO terms in a specific corpus.
 	p <- cnt/sum(gocount) 
 	# IC of GO terms was quantified as the negative log likelihood. 	
-	IC<- -log(p)
-	# more specific term, larger IC value.
-	# Weighted, all divide the most informative IC.
-	# the IC of the most informative node is 1, and root node is 0.			
-	IC<-IC/max(IC[IC!=Inf])	
-	IC["all"]=0
+	IC <- -log(p)
+
 	save(IC, file=paste(paste("Info_Contents", wh_ont, organism, sep="_"), ".rda", sep=""))
 }
+
 
 rebuildICdata <- function(){
 	if(!exists("GOSemSimEnv")) .initial()
@@ -204,7 +201,10 @@ rebuildICdata <- function(){
 			cat("\t\t\t")
 			cat(i)
 			cat("\n")
-			ygcCompute_Information_Content(ont=i, organism=j)
+			file=paste(paste("Info_Contents", i, j, sep="_"), ".rda", sep="")
+			if ( !file.exists(file) ) {
+				ygcCompute_Information_Content(ont=i, organism=j)
+			}
 		}
 	}
 	cat("------------------------------------\n")
