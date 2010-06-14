@@ -82,14 +82,23 @@ ygcSemVal <- function(goid, ont, Parents, sv, w, weight.isa, weight.partof) {
 	return(get(goid.ont, envir=GOSemSimCache))
 }
 
+
 ygcInfoContentMethod <- function(GOID1, GOID2, ont, measure, organism) {
 	if(!exists("GOSemSimEnv")) .initial()
-	fname <- paste("Info_Contents", ont, organism, sep="_")
-	tryCatch(utils::data(list=fname, package="GOSemSim", envir=GOSemSimEnv))
-	IC <- get("IC", envir=GOSemSimEnv)
-
-	p1 <- IC[GOID1]
-	p2 <- IC[GOID2]
+	
+	org.ont.IC <- paste(organism, ont, "IC", sep="")
+	if (!exists(org.ont.IC, envir=GOSemSimEnv)) {
+		ygcLoadIC(ont, organism)
+	}	
+	IC <- get(org.ont.IC, envir=GOSemSimEnv)
+	
+	# more specific term, larger IC value.
+	# Weighted, all divide the most informative IC.		
+	mic <- max(IC[IC!=Inf])	
+	
+	IC["all"]=0	
+	p1 <- IC[GOID1]/mic
+	p2 <- IC[GOID2]/mic
 	
 	if (p1 == 0 || p2 == 0) return (NA)
 	Ancestor.name <- switch(ont,
@@ -116,7 +125,7 @@ ygcInfoContentMethod <- function(GOID1, GOID2, ont, measure, organism) {
 	if (length(commonAncestor) == 0) return (NA)
 	
 	#Information Content of the most informative common ancestor (MICA)
-	pms <- max(IC[commonAncestor])  
+	pms <- max(IC[commonAncestor])/mic  
 	
 	## IC is biased
 	## because the IC of a term is dependent of its children but not on its parents.
@@ -125,7 +134,7 @@ ygcInfoContentMethod <- function(GOID1, GOID2, ont, measure, organism) {
    	    ## Lin and Jiang take that distance into account.
    	    Lin = 2*pms/(p1+p2),
    	    Jiang = 1 - min(1, -2*pms + p1 + p2), 
-   	    Rel = 2*pms/(p1+p2)*(1-exp(-pms))
+   	    Rel = 2*pms/(p1+p2)*(1-exp(-pms*mic))  ## exp(-pms) = the probability 
 	)   	
 	return (sim)
 }
