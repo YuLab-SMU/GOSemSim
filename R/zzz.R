@@ -187,7 +187,7 @@ ygcCompute_Information_Content <- function(dropCodes="NULL", ont, organism) {
 }
 
 rebuildICdata <- function(){
-	.initial()
+	if(!exists("GOSemSimEnv")) .initial()
 	ont <- c("BP","CC", "MF")
 	species <- get("SupportedSpecies",envir=GOSemSimEnv)
 	cat("------------------------------------\n")
