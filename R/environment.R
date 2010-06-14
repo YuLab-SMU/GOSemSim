@@ -49,20 +49,19 @@ ygcGetAncestors <- function(ont="MF") {
 	assign(eval(wh_Ancestors), Ancestors, envir=GOSemSimEnv)
 }
 
-ygcGetGOMap <- function(organism="human", dropCodes, ont) {
+ygcGetGOMap <- function(organism="human", dropCodes) {
 	if(!exists("GOSemSimEnv")) .initial()
 	ygcCheckAnnotationPackage(organism)
 	species <- ygcConvOrgName(organism)
-	species.ont <- paste(species, ont, sep=".")
 	gomap <- ygcGOMapName(organism)
 	mapped_genes <- mappedkeys(gomap)
 	gomap = AnnotationDbi::as.list(gomap[mapped_genes])
 	if (!is.null(dropCodes)){
-		gomap <- sapply(gomap,function(x) sapply(x,function(y) c(y$Evidence %in% dropCodes, y$Ontology %in% ont)))
-		gomap <- sapply(gomap, function(x) x[2,x[1,]=="FALSE"]) ## filt dropCodes Evidence.
+		gomap <- sapply(gomap,function(x) sapply(x,function(y) c(y$Evidence %in% dropCodes, y$Ontology)))
+		gomap <- sapply(gomap, function(x) x[2,x[1,]=="FALSE"]) ## filt out dropCodes Evidence.
 		gomap <- gomap[sapply(gomap,length) >0]		
 	}else {
-		gomap <- sapply(gomap,function(x) sapply(x,function(y) y$Ontology %in% ont))
+		gomap <- sapply(gomap,function(x) sapply(x,function(y) y$Ontology))
 	}
-	assign(eval(species.ont), gomap, envir=GOSemSimEnv)
+	assign(eval(species), gomap, envir=GOSemSimEnv)
 }

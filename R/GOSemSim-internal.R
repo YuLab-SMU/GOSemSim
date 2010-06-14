@@ -86,12 +86,10 @@ ygcInfoContentMethod <- function(GOID1, GOID2, ont, measure, organism) {
 	if(!exists("GOSemSimEnv")) .initial()
 	fname <- paste("Info_Contents", ont, organism, sep="_")
 	tryCatch(utils::data(list=fname, package="GOSemSim", envir=GOSemSimEnv))
-	Info.contents <- get("IC", envir=GOSemSimEnv)
+	IC <- get("IC", envir=GOSemSimEnv)
 
-	rootCount <- max(Info.contents[Info.contents != Inf])
-	
-	p1 <- Info.contents[GOID1]/rootCount
-	p2 <- Info.contents[GOID2]/rootCount    
+	p1 <- IC[GOID1]
+	p2 <- IC[GOID2]
 	
 	if (p1 == 0 || p2 == 0) return (NA)
 	Ancestor.name <- switch(ont,
@@ -116,10 +114,11 @@ ygcInfoContentMethod <- function(GOID1, GOID2, ont, measure, organism) {
 		commonAncestor <- intersect(ancestor1, ancestor2)
 	}
 	if (length(commonAncestor) == 0) return (NA)
-	pms <- min(Info.contents[commonAncestor], na.rm=TRUE)/rootCount
+	pms <- max(IC[commonAncestor])
+
 	sim<-switch(measure,
    	    Resnik = pms,
-   	    Lin = pms/(p1+p2),
+   	    Lin = 2*pms/(p1+p2),
    	    Jiang = 1 - min(1, -2*pms + p1 + p2), 
    	    Rel = 2*pms/(p1+p2)*(1-exp(-pms))
 	)   	
