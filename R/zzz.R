@@ -155,7 +155,12 @@ ygcCompute_Information_Content <- function(dropCodes="NULL", ont, organism) {
 	
 	
 	require(GO.db)
-	goids <- toTable(GOTERM)
+	if ( !exists("ALLGOID", envir=GOSemSimEnv) ) {
+		assign("ALLGOID", toTable(GOTERM) )
+	}
+	goids <- get("ALLGOID", envir=GOSemSimEnv)
+	#goids <- toTable(GOTERM)
+	
 	# all go terms which belong to the corresponding ontology..
 	goids <- unique(goids[goids[,"Ontology"] == wh_ont, "go_id"])  	
 	gocount <- table(goterms)
