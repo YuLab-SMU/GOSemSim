@@ -93,14 +93,16 @@ ygcInfoContentMethod <- function(GOID1, GOID2, ont, measure, organism) {
 	IC <- get(org.ont.IC, envir=GOSemSimEnv)
 	
 	# more specific term, larger IC value.
-	# Weighted, all divide the most informative IC.		
+	# Normalized, all divide the most informative IC.
+	# all IC values range from 0(root node) to 1(most specific node)	
 	mic <- max(IC[IC!=Inf])	
 	
-	IC["all"]=0	
-	p1 <- IC[GOID1]/mic
-	p2 <- IC[GOID2]/mic
+	IC["all"] = 0	
 	
-	if (p1 == 0 || p2 == 0) return (NA)
+	ic1 <- IC[GOID1]/mic
+	ic2 <- IC[GOID2]/mic
+	
+	if (ic1 == 0 || ic2 == 0) return (NA)
 	Ancestor.name <- switch(ont,
 		MF = "MFAncestors",
 		BP = "BPAncestors",
@@ -125,16 +127,16 @@ ygcInfoContentMethod <- function(GOID1, GOID2, ont, measure, organism) {
 	if (length(commonAncestor) == 0) return (NA)
 	
 	#Information Content of the most informative common ancestor (MICA)
-	pms <- max(IC[commonAncestor])/mic  
+	mica <- max(IC[commonAncestor])/mic  
 	
 	## IC is biased
 	## because the IC of a term is dependent of its children but not on its parents.
 	sim<-switch(measure,
-   	    Resnik = pms, ## Resnik does not consider how distant the terms are from their common ancestor.
+   	    Resnik = mica, ## Resnik does not consider how distant the terms are from their common ancestor.
    	    ## Lin and Jiang take that distance into account.
-   	    Lin = 2*pms/(p1+p2),
-   	    Jiang = 1 - min(1, -2*pms + p1 + p2), 
-   	    Rel = 2*pms/(p1+p2)*(1-exp(-pms*mic))  ## exp(-pms) = the probability 
+   	    Lin = 2*mica/(ic1+ic2),
+   	    Jiang = 1 - min(1, -2*mica + ic1 + ic2), 
+   	    Rel = 2*mica/(ic1+ic2)*(1-exp(-mica*mic))  ## mica*mic equals to the original IC value. and exp(-mica*mic) equals to the probability of the term's occurence. 
 	)   	
 	return (sim)
 }
