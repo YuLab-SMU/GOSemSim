@@ -9,11 +9,15 @@ mgeneSim <- function (genes, ont="MF", organism="human", measure="Wang", drop="I
 	genes <- genes[!is.na(genes)]
 	n <- length(genes)
 	
+	if (n < 2) {
+		stop("gene vector must longer than one.")
+	}
+	
 	simMatrix <- matrix(NA, nrow=n, ncol=n)
 	colnames(simMatrix) <- genes
 	rownames(simMatrix) <- genes
 
-	gos <- sapply(genes, function(x) ygcGetOnt(x, organism= wh_organism, ontology= wh_ont, dropCodes=drop))
+	gos <- lapply(genes, function(x) ygcGetOnt(x, organism= wh_organism, ontology= wh_ont, dropCodes=drop))
 
 	assign("GOSemSimCache", new.env(hash=TRUE),envir=.GlobalEnv)
 	for (i in 1:n) {
