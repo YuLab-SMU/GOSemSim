@@ -13,8 +13,8 @@ function(cluster1, cluster2, ont="MF", organism="human", measure="Wang", drop="I
 	if (size1 == 0 || size2 == 0) {
 		return (NA)
 	}
-	gos1 <- sapply(cluster1, function(x) ygcGetOnt(x, organism= wh_organism, ontology= wh_ont, dropCodes=drop))
-	gos2 <- sapply(cluster2, function(x) ygcGetOnt(x, organism= wh_organism, ontology= wh_ont, dropCodes=drop))
+	gos1 <- lapply(cluster1, function(x) ygcGetOnt(x, organism= wh_organism, ontology= wh_ont, dropCodes=drop))
+	gos2 <- lapply(cluster2, function(x) ygcGetOnt(x, organism= wh_organism, ontology= wh_ont, dropCodes=drop))
 
 	allSim <- matrix(data=NA, nrow=size1, ncol=size2)
 	assign("GOSemSimCache", new.env(hash=TRUE),envir=.GlobalEnv)
