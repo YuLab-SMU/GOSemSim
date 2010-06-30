@@ -30,7 +30,7 @@ mclusterSim(clusters, ont = "MF",  organism="human", measure="Wang", drop= "IEA"
 	cluster2 <- c("578","582", "583", "400", "409", "411")
 	cluster3 <- c("307", "308", "317", "321", "506", "540", "378", "388", "396")
 	clusters <- list(a=cluster1, b=cluster2, c=cluster3)
-	mclusterSim(clusters, ont="MF", organism="yeast", measure="Wang")
+	mclusterSim(clusters, ont="MF", organism="human", measure="Wang")
 }
 
 \references{
