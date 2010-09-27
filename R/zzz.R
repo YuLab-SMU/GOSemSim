@@ -139,10 +139,10 @@ ygcGetOnt <-  function(gene, organism, ontology, dropCodes) {
 }
 
 ygcCompute_Information_Content <- function(dropCodes="NULL", ont, organism) {
+	if(!exists("GOSemSimEnv")) .initial()
 	wh_ont <- match.arg(ont, c("MF", "BP", "CC"))
 	wh_organism <- match.arg(organism, get("SupportedSpecies",envir=GOSemSimEnv))
 	ygcCheckAnnotationPackage(wh_organism)
-	if(!exists("GOSemSimEnv")) .initial()
 	species <- ygcConvOrgName(wh_organism)
 	if (!exists(species, envir=GOSemSimEnv)) {
 		ygcGetGOMap(wh_organism, dropCodes)
@@ -156,7 +156,7 @@ ygcCompute_Information_Content <- function(dropCodes="NULL", ont, organism) {
 	
 	require(GO.db)
 	if ( !exists("ALLGOID", envir=GOSemSimEnv) ) {
-		assign("ALLGOID", toTable(GOTERM) )
+		assign("ALLGOID", toTable(GOTERM), envir=GOSemSimEnv )
 	}
 	goids <- get("ALLGOID", envir=GOSemSimEnv)
 	#goids <- toTable(GOTERM)
