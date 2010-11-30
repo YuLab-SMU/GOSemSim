@@ -160,10 +160,9 @@ gs <- new("GeneIdentifiers", GeneSet1=gs1, GeneSet2=gs2)
 @
 A \GeneClusterSet{} containing a list of gene clusters.
 <<GeneClusterSet>>=
-cluster1 <- c("835", "5261","241", "994", "514", "517", "533")
-cluster2 <- c("578","582", "583", "400", "409", "411")
-cluster3 <- c("307", "308", "317", "321", "506", "540", "378", "388", "396")
-clusters <- list(a=cluster1, b=cluster2, c=cluster3)
+x <- org.Hs.egGO
+hsEG <- mappedkeys(x)
+clusters <- list(a=sample(hsEG, 20), b=sample(hsEG, 20), c=sample(hsEG, 20))
 geneClusters <- new("GeneClusterSet", GeneClusters=clusters)
 @
 Function \textit{sim} was designed to measuring semantic similarity among \GOIdentifiers{}, \GeneIdentifiers{} and \GeneClusterSet{}.

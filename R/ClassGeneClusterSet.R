@@ -27,7 +27,7 @@ setMethod(
 				if (length(gos1) == 0 || length(gos2)== 0) {
 					simScores[i,j] <- NA
 				} else {
-					goids <- new("GOIdentifiers", GOSet1=gos1, GOSet2=gos1)
+					goids <- new("GOIdentifiers", GOSet1=gos1, GOSet2=gos2)
 					simScores[i,j] = sim(goids, params)
 				}
 				if (i != j ){
