@@ -18,8 +18,8 @@
 \tabular{ll}{
 Package: \tab GOSemSim\cr
 Type: \tab Package\cr
-Version: \tab 1.8.0\cr
-Date: \tab 5-10-2010\cr
+Version: \tab 1.9.1\cr
+Date: \tab 11-30-2010\cr
 biocViews:\tab GO, Clustering\cr
 Depends:\tab GO.db\cr
 Suggests:\tab Clustering, org.Hs.eg.db\cr
@@ -33,12 +33,9 @@ Guangchuang Yu
 Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
 }
 \seealso{
-	\code{\link{goSim}}
-	\code{\link{mgoSim}}
-	\code{\link{geneSim}}
-	\code{\link{mgeneSim}}
-	\code{\link{clusterSim}}
-	\code{\link{mclusterSim}}	
+  \linkS4class{GOIdentifiers},
+  \linkS4class{GeneIdentifiers}
+  \linkS4class{GeneClusterSet}
 }
 
 \keyword{ package }
