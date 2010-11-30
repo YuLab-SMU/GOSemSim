@@ -1,21 +1,53 @@
-% \VignetteIndexEntry{Semantic Similarity Measures}
-% \VignetteDepends{GO.db}
+% \VignetteIndexEntry{An introduction to GOSemSim}
+% \VignetteDepends{org.Hs.eg.db,GO.db}
 % \VignetteSuggests{cluster}
-% \VignetteKeywords{ontology}
+% \VignetteKeywords{GO Semantic Similarity Measurement}
 % \VignettePackage{GOSemSim}
 
-\documentclass[11pt]{article}
+\documentclass[]{article}
 
 \usepackage{times}
 \usepackage{natbib}
+\usepackage{hyperref}
+
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rpackage}[1]{{\textit{#1}}}
+\newcommand{\Rmethod}[1]{{\texttt{#1}}}
+\newcommand{\Rfunarg}[1]{{\texttt{#1}}}
+\newcommand{\Rclass}[1]{{\textit{#1}}}
+\newcommand{\Rcode}[1]{{\texttt{#1}}}
+
+\newcommand{\R}{\textsf{R}}
+\newcommand{\GOSemSim}{\Rpackage{GOSemSim}}
+\newcommand{\Params}{\Rclass{Params}}
+\newcommand{\GOIdentifiers}{\Rclass{GOIdentifiers}}
+\newcommand{\GeneIdentifiers}{\Rclass{GeneIdentifiers}}
+\newcommand{\GeneClusterSet}{\Rclass{GeneClusterSet}}
+
+\newcommand{\term}[1]{\emph{#1}}
+\newcommand{\mref}[2]{\htmladdnormallinkfoot{#2}{#1}}
+
 
 \title{GO-terms Semantic Similarity Measures}
 \author{Guangchuang Yu}
+\date{1 December, 2010}
 
 \begin{document}
 \bibliographystyle{plainnat}
 
 \maketitle
+
+<<options,echo=FALSE>>=
+options(width=60)
+@ 
+
+<<preliminaries>>=
+## w. verbose=TRUE
+library(GOSemSim)
+library(org.Hs.eg.db)
+library(GO.db)
+@ 
 
 \section{Introduction}
 \indent
@@ -109,71 +141,40 @@ And method \textit{rcmax.avg} calculate the average of all maximum similarities 
 \end{center}
 \par				
 \section{Functions}
-\indent					
-Six functions are provided by \textbf{GOSemSim} package. The function \textit{goSim}, \textit{mgoSim}, \textit{geneSim}, \textit{clusterSim} can be used to compute the semantic similarity among GO terms, sets of GO terms, GO descriptions of gene products and GO descriptions of gene clusters respectively. The function \textit{mgeneSim} and \textit{mclusterSim} are designed to calculate the similarity scores matrix of a set of genes and gene clusters.
-\\
-\indent
-For all these six functions, the ontology of GO used in measurement can be restricted by assigning the corresponding parameter to "BP" (biological process), "MF" (molecular function) and "CC" (cellular component).
-
-Users must set parameter \textit{measure} to specify which method to be used to measure the similarity and set parameter \textit{combine} to specify which method for combining semantic similarity scores of multiple GO terms associated with protein or protein clusters.
-
-\indent
-The function \textit{goSim} gives the semantic similarity score for a pair of GO terms. The output value of goSim is between 0 and 1. The higher the value obtained the more similar between them. For example:
-
-<<>>=
-library(GOSemSim)
-goSim("GO:0004022", "GO:0005515", ont="MF", measure="Wang")
+\indent	
+A \Params{} stores a set of parameters for measuring semantic similarity. \Params{} containing parameters are ontology, organism, method, combine, and dropCodes. Parameter ontology specify which ontology were used in measurement, organism specifiy which GO Map were loaded for mapping Gene IDs to GO terms, dropCodes restrict evident codes when mapping Gene IDs to GO Terms, method specify which method to be used to measure the similarity and combine sepcify which combine method was used to combining semantic similarity scores. 
+<<Params>>=
+params <- new("Params", ontology="MF", organism="human", method="Wang")
 @
-
-\indent
-The function \textit{mgoSim} generates the similarity score of two GO terms lists. For example:
-
-<<>>=
-go1 = c("GO:0004022","GO:0004024","GO:0004174")
-go2 = c("GO:0009055","GO:0005515")
-
-mgoSim(go1, go2, ont="MF", measure="Wang", combine="rcmax.avg")
+A \GOIdentifiers{} stores two set of GO IDs. 	
+<<GOIdentifiers>>=
+go1 <- c("GO:0004022", "GO:0004024", "GO:0004023")
+go2 <- c("GO:0009055", "GO:0020037")
+gos <- new("GOIdentifiers", GOSet1=go1, GOSet2=go2)
 @
-
-\indent
-The function \textit{geneSim} estimate semantic similarity of two genes. The mapping from Gene IDs to GO IDs can be restricted based on evidence codes. Gene IDs and species are needed for the function. For yeast, the Gene ID is refer to ORF identifiers from Saccharomyces Genome Database (SGD), and for arabidopsis, the Gene ID is refer to TAIR gene identifiers from The Arabidopsis Information Resource (TAIR) and for other supported species, the Gene IDs are all refer to Entrez Gene ID. For example:
-
-<<>>=
-geneSim("241", "251", ont="MF", organism="human", measure="Wang", combine="rcmax.avg")
+A \GeneIdentifiers{} containing two set of Gene IDs.
+<<GeneIdentifiers>>=
+gs1 <- c("835", "5261","241", "994", "514", "533")
+gs2 <- c("578","582", "400", "409", "411")
+gs <- new("GeneIdentifiers", GeneSet1=gs1, GeneSet2=gs2)
 @
-
-For reducing the dependences of \textbf{GOSemSim}, it only depends on species specific annotation package org.Hs.eg.db for human. When calculated semantic similarities of other species, \textbf{GOSemSim} will auto load the corresponding annotation package if it was installed or download and install the package automatically if it was not installed.
-
-\indent
-Given GO based similarity scores, gene products may be clustered by their function. \textbf{GOSemSim} package provides \textit{mgeneSim} function to compute pairwise similarity scores for a list of genes. The \textit{mgeneSim} function will automatically remove the genes without annotations. Gene IDs and species are needed for the function. The mgeneSim function can be used for large-scale analysis, such as gene clustering. For example:
-
-<<>>=
-sim <- mgeneSim(as.character(100:200), ont="MF", organism="human", measure="Wang", combine="rcmax.avg")
-sim[1:5, 1:5]
-library(cluster)
-pamCluster <- pam(as.dist(1-sim[complete.cases(sim), complete.cases(sim)]), 5)
-pamCluster$clustering
-@
-
-\indent
-Two functions have also been implemented to estimate similarities among gene clusters. The \textit{clusterSim} function is developed for calculating semantic similarity between two gene clusters. The \textit{clusterSim} function first calculate all pair-wise similarities between gene products from different clusters, and then combine the similarity matrix by one of the combine method \textit{max}, \textit{average}, \textit{rcmax} and \textit{rcmax.avg} metioned above.  
-
-The \textit{mclusterSim} function is developed for calculating pair-wise similarities of a set of gene clusters, and its kernel algorithm is just the same as the \textit{clusterSim} function.
-\\
-\indent
-Gene IDs, species are needed for these functions. Here we use the clustering result of the previous example to show the calculation of clusters' similarities:
-
-<<>>=
-g <- pamCluster$clustering
-cluster1 <- names(g[g==1])
-cluster2 <- names(g[g==2])
-cluster3 <- names(g[g==3])
+A \GeneClusterSet{} containing a list of gene clusters.
+<<GeneClusterSet>>=
+cluster1 <- c("835", "5261","241", "994", "514", "517", "533")
+cluster2 <- c("578","582", "583", "400", "409", "411")
+cluster3 <- c("307", "308", "317", "321", "506", "540", "378", "388", "396")
 clusters <- list(a=cluster1, b=cluster2, c=cluster3)
-clusterSim(cluster1, cluster2, ont="MF", organism="human", measure="Wang", combine="rcmax.avg")
-clusters <- list(a=cluster1, b=cluster2, c=cluster3)
-mclusterSim(clusters, ont="MF", organism="human", measure="Wang", combine="rcmax.avg")
+geneClusters <- new("GeneClusterSet", GeneClusters=clusters)
 @
-
+Function \textit{sim} was designed to measuring semantic similarity among \GOIdentifiers{}, \GeneIdentifiers{} and \GeneClusterSet{}.
+<<sim>>=
+sim(gos,params)
+setCombineMethod(params)<-"rcmax.avg"
+sim(gos,params)
+sim(gs, params)
+sim(geneClusters, params)
+@
+			
 \bibliography{GOSemSim}
 
 \end{document}
