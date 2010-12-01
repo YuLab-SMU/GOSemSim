@@ -21,7 +21,7 @@
 }
 \author{Guangchuang Yu <guangchuangyu@gmail.com>}
 \seealso{
-  \code{\linkS4class{GeneIdentifiers}}
+  \code{\linkS4class{GeneSet}}
   \code{\linkS4class{Params}}
 }
 \examples{

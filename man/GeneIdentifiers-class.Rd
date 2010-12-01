@@ -1,10 +1,10 @@
-\name{GeneIdentifiers-class}
+\name{GeneSet-class}
 \docType{class}
-\alias{GeneIdentifiers-class}
+\alias{GeneSet-class}
 
-\title{Class "GeneIdentifiers"}
+\title{Class "GeneSet"}
 \description{
-  A \code{GeneIdentifiers} contains two sets of Gene identifiers.
+  A \code{GeneSet} contains two sets of Gene identifiers.
 }
 
 \section{Slots}{
@@ -16,7 +16,7 @@
 \section{Methods}{
   GO semantic similarity measure :
   \describe{
-    \item{sim}{\code{signature(object = "GeneIdentifiers", params="Params", value = "numeric")}}
+    \item{sim}{\code{signature(object = "GeneSet", params="Params", value = "numeric")}}
   }
 }
 \author{Guangchuang Yu <guangchuangyu@gmail.com>}
@@ -27,10 +27,10 @@
 \examples{
 ## Setting Parameters...
 params <- new("Params", ontology="MF", organism="human", method="Wang", combine="rcmax.avg")
-## Setting GeneIdentifiers...
+## Setting GeneSet...
 gs1 <- c("835", "5261","241", "994", "514", "533")
 gs2 <- c("578","582", "400", "409", "411")
-gs <- new("GeneIdentifiers", GeneSet1=gs1, GeneSet2=gs2)
+gs <- new("GeneSet", GeneSet1=gs1, GeneSet2=gs2)
 ## Calculating Gene Semantic Similarities...
 sim(gs, params)
 }
