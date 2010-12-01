@@ -33,8 +33,8 @@ Guangchuang Yu
 Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
 }
 \seealso{
-  \linkS4class{GOIdentifiers},
-  \linkS4class{GeneIdentifiers}
+  \linkS4class{GOSet},
+  \linkS4class{GeneSet}
   \linkS4class{GeneClusterSet}
 }
 

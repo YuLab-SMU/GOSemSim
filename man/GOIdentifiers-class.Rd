@@ -1,10 +1,10 @@
-\name{GOIdentifiers-class}
+\name{GOSet-class}
 \docType{class}
-\alias{GOIdentifiers-class}
+\alias{GOSet-class}
 
-\title{Class "GOIdentifiers"}
+\title{Class "GOSet"}
 \description{
-  A \code{GOIdentifiers} contains two sets of GO identifiers.
+  A \code{GOSet} contains two sets of GO identifiers.
 
 }
 
@@ -17,21 +17,21 @@
 \section{Methods}{
   GO semantic similarity measure :
   \describe{
-    \item{sim}{\code{signature(object = "GOIdentifiers", params="Params")}}
+    \item{sim}{\code{signature(object = "GOSet", params="Params")}}
   }
 }
 \author{Guangchuang Yu <guangchuangyu@gmail.com>}
 \seealso{
-  \code{\linkS4class{GeneIdentifiers}}
+  \code{\linkS4class{GeneSet}}
   \code{\linkS4class{Params}}
 }
 \examples{
 ## Setting Parameters...
 params <- new("Params", ontology="MF", organism="human", method="Wang")
-## Setting GOIdentifiers...
+## Setting GOSet...
 go1 <- c("GO:0004022", "GO:0004024", "GO:0004023")
 go2 <- c("GO:0009055", "GO:0020037")
-gos <- new("GOIdentifiers", GOSet1=go1, GOSet2=go2)
+gos <- new("GOSet", GOSet1=go1, GOSet2=go2)
 ## Calculating GO Semantic Similarities...
 sim(gos, params)
 ## Setting Combine Method

@@ -20,8 +20,8 @@ importFrom(org.Hs.eg.db, org.Hs.egGO)
 
 
 exportClasses(
-	GOIdentifiers,
-	GeneIdentifiers,
+	GOSet,
+	GeneSet,
 	GeneClusterSet,
 	Params
 )
@@ -39,7 +39,7 @@ exportMethods(
 	"[",
 	
 	##
-	##GOIdentifiers, GeneIdentifiers, GeneClusterSet,
+	##GOSet, GeneSet, GeneClusterSet,
 	
 	sim
 )

@@ -21,8 +21,8 @@
 \newcommand{\R}{\textsf{R}}
 \newcommand{\GOSemSim}{\Rpackage{GOSemSim}}
 \newcommand{\Params}{\Rclass{Params}}
-\newcommand{\GOIdentifiers}{\Rclass{GOIdentifiers}}
-\newcommand{\GeneIdentifiers}{\Rclass{GeneIdentifiers}}
+\newcommand{\GOSet}{\Rclass{GOSet}}
+\newcommand{\GeneSet}{\Rclass{GeneSet}}
 \newcommand{\GeneClusterSet}{\Rclass{GeneClusterSet}}
 
 \newcommand{\term}[1]{\emph{#1}}
@@ -146,17 +146,17 @@ A \Params{} stores a set of parameters for measuring semantic similarity. \Param
 <<Params>>=
 params <- new("Params", ontology="MF", organism="human", method="Wang")
 @
-A \GOIdentifiers{} stores two set of GO IDs. 	
-<<GOIdentifiers>>=
+A \GOSet{} stores two set of GO IDs. 	
+<<GOSet>>=
 go1 <- c("GO:0004022", "GO:0004024", "GO:0004023")
 go2 <- c("GO:0009055", "GO:0020037")
-gos <- new("GOIdentifiers", GOSet1=go1, GOSet2=go2)
+gos <- new("GOSet", GOSet1=go1, GOSet2=go2)
 @
-A \GeneIdentifiers{} containing two set of Gene IDs.
-<<GeneIdentifiers>>=
+A \GeneSet{} containing two set of Gene IDs.
+<<GeneSet>>=
 gs1 <- c("835", "5261","241", "994", "514", "533")
 gs2 <- c("578","582", "400", "409", "411")
-gs <- new("GeneIdentifiers", GeneSet1=gs1, GeneSet2=gs2)
+gs <- new("GeneSet", GeneSet1=gs1, GeneSet2=gs2)
 @
 A \GeneClusterSet{} containing a list of gene clusters.
 <<GeneClusterSet>>=
@@ -165,7 +165,7 @@ hsEG <- mappedkeys(x)
 clusters <- list(a=sample(hsEG, 20), b=sample(hsEG, 20), c=sample(hsEG, 20))
 geneClusters <- new("GeneClusterSet", GeneClusters=clusters)
 @
-Function \textit{sim} was designed to measuring semantic similarity among \GOIdentifiers{}, \GeneIdentifiers{} and \GeneClusterSet{}.
+Function \textit{sim} was designed to measuring semantic similarity among \GOSet{}, \GeneSet{} and \GeneClusterSet{}.
 <<sim>>=
 sim(gos,params)
 setCombineMethod(params)<-"rcmax.avg"

@@ -16,10 +16,13 @@ setValidity("Params",
 		} else {
 			stop("*ontology* must be one of ", paste(onts, collapse=","))
 		}
-		if (object@organism %in% organs) {
-			loadAnnoPkg(object) ##load annotation pkg.
+		if(length(object@organism != 0)) {
+			if (object@organism %in% organs) {
+				loadAnnoPkg(object) ##load annotation pkg.
+			} else {
+				stop("*organism* must be one of ", paste(organs, collapse=","))
+			}
 		} else {
-			stop("*organism* must be one of ", paste(organs, collapse=","))
 		}
 		if (object@method %in% mets) {
 			
