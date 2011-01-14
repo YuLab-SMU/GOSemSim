@@ -46,4 +46,10 @@ exportMethods(
 
 export(
 	#gene2GO
+	goSim,
+	mgoSim,
+	geneSim,
+	mgeneSim,
+	clusterSim,
+	mclusterSim
 )
