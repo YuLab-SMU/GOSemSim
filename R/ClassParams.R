@@ -18,7 +18,7 @@ setValidity("Params",
 		}
 		if(length(object@organism != 0)) {
 			if (object@organism %in% organs) {
-				loadAnnoPkg(object) ##load annotation pkg.
+				#loadAnnoPkg(object) ##load annotation pkg.
 			} else {
 				stop("*organism* must be one of ", paste(organs, collapse=","))
 			}
@@ -53,35 +53,6 @@ setMethod(
 		org.ont.IC <- paste(params@organism, params@ontology, "IC", sep="")
 		assign(eval(org.ont.IC), IC, envir=GOSemSimEnv)
 		rm (IC)
-	}
-)
-
-setMethod(
-	f= "loadAnnoPkg", 
-	signature= "Params", 
-	definition=function(params){
-		pkgname <- switch (params@organism,
-			anopheles	=	.loadPkg("org.Ag.eg.db"),
-			arabidopsis = .loadPkg("org.At.tair.db"),
-			bovine	= .loadPkg("org.Bt.eg.db"),
-			canine	= .loadPkg("org.Cf.eg.db"), 
-			chicken	=	.loadPkg("org.Gg.eg.db"), 
-			chimp	=	.loadPkg("org.Pt.eg.db"),
-			coelicolor = .loadPkg("org.Sco.eg.db"),
-			ecolik12 = .loadPkg("org.EcK12.eg.db"), 		
-			ecsakai	=	.loadPkg("org.EcSakai.eg.db"), 
-			fly = .loadPkg("org.Dm.eg.db"),
-			human = .loadPkg("org.Hs.eg.db"),
-			malaria	=	.loadPkg("org.Pf.plasmo.db"), 
-			mouse = .loadPkg("org.Mm.eg.db"),
-			pig	= 	.loadPkg("org.Ss.eg.db"), 
-			rat = .loadPkg("org.Rn.eg.db"),
-			rhesus	=	.loadPkg("org.Mmu.eg.db"),
-			worm = .loadPkg("org.Ce.eg.db"), 
-			xenopus	=	.loadPkg("org.Xl.eg.db"),
-			yeast = .loadPkg("org.Sc.sgd.db"),
-			zebrafish = .loadPkg("org.Dr.eg.db"),
-		)
 	}
 )
 

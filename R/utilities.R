@@ -101,35 +101,6 @@ gene2GO <-  function(gene, params) {
 	return( names(qGO) )
 }
 
-
-
-
-
-###########################################################
-## Load GO annotation package for corresponding species ###
-###########################################################
-.loadPkg.old <- function(pkgname) {
-	p <- installed.packages()
-	pn <- p[,1] ##packages names
-	if (sum(pn==pkgname) == 0) {
-		print("The corresponding annotation package did not installed.")
-		print("GOSemSim will install and load it automatically.")
-		#source("http://bioconductor.org/biocLite.R")
-		#biocLite(pkgname)
-		install.packages(pkgname,repos="http://www.bioconductor.org/packages/release/data/annotation",type="source")
-	}
-	print("Loading annotation package...")
-	require(pkgname, character.only=TRUE)
-	print("Done...")
-}
-
-.loadPkg <- function(pkgname) {
-	require(pkgname, character.only=TRUE) || stop(pkgname, " package not installed.\n", pkgname, " can be installed via biocLite(",pkgname,")")
-}
-
-
-
-
 ###########################################################
 ## Function for combine scores ###
 ###########################################################
