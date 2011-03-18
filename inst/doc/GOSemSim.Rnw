@@ -59,7 +59,7 @@ Four methods have been presented to determine the semantic similarity of two GO 
 \par
 \section{Semantic Similarity Measurement Based on GO}
 \indent
-The \textbf{GOSemSim} package contains functions to estimate semantic similarity of GO terms based on Resnik's, Lin's, Jiang and Conrath's, Rel's and Wang's method. Details about Resnik's, Lin's, and Jiang and Conrath's methods can be seen in \citep{lord_semantic_2003}, details about Rel's method can be seen in \citep{schlicker_new_2006}, details about Wang's method can be seen in \citep{wang_new_2007}.
+The \textbf{GOSemSim} package contains functions to estimate semantic similarity of GO terms based on Resnik's, Lin's, Jiang and Conrath's, Rel's and Wang's method. Details about Resnik's, Lin's, and Jiang and Conrath's methods can be seen in \citep{lord_semantic_2003}, details about Rel's method can be seen in \citep{schlicker_new_2006}, and details about Wang's method can be seen in \citep{wang_new_2007}.
 \\
 \indent
 Formally, a GO term A can be represented as $DAG_{A}=(A,T_{A},E_{A})$ where $T_{A}$ is the set of GO terms in $DAG_{A}$, including term A and all of its ancestor terms in the GO graph, and $E_{A}$ is the set of edges connecting the GO terms in $DAG_{A}$.
@@ -173,7 +173,31 @@ sim(gos,params)
 sim(gs, params)
 sim(geneClusters, params)
 @
-			
+
+The old function calls which maybe more user friendly were also supported. They are wrapper functions of function \textit{sim} mentioning above.
+<<old function call>>=
+goSim("GO:0004022", "GO:0005515", ont="MF", measure="Wang")
+go1 = c("GO:0004022","GO:0004024","GO:0004174")
+go2 = c("GO:0009055","GO:0005515")
+mgoSim(go1, go2, ont="MF", measure="Wang", combine="rcmax.avg")
+geneSim("241", "251", ont="MF", organism="human", measure="Wang", combine="rcmax.avg")
+
+mgeneSim(genes=c("835", "5261","241", "994"), ont="MF", organism="human", measure="Wang")
+
+clusterSim(gs1, gs2, ont="MF", organism="human", measure="Wang", combine="rcmax.avg")
+mclusterSim(clusters, ont="MF", organism="human", measure="Wang", combine="rcmax.avg")
+@
+
+\section*{Session Information}
+
+The version number of R and packages loaded for generating the vignette were:
+
+\begin{verbatim}
+<<echo=FALSE,results=tex>>=
+sessionInfo()
+@
+\end{verbatim}
+
 \bibliography{GOSemSim}
 
 \end{document}
