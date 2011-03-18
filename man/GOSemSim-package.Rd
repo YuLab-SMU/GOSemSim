@@ -18,11 +18,12 @@
 \tabular{ll}{
 Package: \tab GOSemSim\cr
 Type: \tab Package\cr
-Version: \tab 1.9.1\cr
-Date: \tab 11-30-2010\cr
-biocViews:\tab GO, Clustering\cr
-Depends:\tab GO.db\cr
-Suggests:\tab Clustering, org.Hs.eg.db\cr
+Version: \tab 1.9.9\cr
+Date: \tab 03-18-2011\cr
+biocViews:\tab GO, Clustering, Pathways, Anopheles_gambiae, Arabidopsis_thaliana, Bos_taurus, Caenorhabditis_elegans, Canis_familiaris, Danio_rerio, Drosophila_melanogaster, Escherichia_coli, Gallus_gallus, Homo_sapiens, Mus_musculus, Pan_troglodytes, Plasmodium_falciparum, Rattus_norvegicus, Saccharomyces_cerevisiae, Streptomyces_coelicolor, Sus_scrofa, Xenopus_laevis\cr
+Depends:\tab \cr
+Imports: \tab methods, AnnotationDbi, GO.db, org.Hs.eg.db, org.Ag.eg.db, org.At.tair.db, org.Bt.eg.db, org.Ce.eg.db, org.Cf.eg.db, org.Dm.eg.db, org.Dr.eg.db, org.EcK12.eg.db, org.EcSakai.eg.db, org.Gg.eg.db, org.Mm.eg.db, org.Mmu.eg.db, org.Pf.plasmo.db, org.Pt.eg.db, org.Rn.eg.db, org.Sc.sgd.db, org.Sco.eg.db, org.Ss.eg.db, org.Xl.eg.db\cr
+Suggests:\tab Clustering\cr
 License: \tab GPL Version 2\cr
 }
 }

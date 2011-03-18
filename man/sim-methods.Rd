@@ -14,7 +14,7 @@
   \describe{
     Defined methods include:
     \item{
-      \code{signature(object = "GOIdentifers", params="Params")},
+      \code{signature(object = "GOSet", params="Params")},
       \code{signature(object = "GeneSet", params="Params")}
 	  \code{signature(object = "GeneClusterSet", params="Params")}
     }{
