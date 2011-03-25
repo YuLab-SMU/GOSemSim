@@ -50,7 +50,7 @@
 }
 
 
-rebuildICdata <- function() {
+rebuildAllICdata <- function() {
 	if(!exists("GOSemSimEnv")) .initial()
 	ont <- c("BP","CC", "MF")
 	species <- get("SupportedSpecies",envir=GOSemSimEnv)
@@ -58,7 +58,7 @@ rebuildICdata <- function() {
 	cat("calulating Information Content...\nSpecies:\t\tOntology\n")
 	params <- new("Params")
 	for (i in species) {
-		loadAnnoPkg(params) ##load annotation pkg.
+		#loadAnnoPkg(params) ##load annotation pkg.
 		setOrganism(params) <- i
 		for (j in ont) {
 			setOntology(params) <- j
