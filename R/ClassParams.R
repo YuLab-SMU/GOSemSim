@@ -165,7 +165,7 @@ setReplaceMethod(
 	signature="Params",
 	definition=function(object, value){
 		object@organism <- value
-		loadAnnoPkg(object)
+		#loadAnnoPkg(object)
 		loadGOMap(object)  ## update GOMap to the corresponding species...
 		return(object)
 	}

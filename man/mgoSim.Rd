@@ -2,10 +2,10 @@
 \alias{mgoSim}
 \title{Semantic Similarity Between two GO terms lists}
 \description{
- Given two GO term sets, this function will calculate the semantic similarity between them,  and return their semantic similarity
+	Given two GO term sets, this function will calculate the semantic similarity between them,  and return their semantic similarity
 }
 \usage{
-mgoSim(GO1, GO2, ont="MF", organism="human", measure="Wang", combine="rcmax.avg")
+	mgoSim(GO1, GO2, ont="MF", organism="human", measure="Wang", combine="rcmax.avg")
 }
 
 \arguments{

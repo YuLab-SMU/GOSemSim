@@ -37,11 +37,6 @@ setGeneric(
 )
 
 setGeneric(
-	name="loadAnnoPkg", 
-	def=function(params) {standardGeneric("loadAnnoPkg")}
-)
-
-setGeneric(
 	name="loadICdata", 
 	def=function(params) {standardGeneric("loadICdata")}
 )

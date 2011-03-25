@@ -56,7 +56,8 @@ exportMethods(
 )
 
 export(
-	#gene2GO
+	#gene2GO,
+	#rebuildAllICdata,
 	goSim,
 	mgoSim,
 	geneSim,
