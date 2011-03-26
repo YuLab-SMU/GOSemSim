@@ -30,8 +30,9 @@
 
 
 \title{GO-terms Semantic Similarity Measures}
-\author{Guangchuang Yu}
-\date{1 December, 2010}
+\author{Guangchuang Yu \\
+\\
+Jinan University, Guangzhou, China}
 
 \begin{document}
 \bibliographystyle{plainnat}
