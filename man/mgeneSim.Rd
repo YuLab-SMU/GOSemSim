@@ -26,7 +26,7 @@ mgeneSim(genes, ont = "MF",  organism="human", measure="Wang", drop= "IEA", comb
 	\code{\link{mclusterSim}}
 }
 \examples{
-	mgeneSim(c("835", "5261","241", "994"), ont="MF", organism="human", measure="Wang")
+	mgeneSim(c("835", "5261","241"), ont="MF", organism="human", measure="Wang")
 }
 
 \references{
