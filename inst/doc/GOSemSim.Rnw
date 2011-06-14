@@ -44,7 +44,6 @@ options(width=60)
 @ 
 
 <<preliminaries>>=
-## w. verbose=TRUE
 library(GOSemSim)
 library(org.Hs.eg.db)
 library(GO.db)
