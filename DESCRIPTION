@@ -11,7 +11,6 @@ Suggests: clusterProfiler
 biocViews: GO, Clustering, Pathways, Bioinformatics
 Collate: utilities.R
 		 zzz.R
-		 AllClasses.R
 		 AllGenerics.R
 		 ClassGeneClusterSet.R
          ClassGeneSet.R
