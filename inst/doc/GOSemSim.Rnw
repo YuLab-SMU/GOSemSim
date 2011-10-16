@@ -162,6 +162,7 @@ A \GeneClusterSet{} containing a list of gene clusters.
 <<GeneClusterSet>>=
 x <- org.Hs.egGO
 hsEG <- mappedkeys(x)
+set.seed <- 123
 clusters <- list(a=sample(hsEG, 20), b=sample(hsEG, 20), c=sample(hsEG, 20))
 geneClusters <- new("GeneClusterSet", GeneClusters=clusters)
 @
