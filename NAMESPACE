@@ -1,6 +1,6 @@
 importClassesFrom(methods, character, list)
 
-importMethodsFrom(AnnotationDbi, mappedkeys, toTable)
+importMethodsFrom(AnnotationDbi, mappedkeys, toTable, exists, get)
 
 importFrom(methods, "@<-", new)
 
@@ -15,7 +15,7 @@ importFrom(org.Bt.eg.db, org.Bt.egGO)			# bovine
 importFrom(org.Cf.eg.db, org.Cf.egGO)			# canine
 importFrom(org.Gg.eg.db, org.Gg.egGO)			# chicken
 importFrom(org.Pt.eg.db, org.Pt.egGO)			# chimp
-importFrom(org.Sco.eg.db, org.Sco.egGO)			# coelicolor
+##importFrom(org.Sco.eg.db, org.Sco.egGO)			# coelicolor
 importFrom(org.EcK12.eg.db, org.EcK12.egGO)		# ecolik12
 importFrom(org.EcSakai.eg.db, org.EcSakai.egGO)	# ecsakai
 importFrom(org.Dm.eg.db, org.Dm.egGO)			# fly
@@ -42,7 +42,6 @@ exportMethods(
 	
 	computeIC,
 	loadGOMap,
-	loadICdata,
 	"setCombineMethod<-",
 	"setMethod<-",
 	"setOntology<-",

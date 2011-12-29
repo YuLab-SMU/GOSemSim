@@ -9,7 +9,7 @@ setMethod(
 		}
 		GOS1 <- lapply(object@GeneSet1, gene2GO, params)
 		GOS2 <- lapply(object@GeneSet2, gene2GO, params)
-		assign("GOSemSimCache", new.env(hash=TRUE),envir=.GlobalEnv)
+		#assign("SemSimCache", new.env(hash=TRUE),envir=.GlobalEnv)
 		
 		m = length(object@GeneSet1)
 		n = length(object@GeneSet2)
@@ -19,11 +19,13 @@ setMethod(
 		
 		for (i in seq(along=object@GeneSet1)) {
 			for (j in seq(along=object@GeneSet2)) {
-				goids <- new("GOSet", GOSet1=GOS1[[i]], GOSet2=GOS2[[j]])
-				simScores[i,j] = sim(goids, params)
+				if(any(!is.na(GOS1[[i]])) &&  any(!is.na(GOS2[[j]]))) {
+					goids <- new("GOSet", GOSet1=GOS1[[i]], GOSet2=GOS2[[j]])
+					simScores[i,j] = sim(goids, params)
+				}
 			}
 		}
-		remove("GOSemSimCache", envir=.GlobalEnv)
+		#remove("SemSimCache", envir=.GlobalEnv)
 		removeRowNA <- apply(!is.na(simScores), 1, sum)>0
 		removeColNA <- apply(!is.na(simScores), 2, sum)>0
 		return(simScores[removeRowNA, removeColNA])

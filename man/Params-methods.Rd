@@ -27,9 +27,6 @@
 ## Construct Params class
 params <- new("Params", ontology="MF", organism="human", method="Wang")
 
-## loading IC data
-loadICdata(params)
-
 ## Setting params
 setOntology(params) <- "BP"
 setCombineMethod="rcmax"
