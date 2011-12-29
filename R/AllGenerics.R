@@ -36,8 +36,4 @@ setGeneric(
 	def=function(params) {standardGeneric("loadGOMap")}
 )
 
-setGeneric(
-	name="loadICdata", 
-	def=function(params) {standardGeneric("loadICdata")}
-)
 

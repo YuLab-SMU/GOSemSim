@@ -3,7 +3,6 @@ setClass(Class="Params",
 	prototype=prototype (dropCodes="NULL")
 )
 
-
 setValidity("Params",
 	function(object) {
 		if(!exists("GOSemSimEnv")) .initial()
@@ -42,19 +41,6 @@ setValidity("Params",
 	}
 )
 
-setMethod(
-	f= "loadICdata", 
-	signature= "Params", 
-	definition=function(params){
-		if(!exists("GOSemSimEnv")) .initial()
-		fname <- paste("Info_Contents", params@organism, params@ontology,  sep="_")
-		tryCatch(utils::data(list=fname, package="GOSemSim"))
-		IC <- get("IC")
-		org.ont.IC <- paste(params@organism, params@ontology, "IC", sep="")
-		assign(eval(org.ont.IC), IC, envir=GOSemSimEnv)
-		rm (IC)
-	}
-)
 
 setMethod(
 	f= "loadGOMap", 
@@ -67,7 +53,7 @@ setMethod(
 		canine	= org.Cf.egGO, 
 		chicken	=	org.Gg.egGO, 
 		chimp	=	org.Pt.egGO, 
-		coelicolor = org.Sco.egGO,
+		##coelicolor = org.Sco.egGO, ## this package is no longer supports.
 		ecolik12 = org.EcK12.egGO,
 		ecsakai	=	org.EcSakai.egGO, 
 		fly = org.Dm.egGO,
@@ -144,7 +130,7 @@ setMethod(
 		# IC of GO terms was quantified as the negative log likelihood. 	
 		IC <- -log(p)
 
-		save(IC, file=paste(paste("Info_Contents", params@organism, params@ontology, sep="_"), ".rda", sep=""))
+		save(IC, file=paste(paste("Info_Contents", params@organism, params@ontology, sep="_"), ".rda", sep=""), compress="xz")
 	}
 )
 
