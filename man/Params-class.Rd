@@ -2,7 +2,6 @@
 \docType{class}
 \alias{Params-class}
 \alias{[,Params,character-method}
-\alias{loadICdata,Params-method}
 \alias{loadAnnoPkg,Params-method}
 \alias{loadGOMap,Params-method}
 \alias{computeIC,Params-method}
@@ -12,7 +11,6 @@
 \alias{setCombineMethod<-,Params-method}
 
 
-\alias{loadICdata}
 \alias{loadAnnoPkg}
 \alias{loadGOMap}
 \alias{computeIC}
@@ -49,7 +47,6 @@
 
   Loading require data:
   \describe{
-    \item{loadICdata}{\code{signature(object = "Params")}}
 	\item{loadAnnoPkg}{\code{signature(object = "Params")}}
     \item{loadGOMap}{\code{signature(object = "Params")}}
   }
