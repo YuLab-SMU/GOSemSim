@@ -33,7 +33,6 @@ loadICdata <- function(organism, ont) {
 ##' @param ID1 Ontology Term
 ##' @param ID2 Ontology Term
 ##' @param ont Ontology
-##' @param ONTANCESTOR Ancestor annotation of Ontolgy
 ##' @param method one of "Resnik", "Jiang", "Lin" and "Rel".
 ##' @param organism one of supported species
 ##' @return semantic similarity score
@@ -42,7 +41,6 @@ loadICdata <- function(organism, ont) {
 infoContentMethod <- function(ID1,
                               ID2,
                               ont="DO",
-                              ONTANCESTOR=DOANCESTOR,
                               method,
                               organism="human") {
     if(!exists("ICEnv")) {
@@ -78,6 +76,7 @@ infoContentMethod <- function(ID1,
     if (ic1 == 0 || ic2 == 0)
         return (NA)
 
+    ONTANCESTOR <- .getAncestors(ont)
     ancestor1 <- get(ID1, ONTANCESTOR)
     ancestor2 <- get(ID2, ONTANCESTOR)
     if (ID1 == ID2) {
