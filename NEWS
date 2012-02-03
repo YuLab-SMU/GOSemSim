@@ -1,3 +1,7 @@
+CHANGES IN VERSION 1.13.3
+------------------------
+ o bug fixed for multiple annotation. <2012-02-01, Fri>
+ 
 CHANGES IN VERSION 1.13.2
 ------------------------
  o update infoContentMethod to make it consistent between DOSE and GOSemSim. <2011-12-31, Sat>
