@@ -1,39 +1,39 @@
 setGeneric(
-	name = "sim",
-	def=function(object, params){standardGeneric("sim")}
-)
+           name = "sim",
+           def=function(object, params){standardGeneric("sim")}
+           )
 
 
 setGeneric(
-	name="setOntology<-", 
-	def=function(object, value) {standardGeneric("setOntology<-")}
-)
+           name="setOntology<-",
+           def=function(object, value) {standardGeneric("setOntology<-")}
+           )
 
 
 setGeneric(
-	name="setOrganism<-", 
-	def=function(object, value) {standardGeneric("setOrganism<-")}
-)
+           name="setOrganism<-",
+           def=function(object, value) {standardGeneric("setOrganism<-")}
+           )
 
 setGeneric(
-	name="setMethod<-", 
-	def=function(object, value) {standardGeneric("setMethod<-")}
-)
+           name="setMethod<-",
+           def=function(object, value) {standardGeneric("setMethod<-")}
+           )
 
 setGeneric(
-	name="setCombineMethod<-", 
-	def=function(object, value) {standardGeneric("setCombineMethod<-")}
-)
+           name="setCombineMethod<-",
+           def=function(object, value) {standardGeneric("setCombineMethod<-")}
+           )
 
 setGeneric(
-	name="computeIC", 
-	def=function(params) {standardGeneric("computeIC")}
-)
+           name="computeIC",
+           def=function(params) {standardGeneric("computeIC")}
+           )
 
 
 setGeneric(
-	name="loadGOMap", 
-	def=function(params) {standardGeneric("loadGOMap")}
-)
+           name="loadGOMap",
+           def=function(params) {standardGeneric("loadGOMap")}
+           )
 
 
