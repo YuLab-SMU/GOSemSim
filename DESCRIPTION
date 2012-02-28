@@ -1,21 +1,48 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-Version: 1.13.3
+Version: 1.13.4
 Author: Guangchuang Yu
 Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
 Description: Implemented five methods proposed by Resnik, Schlicker, Jiang, Lin and Wang respectively for estimating GO semantic similarities. Support many species, including Anopheles, Arabidopsis, Bovine, Canine, Chicken, Chimp, Coelicolor, E coli strain K12 and Sakai, Fly, Human, Malaria, Mouse, Pig, Rhesus, Rat, Worm, Xenopus, Yeast, and Zebrafish.
 Depends: R (>= 2.10)
-Imports: methods, AnnotationDbi, GO.db, org.Hs.eg.db, org.Ag.eg.db,
-        org.At.tair.db, org.Bt.eg.db, org.Ce.eg.db, org.Cf.eg.db,
-        org.Dm.eg.db, org.Dr.eg.db, org.EcK12.eg.db, org.EcSakai.eg.db,
-        org.Gg.eg.db, org.Mm.eg.db, org.Mmu.eg.db, org.Pf.plasmo.db,
-        org.Pt.eg.db, org.Rn.eg.db, org.Sc.sgd.db, org.Ss.eg.db,
-        org.Xl.eg.db
+Imports: methods,
+	 AnnotationDbi,
+	 GO.db,
+	 org.Hs.eg.db,
+	 org.Ag.eg.db,
+         org.At.tair.db,
+	 org.Bt.eg.db,
+	 org.Ce.eg.db,
+	 org.Cf.eg.db,
+       	 org.Dm.eg.db,
+	 org.Dr.eg.db,
+	 org.EcK12.eg.db,
+	 org.EcSakai.eg.db,
+       	 org.Gg.eg.db,
+	 org.Mm.eg.db,
+	 org.Mmu.eg.db,
+	 org.Pf.plasmo.db,
+         org.Pt.eg.db,
+	 org.Rn.eg.db,
+	 org.Sc.sgd.db,
+	 org.Ss.eg.db,
+       	 org.Xl.eg.db
 Suggests: DOSE, clusterProfiler
-biocViews: GO, Clustering, Pathways, Bioinformatics
-Collate: utilities.R zzz.R AllGenerics.R ClassGeneClusterSet.R
-        ClassGeneSet.R ClassGOSet.R ClassParams.R combineMethods.R
-        ICMethods.R oldFunctionCall.R WangMethod.R
+biocViews: GO,
+	   Clustering,
+	   Pathways,
+	   Bioinformatics
+Collate: 'AllGenerics.R'
+	 'ClassGeneClusterSet.R'
+         'ClassGeneSet.R'
+	 'ClassGOSet.R'
+	 'ClassParams.R'
+	 'combineMethods.R'
+         'ICMethods.R'
+	 'oldFunctionCall.R'
+	 'WangMethod.R'
+	 'utilities.R'
+	 'zzz.R'
 License: GPL-2
 Packaged: 2011-12-29 06:44:50 UTC; root

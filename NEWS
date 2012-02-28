@@ -1,15 +1,19 @@
+CHANGES IN VERSION 1.13.4
+------------------------
+ o update vignette. <2012-02-28, Tue>
+
 CHANGES IN VERSION 1.13.3
 ------------------------
  o bug fixed for multiple annotation. <2012-02-01, Fri>
- 
+
 CHANGES IN VERSION 1.13.2
 ------------------------
  o update infoContentMethod to make it consistent between DOSE and GOSemSim. <2011-12-31, Sat>
- 
+
 CHANGES IN VERSION 1.13.1
 ------------------------
  o remove dependency of DOSE
- o remove Streptomyces coelicolor support, as the genome wide annotation package contributor no longer supports it. 
+ o remove Streptomyces coelicolor support, as the genome wide annotation package contributor no longer supports it.
 
 CHANGES IN VERSION 1.11.2
 ------------------------
