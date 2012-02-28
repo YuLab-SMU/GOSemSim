@@ -4,11 +4,27 @@
 % \VignetteKeywords{GO Semantic Similarity Measurement}
 % \VignettePackage{GOSemSim}
 
-\documentclass[]{article}
+\documentclass[a4paper]{article}
 
+\usepackage{Sweave}
+\usepackage{a4wide}
 \usepackage{times}
-\usepackage{natbib}
 \usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[authoryear,round]{natbib}
+
+\textwidth=6.2in
+\textheight=8.5in
+%\parskip=.3cm
+\oddsidemargin=.1in
+\evensidemargin=.1in
+\headheight=-.3in
 
 \newcommand{\Rfunction}[1]{{\texttt{#1}}}
 \newcommand{\Robject}[1]{{\texttt{#1}}}
@@ -19,154 +35,296 @@
 \newcommand{\Rcode}[1]{{\texttt{#1}}}
 
 \newcommand{\R}{\textsf{R}}
-\newcommand{\GOSemSim}{\Rpackage{GOSemSim}}
 \newcommand{\Params}{\Rclass{Params}}
 \newcommand{\GOSet}{\Rclass{GOSet}}
 \newcommand{\GeneSet}{\Rclass{GeneSet}}
 \newcommand{\GeneClusterSet}{\Rclass{GeneClusterSet}}
 
-\newcommand{\term}[1]{\emph{#1}}
-\newcommand{\mref}[2]{\htmladdnormallinkfoot{#2}{#1}}
-
+\bibliographystyle{plainnat}
 
 \title{GO-terms Semantic Similarity Measures}
 \author{Guangchuang Yu \\
-\\
-Jinan University, Guangzhou, China}
+College of Life Science and Technology \\
+Jinan University, Guangzhou, China \\
+email: \texttt{guangchuangyu@gmail.com}}
 
 \begin{document}
-\bibliographystyle{plainnat}
+
 
 \maketitle
 
+
 <<options,echo=FALSE>>=
 options(width=60)
-@ 
-
-<<preliminaries>>=
 library(GOSemSim)
 library(org.Hs.eg.db)
 library(GO.db)
-@ 
+@
 
 \section{Introduction}
-\indent
-Functional similarity of gene products can be estimated by controlled biological vocabularies, such as Gene Ontology (GO). GO comprises of three orthogonal ontologies, i.e. molecular function (MF), biological process (BP), and cellular component (CC).
+
+Functional similarity of gene products can be estimated by controlled
+biological vocabularies, such as Gene Ontology (GO). GO comprises of
+three orthogonal ontologies, i.e. molecular function (MF), biological
+process (BP), and cellular component (CC).
 \\
-\indent
-Four methods have been presented to determine the semantic similarity of two GO terms based on the annotation statistics of their common ancestor terms (Resnik\citep{philip_semantic_1999}, Jiang\citep{jiang_semantic_1997}, Lin\citep{lin_information-theoretic_1998} and Schlicker\citep{schlicker_new_2006}). Wang \citep{wang_new_2007} proposed a new method to measure the similarity based on the graph structure of GO. Each of these methods has its own advantages and weaknesses. The \textbf{GOSemSim} package \citep{g.yu_2010} is developed to compute semantic similarity among GO terms, sets of GO terms, gene products, and gene clusters, providing both five methods mentioned above.
+
+Four methods have been presented to determine the semantic similarity
+of two GO terms based on the annotation statistics of their common
+ancestor terms (Resnik  \citep{philip_semantic_1999}, Jiang  \citep{jiang_semantic_1997}, 
+Lin  \citep{lin_information-theoretic_1998} and Schlicker  \citep{schlicker_new_2006}). 
+Wang  \citep{wang_new_2007} proposed a
+new method to measure the similarity based on the graph structure of
+GO. Each of these methods has its own advantages and
+weaknesses. \Rpackage{GOSemSim} package  \citep{yu2010} is developed to compute
+semantic similarity among GO terms, sets of GO terms, gene products,
+and gene clusters, providing both five methods mentioned above.
 \\
-\par
+To start with \Rpackage{GOSemSim} package, type following code below:
+
+<<results=hide>>=
+library(GOSemSim)
+help(GOSemSim)
+@
+
+
+\section{Citation}
+
+Please cite the following articles when using
+\Rpackage{GOSemSim}. \\
+\\
+G Yu, F Li, Y Qin, X Bo, Y Wu, S Wang. GOSemSim: an R package for
+measuring semantic similarity among GO terms and gene
+products. \textit{Bioinformatics}. 2010,26(7):976-978.\\
+
+
 \section{Semantic Similarity Measurement Based on GO}
-\indent
-The \textbf{GOSemSim} package contains functions to estimate semantic similarity of GO terms based on Resnik's, Lin's, Jiang and Conrath's, Rel's and Wang's method. Details about Resnik's, Lin's, and Jiang and Conrath's methods can be seen in \citep{lord_semantic_2003}, details about Rel's method can be seen in \citep{schlicker_new_2006}, and details about Wang's method can be seen in \citep{wang_new_2007}.
-\\
-\indent
-Formally, a GO term A can be represented as $DAG_{A}=(A,T_{A},E_{A})$ where $T_{A}$ is the set of GO terms in $DAG_{A}$, including term A and all of its ancestor terms in the GO graph, and $E_{A}$ is the set of edges connecting the GO terms in $DAG_{A}$.
-\\
-\indent
-To encode the semantics of a GO term in a measurable format to enable a quantitative comparison between two term's semantics, we firstly define the semantic value of term A as the aggregate contribution of all terms in $DAG_{A}$ to the semantics of term A, terms closer to term A in $DAG_{A}$ contribute more to its semantics. Thus, define the contribution of a GO term \textit{t} to the semantics of GO term A as the S-value of GO term \textit{t} related to term A. For any of term \textit{t} in $DAG_{A}=(A,T_{A},E_{A})$, its S-value related to term A. $S_{A}(\textit{t})$ is defined as:
+
+Four methods proposed by Resnik  \citep{philip_semantic_1999}, 
+Jiang  \citep{jiang_semantic_1997}, Lin  \citep{lin_information-theoretic_1998} 
+and Schlicker  \citep{schlicker_new_2006} are information content based, which
+depend on the frequencies of two GO terms involved and that of their
+closest common ancestor term in a specific corpus of GO
+annotations. Information content is defined as frequency of each term
+occurs in the corpus. At present, \Rpackage{GOSemSim} supports analysis
+on many species. We used the following Bioconductor packages to
+calculate the information content.
+
+\begin{itemize}
+  \item org.At.tair.db for \textit{Arabidopsis}
+  \item org.Ag.eg.db for \textit{Anopheles}
+  \item org.Bt.eg.db for \textit{Bovine}
+  \item org.Cf.eg.db for \textit{Canine}
+  \item org.Gg.eg.db for \textit{Chicken}
+  \item org.Pt.eg.db for \textit{Chimp}
+  \item org.Sco.eg.db for \textit{Coelicolor}
+  \item org.EcK12.eg.db for \textit{E coli strain K12}
+  \item org.EcSakai.eg.db for \textit{E coli strain Sakai}
+  \item org.Dm.eg.db for \textit{Fly}
+  \item org.Hs.eg.db for \textit{Human}
+  \item org.Pf.plasmo.db for \textit{Malaria}
+  \item org.Mm.eg.db for \textit{Mouse}
+  \item org.Ss.eg.db for \textit{Pig}
+  \item org.Rn.eg.db for \textit{Rat}
+  \item org.Mmu.eg.db for \textit{Rhesus}
+  \item org.Ce.eg.db for \textit{Worm}
+  \item org.Xl.eg.db for \textit{Xenopus}
+  \item org.Sc.sgd.db for \textit{Yeast}
+  \item org.Dr.eg.db for \textit{Zebrafish}
+\end{itemize}
+
+The information content will update regularly.
+
+
+As GO allow multiple parents for each concept, two terms can share
+parents by multiple paths. We take the minimum p(t), where there is
+more than one shared parents. The \textit{$p_{ms}$} is defined as:
+
 \begin{center}
-\[\left\{ 
-	\begin{array}{l}
-		S_{A}(A)=1 \\
-		S_{A}(\textit{t})=\max\{w_{e} \times S_{A}(\textit{t}') | \textit{t}' \in childrenof(\textit{t}) \}$ if $\textit{t} \ne A
-	\end{array}
-\right.\]
+  \textit{$p_{ms}(t1,t2)$} $= \displaystyle\min_{t \in S(t1,t2)} \{p(t)\})$
 \end{center}
 
-where $w_{e}$ is the semantic contribution factor for edge $e \in E_{A}$ linking term \textit{t} with its child term \textit{t}'. We defined term A contributes to its own as one. After obtaining the S-values for all terms in $DAG_{A}$, the semantic value of GO term A, SV(A), is calculated as:
-\begin{center}
-					$SV(A)=\displaystyle\sum_{t \in T_{A}} S_{A}(t)$ 
-\end{center}
-
-Given two GO terms A and B, the semantic similarity between these two terms, $GO_{A,B}$, is defined as:
-\begin{center}
-					$S_{GO}(A,B)=\displaystyle\sum_{t \in T_{A} \cap T_{B}} \frac{S_{A}(t) + S_{B}(t)}{SV(A) + SV(B)}$
-\end{center}
-
-where $S_{A}(\textit{t})$ is the S-value of GO term \textit{t} related to term A and $S_{B}(\textit{t})$ is the S-value of GO term \textit{t} related to term B.
-\\
-\indent		
-The method descriped above is proposed by Wang\citep{wang_new_2007}. The Wang's method determines the semantic similarity of two GO terms based on both the locations of these terms in the GO graph and their relations with their ancestor terms. 
-\\
-\indent
-The other four methods proposed by Resnik\citep{philip_semantic_1999}, Jiang\citep{jiang_semantic_1997}, Lin\citep{lin_information-theoretic_1998} and Schlicker\citep{schlicker_new_2006} are information content (IC) based, which depend on the frequencies of two GO terms involved and that of their closest common ancestor term in a specific corpus of GO annotations. Information content is defined as frequency of each term occurs in the corpus. At present, \textbf{GOSemSim} supports analysis on many species. We used Bioconductor package org.At.tair.db, org.Ag.eg.db, org.Bt.eg.db, org.Cf.eg.db, org.Gg.eg.db, org.Pt.eg.db, org.Sco.eg.db, org.EcK12.eg.db, org.EcSakai.eg.db, org.Dm.eg.db, org.Hs.eg.db, org.Pf.plasmo.db, org.Mm.eg.db, org.Ss.eg.db, org.Rn.eg.db, org.Mmu.eg.db, org.Ce.eg.db, org.Xl.eg.db, org.Sc.sgd.db and org.Dr.eg.db to calculate the information content of Arabidopsis, Anopheles, Bovine, Canine, Chicken, Chimp, Coelicolor, E coli strain K12 and strain Sakai, Fly, Human, Malaria, Mouse, Pig, Rat, Rhesus, Worm, Xenopus, Yeast and Zebrafish respectively. The information content will update regularly. 
-\\
-\indent
-As GO allow multiple parents for each concept, two terms can share parents by multiple paths. We take the mininmum p(t), where there is more than on shared parents. The \textit{$p_{ms}$} is defined as:
-\indent
-\begin{center}
-\textit{$p_{ms}(t1,t2)$} $= \displaystyle\min_{t \in S(t1,t2)} \{p(t)\})$
-\end{center}
- 
 Where S(t1,t2) is the set of parent terms shared by t1 and t2.
 \indent
-The similarity of Resnik's method is defined as:
+\begin{itemize}
+\item Resnik's method is defined as:
+  \begin{center}
+    $sim(t1,t2) = -\ln p_{ms}(t1,t2)$
+  \end{center}
+\item Lin's method is defined as:
+  \begin{center}
+    $sim(t1,t2)=\displaystyle\frac{2 \times \ln (p_{ms}(t1,t2))}{\ln p(t1) + \ln p(c2)}$
+  \end{center}
+\item Schlicker's method, which combine Resnik's and Lin's method, is defined as:
+  \begin{center}
+    $sim(t1,t2)=\displaystyle\frac{2 \times \ln p_{ms}(t1,t2)}{\ln p(t1) + \ln p(p2)} \times (1-p_{ms}(t1,t2))$
+  \end{center}
+\item Jiang and Conrath's method is defined as:
+  \begin{center}
+    $sim(t1,t2) = 1-\min(1, d(t1,t2))$
+  \end{center}
+
+  where
+  \begin{center}
+    $d(t1,t2)= \ln p(t1) + \ln p(p2) - 2 \times \ln p_{ms}(t1,t2)$
+  \end{center}
+
+\end{itemize}
+
+
+Graph-based methods using the topology of GO graph structure to
+compute semantic similarity. Formally, a GO term A can be represented
+as $DAG_{A}=(A,T_{A},E_{A})$ where $T_{A}$ is the set of GO terms in
+$DAG_{A}$, including term A and all of its ancestor terms in the GO
+graph, and $E_{A}$ is the set of edges connecting the GO terms in
+$DAG_{A}$.
+
+\begin{itemize}
+  \item Wang's method
+
+    To encode the semantics of a GO term in a measurable format to enable
+    a quantitative comparison between two term's semantics, Wang firstly
+    define the semantic value of term A as the aggregate contribution of
+    all terms in $DAG_{A}$ to the semantics of term A, terms closer to
+    term A in $DAG_{A}$ contribute more to its semantics. Thus, define the
+    contribution of a GO term \textit{t} to the semantics of GO term A as
+    the S-value of GO term \textit{t} related to term A. For any of term
+    \textit{t} in $DAG_{A}=(A,T_{A},E_{A})$, its S-value related to term
+    A. $S_{A}(\textit{t})$ is defined as:
+    \begin{center}
+      \[\left\{
+        \begin{array}{l}
+          S_{A}(A)=1 \\
+          S_{A}(\textit{t})=\max\{w_{e} \times S_{A}(\textit{t}') | \textit{t}' \in childrenof(\textit{t}) \}$ if $\textit{t} \ne A
+        \end{array}
+      \right.\]
+    \end{center}
+
+    where $w_{e}$ is the semantic contribution factor for edge $e \in
+    E_{A}$ linking term \textit{t} with its child term \textit{t}'. Wang
+    defined term A contributes to its own as one. After obtaining the
+    S-values for all terms in $DAG_{A}$, the semantic value of GO term A,
+    SV(A), is calculated as:
+    \begin{center}
+      $SV(A)=\displaystyle\sum_{t \in T_{A}} S_{A}(t)$
+    \end{center}
+
+    Thus, given two GO terms A and B, the semantic similarity between these two
+    terms, $GO_{A,B}$, is defined as:
+    \begin{center}
+      $S_{GO}(A,B)=\displaystyle\sum_{t \in T_{A} \cap T_{B}} \frac{S_{A}(t) + S_{B}(t)}{SV(A) + SV(B)}$
+    \end{center}
+
+    where $S_{A}(\textit{t})$ is the S-value of GO term \textit{t} related
+    to term A and $S_{B}(\textit{t})$ is the S-value of GO term \textit{t}
+    related to term B.
+    
+
+This method proposed by Wang  \citep{wang_new_2007} determines the semantic
+similarity of two GO terms based on both the locations of these terms
+in the GO graph and their relations with their ancestor terms.
+
+\end{itemize}
+
+On the basis of semantic similarity between GO terms, \Rpackage{GOSemSim} can
+also compute semantic similarity among sets of GO terms, gene
+products, and gene clusters.
+
+
+We implemented four methods which called \textit{max},
+\textit{average}, \textit{rcmax}, and \textit{rcmax.avg} to combine
+semantic similarity scores of multiple GO terms. The similarities
+among gene products and gene clusters which annotated by multiple GO
+terms were also calculated by the same combine methods mentioned
+above.
+
+Given two GO terms sets $GO_{1}=\{go_{11},go_{12} \cdots go_{1m}\}$
+and $GO_{2}=\{go_{21},go_{22} \cdots go_{2n}\}$, method \textit{max}
+calculate the maximum semantic similarity score over all pairs of GO
+terms between these two sets, method \textit{average} calcuate the
+average semantic similarity score over all pairs of GO terms.
+
+Similarities between GO terms form a matrix, and method \textit{rcmax}
+use the maximum of RowScore and ColumnScore as the similarity, where
+RowScore (or ColumnScore) is the average of maximum similarities on
+each row (or column).
+
+And method \textit{rcmax.avg} calculate the average of all maximum
+similarities on each row and column, and defined as:
 \begin{center}
-$sim(t1,t2) = -\ln p_{ms}(t1,t2)$
-\end{center}
-\indent
-The similarity of Lin's is defined as:
-\begin{center}
-$sim(t1,t2)=\displaystyle\frac{2 \times \ln (p_{ms}(t1,t2))}{\ln p(t1) + \ln p(c2)}$
-\end{center}
-\indent
-The similarity of Schlicker's method combine Resnik's and Lin's method is defined as:
-\begin{center}
-$sim(t1,t2)=\displaystyle\frac{2 \times \ln p_{ms}(t1,t2)}{\ln p(t1) + \ln p(p2)} \times (1-p_{ms}(t1,t2))$ 
-\end{center}
-\indent
-The Jiang and Conrath's method define a semantic similarity as:
-\begin{center}
-$sim(t1,t2) = 1-\min(1, d(t1,t2))$
+  $Sim(GO1, GO2) = \frac{\displaystyle\sum_{1 \le i \le m} \max(Sim(\textit(go_{1i}), \textit(GO_{2}))) + \displaystyle\sum_{1 \le j \le n} \max(Sim(\textit(go_{2j}), \textit(GO_{1})))} {m+n}$
 \end{center}
 
-where 
-\begin{center}
-$d(t1,t2)= \ln p(t1) + \ln p(p2) - 2 \times \ln p_{ms}(t1,t2)$
-\end{center}
-\indent
-In \textbf{GOSemSim}, on the basis of semantic similarity between GO terms, we can also compute semantic similarity among sets of GO terms, gene products, and gene clusters.
-\indent
-We implemented four methods which called \textit{max}, \textit{average}, \textit{rcmax}, and \textit{rcmax.avg} to combine semantic similarity scores of multiple GO terms. The similarities among gene products and gene clusters which annotated by multiple GO terms were also calculated by the same combine methods mentioned above.
+\section{Examples}
 
-Given two GO terms sets $GO_{1}=\{go_{11},go_{12} \cdots go_{1m}\}$ and $GO_{2}=\{go_{21},go_{22} \cdots go_{2n}\}$, method \textit{max} calculate the maximum semantic similarity score over all pairs of GO terms between these two sets, method \textit{average} calcuate the average semantic similarity score over all pairs of GO terms.
+\Rpackage{GOSemSim} implemented multiple functions for calculate semantic similarities:
+\begin{itemize}
+  \item goSim for calculate semantic similarity between two GO terms.
+  \item mgoSim for calculate semantic similarity among multiple GO terms.
+  \item geneSim for calculate semantic similarity between two gene products.
+  \item mgeneSim for calculate semantic similarity among multiple gene products.
+  \item clusterSim for calculate semantic similarity between two gene clusters.
+  \item mclusterSim for calculate semantic similarity among multiple
+    gene clusters.
+\end{itemize}
 
-Similarities between GO terms form a matrix, and method \textit{rcmax} use the maximum of RowScore and ColumnScore as the similarity, where RowScore (or ColumnScore) is the average of maximum similarities on each row (or column).
+The following example demonstrated the function calls of these
+function, details about the arguments can refer to the manuals (eg
+\Rfunction{?geneSim}).
+<<old function call>>=
+goSim("GO:0004022", "GO:0005515", ont="MF", measure="Wang")
+go1 = c("GO:0004022","GO:0004024","GO:0004174")
+go2 = c("GO:0009055","GO:0005515")
+mgoSim(go1, go2, ont="MF", measure="Wang", combine="rcmax.avg")
 
-And method \textit{rcmax.avg} calculate the average of all maximum similarities on each row and column, and defined as:
-\begin{center}
-					$Sim(GO1, GO2) = \frac{\displaystyle\sum_{1 \le i \le m} \max(Sim(\textit(go_{1i}), \textit(GO_{2}))) + \displaystyle\sum_{1 \le j \le n} \max(Sim(\textit(go_{2j}), \textit(GO_{1})))} {m+n}$
-\end{center}
-\par				
-\section{Functions}
-\indent	
-A \Params{} stores a set of parameters for measuring semantic similarity. \Params{} containing parameters are ontology, organism, method, combine, and dropCodes. Parameter ontology specify which ontology were used in measurement, organism specifiy which GO Map were loaded for mapping Gene IDs to GO terms, dropCodes restrict evident codes when mapping Gene IDs to GO Terms, method specify which method to be used to measure the similarity and combine sepcify which combine method was used to combining semantic similarity scores. 
+geneSim("241", "251", ont="MF", organism="human", measure="Wang", combine="rcmax.avg")
+mgeneSim(genes=c("835", "5261","241", "994"), ont="MF", organism="human", measure="Wang")
+
+gs1 <- c("835", "5261","241", "994", "514", "533")
+gs2 <- c("578","582", "400", "409", "411")
+clusterSim(gs1, gs2, ont="MF", organism="human", measure="Wang", combine="rcmax.avg")
+
+x <- org.Hs.egGO
+hsEG <- mappedkeys(x)
+set.seed <- 123
+clusters <- list(a=sample(hsEG, 20), b=sample(hsEG, 20), c=sample(hsEG, 20))
+mclusterSim(clusters, ont="MF", organism="human", measure="Wang", combine="rcmax.avg")
+@
+
+\Rpackage{GOSemSim} was internally designed using S4 Object Oriented
+paradigm. The functions above are wrapper functions of the S4 method
+\Rfunction{sim}. Fro advance users, we recommend using \Rfunction{sim}
+method directly for calculate semantic similarities.
+
+Firstly a \Params{} class was defined to store a set of parameters for
+measuring semantic similarity. \Params{} containing parameters are
+ontology, organism, method, combine, and dropCodes. Parameter ontology
+specify which ontology were used in measurement, organism specifiy
+which GO Map were loaded for mapping Gene IDs to GO terms, dropCodes
+restrict evident codes when mapping Gene IDs to GO Terms, method
+specify which method to be used to measure the similarity and combine
+sepcify which combine method was used to combining semantic similarity
+scores.
 <<Params>>=
 params <- new("Params", ontology="MF", organism="human", method="Wang")
 @
-A \GOSet{} stores two set of GO IDs. 	
+A \GOSet{} class stores two set of GO IDs.
 <<GOSet>>=
 go1 <- c("GO:0004022", "GO:0004024", "GO:0004023")
 go2 <- c("GO:0009055", "GO:0020037")
 gos <- new("GOSet", GOSet1=go1, GOSet2=go2)
 @
-A \GeneSet{} containing two set of Gene IDs.
+A \GeneSet{} class containing two set of Gene IDs.
 <<GeneSet>>=
-gs1 <- c("835", "5261","241", "994", "514", "533")
-gs2 <- c("578","582", "400", "409", "411")
 gs <- new("GeneSet", GeneSet1=gs1, GeneSet2=gs2)
 @
-A \GeneClusterSet{} containing a list of gene clusters.
+A \GeneClusterSet{} class containing a list of gene clusters.
 <<GeneClusterSet>>=
-x <- org.Hs.egGO
-hsEG <- mappedkeys(x)
-set.seed <- 123
-clusters <- list(a=sample(hsEG, 20), b=sample(hsEG, 20), c=sample(hsEG, 20))
 geneClusters <- new("GeneClusterSet", GeneClusters=clusters)
 @
-Function \textit{sim} was designed to measuring semantic similarity among \GOSet{}, \GeneSet{} and \GeneClusterSet{}.
+
+S4 method \textit{sim} was designed to measuring semantic similarity
+for \GOSet{}, \GeneSet{} and \GeneClusterSet{}.
 <<sim>>=
 sim(gos,params)
 setCombineMethod(params)<-"rcmax.avg"
@@ -175,21 +333,29 @@ sim(gs, params)
 sim(geneClusters, params)
 @
 
-The old function calls which maybe more user friendly were also supported. They are wrapper functions of function \textit{sim} mentioning above.
-<<old function call>>=
-goSim("GO:0004022", "GO:0005515", ont="MF", measure="Wang")
-go1 = c("GO:0004022","GO:0004024","GO:0004174")
-go2 = c("GO:0009055","GO:0005515")
-mgoSim(go1, go2, ont="MF", measure="Wang", combine="rcmax.avg")
-geneSim("241", "251", ont="MF", organism="human", measure="Wang", combine="rcmax.avg")
 
-mgeneSim(genes=c("835", "5261","241", "994"), ont="MF", organism="human", measure="Wang")
+\section{Case Study}
 
-clusterSim(gs1, gs2, ont="MF", organism="human", measure="Wang", combine="rcmax.avg")
-mclusterSim(clusters, ont="MF", organism="human", measure="Wang", combine="rcmax.avg")
-@
+In  \cite{yu_new_2011}, we proposed a method for measuring functional
+similarity of microRNAs. This method was based on semantic similarity
+of microRNAs' target genes, and was calculated by \Rpackage{GOSemSim}. We
+further analyzed viral microRNAs using this method  \citep{yu_new_2011}
+and compared significant KEGG pathways regulated by different viruses'
+microRNAs using \Rpackage{clusterProfiler}  \citep{yu2012}.
 
-\section*{Session Information}
+The semantic similarities of human viral microRNAs which was
+calculated by \Rpackage{GOSemSim} was illustrated in Figure 1.
+
+\begin{figure}[htb]
+  \begin{center}
+    \includegraphics{miRsim.png}
+    \caption{Semantic Similarities among Viral microRNAs}
+    \label{Fig:viral microRNA similarity}
+  \end{center}
+\end{figure}
+
+
+\section{Session Information}
 
 The version number of R and packages loaded for generating the vignette were:
 
@@ -200,5 +366,4 @@ sessionInfo()
 \end{verbatim}
 
 \bibliography{GOSemSim}
-
 \end{document}
