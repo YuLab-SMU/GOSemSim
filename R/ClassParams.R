@@ -51,28 +51,56 @@ setMethod(
           f= "loadGOMap",
           signature= "Params",
           definition=function(params){
-              gomap <- switch(params@organism,
-                              anopheles	=	org.Ag.egGO,
-                              arabidopsis = org.At.tairGO,
-                              bovine	= org.Bt.egGO,
-                              canine	= org.Cf.egGO,
-                              chicken	=	org.Gg.egGO,
-                              chimp	=	org.Pt.egGO,
-                              ##coelicolor = org.Sco.egGO, ## this package is no longer supports.
-                              ecolik12 = org.EcK12.egGO,
-                              ecsakai	=	org.EcSakai.egGO,
-                              fly = org.Dm.egGO,
-                              human = org.Hs.egGO,
-                              malaria	=	org.Pf.plasmoGO,
-                              mouse = org.Mm.egGO,
-                              pig	= org.Ss.egGO,
-                              rat = org.Rn.egGO,
-                              rhesus	=	org.Mmu.egGO,
-                              worm = org.Ce.egGO,
-                              xenopus	=	org.Xl.egGO,
-                              yeast = org.Sc.sgdGO,
-                              zebrafish = org.Dr.egGO,
+              annoDb <- switch(params@organism,
+                              anopheles	=	"org.Ag.eg.db",
+                              arabidopsis = "org.At.tair.db",
+                              bovine	= "org.Bt.eg.db",
+                              canine	= "org.Cf.eg.db",
+                              chicken	=	"org.Gg.eg.db",
+                              chimp	=	"org.Pt.eg.db",
+                              ##coelicolor = "org.Sco.eg.db", ## this package is no longer supports.
+                              ecolik12 = "org.EcK12.eg.db",
+                              ecsakai	=	"org.EcSakai.eg.db",
+                              fly = "org.Dm.eg.db",
+                              human = "org.Hs.eg.db",
+                              malaria	=	"org.Pf.plasmo.db",
+                              mouse = "org.Mm.eg.db",
+                              pig	= "org.Ss.eg.db",
+                              rat = "org.Rn.eg.db",
+                              rhesus	=	"org.Mmu.eg.db",
+                              worm = "org.Ce.eg.db",
+                              xenopus	=	"org.Xl.eg.db",
+                              yeast = "org.Sc.sgd.db",
+                              zebrafish = "org.Dr.eg.db",
                               )
+
+                                        # loading annotation pakcage
+              require(annoDb, character.only = TRUE)
+
+              gomap <- switch(params@organism,
+                              anopheles	=	"org.Ag.egGO",
+                              arabidopsis = "org.At.tairGO",
+                              bovine	= "org.Bt.egGO",
+                              canine	= "org.Cf.egGO",
+                              chicken	=	"org.Gg.egGO",
+                              chimp	=	"org.Pt.egGO",
+                              ##coelicolor = "org.Sco.egGO", ## no longer supports.
+                              ecolik12 = "org.EcK12.egGO",
+                              ecsakai	=	"org.EcSakai.egGO",
+                              fly = "org.Dm.egGO",
+                              human = "org.Hs.egGO",
+                              malaria	=	"org.Pf.plasmoGO",
+                              mouse = "org.Mm.egGO",
+                              pig	= "org.Ss.egGO",
+                              rat = "org.Rn.egGO",
+                              rhesus	=	"org.Mmu.egGO",
+                              worm = "org.Ce.egGO",
+                              xenopus	=	"org.Xl.egGO",
+                              yeast = "org.Sc.sgdGO",
+                              zebrafish = "org.Dr.egGO",
+                              )
+              gomap <- eval(parse(text=gomap))
+
               print("loading GOMap...")
 
               mapped_genes <- mappedkeys(gomap)
