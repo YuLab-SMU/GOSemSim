@@ -3,7 +3,8 @@ CHANGES IN VERSION 1.13.6
  o remove dependency of organism annotation packages. <2012-03-09, Fri>
    User not need to install all these annotation packages for using GOSemSim.
    User only need to install the specific organism annotation package they want to calculate.
- o update IC data sets for 1.14 release. <2012-03-09, Fri>
+ o update IC data sets for 1.14 release. <2012-03-30, Fri>
+
  
 CHANGES IN VERSION 1.13.5
 ------------------------
