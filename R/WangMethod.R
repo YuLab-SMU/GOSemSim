@@ -13,45 +13,45 @@
 ##' @author Guangchuang Yu \url{http://ygc.name}
 wangMethod <- function(ID1,
                        ID2,
-                       ont="DO",
-                       weight.isa=0.8,
-                       weight.partof=0.6,
-                       weight.do=0.7) {
+                       ont           ="DO",
+                       weight.isa    =0.8,
+                       weight.partof =0.6,
+                       weight.do     =0.7) {
 
     if (ID1 == ID2)
         return (sim=1)
 
-    sv.a <- 1
-    sv.b <- 1
-    sw <- 1
+    sv.a        <- 1
+    sv.b        <- 1
+    sw          <- 1
     names(sv.a) <- ID1
     names(sv.b) <- ID2
 
-    Parents <- .getParents(ont)
-    sv.a <- .SemVal(ID1,
-                    ont,
-                    Parents,
-                    sv.a,
-                    sw,
-                    weight.isa,
-                    weight.partof,
-                    weight.do)
+    Parents     <- .getParents(ont)
+    sv.a        <- .SemVal(ID1,
+                           ont,
+                           Parents,
+                           sv.a,
+                           sw,
+                           weight.isa,
+                           weight.partof,
+                           weight.do)
 
-    sv.b <- .SemVal(ID2,
-                    ont,
-                    Parents,
-                    sv.b,
-                    sw,
-                    weight.isa,
-                    weight.partof,
-                    weight.do)
+    sv.b        <- .SemVal(ID2,
+                           ont,
+                           Parents,
+                           sv.b,
+                           sw,
+                           weight.isa,
+                           weight.partof,
+                           weight.do)
 
-    sv.a <- .uniqsv(sv.a)
-    sv.b <- .uniqsv(sv.b)
+    sv.a        <- .uniqsv(sv.a)
+    sv.b        <- .uniqsv(sv.b)
 
-    idx <- intersect(names(sv.a), names(sv.b))
-    inter.sva <- unlist(sv.a[idx])
-    inter.svb <- unlist(sv.b[idx])
+    idx         <- intersect(names(sv.a), names(sv.b))
+    inter.sva   <- unlist(sv.a[idx])
+    inter.svb   <- unlist(sv.b[idx])
     if (is.null(inter.sva) ||
         is.null(inter.svb) ||
         length(inter.sva) == 0 ||
@@ -64,14 +64,14 @@ wangMethod <- function(ID1,
 }
 
 .uniqsv <- function(sv) {
-    sv <- unlist(sv)
+    sv  <- unlist(sv)
     una <- unique(names(sv))
-    sv <- unlist(sapply(una,
-                        function(x) {
-                            max(sv[names(sv)==x])
-                        }
-                        )
-                 )
+    sv  <- unlist(sapply(una,
+                         function(x) {
+                             max(sv[names(sv)==x])
+                         }
+                         )
+                  )
     return (sv)
 }
 
@@ -96,10 +96,10 @@ wangMethod <- function(ID1,
 
     old.w <- w
     if (ont == "DO") {
-        topNode <- "DOID:4"
+        topNode   <- "DOID:4"
     } else {
         relations <- names(p)
-        topNode <- "all"
+        topNode   <- "all"
     }
 
     for (i in 1:length(p)) {
@@ -113,7 +113,7 @@ wangMethod <- function(ID1,
             }
         }
         names(w) <- p[i]
-        sv <- c(sv,w)
+        sv       <- c(sv,w)
         if (p[i] != topNode) {
             sv <- .SemVal_internal(p[i], ont, Parents, sv, w, weight.isa, weight.partof, weight.do)
         }

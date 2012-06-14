@@ -1,17 +1,18 @@
 setClass("GeneSet", representation(
-                                   GeneSet1="character",
-                                   GeneSet2="character"))
+                                   GeneSet1 ="character",
+                                   GeneSet2 ="character"))
 
 setMethod(
-          f= "sim",
-          signature= "GeneSet",
-          definition=function(object, params){
+          f          = "sim",
+          signature  = "GeneSet",
+          definition =function(object, params){
               if (length(params@combine)==0) {
-                  stop("*combine* must be setting for combining semantic similarity scores of multiple GO terms. \nUsing setCombineMethod(\"Params\") to specify which method to combine.")
+                  stop("*combine* must be setting for combining semantic similarity scores of multiple GO terms. \n
+                       Using setCombineMethod(\"Params\") to specify which method to combine.")
               }
               GOS1 <- lapply(object@GeneSet1, gene2GO, params)
               GOS2 <- lapply(object@GeneSet2, gene2GO, params)
-                                        #assign("SemSimCache", new.env(hash=TRUE),envir=.GlobalEnv)
+              ##assign("SemSimCache", new.env(hash=TRUE),envir=.GlobalEnv)
 
               m = length(object@GeneSet1)
               n = length(object@GeneSet2)

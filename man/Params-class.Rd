@@ -30,7 +30,7 @@
     \item{\code{ontology}:}{one of "MF", "BP", "CC".}
 	\item{\code{organism}:}{one of supported species.}
 	\item{\code{method}:}{Method for calculating GO semantic similarity, one of "Resnik", "Jiang", "Lin", "Rel", "Wang".}
-	\item{\code{combine}:}{Method for combining GO semantic similarity scores, one of "avg", "max", "rcmax", "rcmax.avg"}
+	\item{\code{combine}:}{Method for combining GO semantic similarity scores, one of "avg", "max", "rcmax", "BMA"}
 	\item{\code{dropCodes}:}{dropCodes for mapping Gene to GO Terms.}
   }
 }
@@ -64,5 +64,12 @@
 \examples{
 ## Setting Parameters...
 params <- new("Params", ontology="MF", organism="human", method="Wang")
+}
+\references{
+  Yu et al. (2010)
+  GOSemSim: an R package for measuring semantic similarity among GO terms and gene products
+  \emph{Bioinformatics} (Oxford, England), 26:7 976--978, April  2010. ISSN 1367-4803
+  \url{http://bioinformatics.oxfordjournals.org/cgi/content/abstract/26/7/976}
+  PMID: 20179076
 }
 \keyword{classes}

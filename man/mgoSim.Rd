@@ -5,16 +5,22 @@
 	Given two GO term sets, this function will calculate the semantic similarity between them,  and return their semantic similarity
 }
 \usage{
-	mgoSim(GO1, GO2, ont="MF", organism="human", measure="Wang", combine="rcmax.avg")
+	mgoSim(GO1, GO2, ont="MF", organism="human", measure="Wang", combine="BMA")
 }
 
 \arguments{
   \item{GO1}{A set of go terms. }
   \item{GO2}{Another set of go terms.}
   \item{ont}{One of "MF", "BP", and "CC" subontologies.}
-  \item{organism}{One of "anopheles", "arabidopsis", "bovine", "canine", "chicken", "chimp", "coelicolor", "ecolik12", "ecsakai", "fly", "human", "malaria", "mouse", "pig", "rat", "rhesus", "worm", "xenopus", "yeast" and "zebrafish".}
+  \item{organism}{One of "anopheles", "arabidopsis", "bovine", "canine",
+  "chicken", "chimp", "coelicolor", "ecolik12", "ecsakai", "fly",
+  "human", "malaria", "mouse", "pig", "rat", "rhesus", "worm",
+  "xenopus", "yeast" and "zebrafish".}
   \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
-  \item{combine}{One of "max", "average", "rcmax", "rcmax.avg" methods, for combining semantic similarity scores of multiple GO terms associated with protein or multiple proteins assiciated with protein cluster.}
+  \item{combine}{One of "max", "average", "rcmax", "BMA" methods,
+  for combining semantic similarity scores of multiple GO terms
+  associated with protein or multiple proteins assiciated with protein
+  cluster.}
 }
 \value{
   \item{mgoSim }{Semantic similarity.}
@@ -24,7 +30,7 @@
 	\code{\link{geneSim}}
 	\code{\link{mgeneSim}}
 	\code{\link{clusterSim}}
-	\code{\link{mclusterSim}}	
+	\code{\link{mclusterSim}}
 }
 \examples{
 	go1 <- c("GO:0004022", "GO:0004024", "GO:0004023")
@@ -33,16 +39,22 @@
 	mgoSim(go1, go2, ont="MF", organism="human", measure="Wang")
 }
 \references{
-Wang et al.(2007)
-A new method to measure the semantic similarity of go terms
-\emph{Bioinformatics} (Oxford, England), 23:0 1274--81, May  2007. ISSN 1460-2059
-\url{http://www.ncbi.nlm.nih.gov/pubmed/17344234}
-PMID: 17344234
+  Yu et al. (2010)
+  GOSemSim: an R package for measuring semantic similarity among GO terms and gene products
+  \emph{Bioinformatics} (Oxford, England), 26:7 976--978, April  2010. ISSN 1367-4803
+  \url{http://bioinformatics.oxfordjournals.org/cgi/content/abstract/26/7/976}
+  PMID: 20179076
 
-P W Lord et al.(2003)
-Semantic similarity measures as tools for exploring the gene ontology
-\url{Pacific Symposium on Biocomputing} Pacific Symposium on Biocomputing, 2003:601-12, ISSN 1793-5091
-\url{http://www.ncbi.nlm.nih.gov/pubmed/12603061}
-PMID: 12603061
+  Wang et al.(2007)
+  A new method to measure the semantic similarity of go terms
+  \emph{Bioinformatics} (Oxford, England), 23:0 1274--81, May  2007. ISSN 1460-2059
+  \url{http://www.ncbi.nlm.nih.gov/pubmed/17344234}
+  PMID: 17344234
+
+  P W Lord et al.(2003)
+  Semantic similarity measures as tools for exploring the gene ontology
+  \url{Pacific Symposium on Biocomputing} Pacific Symposium on Biocomputing, 2003:601-12, ISSN 1793-5091
+  \url{http://www.ncbi.nlm.nih.gov/pubmed/12603061}
+  PMID: 12603061
 }
 \keyword{ manip }
