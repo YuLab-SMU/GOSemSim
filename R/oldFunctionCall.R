@@ -8,7 +8,7 @@ goSim <- function(GOID1, GOID2, ont="MF", organism="human", measure="Wang"){
 
                                         #goSim("GO:0043121", "GO:0019838", ont="MF", organism="human", measure="Wang")
 
-mgoSim <- function(GO1, GO2, ont="MF", organism="human", measure="Wang", combine="rcmax.avg"){
+mgoSim <- function(GO1, GO2, ont="MF", organism="human", measure="Wang", combine="BMA"){
     params <- new("Params", ontology=ont, organism=organism, method=measure, combine=combine)
     gos <- new("GOSet", GOSet1=GO1, GOSet2=GO2)
     result <- sim(gos, params)
@@ -19,7 +19,7 @@ mgoSim <- function(GO1, GO2, ont="MF", organism="human", measure="Wang", combine
                                         #go2 <- c("GO:0009055", "GO:0020037")
                                         #mgoSim("GO:0003824", go2, measure="Wang")
 
-geneSim <- function(gene1, gene2, ont="MF", organism="human", measure="Wang", drop="IEA", combine="rcmax.avg"){
+geneSim <- function(gene1, gene2, ont="MF", organism="human", measure="Wang", drop="IEA", combine="BMA"){
     params <- new("Params", ontology=ont, organism=organism, method=measure, combine=combine, dropCodes=drop)
     gs <- new("GeneSet", GeneSet1 = gene1, GeneSet2=gene2)
     result <- sim(gs, params)
@@ -31,7 +31,7 @@ geneSim <- function(gene1, gene2, ont="MF", organism="human", measure="Wang", dr
 
                                         #geneSim("241", "251", ont="MF", organism="human", measure="Wang")
 
-mgeneSim <- function (genes, ont="MF", organism="human", measure="Wang", drop="IEA", combine="rcmax.avg") {
+mgeneSim <- function (genes, ont="MF", organism="human", measure="Wang", drop="IEA", combine="BMA") {
     params <- new("Params", ontology=ont, organism=organism, method=measure, combine=combine, dropCodes=drop)
     gs <- new("GeneSet", GeneSet1 = genes, GeneSet2=genes)
     result <- sim(gs, params)
@@ -40,7 +40,7 @@ mgeneSim <- function (genes, ont="MF", organism="human", measure="Wang", drop="I
 
                                         #mgeneSim(genes=c("835", "5261","241", "994"), ont="MF", organism="human", measure="Wang")
 
-clusterSim <- function(cluster1, cluster2, ont="MF", organism="human", measure="Wang", drop="IEA", combine="rcmax.avg"){
+clusterSim <- function(cluster1, cluster2, ont="MF", organism="human", measure="Wang", drop="IEA", combine="BMA"){
     params <- new("Params", ontology=ont, organism=organism, method=measure, combine=combine, dropCodes=drop)
     geneClusters <- new("GeneClusterSet", GeneClusters=list(cluster1=cluster1, cluster2=cluster2))
     result <- sim(geneClusters, params)
@@ -48,7 +48,7 @@ clusterSim <- function(cluster1, cluster2, ont="MF", organism="human", measure="
     return(round(result, digits=3))
 }
 
-mclusterSim <- function(clusters, ont="MF", organism="human", measure="Wang", drop="IEA", combine="rcmax.avg") {
+mclusterSim <- function(clusters, ont="MF", organism="human", measure="Wang", drop="IEA", combine="BMA") {
     params <- new("Params", ontology=ont, organism=organism, method=measure, combine=combine, dropCodes=drop)
     geneClusters <- new("GeneClusterSet", GeneClusters=clusters)
     result <- sim(geneClusters, params)
