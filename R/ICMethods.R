@@ -12,8 +12,13 @@ loadICdata <- function(organism, ont) {
                    organism,
                    ont,
                    sep="_")
-    tryCatch(utils::data(list=fname,
-                         package="GOSemSim"))
+    if (ont == "DO") {
+        tryCatch(utils::data(list=fname,
+                             package="DOSE"))
+    } else {
+        tryCatch(utils::data(list=fname,
+                             package="GOSemSim"))
+    }
     IC <- get("IC")
     org.ont.IC <- paste(organism,
                         ont,

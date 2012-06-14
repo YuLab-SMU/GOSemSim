@@ -13,7 +13,7 @@
 ##' @author Guangchuang Yu \url{http://ygc.name}
 wangMethod <- function(ID1,
                        ID2,
-                       ont           ="DO",
+                       ont           ="BP",
                        weight.isa    =0.8,
                        weight.partof =0.6,
                        weight.do     =0.7) {
