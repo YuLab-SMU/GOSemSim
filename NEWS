@@ -1,6 +1,6 @@
 CHANGES IN VERSION 1.15.1
 ------------------------
- o export wangMethod, infoContentMethod and combineScores, which can be used in 
+ o export termSim, which can be used in 
    other ontological semantic similarity measurement <2012-06-14, Thu>
  o update vignette. <2012-06-14, Thu>
 

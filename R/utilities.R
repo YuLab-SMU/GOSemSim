@@ -30,9 +30,12 @@
                       MF = "GOMFPARENTS",
                       BP = "GOBPPARENTS",
                       CC = "GOCCPARENTS",
-                      DO = {require(DO.db)
-                          "DOPARENTS"}
+                      DO = "DOPARENTS"
                       )
+    if (ont == "DO") {
+        db <- "DO.db"
+        require(db, character.only=TRUE)
+    }    
     Parents <- eval(parse(text=Parents))
     return(Parents)
 }
@@ -69,12 +72,15 @@
 
 .getAncestors <- function(ont) {
     Ancestors <- switch(ont,
-                        MF = GOMFANCESTOR,
-                        BP = GOBPANCESTOR,
-                        CC = GOCCANCESTOR,
-                        DO = {require(DO.db)
-                            "DOANCESTOR"}
-                      )
+                        MF = "GOMFANCESTOR",
+                        BP = "GOBPANCESTOR",
+                        CC = "GOCCANCESTOR",
+                        DO = "DOANCESTOR"
+                        )
+    if (ont == "DO") {
+        db <- "DO.db"
+        require(db, character.only=TRUE)
+    }
     Ancestors <- eval(parse(text=Ancestors))
     return(Ancestors)
 }
