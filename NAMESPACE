@@ -1,34 +1,48 @@
 importClassesFrom(methods, character, list)
 
-importMethodsFrom(AnnotationDbi, mappedkeys, toTable, exists, get)
+importMethodsFrom(AnnotationDbi,
+                  mappedkeys,
+                  toTable,
+                  exists,
+                  get)
 
 importFrom(methods, "@<-", new)
 
-#importFrom(utils, install.packages, installed.packages)
 
-importFrom(GO.db, GOBPANCESTOR, GOBPOFFSPRING, GOBPPARENTS, GOCCANCESTOR, GOCCOFFSPRING,
-           GOCCPARENTS, GOMFANCESTOR, GOMFOFFSPRING, GOMFPARENTS, GOTERM)
+importFrom(GO.db,
+           GOBPANCESTOR,
+           GOBPOFFSPRING,
+           GOBPPARENTS,
+           GOCCANCESTOR,
+           GOCCOFFSPRING,
+           GOCCPARENTS,
+           GOMFANCESTOR,
+           GOMFOFFSPRING,
+           GOMFPARENTS,
+           GOTERM)
 
-#importFrom(org.Ag.eg.db, org.Ag.egGO)			# anopheles
-#importFrom(org.At.tair.db, org.At.tairGO)		# arabidopsis
-#importFrom(org.Bt.eg.db, org.Bt.egGO)			# bovine
-#importFrom(org.Cf.eg.db, org.Cf.egGO)			# canine
-#importFrom(org.Gg.eg.db, org.Gg.egGO)			# chicken
-#importFrom(org.Pt.eg.db, org.Pt.egGO)			# chimp
-##importFrom(org.Sco.eg.db, org.Sco.egGO)			# coelicolor
-#importFrom(org.EcK12.eg.db, org.EcK12.egGO)		# ecolik12
-#importFrom(org.EcSakai.eg.db, org.EcSakai.egGO)	# ecsakai
-#importFrom(org.Dm.eg.db, org.Dm.egGO)			# fly
-#importFrom(org.Hs.eg.db, org.Hs.egGO)			# human
-#importFrom(org.Pf.plasmo.db, org.Pf.plasmoGO)	# malaria
-#importFrom(org.Mm.eg.db, org.Mm.egGO)			# mouse
-#importFrom(org.Ss.eg.db, org.Ss.egGO)			# pig
-#importFrom(org.Rn.eg.db, org.Rn.egGO)			# rat
-#importFrom(org.Mmu.eg.db, org.Mmu.egGO)			# rhesus
-#importFrom(org.Ce.eg.db, org.Ce.egGO)			# worm
-#importFrom(org.Xl.eg.db, org.Xl.egGO)			# xenopus
-#importFrom(org.Sc.sgd.db, org.Sc.sgdGO)			# yeast
-#importFrom(org.Dr.eg.db, org.Dr.egGO)			# zebrafish
+ #importFrom(utils, install.packages, installed.packages)
+
+ #importFrom(org.Ag.eg.db, org.Ag.egGO)		  # anopheles
+ #importFrom(org.At.tair.db, org.At.tairGO)	  # arabidopsis
+ #importFrom(org.Bt.eg.db, org.Bt.egGO)		  # bovine
+ #importFrom(org.Cf.eg.db, org.Cf.egGO)		  # canine
+ #importFrom(org.Gg.eg.db, org.Gg.egGO)		  # chicken
+ #importFrom(org.Pt.eg.db, org.Pt.egGO)		  # chimp
+ #importFrom(org.Sco.eg.db, org.Sco.egGO)	  # coelicolor
+ #importFrom(org.EcK12.eg.db, org.EcK12.egGO)	  # ecolik12
+ #importFrom(org.EcSakai.eg.db, org.EcSakai.egGO) # ecsakai
+ #importFrom(org.Dm.eg.db, org.Dm.egGO)		  # fly
+ #importFrom(org.Hs.eg.db, org.Hs.egGO)		  # human
+ #importFrom(org.Pf.plasmo.db, org.Pf.plasmoGO)   # malaria
+ #importFrom(org.Mm.eg.db, org.Mm.egGO)		  # mouse
+ #importFrom(org.Ss.eg.db, org.Ss.egGO)		  # pig
+ #importFrom(org.Rn.eg.db, org.Rn.egGO)		  # rat
+ #importFrom(org.Mmu.eg.db, org.Mmu.egGO)	  # rhesus
+ #importFrom(org.Ce.eg.db, org.Ce.egGO)		  # worm
+ #importFrom(org.Xl.eg.db, org.Xl.egGO)		  # xenopus
+ #importFrom(org.Sc.sgd.db, org.Sc.sgdGO)	  # yeast
+ #importFrom(org.Dr.eg.db, org.Dr.egGO)		  # zebrafish
 
 
 exportClasses(
@@ -39,7 +53,7 @@ exportClasses(
 )
 exportMethods(
 	## Params
-	
+
 	computeIC,
 	loadGOMap,
 	"setCombineMethod<-",
@@ -47,10 +61,10 @@ exportMethods(
 	"setOntology<-",
 	"setOrganism<-",
 	"[",
-	
+
 	##
 	##GOSet, GeneSet, GeneClusterSet,
-	
+
 	sim
 )
 

@@ -2,8 +2,27 @@
     assign("GOSemSimEnv", new.env(),.GlobalEnv)
     assign("SemSimCache", new.env(), .GlobalEnv)
     assign("ICEnv", new.env(), .GlobalEnv)
-    assign("SupportedSpecies", c("anopheles", "arabidopsis", "bovine", "canine", "chicken", "chimp", "ecolik12", "ecsakai", "fly", "human", "malaria", "mouse", "pig", "rat", "rhesus", "worm", "xenopus", "yeast", "zebrafish"), envir=GOSemSimEnv)
-    ## remove support of  "coelicolor",
+    assign("SupportedSpecies", c("anopheles",
+                                 "arabidopsis",
+                                 "bovine",
+                                 "canine",
+                                 "chicken",
+                                 "chimp",
+                                 "ecolik12",
+                                 "ecsakai",
+                                 "fly",
+                                 "human",
+                                 "malaria",
+                                 "mouse",
+                                 "pig",
+                                 "rat",
+                                 "rhesus",
+                                 "worm",
+                                 "xenopus",
+                                 "yeast",
+                                 "zebrafish"),
+           envir=GOSemSimEnv)
+    ## remove "coelicolor" as it is not supported by Bioconductor
 }
 
 .getParents <- function(ont) {
@@ -71,11 +90,11 @@
 
 rebuildAllICdata <- function() {
     if(!exists("GOSemSimEnv")) .initial()
-    ont <- c("BP","CC", "MF")
+    ont     <- c("BP","CC", "MF")
     species <- get("SupportedSpecies",envir=GOSemSimEnv)
     cat("------------------------------------\n")
     cat("calulating Information Content...\nSpecies:\t\tOntology\n")
-    params <- new("Params")
+    params  <- new("Params")
     for (i in species) {
                                         #loadAnnoPkg(params) ##load annotation pkg.
         setOrganism(params) <- i
@@ -96,15 +115,15 @@ rebuildAllICdata <- function() {
 }
 
 
-gene2GO <-  function(gene, params) {
-    gene <- as.character(gene)
+gene2GO   <-  function(gene, params) {
+    gene  <- as.character(gene)
     if(!exists("GOSemSimEnv")) .initial()
     if (!exists("gomap", envir=GOSemSimEnv)) {
         loadGOMap(params)
     }
     gomap <- get("gomap", envir=GOSemSimEnv)
 
-    qGO	<- gomap[[gene]]
+    qGO   <- gomap[[gene]]
 
     if (is.null(qGO)) {
         return (NA)
@@ -113,7 +132,7 @@ gene2GO <-  function(gene, params) {
     	return (NA)
     }
 
-    qGO	<- qGO[qGO == params@ontology]
+    qGO   <- qGO[qGO == params@ontology]
     if (length(qGO) == 0) {
         return (NA)
     }
