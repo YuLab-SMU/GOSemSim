@@ -4,11 +4,11 @@ setMethod(
           f          = "sim",
           signature  = "GOSet",
           definition =function(object, params){
-		ICmethods        <- c("Resnik", "Jiang", "Lin", "Rel")
-                go1              <- object@GOSet1
-                go2              <- object@GOSet2
-                go1              <- unique(go1)
-                go2              <- unique(go2)
+		ICmethods <- c("Resnik", "Jiang", "Lin", "Rel")
+                go1  <- object@GOSet1
+                go2  <- object@GOSet2
+                go1  <- unique(go1)
+                go2  <- unique(go2)
 
 		m                <- length(go1)
 		n                <- length(go2)

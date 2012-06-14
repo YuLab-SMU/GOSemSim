@@ -27,10 +27,13 @@
 
 .getParents <- function(ont) {
     Parents <- switch(ont,
-                      MF = GOMFPARENTS,
-                      BP = GOBPPARENTS,
-                      CC = GOCCPARENTS
+                      MF = "GOMFPARENTS",
+                      BP = "GOBPPARENTS",
+                      CC = "GOCCPARENTS",
+                      DO = {require(DO.db)
+                          "DOPARENTS"}
                       )
+    Parents <- eval(parse(text=Parents))
     return(Parents)
 }
 
@@ -68,8 +71,11 @@
     Ancestors <- switch(ont,
                         MF = GOMFANCESTOR,
                         BP = GOBPANCESTOR,
-                        CC = GOCCANCESTOR
-                        )
+                        CC = GOCCANCESTOR,
+                        DO = {require(DO.db)
+                            "DOANCESTOR"}
+                      )
+    Ancestors <- eval(parse(text=Ancestors))
     return(Ancestors)
 }
                                         #.getAncestors <- function(ont="MF") {
