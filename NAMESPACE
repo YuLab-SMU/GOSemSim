@@ -78,6 +78,5 @@ export(
 	clusterSim,
 	mclusterSim,
 	combineScores,
-	wangMethod,
-	infoContentMethod
+	termSim
 )
