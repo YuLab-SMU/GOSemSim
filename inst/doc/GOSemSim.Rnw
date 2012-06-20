@@ -81,8 +81,8 @@ semantic similarity among GO terms, sets of GO terms, gene products,
 and gene clusters, providing both five methods mentioned above. I have
 developed another package, \Rpackage{DOSE}, for measuring semantic
 similarity among DO terms and gene products at disease perspective.
-
 \\
+
 To start with \Rpackage{GOSemSim} package, type following code below:
 
 <<results=hide>>=
@@ -286,7 +286,8 @@ $sim_{BMA}(g_1, g_2) = \frac{\displaystyle\sum_{1=i}^m \max_{1 \le j
 
 \section{Examples}
 
-\Rpackage{GOSemSim} implemented multiple functions for calculate semantic similarities:
+\Rpackage{GOSemSim} implemented multiple functions for calculate
+semantic similarities:
 \begin{itemize}
   \item goSim for calculate semantic similarity between two GO terms.
   \item mgoSim for calculate semantic similarity among multiple GO terms.
