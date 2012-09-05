@@ -1,3 +1,5 @@
+useDynLib(GOSemSim)
+
 importClassesFrom(methods, character, list)
 
 importMethodsFrom(AnnotationDbi,

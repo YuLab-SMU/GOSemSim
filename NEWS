@@ -1,3 +1,7 @@
+CHANGES IN VERSION 1.15.2
+------------------------
+ o information content based methods implemented in c++ <2012-09-5, Wed>
+
 CHANGES IN VERSION 1.15.1
 ------------------------
  o export termSim, which can be used in 
