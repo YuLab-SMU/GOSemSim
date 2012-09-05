@@ -70,36 +70,6 @@
     assign(eval(wh_Offsprings), Offsprings, envir=GOSemSimEnv)
 }
 
-.getAncestors <- function(ont) {
-    Ancestors <- switch(ont,
-                        MF = "GOMFANCESTOR",
-                        BP = "GOBPANCESTOR",
-                        CC = "GOCCANCESTOR",
-                        DO = "DOANCESTOR"
-                        )
-    if (ont == "DO") {
-        db <- "DO.db"
-        require(db, character.only=TRUE)
-    }
-    Ancestors <- eval(parse(text=Ancestors))
-    return(Ancestors)
-}
-                                        #.getAncestors <- function(ont="MF") {
-                                        #	if(!exists("GOSemSimEnv")) .initial()
-                                        #	wh_Ancestors <- switch(ont,
-                                        #		MF = "MFAncestors",
-                                        #		BP = "BPAncestors",
-                                        #		CC = "CCAncestors"
-                                        #	)
-                                        #	Ancestors <- switch(ont,
-                                        #		MF = AnnotationDbi::as.list(GOMFANCESTOR) ,
-                                        #		BP = AnnotationDbi::as.list(GOBPANCESTOR) ,
-                                        #		CC = AnnotationDbi::as.list(GOCCANCESTOR)
-                                        #	)
-                                        #	assign(eval(wh_Ancestors), Ancestors, envir=GOSemSimEnv)
-                                        #}
-
-
 rebuildAllICdata <- function() {
     if(!exists("GOSemSimEnv")) .initial()
     ont     <- c("BP","CC", "MF")
