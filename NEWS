@@ -1,5 +1,11 @@
+CHANGES IN VERSION 1.15.3
+------------------------
+ o remove all the S4 classes and methods <2012-09-12, Wed>
+ o add progress bar for mgeneSim <2012-09-12, Wed> 
+
 CHANGES IN VERSION 1.15.2
 ------------------------
+ o re-implement gene2GO <2012-09-7, Fri>
  o information content based methods implemented in c++ <2012-09-5, Wed>
 
 CHANGES IN VERSION 1.15.1

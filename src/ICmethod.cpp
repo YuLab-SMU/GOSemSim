@@ -29,18 +29,20 @@ RcppExport SEXP infoContentMethod_cpp(SEXP id1_, SEXP id2_, SEXP anc1_, SEXP anc
     topNode = "all";
   }
 
-  int i;
-  for(i=0; i < ICName.size(); i++) {
-    if (ICName[i] == topNode) {
-      IC[i] = 0;
-      break;
+  if (topNode == "all") {
+    // for GO
+    ICName.insert(ICName.end(), topNode);
+    IC.insert(IC.end(), 0);
+  } else {
+    // for DO
+    for(int i=0; i < ICName.size(); i++) {
+      if (ICName[i] == topNode) {
+	IC[i] = 0;
+	break;
+      }
     }
   }
 
-  if (i == ICName.size()) {
-    ICName.insert(ICName.end(), topNode);
-    IC.insert(IC.end(), 0);
-  }
   double ic1, ic2;
   bool f1=false, f2=false;
   for (int i=0; i < ICName.size(); i++) {
@@ -105,7 +107,7 @@ RcppExport SEXP infoContentMethod_cpp(SEXP id1_, SEXP id2_, SEXP anc1_, SEXP anc
   if (method == "Rel") {
     sim = 2 * mica/(ic1+ic2) * (1-exp(-mica*mic));
     // mica*mic equals to the original IC value.
-    // and exp(-mica*mic) equals to the probability of the term s occurence.
+    // and exp(-mica*mic) equals to the probability of the term's occurence.
   }
   return wrap(sim);
 }

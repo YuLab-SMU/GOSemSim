@@ -1,14 +1,17 @@
-##' measuring similarities between two term vectors.
+##'termSim
 ##'
-##' provide two ontology term vectors, this function will calculate their similarities.
-##' @title termSim
-##' @param t1 term vector
-##' @param t2 term vector
-##' @param method one of "Wang", "Resnik", "Rel", "Jiang", and "Lin".
-##' @param organism only "human" supported
-##' @return score matrix
+##'measuring similarities between two term vectors.
+##'
+##'provide two term vectors, this function will calculate their similarities.
+##'
+##'@param t1 term vector
+##'@param t2 term vector
+##'@param method one of "Wang", "Resnik", "Rel", "Jiang", and "Lin".
+##'@param organism only "human" supported
+##'@param ont ontology
+##'@return score matrix
 ##' @export
-##' @author Guangchuang Yu \url{http://ygc.name}
+##'@author Guangchuang Yu \url{http://ygc.name}
 termSim <- function(t1,
                     t2,
                     method="Wang",

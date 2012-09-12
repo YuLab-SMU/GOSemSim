@@ -1,11 +1,13 @@
-##' Functions for combining similarity matrix to similarity score
+##'combining similarity matrix to similarity score
+##'
+##'Functions for combining similarity matrix to similarity score
 ##'
 ##'
-##' @title combining similarity matrix to similarity score
-##' @param SimScores similarity matrix
-##' @param combine combine method
-##' @return similarity value
-##' @author Guangchuang Yu \url{http://ygc.name}
+##'@param SimScores similarity matrix
+##'@param combine combine method
+##'@return similarity value
+##'@export
+##'@author Guangchuang Yu \url{http://ygc.name}
 combineScores <- function(SimScores, combine) {
 
     if (length(combine) == 0) {  #if not define combine

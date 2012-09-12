@@ -1,4 +1,3 @@
-
 ##' Method Wang for semantic similarity measuring
 ##'
 ##'
@@ -87,7 +86,8 @@ wangMethod <- function(ID1,
     if (!exists(ID, Parents)) {
         return(NA)
     }
-    p <- get(ID, Parents)
+    ## p <- get(ID, Parents)
+    p <- Parents[[ID]]
     ##p <- unlist(p[[1]])
     if (length(p) == 0 || is.na(p)) {
         ##warning(ID, " may not belong to Ontology ", ont)

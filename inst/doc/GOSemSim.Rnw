@@ -35,10 +35,6 @@
 \newcommand{\Rcode}[1]{{\texttt{#1}}}
 
 \newcommand{\R}{\textsf{R}}
-\newcommand{\Params}{\Rclass{Params}}
-\newcommand{\GOSet}{\Rclass{GOSet}}
-\newcommand{\GeneSet}{\Rclass{GeneSet}}
-\newcommand{\GeneClusterSet}{\Rclass{GeneClusterSet}}
 
 \bibliographystyle{plainnat}
 
@@ -256,7 +252,6 @@ similarity are defined as follows:
 \item The \textit{max} method calculates the maximum semantic similarity score over all pairs of GO
 terms between these two sets.
 
-
 $sim_{max}(g_1, g_2) = \displaystyle\max_{1 \le i \le m, 1 \le j \le n} sim(go_{1i}, go_{2j})$
 
 \item The \textit{avg} calcuate the average semantic similarity score over all pairs of GO terms.
@@ -289,19 +284,19 @@ $sim_{BMA}(g_1, g_2) = \frac{\displaystyle\sum_{1=i}^m \max_{1 \le j
 \Rpackage{GOSemSim} implemented multiple functions for calculate
 semantic similarities:
 \begin{itemize}
-  \item goSim for calculate semantic similarity between two GO terms.
-  \item mgoSim for calculate semantic similarity among multiple GO terms.
-  \item geneSim for calculate semantic similarity between two gene products.
-  \item mgeneSim for calculate semantic similarity among multiple gene products.
-  \item clusterSim for calculate semantic similarity between two gene clusters.
-  \item mclusterSim for calculate semantic similarity among multiple
-    gene clusters.
+\item goSim for calculate semantic similarity between two GO terms.
+\item mgoSim for calculate semantic similarity among multiple GO terms.
+\item geneSim for calculate semantic similarity between two gene products.
+\item mgeneSim for calculate semantic similarity among multiple gene products.
+\item clusterSim for calculate semantic similarity between two gene clusters.
+\item mclusterSim for calculate semantic similarity among multiple
+  gene clusters.
 \end{itemize}
 
 The following example demonstrated the function calls of these
 function, details about the arguments can refer to the manuals (eg
 \Rfunction{?geneSim}).
-<<old function call>>=
+<<function call>>=
 goSim("GO:0004022", "GO:0005515", ont="MF", measure="Wang")
 go1 = c("GO:0004022","GO:0004024","GO:0004174")
 go2 = c("GO:0009055","GO:0005515")
@@ -321,49 +316,6 @@ clusters <- list(a=sample(hsEG, 20), b=sample(hsEG, 20), c=sample(hsEG, 20))
 mclusterSim(clusters, ont="MF", organism="human", measure="Wang", combine="BMA")
 @
 
-\Rpackage{GOSemSim} was internally designed using S4 Object Oriented
-paradigm. The functions above are wrapper functions of the S4 method
-\Rfunction{sim}. Fro advance users, we recommend using \Rfunction{sim}
-method directly for calculate semantic similarities.
-
-Firstly a \Params{} class was defined to store a set of parameters for
-measuring semantic similarity. \Params{} containing parameters are
-ontology, organism, method, combine, and dropCodes. Parameter ontology
-specify which ontology were used in measurement, organism specify
-which GO Map were loaded for mapping Gene IDs to GO terms, dropCodes
-restrict evident codes when mapping Gene IDs to GO Terms, method
-specify which method to be used to measure the similarity and combine
-sepcify which combine method was used to combining semantic similarity
-scores.
-<<Params>>=
-params <- new("Params", ontology="MF", organism="human", method="Wang")
-@
-A \GOSet{} class stores two set of GO IDs.
-<<GOSet>>=
-go1 <- c("GO:0004022", "GO:0004024", "GO:0004023")
-go2 <- c("GO:0009055", "GO:0020037")
-gos <- new("GOSet", GOSet1=go1, GOSet2=go2)
-@
-A \GeneSet{} class containing two set of Gene IDs.
-<<GeneSet>>=
-gs <- new("GeneSet", GeneSet1=gs1, GeneSet2=gs2)
-@
-A \GeneClusterSet{} class containing a list of gene clusters.
-<<GeneClusterSet>>=
-geneClusters <- new("GeneClusterSet", GeneClusters=clusters)
-@
-
-S4 method \textit{sim} was designed to measuring semantic similarity
-for \GOSet{}, \GeneSet{} and \GeneClusterSet{}.
-<<sim>>=
-sim(gos,params)
-setCombineMethod(params)<-"BMA"
-sim(gos,params)
-sim(gs, params)
-sim(geneClusters, params)
-@
-
-
 \section{Case Study}
 
 In  \cite{yu_new_2011}, we proposed a method for measuring functional
@@ -372,17 +324,6 @@ of microRNAs' target genes, and was calculated by \Rpackage{GOSemSim}. We
 further analyzed viral microRNAs using this method  \citep{yu_new_2011}
 and compared significant KEGG pathways regulated by different viruses'
 microRNAs using \Rpackage{clusterProfiler}  \citep{yu2012}.
-
-The semantic similarities of human viral microRNAs which was
-calculated by \Rpackage{GOSemSim} was illustrated in Figure 1.
-
-\begin{figure}[htb]
-  \begin{center}
-    \includegraphics{miRsim.png}
-    \caption{Semantic Similarities among Viral microRNAs}
-    \label{Fig:viral microRNA similarity}
-  \end{center}
-\end{figure}
 
 
 \section{Session Information}
