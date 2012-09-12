@@ -12,8 +12,9 @@
   \item{method}{one of "Wang", "Resnik", "Rel", "Jiang",
   and "Lin".}
 
-\item{organism}{only "human" supported}
-\item{ont}{ontology}
+  \item{organism}{only "human" supported}
+
+  \item{ont}{ontology}
 }
 \value{
   score matrix
