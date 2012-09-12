@@ -19,9 +19,9 @@ combineScores <- function(SimScores, combine) {
 
     if (is.vector(SimScores) || nrow(SimScores)==1 || ncol(SimScores)==1) {
         if (combine == "avg") {
-            return(round(mean(SimScores), digits=3))
+            return(round(mean(SimScores, na.rm=TRUE), digits=3))
         } else {
-            return (round(max(SimScores), digits=3))
+            return (round(max(SimScores, na.rm=TRUE), digits=3))
         }
     }
 
