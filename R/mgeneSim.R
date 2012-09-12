@@ -51,11 +51,10 @@ mgeneSim <- function (genes, ont="MF", organism="human", measure="Wang", drop="I
                 setTxtProgressBar(pb, cnt)
                 cnt <- cnt + 1
             }
-            if (!is.na(gos[[i]]) && !is.na(gos[[j]])) {
-                scores[i,j] <- mgoSim(gos[[i]], gos[[j]], ont=ont,
-                                      organism=organism, measure=measure,
-                                      combine=combine)
-            }
+            scores[i,j] <- mgoSim(gos[[i]], gos[[j]], ont=ont,
+                                  organism=organism, measure=measure,
+                                  combine=combine)
+
             if (j != i) {
                 scores[j,i] <- scores[i,j]
             }

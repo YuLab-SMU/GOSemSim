@@ -26,8 +26,7 @@
 ##' @export
 ##'@examples
 ##'
-##'	goSim("GO:0043121", "GO:0019838", measure="Wang")
-##'	goSim("GO:0043121", "GO:0019838", ont="MF", organism="human", measure="Wang")
+##'	goSim("GO:0004022", "GO:0005515", ont="MF", measure="Wang")
 ##'
 goSim <- function(GOID1, GOID2, ont="MF", organism="human", measure="Wang"){
     res <- termSim(GOID1, GOID2, ont=ont, organism=organism, method=measure)

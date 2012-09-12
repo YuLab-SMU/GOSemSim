@@ -2,6 +2,8 @@ CHANGES IN VERSION 1.15.3
 ------------------------
  o remove all the S4 classes and methods <2012-09-12, Wed>
  o add progress bar for mgeneSim <2012-09-12, Wed> 
+ o re-implement calculating semantic values in Wang's method <2012-09-12, Wed>
+ o update IC data for next release <2012-09-12, Wed>
 
 CHANGES IN VERSION 1.15.2
 ------------------------
