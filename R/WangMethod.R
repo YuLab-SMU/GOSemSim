@@ -41,25 +41,40 @@ getSV <- function(ID, ont) {
         Parents     <- .getParents(ont)
         if ( !exists(ID, Parents))
             return(NA)
+        
+        if (ont == "DO") {
+            topNode <- "DOID:4"
+        } else {
+            topNode <- "all"
+        }
+
+        if (ID == topNode) {
+            sv <- 1
+            names(sv) <- topNode
+            return (sv)
+        }
+
         sv.name <- c(ID, getAncestors(ID, ont))
         sv <- rep(NA, length(sv.name))
         names(sv) <- sv.name
         sv[ID] <- 1
-        sv["all"] <- 0
+        if(ont != "DO")
+            sv[topNode] <- 0
 
         w <- c(0.8, 0.6, 0.7)
         names(w) <- c("is_a", "part_of", "other")
+
 
         pID <- ID
         while(any(is.na(sv))) {
             pp <- c()
             for (i in seq_along(pID)) {
-                if (pID[i] != "all") {
+                if (pID[i] != topNode) {
                     j <- get(pID[i], Parents)
                     idx <- which(is.na(sv[j]))
                     if (length(idx)) {
                         js <- j[idx]
-                        if (is.null(names(js))) {
+                        if (is.null(names(js)) || all(is.na(names(js))) ) {
                             names(js) = "other"
                         } else {
                             names(js)[!names(js) %in% names(w)] = "other"
@@ -70,11 +85,11 @@ getSV <- function(ID, ont) {
                 pp <- c(pp, j)
             }
             pID <- unique(pp)
-            if (all(pID == "all"))
+            if (all(pID == topNode)) {
+                sv <- sv[!is.na(sv)]
                 break
+            }
         }
-
-
     }
 
     if( ! exists(ID, envir=SemSimCache) ) {
