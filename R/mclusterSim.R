@@ -29,11 +29,11 @@
 ##' @export
 ##'@examples
 ##'
-##'	cluster1 <- c("835", "5261","241")
-##'	cluster2 <- c("578","582")
-##'	cluster3 <- c("307", "308", "317")
-##'	clusters <- list(a=cluster1, b=cluster2, c=cluster3)
-##'	mclusterSim(clusters, ont="MF", organism="human", measure="Wang")
+##'	## cluster1 <- c("835", "5261","241")
+##'	## cluster2 <- c("578","582")
+##'	## cluster3 <- c("307", "308", "317")
+##'	## clusters <- list(a=cluster1, b=cluster2, c=cluster3)
+##'	## mclusterSim(clusters, ont="MF", organism="human", measure="Wang")
 ##'
 mclusterSim <- function(clusters, ont="MF", organism="human", measure="Wang", drop="IEA", combine="BMA") {
     n <- length(clusters)

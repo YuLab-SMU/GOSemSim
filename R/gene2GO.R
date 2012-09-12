@@ -53,6 +53,7 @@ loadGOMap_internal <- function(organism){
 }
 
 ##' @importMethodsFrom AnnotationDbi exists
+##' @importMethodsFrom AnnotationDbi get
 loadGOMap <- function(organism) {
     if(!exists("GOSemSimEnv")) .initial()
     if (!exists("gomap", envir=GOSemSimEnv)) {
@@ -71,6 +72,9 @@ gene2GO <- function(gene, organism, ont, dropCodes) {
     gomap <- get("gomap", envir=GOSemSimEnv)
     go <- gomap[[gene]]
 
+    if (all(is.na(go)))
+        return (NA)
+
     ## go.df <- ldply(go, function(i) c(GOID=i$GOID, Evidence=i$Evidence, Ontology=i$Ontology))
     ## go.df <- go.df[ !go.df$Evidence %in% dropCodes, ] ## compatible to work with NA and NULL
     ## goid <- go.df[go.df$Ontology == ont, "GOID"]
@@ -84,7 +88,7 @@ gene2GO <- function(gene, organism, ont, dropCodes) {
     goid <- goid[ontology == ont]
 
     if (length(goid) == 0)
-	return (NA)
+	   return (NA)
 
     goid <- as.character(unique(goid))
     return (goid)

@@ -29,8 +29,7 @@
   similarity.
 }
 \examples{
-goSim("GO:0043121", "GO:0019838", measure="Wang")
-	goSim("GO:0043121", "GO:0019838", ont="MF", organism="human", measure="Wang")
+goSim("GO:0004022", "GO:0005515", ont="MF", measure="Wang")
 }
 \references{
   Yu et al. (2010) GOSemSim: an R package for measuring

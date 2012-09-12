@@ -5,154 +5,83 @@
 ##' @param ID1 Ontology Term
 ##' @param ID2 Ontology Term
 ##' @param ont Ontology
-##' @param weight.isa weight of isa relationship
-##' @param weight.partof weight of partof relationship
-##' @param weight.do weight of DO
 ##' @return semantic similarity score
 ##' @author Guangchuang Yu \url{http://ygc.name}
-wangMethod <- function(ID1,
-                       ID2,
-                       ont           ="BP",
-                       weight.isa    =0.8,
-                       weight.partof =0.6,
-                       weight.do     =0.7) {
-
+wangMethod <- function(ID1, ID2, ont="BP") {
     if (ID1 == ID2)
         return (sim=1)
 
-    sv.a        <- 1
-    sv.b        <- 1
-    sw          <- 1
-    names(sv.a) <- ID1
-    names(sv.b) <- ID2
+    sv.a <- getSV(ID1, ont)
+    sv.b <- getSV(ID2, ont)
 
-    Parents     <- .getParents(ont)
-    sv.a        <- .SemVal(ID1,
-                           ont,
-                           Parents,
-                           sv.a,
-                           sw,
-                           weight.isa,
-                           weight.partof,
-                           weight.do)
-
-    sv.b        <- .SemVal(ID2,
-                           ont,
-                           Parents,
-                           sv.b,
-                           sw,
-                           weight.isa,
-                           weight.partof,
-                           weight.do)
-
-    sv.a        <- .uniqsv(sv.a)
-    sv.b        <- .uniqsv(sv.b)
+    if(all(is.na(sv.a)) || all(is.na(sv.b)))
+        return (NA)
 
     idx         <- intersect(names(sv.a), names(sv.b))
-    inter.sva   <- unlist(sv.a[idx])
-    inter.svb   <- unlist(sv.b[idx])
+    inter.sva   <- sv.a[idx]
+    inter.svb   <- sv.b[idx]
     if (is.null(inter.sva) ||
         is.null(inter.svb) ||
         length(inter.sva) == 0 ||
         length(inter.svb) ==0) {
-        sim <- NA
-    } else {
-        sim <- sum(inter.sva,inter.svb) / sum(sv.a, sv.b)
-    }
+        return (NA)
+    } 
+    
+    sim <- sum(inter.sva,inter.svb) / sum(sv.a, sv.b)
     return(sim)
 }
 
-.uniqsv <- function(sv) {
-    sv  <- unlist(sv)
-    una <- unique(names(sv))
-    sv  <- unlist(sapply(una,
-                         function(x) {
-                             max(sv[names(sv)==x])
-                         }
-                         )
-                  )
-    return (sv)
-}
-
-.SemVal_internal <- function(ID,
-                             ont,
-                             Parents,
-                             sv,
-                             w,
-                             weight.isa,
-                             weight.partof,
-                             weight.do) {
-
-    if (!exists(ID, Parents)) {
-        return(NA)
-    }
-    ## p <- get(ID, Parents)
-    p <- Parents[[ID]]
-    ##p <- unlist(p[[1]])
-    if (length(p) == 0 || is.na(p)) {
-        ##warning(ID, " may not belong to Ontology ", ont)
-        return(NA)
-    }
-
-    old.w <- w
-    if (ont == "DO") {
-        topNode   <- "DOID:4"
+##' @importMethodsFrom AnnotationDbi exists
+##' @importMethodsFrom AnnotationDbi get
+getSV <- function(ID, ont) {
+    if (!exists("SemSimCache")) .initial()
+    if( exists(ID, envir=SemSimCache) ) {
+        sv <- get(ID, envir=SemSimCache)
     } else {
-        relations <- names(p)
-        topNode   <- "all"
-    }
+        Parents     <- .getParents(ont)
+        if ( !exists(ID, Parents))
+            return(NA)
+        sv.name <- c(ID, getAncestors(ID, ont))
+        sv <- rep(NA, length(sv.name))
+        names(sv) <- sv.name
+        sv[ID] <- 1
+        sv["all"] <- 0
 
-    for (i in 1:length(p)) {
-        if (ont == "DO") {
-            w <- old.w * weight.do
-        } else {
-            if (relations[i] == "is_a") {
-                w <- old.w * weight.isa
-            } else {
-                w <- old.w * weight.partof
+        w <- c(0.8, 0.6, 0.7)
+        names(w) <- c("is_a", "part_of", "other")
+
+        pID <- ID
+        while(any(is.na(sv))) {
+            pp <- c()
+            for (i in seq_along(pID)) {
+                if (pID[i] != "all") {
+                    j <- get(pID[i], Parents)
+                    idx <- which(is.na(sv[j]))
+                    if (length(idx)) {
+                        js <- j[idx]
+                        if (is.null(names(js))) {
+                            names(js) = "other"
+                        } else {
+                            names(js)[!names(js) %in% names(w)] = "other"
+                        }
+                        sv[js] = sv[ID[i]] * w[names(js)]
+                    }
+                }
+                pp <- c(pp, j)
             }
+            pID <- unique(pp)
+            if (all(pID == "all"))
+                break
         }
-        names(w) <- p[i]
-        sv       <- c(sv,w)
-        if (p[i] != topNode) {
-            sv <- .SemVal_internal(p[i], ont, Parents, sv, w, weight.isa, weight.partof, weight.do)
-        }
+
+
     }
-    return (sv)
+
+    if( ! exists(ID, envir=SemSimCache) ) {
+        assign(ID,
+               sv,
+               envir=SemSimCache)
+    }
+    return(sv)
 }
 
-.SemVal <- function(ID,
-                    ont,
-                    Parents,
-                    sv,
-                    w,
-                    weight.isa,
-                    weight.partof,
-                    weight.do) {
-    ##	if(!exists("SemSimCache")) return(.SemVal_internal(ID, ont, Parents, sv, w, weight.isa, weight.partof, weight.do))
-    if(!exists("SemSimCache")) {
-        .initial()
-    }
-    ID.ont <- paste(ID, ont, sep=".")
-    if (!exists(ID.ont, envir=SemSimCache)) {
-        value <- .SemVal_internal(ID,
-                                  ont,
-                                  Parents,
-                                  sv,
-                                  w,
-                                  weight.isa,
-                                  weight.partof,
-                                  weight.do)
-
-        assign(ID.ont,
-               value,
-               envir=SemSimCache)
-                                        #cat("recompute ", ID, value, "\n")
-    }
-    else{
-                                        #cat("cache ", ID, get(ID, envir=SemSimCache), "\n")
-    }
-    return(get(ID.ont,
-               envir=SemSimCache)
-           )
-}

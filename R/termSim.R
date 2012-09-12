@@ -17,12 +17,18 @@ termSim <- function(t1,
                     method="Wang",
                     organism="human",
                     ont) {
+
+    if (all(is.na(t1)) || all(is.na(t2)))
+        return (NA)
+
+    t1 <- t1[!is.na(t1)]
+    t2 <- t2[!is.na(t2)]
     t1 <- unique(t1)
     t2 <- unique(t2)
 
     m <- length(t1)
     n <- length(t2)
-    scores <- matrix(nrow=m, ncol=n)
+    scores <- matrix(NA, nrow=m, ncol=n)
     rownames(scores) <- t1
     colnames(scores) <- t2
 
@@ -31,9 +37,6 @@ termSim <- function(t1,
 
     for( i in 1:m) {
         for (j in 1:n) {
-            if ( is.na(t1[i]) || is.na(t2[j]) ) {
-                scores[i,j] <- NA
-            } else {
                 if (ic) {
                     scores[i,j] <- infoContentMethod(t1[i],
                                                      t2[j],
@@ -46,7 +49,6 @@ termSim <- function(t1,
                                               t2[j],
                                               ont=ont)
                 }
-            }
         }
     }
     return(scores)

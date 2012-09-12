@@ -2,8 +2,7 @@
 \alias{wangMethod}
 \title{wangMethod}
 \usage{
-  wangMethod(ID1, ID2, ont = "BP", weight.isa = 0.8,
-    weight.partof = 0.6, weight.do = 0.7)
+  wangMethod(ID1, ID2, ont)
 }
 \arguments{
   \item{ID1}{Ontology Term}
@@ -11,12 +10,6 @@
   \item{ID2}{Ontology Term}
 
   \item{ont}{Ontology}
-
-  \item{weight.isa}{weight of isa relationship}
-
-  \item{weight.partof}{weight of partof relationship}
-
-  \item{weight.do}{weight of DO}
 }
 \value{
   semantic similarity score

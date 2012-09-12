@@ -304,7 +304,10 @@ mgoSim(go1, go2, ont="MF", measure="Wang", combine="BMA")
 
 geneSim("241", "251", ont="MF", organism="human", measure="Wang", combine="BMA")
 mgeneSim(genes=c("835", "5261","241", "994"), ont="MF", organism="human", measure="Wang")
+@
 
+
+<<clusterSim, eval=F>>=
 gs1 <- c("835", "5261","241", "994", "514", "533")
 gs2 <- c("578","582", "400", "409", "411")
 clusterSim(gs1, gs2, ont="MF", organism="human", measure="Wang", combine="BMA")
