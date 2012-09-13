@@ -4,6 +4,7 @@ CHANGES IN VERSION 1.15.3
  o add progress bar for mgeneSim <2012-09-12, Wed> 
  o re-implement calculating semantic values in Wang's method <2012-09-12, Wed>
  o update IC data for next release <2012-09-12, Wed>
+ o bug fixed in getSV <2012-09-13, Thu> 
 
 CHANGES IN VERSION 1.15.2
 ------------------------
