@@ -73,19 +73,19 @@ getSV <- function(ID, ont) {
                     j <- get(pID[i], Parents)
                     idx <- which(is.na(sv[j]))
                     if (length(idx)) {
-                        js <- j[idx]
-                        if (is.null(names(js)) || all(is.na(names(js))) ) {
-                            names(js) = "other"
+                        j <- j[idx]
+                        if (is.null(names(j)) || all(is.na(names(j))) ) {
+                            names(j) = "other"
                         } else {
-                            names(js)[!names(js) %in% names(w)] = "other"
+                            names(j)[!names(j) %in% names(w)] = "other"
                         }
-                        sv[js] = sv[ID[i]] * w[names(js)]
+                        sv[j] = sv[pID[i]] * w[names(j)]
                     }
                 }
                 pp <- c(pp, j)
             }
             pID <- unique(pp)
-            if (all(pID == topNode)) {
+            if (all(pID == topNode) || length(pID) == 0) {
                 sv <- sv[!is.na(sv)]
                 break
             }
