@@ -1,3 +1,7 @@
+CHANGES IN VERSION 1.17.1
+------------------------
+ o bug fixed of infoContentMethod, now return NA when ID is not belong to the ontology <2012-10-11, Thu>
+
 CHANGES IN VERSION 1.15.3
 ------------------------
  o remove all the S4 classes and methods <2012-09-12, Wed>
