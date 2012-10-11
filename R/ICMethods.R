@@ -91,6 +91,9 @@ infoContentMethod <- function(ID1,
     ancestor1 <- getAncestors(ID1, ont)
     ancestor2 <- getAncestors(ID2, ont)
 
+    if (is.null(ancestor1) || is.null(ancestor2))
+        return (NA)
+        
     ## IC is biased
     ## because the IC of a term is dependent of its children but not on its parents.
 
