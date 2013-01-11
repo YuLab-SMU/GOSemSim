@@ -36,6 +36,14 @@ combineScores <- function(SimScores, combine) {
         SimScores <- SimScores[ , -which(col.na.idx)]
     }
 
+    if (is.vector(SimScores) || nrow(SimScores)==1 || ncol(SimScores)==1) {
+        if (combine == "avg") {
+            return(round(mean(SimScores, na.rm=TRUE), digits=3))
+        } else {
+            return (round(max(SimScores, na.rm=TRUE), digits=3))
+        }
+    }
+    
     if (combine        == "avg") {
         result   <- mean(SimScores, na.rm=TRUE)
     } else if (combine == "max") {
