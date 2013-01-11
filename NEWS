@@ -1,5 +1,6 @@
 CHANGES IN VERSION 1.17.1
 ------------------------
+ o after removing NA row/col of similarity matrix, if only one row/col remains, R will turn it to be a vector, and combineScore function will not work properly. This bug was fixed <2013-01-11, Fri>
  o bug fixed of infoContentMethod, now return NA when ID is not belong to the ontology <2012-10-11, Thu>
 
 CHANGES IN VERSION 1.15.3
