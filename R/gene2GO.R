@@ -1,4 +1,4 @@
-loadGOMap_internal <- function(organism){
+getDb <- function(organism) {
     annoDb <- switch(organism,
                      anopheles   = "org.Ag.eg.db",
                      arabidopsis = "org.At.tair.db",
@@ -21,6 +21,11 @@ loadGOMap_internal <- function(organism){
                      yeast       = "org.Sc.sgd.db",
                      zebrafish   = "org.Dr.eg.db",
                      )
+    return(annoDb)
+}
+
+loadGOMap_internal <- function(organism){
+    annoDb <- getDb(organism)
 
     ## loading annotation pakcage
     require(annoDb, character.only = TRUE)
