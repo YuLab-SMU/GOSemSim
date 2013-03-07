@@ -94,3 +94,14 @@ rebuildAllICdata <- function() {
     cat("------------------------------------\n")
     print("done...")
 }
+
+
+install_dependent_db <- function() {
+    species <- get("SupportedSpecies",envir=GOSemSimEnv)
+    for (organism in species) {
+        annoDb <- getDb(organism)
+        require("BiocInstaller", character.only=TRUE)
+        biocLite <- eval(parse(text="biocLite"))
+        biocLite(annoDb)
+    }
+}
