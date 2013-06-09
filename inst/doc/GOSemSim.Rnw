@@ -1,54 +1,86 @@
 % \VignetteIndexEntry{An introduction to GOSemSim}
-% \VignetteDepends{org.Hs.eg.db,GO.db}
-% \VignetteSuggests{cluster}
-% \VignetteKeywords{GO Semantic Similarity Measurement}
 % \VignettePackage{GOSemSim}
 
-\documentclass[a4paper]{article}
+% To compile this document, run the commands within R
+% require(cacheSweave); Sweave('GOSemSim.Rnw', driver=cacheSweaveDriver()); tools::texi2dvi("GOSemSim.tex", pdf=TRUE)
 
-\usepackage{Sweave}
-\usepackage{a4wide}
-\usepackage{times}
-\usepackage{hyperref}
-\usepackage[T1]{fontenc}
-\usepackage[english]{babel}
-\usepackage{framed}
-\usepackage{longtable}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage[authoryear,round]{natbib}
 
-\textwidth=6.2in
-\textheight=8.5in
-%\parskip=.3cm
-\oddsidemargin=.1in
-\evensidemargin=.1in
-\headheight=-.3in
+\documentclass[12pt]{article}
+\usepackage[a4paper,left=3cm,top=2cm,bottom=3cm,right=3cm,ignoreheadfoot]{geometry}
+\pagestyle{empty}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{helvet}
+\usepackage[titletoc]{appendix}
+\usepackage{tocloft}
 
-\newcommand{\Rfunction}[1]{{\texttt{#1}}}
-\newcommand{\Robject}[1]{{\texttt{#1}}}
-\newcommand{\Rpackage}[1]{{\textit{#1}}}
-\newcommand{\Rmethod}[1]{{\texttt{#1}}}
-\newcommand{\Rfunarg}[1]{{\texttt{#1}}}
-\newcommand{\Rclass}[1]{{\textit{#1}}}
+\setlength{\parindent}{0em}
+\setlength{\parskip}{.5em}
+
+\renewcommand{\familydefault}{\sfdefault}
+
 \newcommand{\Rcode}[1]{{\texttt{#1}}}
-
+\newcommand{\Robject}[1]{{\small\texttt{#1}}}
+\newcommand{\Rfunction}[1]{\Robject{#1}}
+\newcommand{\Rpackage}[1]{\textit{#1}}
+\newcommand{\Rparameter}[1]{\textit{#1}}
+\newcommand{\Rclass}[1]{\textit{#1}}
 \newcommand{\R}{\textsf{R}}
 
-\bibliographystyle{plainnat}
+\usepackage[
+  bookmarks,%
+  colorlinks,%
+  linktoc=section,%
+  linkcolor=RedViolet,%
+  citecolor=RedViolet,%
+  urlcolor=RedViolet,%
+  linkbordercolor={1 1 1},%
+  citebordercolor={1 1 1},%
+  urlbordercolor={1 1 1},%
+  raiselinks,%
+  plainpages,%
+  pdftex
+  ]{hyperref}
 
-\title{GO-terms Semantic Similarity Measures}
+
+\usepackage{cite}
+\renewcommand{\floatpagefraction}{0.9}
+
+\usepackage{sectsty}
+\sectionfont{\sffamily\bfseries\color{RoyalBlue}\sectionrule{0pt}{0pt}{-1ex}{1pt}}
+\subsectionfont{\sffamily\bfseries\color{RoyalBlue}}
+\subsubsectionfont{\sffamily\bfseries\color{RoyalBlue}}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\lfoot{}\cfoot{}\rfoot{}
+\renewcommand{\headrule}{}
+
+\usepackage{graphicx}
+%\usepackage{xstring}
+
+\usepackage{Sweave}
+\SweaveOpts{keep.source=TRUE,eps=FALSE,pdf=FALSE,png=TRUE,include=FALSE,width=4,height=4.5,resolution=150}
+\setkeys{Gin}{width=0.5\textwidth}
+
+\definecolor{darkgray}{gray}{0.2}
+\DefineVerbatimEnvironment{Sinput}{Verbatim}{fontsize=\small,xleftmargin=1em,formatcom={\color{darkgray}}}
+\DefineVerbatimEnvironment{Soutput}{Verbatim}{fontsize=\small,xleftmargin=1em,frame=leftline,framerule=.6pt,rulecolor=\color{darkgray},framesep=1em,formatcom={\color{darkgray}}}
+\fvset{listparameters={\setlength{\topsep}{0pt}}}
+\renewenvironment{Schunk}{\vspace{\topsep}}{\vspace{\topsep}}
+
+
+\newcommand{\fixme}[1]{{\textbf{Fixme:} \textit{\textcolor{blue}{#1}}}}
+
+
+\title{\textsf{\textbf{GO-terms Semantic Similarity Measures}}}
 \author{Guangchuang Yu \\
 College of Life Science and Technology \\
 Jinan University, Guangzhou, China \\
 email: \texttt{guangchuangyu@gmail.com}}
 
 \begin{document}
-
-
 \maketitle
-
 
 <<options,echo=FALSE>>=
 options(width=60)
@@ -67,12 +99,12 @@ process (BP), and cellular component (CC).
 
 Four methods have been presented to determine the semantic similarity
 of two GO terms based on the annotation statistics of their common
-ancestor terms (Resnik  \citep{philip_semantic_1999}, Jiang  \citep{jiang_semantic_1997},
-Lin  \citep{lin_information-theoretic_1998} and Schlicker  \citep{schlicker_new_2006}).
-Wang  \citep{wang_new_2007} proposed a
+ancestor terms (Resnik  \cite{philip_semantic_1999}, Jiang  \cite{jiang_semantic_1997},
+Lin  \cite{lin_information-theoretic_1998} and Schlicker  \cite{schlicker_new_2006}).
+Wang  \cite{wang_new_2007} proposed a
 new method to measure the similarity based on the graph structure of
 GO. Each of these methods has its own advantages and
-weaknesses. \Rpackage{GOSemSim} package  \citep{yu2010} is developed to compute
+weaknesses. \Rpackage{GOSemSim} package  \cite{yu2010} is developed to compute
 semantic similarity among GO terms, sets of GO terms, gene products,
 and gene clusters, providing both five methods mentioned above. I have
 developed another package, \Rpackage{DOSE}, for measuring semantic
@@ -99,9 +131,9 @@ products. \textit{Bioinformatics}. 2010,26(7):976-978.\\
 
 \section{Semantic Similarity Measurement Based on GO}
 
-Four methods proposed by Resnik  \citep{philip_semantic_1999},
-Jiang  \citep{jiang_semantic_1997}, Lin  \citep{lin_information-theoretic_1998}
-and Schlicker  \citep{schlicker_new_2006} are information content (IC) based, which
+Four methods proposed by Resnik  \cite{philip_semantic_1999},
+Jiang  \cite{jiang_semantic_1997}, Lin  \cite{lin_information-theoretic_1998}
+and Schlicker  \cite{schlicker_new_2006} are information content (IC) based, which
 depend on the frequencies of two GO terms involved and that of their
 closest common ancestor term in a specific corpus of GO
 annotations. The information content of a GO term is computed by the
@@ -148,27 +180,20 @@ ancestor (MICA), where there is more than one shared parents.
 \indent
 \begin{itemize}
 \item Resnik's method is defined as:
-  \begin{center}
-    $sim_{Resnik}(t_1,t_2) = IC(MICA)$
-  \end{center}
+    $$sim_{Resnik}(t_1,t_2) = IC(MICA)$$
+
 \item Lin's method is defined as:
-  \begin{center}
-    $sim_{Lin}(t_1,t_2) = \frac{2IC(MICA)}{IC(t_1)+IC(t_2)}$
-  \end{center}
+    $$sim_{Lin}(t_1,t_2) = \frac{2IC(MICA)}{IC(t_1)+IC(t_2)}$$
+
 \item The Relevance method, which was proposed by Schlicker's method,
   combine Resnik's and Lin's method, and is defined as:
-  \begin{center}
-    $sim_{Rel}(t_1,t_2) = \frac{2IC(MICA)(1-p(MICA))}{IC(t_1)+IC(t_2)}$
-  \end{center}
+    $$sim_{Rel}(t_1,t_2) = \frac{2IC(MICA)(1-p(MICA))}{IC(t_1)+IC(t_2)}$$
+
 \item Jiang and Conrath's method is defined as:
-  \begin{center}
-    $sim_{Jiang}(t_1,t_2) = 1-\min(1, d_{Jiang}(t_1, t_2))$
-  \end{center}
+    $$sim_{Jiang}(t_1,t_2) = 1-\min(1, d_{Jiang}(t_1, t_2))$$
 
   where
-  \begin{center}
-    $d_{Jiang}(t_1, t_2) = IC(t_1) + IC(t_2) - 2IC(MICA)$
-  \end{center}
+    $$d_{Jiang}(t_1, t_2) = IC(t_1) + IC(t_2) - 2IC(MICA)$$
 
 \end{itemize}
 
@@ -192,39 +217,34 @@ $DAG_{A}$.
     the S-value of GO term \textit{t} related to term A. For any of term
     \textit{t} in $DAG_{A}=(A,T_{A},E_{A})$, its S-value related to term
     A. $S_{A}(\textit{t})$ is defined as:
-    \begin{center}
-      \[\left\{
+$$
+      \left\{
         \begin{array}{l}
           S_{A}(A)=1 \\
-          S_{A}(\textit{t})=\max\{w_{e} \times S_{A}(\textit{t}') |
-          \textit{t}' \in childrenof(\textit{t}) \}$ if $\textit{t}
-          \ne A
+          S_{A}(\textit{t})=\max\{w_{e} \times S_{A}(\textit{t}') | \textit{t}' \in children \: of(\textit{t}) \} \; if \: \textit{t} \ne A
         \end{array}
-      \right.\]
-    \end{center}
+      \right.
+$$
 
     where $w_{e}$ is the semantic contribution factor for edge $e \in
     E_{A}$ linking term \textit{t} with its child term \textit{t}'. Wang
     defined term A contributes to its own as one. After obtaining the
     S-values for all terms in $DAG_{A}$, the semantic value of GO term A,
     SV(A), is calculated as:
-    \begin{center}
-      $SV(A)=\displaystyle\sum_{t \in T_{A}} S_{A}(t)$
-    \end{center}
+      $$SV(A)=\displaystyle\sum_{t \in T_{A}} S_{A}(t)$$
+
 
     Thus, given two GO terms A and B, the semantic similarity between these two
     terms, $sim_{Wang}(A, B)$, is defined as:
-    \begin{center}
-      $sim_{Wang}(A, B) = \frac{\displaystyle\sum_{t \in T_{A} \cap
-          T_{B}}{S_{A}(t) + S_{B}(t)}}{SV(A) + SV(B)}$
-    \end{center}
+      $$sim_{Wang}(A, B) = \frac{\displaystyle\sum_{t \in T_{A} \cap
+          T_{B}}{S_{A}(t) + S_{B}(t)}}{SV(A) + SV(B)}$$
 
     where $S_{A}(\textit{t})$ is the S-value of GO term \textit{t} related
     to term A and $S_{B}(\textit{t})$ is the S-value of GO term \textit{t}
     related to term B.
 
 
-This method proposed by Wang  \citep{wang_new_2007} determines the semantic
+This method proposed by Wang  \cite{wang_new_2007} determines the semantic
 similarity of two GO terms based on both the locations of these terms
 in the GO graph and their relations with their ancestor terms.
 
@@ -251,31 +271,30 @@ similarity are defined as follows:
 
 \item The \textit{max} method calculates the maximum semantic similarity score over all pairs of GO
 terms between these two sets.
-
-$sim_{max}(g_1, g_2) = \displaystyle\max_{1 \le i \le m, 1 \le j \le n} sim(go_{1i}, go_{2j})$
+$$sim_{max}(g_1, g_2) = \displaystyle\max_{1 \le i \le m, 1 \le j \le n} sim(go_{1i}, go_{2j})$$
 
 \item The \textit{avg} calcuate the average semantic similarity score over all pairs of GO terms.
 
-  $sim_{avg}(g_1, g_2) = \frac{\displaystyle\sum_{i=1}^m\sum_{j=1}^nsim(go_{1i}, go_{2j})}{m \times n}$
+  $$sim_{avg}(g_1, g_2) = \frac{\displaystyle\sum_{i=1}^m\sum_{j=1}^nsim(go_{1i}, go_{2j})}{m \times n}$$
 
 \item Similarities among GO terms form a matrix, and method \textit{rcmax}
 use the maximum of RowScore and ColumnScore as the similarity, where
 RowScore (or ColumnScore) is the average of maximum similarities on
 each row (or column).
 
-$sim_{rcmax}(g_1, g_2) = \max(\frac{\displaystyle\sum_{i=1}^m \max_{1
+$$sim_{rcmax}(g_1, g_2) = \max(\frac{\displaystyle\sum_{i=1}^m \max_{1
     \le j \le n} sim(go_{1i}, go_{2j})}{m},
 \frac{\displaystyle\sum_{j=1}^n \max_{1 \le i \le m} sim(go_{1i},
-  go_{2j})}{n})$
+  go_{2j})}{n})$$
 
 
 \item The \textit{BMA} method, used the best-match average strategy,
   calculates the average of all maximum similarities on each row and
   column, and defined as:
 
-$sim_{BMA}(g_1, g_2) = \frac{\displaystyle\sum_{1=i}^m \max_{1 \le j
-    \le n}sim(go_{1i}), go_{2j}) + \displaystyle\sum_{1=j}^n \max_{1
-    \le i \le m}sim(go_{1i}, go_{2j})} {m+n}$
+$$sim_{BMA}(g_1, g_2) = \frac{\displaystyle\sum_{1=i}^m \max_{1 \le j
+    \le n}sim(go_{1i}, go_{2j}) + \displaystyle\sum_{1=j}^n \max_{1
+    \le i \le m}sim(go_{1i}, go_{2j})} {m+n}$$
 
 \end{itemize}
 
@@ -303,7 +322,9 @@ go2 = c("GO:0009055","GO:0005515")
 mgoSim(go1, go2, ont="MF", measure="Wang", combine="BMA")
 
 geneSim("241", "251", ont="MF", organism="human", measure="Wang", combine="BMA")
-mgeneSim(genes=c("835", "5261","241", "994"), ont="MF", organism="human", measure="Wang")
+mgeneSim(genes=c("835", "5261","241", "994"), 
+			ont="MF", organism="human", measure="Wang", 
+			verbose=FALSE)
 @
 
 
@@ -324,20 +345,20 @@ mclusterSim(clusters, ont="MF", organism="human", measure="Wang", combine="BMA")
 In  \cite{yu_new_2011}, we proposed a method for measuring functional
 similarity of microRNAs. This method was based on semantic similarity
 of microRNAs' target genes, and was calculated by \Rpackage{GOSemSim}. We
-further analyzed viral microRNAs using this method  \citep{yu_new_2011}
+further analyzed viral microRNAs using this method  \cite{yu_new_2011}
 and compared significant KEGG pathways regulated by different viruses'
-microRNAs using \Rpackage{clusterProfiler}  \citep{yu2012}.
+microRNAs using \Rpackage{clusterProfiler}  \cite{yu2012}.
 
 
 \section{Session Information}
 
 The version number of R and packages loaded for generating the vignette were:
 
-\begin{verbatim}
-<<echo=FALSE,results=tex>>=
-sessionInfo()
+<<sessInfo, results=tex, echo=FALSE>>=
+toLatex(sessionInfo())
 @
-\end{verbatim}
 
+\bibliographystyle{unsrt}
 \bibliography{GOSemSim}
 \end{document}
+
