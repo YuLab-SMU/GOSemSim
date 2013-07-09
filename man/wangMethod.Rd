@@ -2,7 +2,7 @@
 \alias{wangMethod}
 \title{wangMethod}
 \usage{
-  wangMethod(ID1, ID2, ont)
+  wangMethod(ID1, ID2, ont = "BP")
 }
 \arguments{
   \item{ID1}{Ontology Term}
