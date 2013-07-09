@@ -1,3 +1,7 @@
+CHANGES IN VERSION 1.19.3
+------------------------
+ o add getSupported_Org function for accessing all the names of supported organisms <2013-07-09, Mon>
+
 CHANGES IN VERSION 1.19.2
 ------------------------
  o export getDb and loadGOMap <2013-07-09, Mon>
