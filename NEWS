@@ -1,3 +1,8 @@
+CHANGES IN VERSION 1.19.2
+------------------------
+ o export getDb and loadGOMap <2013-07-09, Mon>
+ o update vignettes <2013-07-9, Mon>
+
 CHANGES IN VERSION 1.19.1
 ------------------------
  o update vignettes <2013-06-13, Thu>
@@ -11,10 +16,10 @@ CHANGES IN VERSION 1.17.1
 CHANGES IN VERSION 1.15.3
 ------------------------
  o remove all the S4 classes and methods <2012-09-12, Wed>
- o add progress bar for mgeneSim <2012-09-12, Wed> 
+ o add progress bar for mgeneSim <2012-09-12, Wed>
  o re-implement calculating semantic values in Wang's method <2012-09-12, Wed>
  o update IC data for next release <2012-09-12, Wed>
- o bug fixed in getSV <2012-09-13, Thu> 
+ o bug fixed in getSV <2012-09-13, Thu>
 
 CHANGES IN VERSION 1.15.2
 ------------------------
@@ -23,7 +28,7 @@ CHANGES IN VERSION 1.15.2
 
 CHANGES IN VERSION 1.15.1
 ------------------------
- o export termSim, which can be used in 
+ o export termSim, which can be used in
    other ontological semantic similarity measurement <2012-06-14, Thu>
  o update vignette. <2012-06-14, Thu>
 
