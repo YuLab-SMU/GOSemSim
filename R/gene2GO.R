@@ -1,3 +1,11 @@
+##' mapping organism name to annotationDb package name
+##'
+##'
+##' @title getDb
+##' @param organism one of supported organism
+##' @return annotationDb name
+##' @export
+##' @author Yu Guangchuang
 getDb <- function(organism) {
     annoDb <- switch(organism,
                      anopheles   = "org.Ag.eg.db",
@@ -57,8 +65,16 @@ loadGOMap_internal <- function(organism){
     assign("gomap.flag", organism, envir=GOSemSimEnv)
 }
 
+##' loading GOMap to GOSemSimEnv
+##'
+##'
+##' @title loadGOMap
+##' @param organism one of supported organisms
+##' @return envir
 ##' @importMethodsFrom AnnotationDbi exists
 ##' @importMethodsFrom AnnotationDbi get
+##' @export
+##' @author Yu Guangchuang
 loadGOMap <- function(organism) {
     if(!exists("GOSemSimEnv")) .initial()
     if (!exists("gomap", envir=GOSemSimEnv)) {

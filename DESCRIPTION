@@ -1,7 +1,7 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-Version: 1.19.1
+Version: 1.19.2
 Author: Guangchuang Yu
 Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
 Description: Implemented five methods proposed by Resnik, Schlicker, Jiang, Lin
@@ -21,7 +21,8 @@ Imports:
 Suggests:
     DOSE,
     clusterProfiler,
-    BiocInstaller
+    BiocInstaller,
+    knitr
 biocViews: GO,
     Clustering,
     Pathways,
@@ -42,6 +43,7 @@ Collate:
     'mgeneSim.R'
     'mgoSim.R'
     'mclusterSim.R'
+VignetteBuilder: knitr
 License: GPL-2
 URL: http://bioinformatics.oxfordjournals.org/content/26/7/976.full
 Packaged: 2012-08-29 06:44:50 UTC; root
