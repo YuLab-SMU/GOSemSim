@@ -25,6 +25,19 @@
     ## remove "coelicolor" as it is not supported by Bioconductor
 }
 
+##' get supported organisms
+##'
+##'
+##' @title getSupported_Org
+##' @return supported organisms
+##' @export
+##' @author Yu Guangchuang
+getSupported_Org <- function() {
+    if (!exists("GOSemSimEnv")) .initial()
+    supported_Org <- get("SupportedSpecies", envir=GOSemSimEnv)
+    return(supported_Org)
+}
+
 ##' @importFrom GO.db GOMFPARENTS
 ##' @importFrom GO.db GOBPPARENTS
 ##' @importFrom GO.db GOCCPARENTS

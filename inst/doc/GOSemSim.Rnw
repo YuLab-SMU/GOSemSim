@@ -333,12 +333,10 @@ mclusterSim(clusters, ont="MF", organism="human", measure="Wang", combine="BMA")
 
 \section{Case Study}
 
-In  \cite{yu_new_2011}, we proposed a method for measuring functional
-similarity of microRNAs. This method was based on semantic similarity
+We proposed a method for measuring functional
+similarity of microRNAs \cite{yu_new_2011}. This method was based on semantic similarity
 of microRNAs' target genes, and was calculated by \Rpackage{GOSemSim}. We
-further analyzed viral microRNAs using this method  \cite{yu_new_2011}
-and compared significant KEGG pathways regulated by different viruses'
-microRNAs using \Rpackage{clusterProfiler}  \cite{yu2012}.
+further analyzed viral microRNAs using this method and compared significant KEGG pathways regulated by different viruses' microRNAs \cite{yu2011} using \Rpackage{clusterProfiler}  \cite{yu2012}.
 
 
 \section{Session Information}
