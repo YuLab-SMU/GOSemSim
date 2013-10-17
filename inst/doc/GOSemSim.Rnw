@@ -137,8 +137,6 @@ annotations. The information content of a GO term is computed by the
 negative log probability of the term occurring in GO corpus. A rarely used term contains a
 greater amount of information.
 
-\\
-\\
 The frequency of a term t is defined as:
 $$ 
 p(t) = \frac{n_{t'}}{N} 
@@ -277,10 +275,9 @@ and $g_2$ annotated by $GO_{2}=\{go_{21},go_{22} \cdots go_{2n}\}$, \Rpackage{GO
 \subsection{Combine methods}
 \subsubsection{max}
 
-\begin{itemize}
 The \Rfunction{max} method calculates the maximum semantic similarity score over all pairs of GO terms between these two GO term sets.
 $$
-sim_{max}(g_1, g_2) = \displaystyle\max_{1 \le i \le m, 1 \le j \le n} sim(go_{1i}, go_{2j})
+sim_{max}(g\_1, g\_2) = \displaystyle\max_{1 \le i \le m, 1 \le j \le n} sim(go_{1i}, go_{2j})
 $$
 
 \subsubsection{avg}
@@ -319,7 +316,7 @@ mgeneSim(genes=c("835", "5261","241", "994"),
 \subsection{clusterSim and mclusterSim}
 We also implemented \Rfunction{clusterSim} for calculating semantic similarity between two gene clusters, and \Rfunction{mclusterSim} for calculating semantic similarities among multiple gene clusters.
 
-<<clusterSim, eval=F>>=
+<<clusterSim, eval=FALSE>>=
 gs1 <- c("835", "5261","241", "994", "514", "533")
 gs2 <- c("578","582", "400", "409", "411")
 clusterSim(gs1, gs2, ont="MF", organism="human", measure="Wang", combine="BMA")
