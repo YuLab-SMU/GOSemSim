@@ -1,7 +1,7 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-Version: 1.21.4
+Version: 1.21.5
 Author: Guangchuang Yu
 Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
 Description: Implemented five methods proposed by Resnik, Schlicker, Jiang, Lin
@@ -17,7 +17,8 @@ Imports:
     methods,
     AnnotationDbi,
     GO.db,
-    org.Hs.eg.db
+    org.Hs.eg.db,
+    Rcpp
 Suggests:
     DOSE,
     clusterProfiler,
