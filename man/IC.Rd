@@ -1,0 +1,77 @@
+\docType{data}
+\name{IC}
+\alias{IC}
+\alias{Info_Contents_anopheles_BP}
+\alias{Info_Contents_anopheles_CC}
+\alias{Info_Contents_anopheles_MF}
+\alias{Info_Contents_arabidopsis_BP}
+\alias{Info_Contents_arabidopsis_CC}
+\alias{Info_Contents_arabidopsis_MF}
+\alias{Info_Contents_bovine_BP}
+\alias{Info_Contents_bovine_CC}
+\alias{Info_Contents_bovine_MF}
+\alias{Info_Contents_canine_BP}
+\alias{Info_Contents_canine_CC}
+\alias{Info_Contents_canine_MF}
+\alias{Info_Contents_chicken_BP}
+\alias{Info_Contents_chicken_CC}
+\alias{Info_Contents_chicken_MF}
+\alias{Info_Contents_chimp_BP}
+\alias{Info_Contents_chimp_CC}
+\alias{Info_Contents_chimp_MF}
+\alias{Info_Contents_coelicolor_BP}
+\alias{Info_Contents_coelicolor_CC}
+\alias{Info_Contents_coelicolor_MF}
+\alias{Info_Contents_ecolik12_BP}
+\alias{Info_Contents_ecolik12_CC}
+\alias{Info_Contents_ecolik12_MF}
+\alias{Info_Contents_ecsakai_BP}
+\alias{Info_Contents_ecsakai_CC}
+\alias{Info_Contents_ecsakai_MF}
+\alias{Info_Contents_fly_BP}
+\alias{Info_Contents_fly_CC}
+\alias{Info_Contents_fly_MF}
+\alias{Info_Contents_human_BP}
+\alias{Info_Contents_human_CC}
+\alias{Info_Contents_human_MF}
+\alias{Info_Contents_malaria_BP}
+\alias{Info_Contents_malaria_CC}
+\alias{Info_Contents_malaria_MF}
+\alias{Info_Contents_mouse_BP}
+\alias{Info_Contents_mouse_CC}
+\alias{Info_Contents_mouse_MF}
+\alias{Info_Contents_pig_BP}
+\alias{Info_Contents_pig_CC}
+\alias{Info_Contents_pig_MF}
+\alias{Info_Contents_rat_BP}
+\alias{Info_Contents_rat_CC}
+\alias{Info_Contents_rat_MF}
+\alias{Info_Contents_rhesus_BP}
+\alias{Info_Contents_rhesus_CC}
+\alias{Info_Contents_rhesus_MF}
+\alias{Info_Contents_worm_BP}
+\alias{Info_Contents_worm_CC}
+\alias{Info_Contents_worm_MF}
+\alias{Info_Contents_xenopus_BP}
+\alias{Info_Contents_xenopus_CC}
+\alias{Info_Contents_xenopus_MF}
+\alias{Info_Contents_yeast_BP}
+\alias{Info_Contents_yeast_CC}
+\alias{Info_Contents_yeast_MF}
+\alias{Info_Contents_zebrafish_BP}
+\alias{Info_Contents_zebrafish_CC}
+\alias{Info_Contents_zebrafish_MF}
+\title{Information content of GO terms}
+\description{
+  These datasets are the information contents of GOterms.
+}
+\references{
+  Yu et al. (2010) GOSemSim: an R package for measuring
+  semantic similarity among GO terms and gene products
+  \emph{Bioinformatics} (Oxford, England), 26:7 976--978,
+  April 2010. ISSN 1367-4803
+  \url{http://bioinformatics.oxfordjournals.org/cgi/content/abstract/26/7/976}
+  PMID: 20179076
+}
+\keyword{datasets}
+
