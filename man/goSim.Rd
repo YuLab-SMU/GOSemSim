@@ -1,0 +1,48 @@
+\name{goSim}
+\alias{goSim}
+\title{Semantic Similarity Between Two GO Terms}
+\usage{
+  goSim(GOID1, GOID2, ont = "MF", organism = "human",
+    measure = "Wang")
+}
+\arguments{
+  \item{GOID1}{GO ID 1.}
+
+  \item{GOID2}{GO ID 2.}
+
+  \item{ont}{One of "MF", "BP", and "CC" subontologies.}
+
+  \item{organism}{One of "anopheles", "arabidopsis",
+  "bovine", "canine", "chicken", "chimp", "coelicolor",
+  "ecolik12", "ecsakai", "fly", "human", "malaria",
+  "mouse", "pig", "rat","rhesus", "worm", "xenopus",
+  "yeast" and "zebrafish".}
+
+  \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and
+  "Wang" methods.}
+}
+\value{
+  similarity
+}
+\description{
+  Given two GO IDs, this function calculates their semantic
+  similarity.
+}
+\examples{
+goSim("GO:0004022", "GO:0005515", ont="MF", measure="Wang")
+}
+\references{
+  Yu et al. (2010) GOSemSim: an R package for measuring
+  semantic similarity among GO terms and gene products
+  \emph{Bioinformatics} (Oxford, England), 26:7 976--978,
+  April 2010. ISSN 1367-4803
+  \url{http://bioinformatics.oxfordjournals.org/cgi/content/abstract/26/7/976}
+  PMID: 20179076
+}
+\seealso{
+  \code{\link{mgoSim}} \code{\link{geneSim}}
+  \code{\link{mgeneSim}} \code{\link{clusterSim}}
+  \code{\link{mclusterSim}}
+}
+\keyword{manip}
+

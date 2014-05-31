@@ -1,0 +1,76 @@
+CHANGES IN VERSION 1.21.3
+------------------------
+ o fixed minor bug in combineMethods <2013-12-16, Mon>
+
+CHANGES IN VERSION 1.19.3
+------------------------
+ o add getSupported_Org function for accessing all the names of supported organisms <2013-07-09, Mon>
+
+CHANGES IN VERSION 1.19.2
+------------------------
+ o export getDb and loadGOMap <2013-07-09, Mon>
+ o update vignettes <2013-07-9, Mon>
+
+CHANGES IN VERSION 1.19.1
+------------------------
+ o update vignettes <2013-06-13, Thu>
+
+CHANGES IN VERSION 1.17.1
+------------------------
+ o update IC data for next release <2013-03-08, Fri>
+ o after removing NA row/col of similarity matrix, if only one row/col remains, R will turn it to be a vector, and combineScore function will not work properly. This bug was fixed <2013-01-11, Fri>
+ o bug fixed of infoContentMethod, now return NA when ID is not belong to the ontology <2012-10-11, Thu>
+
+CHANGES IN VERSION 1.15.3
+------------------------
+ o remove all the S4 classes and methods <2012-09-12, Wed>
+ o add progress bar for mgeneSim <2012-09-12, Wed>
+ o re-implement calculating semantic values in Wang's method <2012-09-12, Wed>
+ o update IC data for next release <2012-09-12, Wed>
+ o bug fixed in getSV <2012-09-13, Thu>
+
+CHANGES IN VERSION 1.15.2
+------------------------
+ o re-implement gene2GO <2012-09-7, Fri>
+ o information content based methods implemented in c++ <2012-09-5, Wed>
+
+CHANGES IN VERSION 1.15.1
+------------------------
+ o export termSim, which can be used in
+   other ontological semantic similarity measurement <2012-06-14, Thu>
+ o update vignette. <2012-06-14, Thu>
+
+CHANGES IN VERSION 1.13.6
+------------------------
+ o remove dependency of organism annotation packages. <2012-03-09, Fri>
+   User not need to install all these annotation packages for using GOSemSim.
+   User only need to install the specific organism annotation package they want to calculate.
+ o update IC data sets for 1.14 release. <2012-03-30, Fri>
+
+
+CHANGES IN VERSION 1.13.5
+------------------------
+ o fixed BibTeX database file .bib.
+   month = , must be month = someMonth,
+   leave it blank will cause texi2dvi failed. <2012-03-01, Thu>
+
+CHANGES IN VERSION 1.13.4
+------------------------
+ o update vignette. <2012-02-28, Tue>
+
+CHANGES IN VERSION 1.13.3
+------------------------
+ o bug fixed for multiple annotation. <2012-02-01, Fri>
+
+CHANGES IN VERSION 1.13.2
+------------------------
+ o update infoContentMethod to make it consistent between DOSE and GOSemSim. <2011-12-31, Sat>
+
+CHANGES IN VERSION 1.13.1
+------------------------
+ o remove dependency of DOSE
+ o remove Streptomyces coelicolor support, as the genome wide annotation package contributor no longer supports it.
+
+CHANGES IN VERSION 1.11.2
+------------------------
+ o Using methods implemented in DOSE for semantic similarity calculation.

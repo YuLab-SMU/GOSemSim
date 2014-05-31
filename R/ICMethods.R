@@ -1,0 +1,163 @@
+##' Load Information Content data to DOSEEnv environment
+##'
+##'
+##' @title Load IC data
+##' @param organism "human"
+##' @param ont "DO"
+##' @return NULL
+##' @author Guangchuang Yu \url{http://ygc.name}
+loadICdata <- function(organism, ont) {
+    if(!exists("ICEnv")) .initial()
+    fname <- paste("Info_Contents",
+                   organism,
+                   ont,
+                   sep="_")
+    if (ont == "DO") {
+        tryCatch(utils::data(list=fname,
+                             package="DOSE"))
+    } else {
+        tryCatch(utils::data(list=fname,
+                             package="GOSemSim"))
+    }
+    IC <- get("IC")
+    org.ont.IC <- paste(organism,
+                        ont,
+                        "IC",
+                        sep="")
+    assign(eval(org.ont.IC),
+           IC,
+           envir=ICEnv)
+    rm (IC)
+}
+
+
+getIC <- function(organism, ont) {
+    if(!exists("ICEnv")) {
+        .initial()
+    }
+
+    org.ont.IC <- paste(organism,
+                        ont,
+                        "IC",
+                        sep="")
+
+    if(!exists(org.ont.IC, envir=ICEnv)) {
+        loadICdata(organism, ont)
+    }
+    IC <- get(org.ont.IC, envir=ICEnv)
+    return(IC)
+}
+
+##' @importFrom GO.db GOMFANCESTOR
+##' @importFrom GO.db GOBPANCESTOR
+##' @importFrom GO.db GOCCANCESTOR
+getAncestors <- function(ID, ont) {
+    Ancestors <- switch(ont,
+                        MF = "GOMFANCESTOR",
+                        BP = "GOBPANCESTOR",
+                        CC = "GOCCANCESTOR",
+                        DO = "DOANCESTOR"
+                        )
+    if (ont == "DO") {
+        db <- "DO.db"
+        require(db, character.only=TRUE)
+    }
+    Ancestors <- eval(parse(text=Ancestors))
+    ## anc <- get(ID, Ancestors)
+    anc <- Ancestors[[ID]]
+    return (anc)
+}
+
+
+##' Information Content Based Methods for semantic similarity measuring
+##'
+##' implemented for methods proposed by Resnik, Jiang, Lin and Schlicker.
+##' @title information content based methods
+##' @param ID1 Ontology Term
+##' @param ID2 Ontology Term
+##' @param ont Ontology
+##' @param method one of "Resnik", "Jiang", "Lin" and "Rel".
+##' @param organism one of supported species
+##' @return semantic similarity score
+##' @useDynLib GOSemSim
+##' @author Guangchuang Yu \url{http://ygc.name}
+infoContentMethod <- function(ID1,
+                              ID2,
+                              ont="DO",
+                              method,
+                              organism="human") {
+    IC <- getIC(organism, ont)
+
+    ancestor1 <- getAncestors(ID1, ont)
+    ancestor2 <- getAncestors(ID2, ont)
+
+    if (is.null(ancestor1) || is.null(ancestor2) || is.na(ancestor1) || is.na(ancestor2))
+        return (NA)
+        
+    ## IC is biased
+    ## because the IC of a term is dependent of its children but not on its parents.
+
+    sim <- .Call("infoContentMethod_cpp",
+                 ID1, ID2,
+                 ancestor1, ancestor2,
+                 names(IC), IC,
+                 method, ont,
+                 package="GOSemSim"
+                 )
+    return (sim)
+}
+
+
+## infoContentMethod <- function(ID1,
+##                               ID2,
+##                               ont="DO",
+##                               method,
+##                               organism="human") {
+##     IC <- getIC(organism, ont)
+
+##     ## more specific term, larger IC value.
+##     ## Normalized, all divide the most informative IC.
+##     ## all IC values range from 0(root node) to 1(most specific node)
+##     mic <- max(IC[IC!=Inf])
+
+##     if (ont == "DO") {
+##         topNode <- "DOID:4"
+##     } else {
+##         topNode <- "all"
+##     }
+
+##     IC[topNode] = 0
+
+##     ic1 <- IC[ID1]/mic
+##     ic2 <- IC[ID2]/mic
+
+##     if (ic1 == 0 || ic2 == 0)
+##         return (NA)
+
+##     ancestor1 <- getAncestors(ID1, ont)
+##     ancestor2 <- getAncestors(ID2, ont)
+##     if (ID1 == ID2) {
+##         commonAncestor <- ID1
+##     } else if (ID1 %in% ancestor2) {
+##         commonAncestor <- ID1
+##     } else if (ID2 %in% ancestor1) {
+##         commonAncestor <- ID2
+##     } else {
+##         commonAncestor <- intersect(ancestor1, ancestor2)
+##     }
+##     if (length(commonAncestor) == 0) return (NA)
+
+##     ##Information Content of the most informative common ancestor (MICA)
+##     mica <- max(IC[commonAncestor])/mic
+
+##     ## IC is biased
+##     ## because the IC of a term is dependent of its children but not on its parents.
+##     sim <- switch(method,
+##                   Resnik = mica, ## Resnik does not consider how distant the terms are from their common ancestor.
+##                   ## Lin and Jiang take that distance into account.
+##                   Lin = 2*mica/(ic1+ic2),
+##                   Jiang = 1 - min(1, -2*mica + ic1 + ic2),
+##                   Rel = 2*mica/(ic1+ic2)*(1-exp(-mica*mic))  ## mica*mic equals to the original IC value. and exp(-mica*mic) equals to the probability of the term's occurence.
+##                   )
+##     return (sim)
+## }
