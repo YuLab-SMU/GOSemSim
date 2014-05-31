@@ -1,0 +1,59 @@
+\name{mclusterSim}
+\alias{mclusterSim}
+\title{Pairwise Semantic Similarities for a List of Gene Clusters}
+\usage{
+  mclusterSim(clusters, ont = "MF", organism = "human",
+    measure = "Wang", drop = "IEA", combine = "BMA")
+}
+\arguments{
+  \item{clusters}{A list of gene clusters.}
+
+  \item{ont}{One of "MF", "BP", and "CC" subontologies.}
+
+  \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and
+  "Wang" methods.}
+
+  \item{organism}{One of "anopheles", "arabidopsis",
+  "bovine", "canine", "chicken", "chimp", "coelicolor",
+  "ecolik12", "ecsakai", "fly","human","malaria", "mouse",
+  "pig", "rat", "rhesus", "worm", "xenopus", "yeast" and
+  "zebrafish".}
+
+  \item{drop}{A set of evidence codes based on which
+  certain annotations are dropped. Use NULL to keep all GO
+  annotations.}
+
+  \item{combine}{One of "max", "average", "rcmax", "BMA"
+  methods, for combining semantic similarity scores of
+  multiple GO terms associated with protein or multiple
+  proteins assiciated with protein cluster.}
+}
+\value{
+  similarity matrix
+}
+\description{
+  Given a list of gene clusters, this function calculates
+  pairwise semantic similarities.
+}
+\examples{
+## cluster1 <- c("835", "5261","241")
+	## cluster2 <- c("578","582")
+	## cluster3 <- c("307", "308", "317")
+	## clusters <- list(a=cluster1, b=cluster2, c=cluster3)
+	## mclusterSim(clusters, ont="MF", organism="human", measure="Wang")
+}
+\references{
+  Yu et al. (2010) GOSemSim: an R package for measuring
+  semantic similarity among GO terms and gene products
+  \emph{Bioinformatics} (Oxford, England), 26:7 976--978,
+  April 2010. ISSN 1367-4803
+  \url{http://bioinformatics.oxfordjournals.org/cgi/content/abstract/26/7/976}
+  PMID: 20179076
+}
+\seealso{
+  \code{\link{goSim}} \code{\link{mgoSim}}
+  \code{\link{geneSim}} \code{\link{mgeneSim}}
+  \code{\link{clusterSim}}
+}
+\keyword{manip}
+

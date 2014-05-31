@@ -1,0 +1,4 @@
+# We need to know where libRcpp.so resides, Rcpp.h is found by R via LinkingTo
+PKG_LIBS= `$(R_HOME)/bin/Rscript -e "Rcpp:::LdFlags()"` 
+
+
