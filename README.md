@@ -8,7 +8,7 @@ Guangchuang YU, School of Public Health, The University of Hong Kong [http://ygc
 
 ## Citation ##
 
-Please cite the following articles when using `GOSemSim`:
+Please cite the following article when using `GOSemSim`:
 
 ```
 Yu G, Li F, Qin Y, Bo X, Wu Y and Wang. S (2010). 
