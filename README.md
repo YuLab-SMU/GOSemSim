@@ -20,8 +20,8 @@ URL: [http://bioinformatics.oxfordjournals.org/content/26/7/976.full](http://bio
 
 ## License ##
 
-All source code is copyright, under the GPL-2 License.
-For more information on GPL-2 License see [http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)
+All source code is copyright, under the Artistic-2.0 License.
+For more information on Artistic-2.0 License see [http://opensource.org/licenses/Artistic-2.0](http://opensource.org/licenses/Artistic-2.0)
 
 ## Installation ##
 
@@ -32,6 +32,30 @@ To install:
    `install_github("GuangchuangYu/GOSemSim")`
 
 Find out more at [http://www.bioconductor.org/packages/release/bioc/html/GOSemSim.html](http://www.bioconductor.org/packages/release/bioc/html/GOSemSim.html) and check out the [vignette](http://www.bioconductor.org/packages/release/bioc/vignettes/clusterProfiler/inst/doc/GOSemSim.pdf).
+
+## Proper use of GOSemSim ##
+
+I am very glad that many people find GOSemSim very useful and the [GOSemSim](http://bioinformatics.oxfordjournals.org/content/26/7/976.full](http://bioinformatics.oxfordjournals.org/content/26/7/976.full) has been cited by 114 (by google scholar, Aug, 2014). 
+
+There are two R packages [BiSEp](http://cran.r-project.org/web/packages/BiSEp/index.html) and [tRanslatome](http://www.bioconductor.org/packages/release/bioc/html/tRanslatome.html) depend on `GOSemSim` and three R packages [clusterProfiler](http://www.bioconductor.org/packages/release/bioc/html/clusterProfiler.html), [DOSE](http://www.bioconductor.org/packages/release/bioc/html/DOSE.html) and [Rcpi](http://www.bioconductor.org/packages/release/bioc/html/Rcpi.html) import `GOSemSim`.
+
+[SemDist](http://www.bioconductor.org/packages/devel/bioc/html/SemDist.html) package copy some of the source code from `GOSemSim` with acknowledging within source code and document.
+
+[ppiPre](http://cran.r-project.org/web/packages/ppiPre/index.html) package copy many source code from `GOSemSim` without any acknowledgement in souce code or document and did not cited `GOSemSim` in the [publication](http://www.biomedcentral.com/1752-0509/7/S2/S8). This violates the restriction of open source license.
+
+For R developers, if you found functions provided in `GOSemSim` useful, please depend or import `GOSemSim`.
+If you would like to copy and paste source code, you should acknowledge the source code was copied/derived from `GOSemSim` authored by Guangchuang Yu <guangchuangyu@gmail.com> and also include the following reference in the man files for functions that copied/derived from `GOSemSim`:
+
+```
+\references{
+  Yu et al. (2010) GOSemSim: an R package for measuring
+  semantic similarity among GO terms and gene products
+  \emph{Bioinformatics} (Oxford, England), 26:7 976--978,
+  April 2010. ISSN 1367-4803
+  \url{http://bioinformatics.oxfordjournals.org/cgi/content/abstract/26/7/976}
+  PMID: 20179076
+}
+```
 
 
 ## Bugs/Feature requests ##
