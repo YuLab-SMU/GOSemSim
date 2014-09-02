@@ -19,7 +19,7 @@ Collate: 'clusterSim.R' 'combineMethods.R' 'computeIC.R' 'ICMethods.R'
         'utilities.R' 'zzz.R' 'GOSemSim-package.R' 'mgeneSim.R'
         'mgoSim.R' 'mclusterSim.R'
 VignetteBuilder: knitr
-License: GPL-2
-URL: http://bioinformatics.oxfordjournals.org/content/26/7/976.full
+License: Artistic-2.0
+URL: https://github.com/GuangchuangYu/GOSemSim
 Packaged: 2012-08-29 06:44:50 UTC; root
 biocViews: GO, Clustering, Pathways, Network
