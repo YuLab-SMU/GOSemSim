@@ -44,7 +44,7 @@ There are two R packages [BiSEp](http://cran.r-project.org/web/packages/BiSEp/in
 [ppiPre](http://cran.r-project.org/web/packages/ppiPre/index.html) package copy many source code from `GOSemSim` without any acknowledgement in souce code or document and did not cited `GOSemSim` in the [publication](http://www.biomedcentral.com/1752-0509/7/S2/S8). This violates the restriction of open source license.
 
 For R developers, if you found functions provided in `GOSemSim` useful, please depend or import `GOSemSim`.
-If you would like to copy and paste source code, you should acknowledge the source code was copied/derived from `GOSemSim` authored by Guangchuang Yu <guangchuangyu@gmail.com> and also include the following reference in the man files for functions that copied/derived from `GOSemSim`:
+If you would like to copy and paste source code, you should acknowledge the source code was copied/derived from `GOSemSim` authored by Guangchuang Yu <guangchuangyu@gmail.com> and also includes the following reference in the man files for functions that copied/derived from `GOSemSim`:
 
 ```
 \references{
