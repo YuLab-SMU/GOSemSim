@@ -9,7 +9,7 @@
 ##'@param ont One of "MF", "BP", and "CC" subontologies.
 ##'@param measure One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.
 ##'@param organism One of "anopheles", "arabidopsis", "bovine", "canine",
-##'"chicken", "chimp", "coelicolor", "ecolik12", "ecsakai", "fly", "human",
+##'"chicken", "chimp", "coelicolor", "ecolik12", "ecsakai", "fly", "gondii","human",
 ##'"malaria", "mouse", "pig", "rat", "rhesus", "worm", "xenopus", "yeast" and
 ##'"zebrafish".
 ##'@param drop A set of evidence codes based on which certain annotations are

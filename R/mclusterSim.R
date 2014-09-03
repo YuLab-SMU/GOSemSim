@@ -8,8 +8,8 @@
 ##'@param ont One of "MF", "BP", and "CC" subontologies.
 ##'@param measure One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.
 ##'@param organism One of "anopheles", "arabidopsis", "bovine", "canine",
-##'"chicken", "chimp", "coelicolor", "ecolik12", "ecsakai",
-##'"fly","human","malaria", "mouse", "pig", "rat", "rhesus", "worm", "xenopus",
+##'"chicken", "chimp", "coelicolor", "ecolik12", "ecsakai", "fly",
+##'"gondii","human","malaria", "mouse", "pig", "rat", "rhesus", "worm", "xenopus",
 ##'"yeast" and "zebrafish".
 ##'@param drop A set of evidence codes based on which certain annotations are
 ##'dropped. Use NULL to keep all GO annotations.

@@ -1,3 +1,7 @@
+CHANGES IN VERSION 1.23.1
+------------------------
+ o add support of species coelicolor and gondii <2014-09-03, Wed>
+
 CHANGES IN VERSION 1.21.3
 ------------------------
  o fixed minor bug in combineMethods <2013-12-16, Mon>
