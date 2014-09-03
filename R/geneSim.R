@@ -8,7 +8,7 @@
 ##'@param gene2 Another entrez gene id.
 ##'@param ont One of "MF", "BP", and "CC" subontologies.
 ##'@param organism One of "anopheles", "arabidopsis", "bovine", "canine",
-##'"chicken", "chimp", "coelicolor", "ecolik12","ecsakai", "fly", "human",
+##'"chicken", "chimp", "coelicolor", "ecolik12","ecsakai", "fly", "gondii","human",
 ##'"malaria", "mouse", "pig", "rat","rhesus", "worm", "xenopus", "yeast" and
 ##'"zebrafish".
 ##'@param measure One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.

@@ -13,7 +13,7 @@
 ##'Mouse, Pig, Rhesus, Rat, Worm, Xenopus, Yeast, Zebrafish.
 ##'
 ##'\tabular{ll}{ Package: \tab GOSemSim\cr Type: \tab Package\cr Version: \tab
-##'1.6.0\cr Date: \tab 09-11-2012\cr biocViews:\tab GO, Clustering, Pathways,
+##'1.24.0\cr Date: \tab 09-11-2012\cr biocViews:\tab GO, Clustering, Pathways,
 ##'Anopheles_gambiae, Arabidopsis_thaliana, Bos_taurus, Caenorhabditis_elegans,
 ##'Canis_familiaris, Danio_rerio, Drosophila_melanogaster, Escherichia_coli,
 ##'Gallus_gallus, Homo_sapiens, Mus_musculus, Pan_troglodytes,
@@ -23,8 +23,9 @@
 ##'org.At.tair.db, org.Bt.eg.db, org.Ce.eg.db, org.Cf.eg.db, org.Dm.eg.db,
 ##'org.Dr.eg.db, org.EcK12.eg.db, org.EcSakai.eg.db, org.Gg.eg.db, org.Mm.eg.db,
 ##'org.Mmu.eg.db, org.Pf.plasmo.db, org.Pt.eg.db, org.Rn.eg.db, org.Sc.sgd.db,
-##'org.Sco.eg.db, org.Ss.eg.db, org.Xl.eg.db\cr Suggests:\tab clusterProfiler\cr
-##'License: \tab GPL Version 2\cr }
+##'org.Sco.eg.db, org.Ss.eg.db, org.Tgondii.eg.db, org.Xl.eg.db\cr
+##'Suggests:\tab clusterProfiler\cr
+##'License: \tab Artistic-2.0\cr }
 ##'
 ##'@name GOSemSim-package
 ##'@aliases GOSemSim-package GOSemSim
@@ -62,7 +63,8 @@ NULL
 ##'Info_Contents_coelicolor_MF Info_Contents_coelicolor_BP
 ##'Info_Contents_coelicolor_CC Info_Contents_ecsakai_MF Info_Contents_ecsakai_BP
 ##'Info_Contents_ecsakai_CC Info_Contents_ecolik12_MF Info_Contents_ecolik12_BP
-##'Info_Contents_ecolik12_CC Info_Contents_fly_MF Info_Contents_fly_BP
+##'Info_Contents_ecolik12_CC Info_Contents_gondii_CC Info_Contents_gondii_MF
+##'Info_Contents_gondii_BP Info_Contents_fly_MF Info_Contents_fly_BP
 ##'Info_Contents_fly_CC Info_Contents_human_MF Info_Contents_human_BP
 ##'Info_Contents_human_CC Info_Contents_malaria_MF Info_Contents_malaria_BP
 ##'Info_Contents_malaria_CC Info_Contents_mouse_MF Info_Contents_mouse_BP
