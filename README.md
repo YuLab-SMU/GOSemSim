@@ -57,6 +57,8 @@ If you would like to copy and paste source code, you should acknowledge the sour
 }
 ```
 
+You are welcome to use `GOSemSim` in the way you like, but please cite it and give it the proper credit. I hope you can understand.
+
 
 ## Bugs/Feature requests ##
 
