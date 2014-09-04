@@ -35,16 +35,16 @@ Find out more at [http://www.bioconductor.org/packages/release/bioc/html/GOSemSi
 
 ## Proper use of GOSemSim ##
 
-I am very glad that many people find GOSemSim very useful and the [GOSemSim](http://bioinformatics.oxfordjournals.org/content/26/7/976.full) has been cited by 114 (by google scholar, Aug, 2014). 
+I am very glad that many people find GOSemSim useful and [GOSemSim](http://bioinformatics.oxfordjournals.org/content/26/7/976.full) has been cited by 114 (by google scholar, Aug, 2014). 
 
 There are two R packages [BiSEp](http://cran.r-project.org/web/packages/BiSEp/index.html) and [tRanslatome](http://www.bioconductor.org/packages/release/bioc/html/tRanslatome.html) depend on `GOSemSim` and three R packages [clusterProfiler](http://www.bioconductor.org/packages/release/bioc/html/clusterProfiler.html), [DOSE](http://www.bioconductor.org/packages/release/bioc/html/DOSE.html) and [Rcpi](http://www.bioconductor.org/packages/release/bioc/html/Rcpi.html) import `GOSemSim`.
 
 [SemDist](http://www.bioconductor.org/packages/devel/bioc/html/SemDist.html) package copy some of the source code from `GOSemSim` with acknowledging within source code and document.
 
-[ppiPre](http://cran.r-project.org/web/packages/ppiPre/index.html) package copy many source code from `GOSemSim` without any acknowledgement in souce code or document and did not cited `GOSemSim` in the [publication](http://www.biomedcentral.com/1752-0509/7/S2/S8). This violates the restriction of open source license.
+[ppiPre](http://cran.r-project.org/web/packages/ppiPre/index.html) package copy many source code from `GOSemSim` without any acknowledgement in souce code or document and did not cited `GOSemSim` in their [publication](http://www.biomedcentral.com/1752-0509/7/S2/S8). This violates the restriction of open source license.
 
-For R developers, if you found functions provided in `GOSemSim` useful, please depend or import `GOSemSim`.
-If you would like to copy and paste source code, you should acknowledge the source code was copied/derived from `GOSemSim` authored by Guangchuang Yu <guangchuangyu@gmail.com> and also includes the following reference in the man files for functions that copied/derived from `GOSemSim`:
+For R developers, if you found functions provided in `GOSemSim` useful, please depends or imports `GOSemSim`.
+If you would like to copy and paste source code, you should acknowledge the source code was copied/derived from `GOSemSim` authored by Guangchuang Yu <guangchuangyu@gmail.com> within source code, add `GOSemSim` in Suggests field and also includes the following reference in the man files for functions that copied/derived from `GOSemSim` and cited in vignettes.
 
 ```
 \references{
