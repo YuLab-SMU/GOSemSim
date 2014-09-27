@@ -3,7 +3,8 @@
 \alias{termSim}
 \title{termSim}
 \usage{
-termSim(t1, t2, method = "Wang", organism = "human", ont)
+termSim(t1, t2, method = c("Wang", "Resnik", "Rel", "Jiang", "Lin"),
+  organism = "human", ont = "BP")
 }
 \arguments{
 \item{t1}{term vector}
@@ -12,7 +13,7 @@ termSim(t1, t2, method = "Wang", organism = "human", ont)
 
 \item{method}{one of "Wang", "Resnik", "Rel", "Jiang", and "Lin".}
 
-\item{organism}{only "human" supported}
+\item{organism}{about 20 species supported, please refer to the vignettes}
 
 \item{ont}{ontology}
 }

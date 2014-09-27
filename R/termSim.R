@@ -7,7 +7,7 @@
 ##'@param t1 term vector
 ##'@param t2 term vector
 ##'@param method one of "Wang", "Resnik", "Rel", "Jiang", and "Lin".
-##'@param organism only "human" supported for "Wang" method
+##'@param organism about 20 species supported, please refer to the vignettes
 ##'@param ont ontology
 ##'@return score matrix
 ##' @export

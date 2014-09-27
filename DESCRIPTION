@@ -1,7 +1,7 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-Version: 1.23.1
+Version: 1.23.2
 Author: Guangchuang Yu
 Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
 Description: Implemented five methods proposed by Resnik, Schlicker,
@@ -11,8 +11,7 @@ Description: Implemented five methods proposed by Resnik, Schlicker,
     strain K12 and Sakai, Fly, Gondii, Human, Malaria, Mouse, Pig, Rhesus,
     Rat, Worm, Xenopus, Yeast, and Zebrafish.
 Depends:
-    R (>= 3.0.0),
-    Rcpp (>= 0.11)
+    R (>= 3.0.0)
 LinkingTo: Rcpp
 Imports:
     AnnotationDbi,
