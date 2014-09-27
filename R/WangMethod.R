@@ -54,7 +54,7 @@ getSV <- function(ID, ont) {
             return (sv)
         }
 
-        sv.name <- c(ID, getAncestors(ID, ont))
+        sv.name <- c(ID, getAncestors(ont)[[ID]])
         sv <- rep(NA, length(sv.name))
         names(sv) <- sv.name
         sv[ID] <- 1
