@@ -11,7 +11,8 @@ Description: Implemented five methods proposed by Resnik, Schlicker,
     strain K12 and Sakai, Fly, Gondii, Human, Malaria, Mouse, Pig, Rhesus,
     Rat, Worm, Xenopus, Yeast, and Zebrafish.
 Depends:
-    R (>= 3.0.0)
+    R (>= 3.0.0),
+    Rcpp (>= 0.11)
 LinkingTo: Rcpp
 Imports:
     AnnotationDbi,
