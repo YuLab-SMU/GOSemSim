@@ -51,7 +51,7 @@ getIC <- function(organism, ont) {
 ##' @importFrom GO.db GOMFANCESTOR
 ##' @importFrom GO.db GOBPANCESTOR
 ##' @importFrom GO.db GOCCANCESTOR
-getAncestors <- function(ID, ont) {
+getAncestors <- function(ont) {
     Ancestors <- switch(ont,
                         MF = "GOMFANCESTOR",
                         BP = "GOBPANCESTOR",
@@ -62,10 +62,7 @@ getAncestors <- function(ID, ont) {
         db <- "DO.db"
         require(db, character.only=TRUE)
     }
-    Ancestors <- eval(parse(text=Ancestors))
-    ## anc <- get(ID, Ancestors)
-    anc <- Ancestors[[ID]]
-    return (anc)
+    return (eval(parse(text=Ancestors)))
 }
 
 
@@ -86,25 +83,11 @@ infoContentMethod <- function(ID1,
                               ont="DO",
                               method,
                               organism="human") {
-    IC <- getIC(organism, ont)
-
-    ancestor1 <- getAncestors(ID1, ont)
-    ancestor2 <- getAncestors(ID2, ont)
-
-    if (is.null(ancestor1) || is.null(ancestor2) || is.na(ancestor1) || is.na(ancestor2))
-        return (NA)
-        
     ## IC is biased
     ## because the IC of a term is dependent of its children but not on its parents.
-
-    sim <- .Call("infoContentMethod_cpp",
-                 ID1, ID2,
-                 ancestor1, ancestor2,
-                 names(IC), IC,
-                 method, ont,
-                 package="GOSemSim"
-                 )
-    return (sim)
+    return ( infoContentMethod_cpp( ID1, ID2,
+                 AnnotationDbi::as.list(getAncestors(ont)[union(ID1,ID2)]), getIC(organism, ont),
+                 method, ont ) )
 }
 
 
@@ -134,8 +117,8 @@ infoContentMethod <- function(ID1,
 ##     if (ic1 == 0 || ic2 == 0)
 ##         return (NA)
 
-##     ancestor1 <- getAncestors(ID1, ont)
-##     ancestor2 <- getAncestors(ID2, ont)
+##     ancestor1 <- getAncestors(ont)[[ID1]]
+##     ancestor2 <- getAncestors(ont)[[ID2]]
 ##     if (ID1 == ID2) {
 ##         commonAncestor <- ID1
 ##     } else if (ID1 %in% ancestor2) {
