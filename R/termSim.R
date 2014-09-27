@@ -7,16 +7,18 @@
 ##'@param t1 term vector
 ##'@param t2 term vector
 ##'@param method one of "Wang", "Resnik", "Rel", "Jiang", and "Lin".
-##'@param organism only "human" supported
+##'@param organism only "human" supported for "Wang" method
 ##'@param ont ontology
 ##'@return score matrix
 ##' @export
 ##'@author Guangchuang Yu \url{http://ygc.name}
 termSim <- function(t1,
                     t2,
-                    method="Wang",
+                    method=c("Wang","Resnik","Rel","Jiang","Lin"),
                     organism="human",
-                    ont) {
+                    ont="BP") {
+
+    method <- match.arg(method)
 
     if (all(is.na(t1)) || all(is.na(t2)))
         return (NA)
@@ -26,30 +28,15 @@ termSim <- function(t1,
     t1 <- unique(t1)
     t2 <- unique(t2)
 
-    m <- length(t1)
-    n <- length(t2)
-    scores <- matrix(NA, nrow=m, ncol=n)
-    rownames(scores) <- t1
-    colnames(scores) <- t2
-
-    ICmethods <- c("Resnik", "Jiang", "Lin", "Rel")
-    ic = method %in% ICmethods
-
-    for( i in 1:m) {
-        for (j in 1:n) {
-                if (ic) {
-                    scores[i,j] <- infoContentMethod(t1[i],
-                                                     t2[j],
-                                                     ont=ont,
-                                                     method=method,
-                                                     organism=organism)
-                }
-                if (method == "Wang") {
-                    scores[i,j] <- wangMethod(t1[i],
-                                              t2[j],
-                                              ont=ont)
-                }
-        }
+    if ( method %in% c("Resnik", "Jiang", "Lin", "Rel") ) {
+      return ( infoContentMethod( t1, t2, ont=ont, method=method, organism=organism ) )
     }
-    return(scores)
+    else if ( method == "Wang" ) {
+      # FIXME vectorize inside wangMethod()
+      return ( matrix( mapply( wangMethod,
+                                rep( t1, length(t2) ),
+                                rep( t2, each=length(t1) ),
+                                MoreArgs = list( ont = ont ) ),
+                       dimnames = list( t1, t2 ), ncol=length(t2) ) )
+    }
 }
