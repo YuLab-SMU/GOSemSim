@@ -5,6 +5,7 @@
 ##' @param organism "human"
 ##' @param ont "DO"
 ##' @return NULL
+##' @importFrom Rcpp sourceCpp
 ##' @author Guangchuang Yu \url{http://ygc.name}
 loadICdata <- function(organism, ont) {
     if(!exists("ICEnv")) .initial()

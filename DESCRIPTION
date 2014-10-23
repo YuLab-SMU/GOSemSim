@@ -1,7 +1,7 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-Version: 1.25.0
+Version: 1.25.1
 Author: Guangchuang Yu
 Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
 Description: Implemented five methods proposed by Resnik, Schlicker,
@@ -23,7 +23,8 @@ Suggests:
     ChIPseeker,
     ReactomePA,
     BiocInstaller,
-    knitr
+    knitr,
+    Rcpp
 VignetteBuilder: knitr
 License: Artistic-2.0
 URL: https://github.com/GuangchuangYu/GOSemSim
