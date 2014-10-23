@@ -1,8 +1,8 @@
 citHeader("To cite GOSemSim in publications use:")
 
 citEntry(entry="ARTICLE",
-  author = "Guangchuang Yu, Fei Li, Yide Qin, Xiaochen Bo, Yibo Wu and Shengqi Wang.",
-  title = "GOSemSim: an R package for measuring semantic similarity among GO terms and gene products.",
+  author = "Guangchuang Yu, Fei Li, Yide Qin, Xiaochen Bo, Yibo Wu and Shengqi Wang",
+  title = "GOSemSim: an R package for measuring semantic similarity among GO terms and gene products",
   journal = "Bioinformatics",
   year = "2010",
   volume = "26",
