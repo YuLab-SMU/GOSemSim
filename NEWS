@@ -1,3 +1,7 @@
+CHANGES IN VERSION 1.25.2
+------------------------
+ o add BugReports URL <2014-12-17, Wed>
+
 CHANGES IN VERSION 1.25.1
 ------------------------
  o import Rcpp <2014-10-23, Thu>
