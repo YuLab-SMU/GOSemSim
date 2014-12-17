@@ -35,7 +35,7 @@ Find out more at [http://www.bioconductor.org/packages/release/bioc/html/GOSemSi
 
 ## Proper use of GOSemSim ##
 
-I am very glad that many people find GOSemSim useful and [GOSemSim](http://bioinformatics.oxfordjournals.org/content/26/7/976.full) has been cited by 114 (by google scholar, Aug, 2014). 
+I am very glad that many people find GOSemSim useful and [GOSemSim](http://bioinformatics.oxfordjournals.org/content/26/7/976.full) has been cited by 114 (by [google scholar](http://scholar.google.com/citations?view_op=view_citation&hl=en&user=DO5oG40AAAAJ&citation_for_view=DO5oG40AAAAJ:tuHXwOkdijsC), Aug, 2014). 
 
 There are two R packages [BiSEp](http://cran.r-project.org/web/packages/BiSEp/index.html) and [tRanslatome](http://www.bioconductor.org/packages/release/bioc/html/tRanslatome.html) depend on `GOSemSim` and three R packages [clusterProfiler](http://www.bioconductor.org/packages/release/bioc/html/clusterProfiler.html), [DOSE](http://www.bioconductor.org/packages/release/bioc/html/DOSE.html) and [Rcpi](http://www.bioconductor.org/packages/release/bioc/html/Rcpi.html) import `GOSemSim`.
 
