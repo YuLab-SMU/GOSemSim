@@ -1,89 +1,75 @@
-% \VignetteEngine{knitr}
 % \VignetteIndexEntry{An introduction to GOSemSim}
+% \VignetteEngine{knitr::knitr}
 % \VignettePackage{GOSemSim}
 
 % To compile this document, run the commands within R
-% require(knitr); knit2pdf("GOSemSim.Rnw")
+% R CMD Sweave --engine=knitr::knitr --pdf GOSemSim.Rnw
 
 \documentclass[12pt]{article}
-\usepackage[a4paper,left=3cm,top=2cm,bottom=3cm,right=3cm,ignoreheadfoot]{geometry}
-\pagestyle{empty}
-\usepackage[usenames,dvipsnames]{xcolor}
-\usepackage{helvet}
-\usepackage[titletoc]{appendix}
-\usepackage{tocloft}
 
-\setlength{\parindent}{0em}
-\setlength{\parskip}{.5em}
-
-\renewcommand{\familydefault}{\sfdefault}
-
-\newcommand{\Rcode}[1]{{\texttt{#1}}}
-\newcommand{\Robject}[1]{{\small\texttt{#1}}}
-\newcommand{\Rfunction}[1]{\Robject{#1}}
-\newcommand{\Rpackage}[1]{\textit{#1}}
-\newcommand{\Rparameter}[1]{\textit{#1}}
-\newcommand{\Rclass}[1]{\textit{#1}}
-\newcommand{\R}{\textsf{R}}
-
-\usepackage[
-  bookmarks,%
-  colorlinks,%
-  linktoc=section,%
-  linkcolor=RedViolet,%
-  citecolor=RedViolet,%
-  urlcolor=RedViolet,%
-  linkbordercolor={1 1 1},%
-  citebordercolor={1 1 1},%
-  urlbordercolor={1 1 1},%
-  raiselinks,%
-  plainpages,%
-  pdftex
-  ]{hyperref}
-
-
-\usepackage{cite}
-\renewcommand{\floatpagefraction}{0.9}
-
-\usepackage{sectsty}
-\sectionfont{\sffamily\bfseries\color{RoyalBlue}\sectionrule{0pt}{0pt}{-1ex}{1pt}}
-\subsectionfont{\sffamily\bfseries\color{RoyalBlue}}
-\subsubsectionfont{\sffamily\bfseries\color{RoyalBlue}}
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhead{}
-\fancyfoot{}
-\lfoot{}\cfoot{}\rfoot{}
-\renewcommand{\headrule}{}
-
-\usepackage{graphicx}
-%\usepackage{xstring}
-
-
-
-<<include=FALSE>>=
-library(GOSemSim)
-library(org.Hs.eg.db)
-library(GO.db)
-library(knitr)
-opts_chunk$set(tidy=TRUE,tidy.opts=list(keep.blank.line=FALSE, width.cutoff=50),out.truncate=80,out.lines=6,cache=TRUE,dev='pdf',include=TRUE,fig.width=6,fig.height=6,resolution=150)
+<<knitr, echo=FALSE, results="hide">>=
+library("knitr")
+opts_chunk$set(tidy         = FALSE, 
+               out.truncate = 80,
+               out.lines    = 6,
+               dev          = 'pdf',
+               include      = TRUE,
+               fig.width    = 6,
+               fig.height   = 6,
+               resolution   = 100,
+               message      = FALSE)
 @
 
-\newcommand{\fixme}[1]{{\textbf{Fixme:} \textit{\textcolor{blue}{#1}}}}
+<<style-Sweave, eval=TRUE, echo=FALSE, results="asis">>=
+BiocStyle::latex()
+@ 
+
+<<loadPKG, echo=FALSE>>=
+library(org.Hs.eg.db)
+library(GO.db)
+library(GOSemSim)
+@ 
 
 
-\title{\textsf{\textbf{GO-terms Semantic Similarity Measures}}}
-\author{Guangchuang Yu \\
-College of Life Science and Technology \\
-Jinan University, Guangzhou, China \\
-email: \texttt{guangchuangyu@gmail.com}}
+\author{Guangchuang Yu \\[1em]
+  \small{School of Public Health} \\
+  \small{The University of Hong Kong} \\
+  \small{\texttt{guangchuangyu@gmail.com}}
+}
+
+\title{GO-terms Semantic Similarity Measures}
 
 \begin{document}
+
 \maketitle
+
+\begin{center}
+  
+  \vspace{1em}
+  \textbf{\Biocpkg{GOSemSim} version:} \Sexpr{packageVersion("GOSemSim")}
+  \vspace{1em}
+  
+  \begin{tabular}{ | l | }
+    \hline
+    If you use \Biocpkg{GOSemSim} in published research, please cite: \\
+    \\
+    G Yu, F Li, Y Qin, X Bo, Y Wu, S Wang. \textbf{GOSemSim: an R package for} \\
+    \textbf{measuring semantic similarity among GO terms and gene products}. \\
+    \emph{Bioinformatics} 2010, 26(7):976-978. \\
+    \url{http://dx.doi.org/10.1093/bioinformatics/btq064} \\
+    \hline
+  \end{tabular}
+  
+\end{center}
+
 
 <<options,results='hide',echo=FALSE>>=
 options(digits=3, width=80, prompt=" ", continue=" ")
 @
+
+\newpage
+\tableofcontents
+\newpage
 
 \section{Introduction}
 
@@ -100,29 +86,19 @@ Lin  \cite{lin_information-theoretic_1998} and Schlicker  \cite{schlicker_new_20
 Wang  \cite{wang_new_2007} proposed a
 new method to measure the similarity based on the graph structure of
 GO. Each of these methods has its own advantages and
-weaknesses. \Rpackage{GOSemSim} package  \cite{yu2010} is developed to compute
+weaknesses. \Biocpkg{GOSemSim} package  \cite{yu2010} is developed to compute
 semantic similarity among GO terms, sets of GO terms, gene products,
 and gene clusters, providing both five methods mentioned above. I have
-developed another package, \Rpackage{DOSE}, for measuring semantic
+developed another package, \Biocpkg{DOSE}, for measuring semantic
 similarity among DO terms and gene products at disease perspective.
 \\
 
-To start with \Rpackage{GOSemSim} package, type following code below:
+To start with \Biocpkg{GOSemSim} package, type following code below:
 
 <<loading, eval=FALSE, results='hide'>>=
 library(GOSemSim)
 help(GOSemSim)
 @
-
-
-\section{Citation}
-
-Please cite the following articles when using
-\Rpackage{GOSemSim} \cite{yu2010}. \\
-\\
-G Yu, F Li, Y Qin, X Bo, Y Wu, S Wang. GOSemSim: an R package for
-measuring semantic similarity among GO terms and gene
-products. \textit{Bioinformatics}. 2010,26(7):976-978.\\
 
 
 \section{Semantic Similarity Measurement Based on GO}
@@ -176,31 +152,31 @@ sim_{Jiang}(t_1,t_2) = 1-\min(1, IC(t_1) + IC(t_2) - 2IC(MICA))
 $$
 
 
-At present, \Rpackage{GOSemSim} supports analysis
+At present, \Biocpkg{GOSemSim} supports analysis
 on many species. We used the following Bioconductor packages to
 calculate the information content.
 
 \begin{itemize}
-  \item org.At.tair.db    for \textit{Arabidopsis}
-  \item org.Ag.eg.db      for \textit{Anopheles}
-  \item org.Bt.eg.db      for \textit{Bovine}
-  \item org.Cf.eg.db      for \textit{Canine}
-  \item org.Gg.eg.db      for \textit{Chicken}
-  \item org.Pt.eg.db      for \textit{Chimp}
-  \item org.Sco.eg.db     for \textit{Coelicolor}
-  \item org.EcK12.eg.db   for \textit{E coli strain K12}
-  \item org.EcSakai.eg.db for \textit{E coli strain Sakai}
-  \item org.Dm.eg.db      for \textit{Fly}
-  \item org.Hs.eg.db      for \textit{Human}
-  \item org.Pf.plasmo.db  for \textit{Malaria}
-  \item org.Mm.eg.db      for \textit{Mouse}
-  \item org.Ss.eg.db      for \textit{Pig}
-  \item org.Rn.eg.db      for \textit{Rat}
-  \item org.Mmu.eg.db     for \textit{Rhesus}
-  \item org.Ce.eg.db      for \textit{Worm}
-  \item org.Xl.eg.db      for \textit{Xenopus}
-  \item org.Sc.sgd.db     for \textit{Yeast}
-  \item org.Dr.eg.db      for \textit{Zebrafish}
+  \item \Biocannopkg{org.At.tair.db}    for \textit{Arabidopsis}
+  \item \Biocannopkg{org.Ag.eg.db}      for \textit{Anopheles}
+  \item \Biocannopkg{org.Bt.eg.db}      for \textit{Bovine}
+  \item \Biocannopkg{org.Cf.eg.db}      for \textit{Canine}
+  \item \Biocannopkg{org.Gg.eg.db}      for \textit{Chicken}
+  \item \Biocannopkg{org.Pt.eg.db}      for \textit{Chimp}
+  \item \Biocannopkg{org.Sco.eg.db}     for \textit{Coelicolor}
+  \item \Biocannopkg{org.EcK12.eg.db}   for \textit{E coli strain K12}
+  \item \Biocannopkg{org.EcSakai.eg.db} for \textit{E coli strain Sakai}
+  \item \Biocannopkg{org.Dm.eg.db}      for \textit{Fly}
+  \item \Biocannopkg{org.Hs.eg.db}      for \textit{Human}
+  \item \Biocannopkg{org.Pf.plasmo.db}  for \textit{Malaria}
+  \item \Biocannopkg{org.Mm.eg.db}      for \textit{Mouse}
+  \item \Biocannopkg{org.Ss.eg.db}      for \textit{Pig}
+  \item \Biocannopkg{org.Rn.eg.db}      for \textit{Rat}
+  \item \Biocannopkg{org.Mmu.eg.db}     for \textit{Rhesus}
+  \item \Biocannopkg{org.Ce.eg.db}      for \textit{Worm}
+  \item \Biocannopkg{org.Xl.eg.db}      for \textit{Xenopus}
+  \item \Biocannopkg{org.Sc.sgd.db}     for \textit{Yeast}
+  \item \Biocannopkg{org.Dr.eg.db}      for \textit{Zebrafish}
 \end{itemize}
 
 The information content will update regularly.
@@ -246,7 +222,7 @@ similarity of two GO terms based on both the locations of these terms
 in the GO graph and their relations with their ancestor terms.
 
 \subsection{goSim and mgoSim function}
-In \Rpackage{GOSemSim}, we implemented all these IC-based and graph-based methods. \Rfunction{goSim} calculate semantic similarity between two GO terms, while \Rfunction{mgoSim}  calculate semantic similarity between two sets of GO terms.
+In \Biocpkg{GOSemSim}, we implemented all these IC-based and graph-based methods. \Rfunction{goSim} calculate semantic similarity between two GO terms, while \Rfunction{mgoSim}  calculate semantic similarity between two sets of GO terms.
 
 <<mgoSim>>=
 goSim("GO:0004022", "GO:0005515", ont="MF", measure="Wang")
@@ -257,7 +233,7 @@ mgoSim(go1, go2, ont="MF", measure="Wang", combine="BMA")
 @
 
 \section{Gene Semantic Similarity Measurement}
-On the basis of semantic similarity between GO terms, \Rpackage{GOSemSim} can
+On the basis of semantic similarity between GO terms, \Biocpkg{GOSemSim} can
 also compute semantic similarity among sets of GO terms, gene
 products, and gene clusters.
 
@@ -270,7 +246,7 @@ terms were also calculated by the same combine methods mentioned
 above.
 
 Suppose we have gene $g_1$ annotated by GO terms sets $GO_{1}=\{go_{11},go_{12} \cdots go_{1m}\}$
-and $g_2$ annotated by $GO_{2}=\{go_{21},go_{22} \cdots go_{2n}\}$, \Rpackage{GOSemSim} implemented four methods which called \Rfunction{max}, \Rfunction{avg}, \Rfunction{rcmax} and \Rfunction{BMA} to combine semantic similairty scores of multiple GO terms. 
+and $g_2$ annotated by $GO_{2}=\{go_{21},go_{22} \cdots go_{2n}\}$, \Biocpkg{GOSemSim} implemented four methods which called \Rfunction{max}, \Rfunction{avg}, \Rfunction{rcmax} and \Rfunction{BMA} to combine semantic similairty scores of multiple GO terms. 
 
 \subsection{Combine methods}
 \subsubsection{max}
@@ -305,7 +281,7 @@ sim_{BMA}(g_1, g_2) = \frac{\displaystyle\sum_{1=i}^m \max_{1 \le j
 $$
 
 \subsection{geneSim and mgeneSim}
-In \Rpackage{GOSemSim}, we implemented \Rfunction{geneSim} to calculate semantic similarity between two gene products, and \Rfunction{mgeneSim} to calculate semantic similarity among multiple gene products.
+In \Biocpkg{GOSemSim}, we implemented \Rfunction{geneSim} to calculate semantic similarity between two gene products, and \Rfunction{mgeneSim} to calculate semantic similarity among multiple gene products.
 <<mgeneSim>>=
 geneSim("241", "251", ont="MF", organism="human", measure="Wang", combine="BMA")
 mgeneSim(genes=c("835", "5261","241", "994"), 
@@ -332,8 +308,8 @@ mclusterSim(clusters, ont="MF", organism="human", measure="Wang", combine="BMA")
 
 We proposed a method for measuring functional
 similarity of microRNAs \cite{yu_new_2011}. This method was based on semantic similarity
-of microRNAs' target genes, and was calculated by \Rpackage{GOSemSim}. We
-further analyzed viral microRNAs using this method and compared significant KEGG pathways regulated by different viruses' microRNAs \cite{yu2011} using \Rpackage{clusterProfiler}  \cite{yu2012}.
+of microRNAs' target genes, and was calculated by \Biocpkg{GOSemSim}. We
+further analyzed viral microRNAs using this method and compared significant KEGG pathways regulated by different viruses' microRNAs \cite{yu2011} using \Biocpkg{clusterProfiler}  \cite{yu2012}.
 
 
 \section{Session Information}
@@ -344,7 +320,7 @@ The version number of R and packages loaded for generating the vignette were:
 toLatex(sessionInfo())
 @
 
-\bibliographystyle{unsrt}
+
 \bibliography{GOSemSim}
 \end{document}
 
