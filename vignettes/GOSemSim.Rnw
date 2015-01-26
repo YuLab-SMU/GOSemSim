@@ -34,7 +34,7 @@ library(GOSemSim)
 \author{Guangchuang Yu \\[1em]
   \small{School of Public Health} \\
   \small{The University of Hong Kong} \\
-  \small{\texttt{guangchuangyu@gmail.com}}
+  \small{\email{guangchuangyu@gmail.com}}
 }
 
 \title{GO-terms Semantic Similarity Measures}
