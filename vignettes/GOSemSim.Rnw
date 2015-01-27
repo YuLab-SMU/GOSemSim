@@ -314,7 +314,7 @@ further analyzed viral microRNAs using this method and compared significant KEGG
 
 \section{Session Information}
 
-The version number of R and packages loaded for generating the vignette were:
+Here is the output of \Rcode{sessionInfo()} on the system on which this document was compiled:
 
 <<sessInfo, results='asis', echo=FALSE>>=
 toLatex(sessionInfo())
