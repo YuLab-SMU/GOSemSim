@@ -21,12 +21,12 @@ Suggests:
     DOSE,
     clusterProfiler,
     org.Hs.eg.db,
-    BiocInstaller,
     knitr,
-    BiocStyle
+    BiocStyle,
+    BiocInstaller
 VignetteBuilder: knitr
 License: Artistic-2.0
 URL: https://github.com/GuangchuangYu/GOSemSim
 BugReports: https://github.com/GuangchuangYu/GOSemSim/issues
 Packaged: 2012-08-29 06:44:50 UTC; root
-biocViews: GO, Clustering, Pathways, Network
+biocViews: Annotation, GO, Clustering, Pathways, Network, Software
