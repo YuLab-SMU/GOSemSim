@@ -11,9 +11,9 @@ Guangchuang YU, School of Public Health, The University of Hong Kong [http://ygc
 Please cite the following article when using `GOSemSim`:
 
 ```
-Yu G, Li F, Qin Y, Bo X, Wu Y and Wang. S (2010). 
+Yu G, Li F, Qin Y, Bo X, Wu Y and Wang S. 
 GOSemSim: an R package for measuring semantic similarity among GO terms and gene products.
-Bioinformatics, 26(7), pp. 976-978. 
+Bioinformatics, 2010, 26(7):976-978. 
 ```
 
 URL: [http://bioinformatics.oxfordjournals.org/content/26/7/976.full](http://bioinformatics.oxfordjournals.org/content/26/7/976.full)
