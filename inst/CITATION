@@ -1,7 +1,7 @@
 citHeader("To cite GOSemSim in publications use:")
 
-citEntry(entry="ARTICLE",
-         title = "GOSemSim: an R package for measuring semantic similarity among GO terms and gene products",
+citEntry(entry  ="ARTICLE",
+         title  = "GOSemSim: an R package for measuring semantic similarity among GO terms and gene products",
          author = personList(
              as.person("Guangchuang Yu"),
              as.person("Fei Li"),
@@ -11,11 +11,12 @@ citEntry(entry="ARTICLE",
              as.person("Shengqi Wang")
              ),
          journal = "Bioinformatics",
-         year = "2010",
-         volume = "26",
-         number = "7",
-         pages = "976-978",
-         PMID = "20179076",
+         year    = "2010",
+         volume  = "26",
+         number  = "7",
+         pages   = "976-978",
+         PMID    = "20179076",
+         doi     = "10.1093/bioinformatics/btq064",
          textVersion = paste("Guangchuang Yu, Fei Li, Yide Qin, Xiaochen Bo, Yibo Wu and Shengqi Wang.",
              "GOSemSim: an R package for measuring semantic similarity among GO terms and gene products.",
              "Bioinformatics 2010 26(7):976-978")

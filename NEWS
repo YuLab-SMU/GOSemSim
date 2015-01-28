@@ -1,5 +1,6 @@
 CHANGES IN VERSION 1.25.3
 ------------------------
+ o add doi in CITATION <2015-01-28, Wed>
  o update vignette using BiocStyle <2015-01-26, Mon>
 
 CHANGES IN VERSION 1.25.2
