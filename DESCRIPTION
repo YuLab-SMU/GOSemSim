@@ -2,7 +2,14 @@ Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
 Version: 1.25.3
-Author: Guangchuang Yu
+Authors@R: c(person(given = "Guangchuang", family = "Yu",
+                    email = "guangchuangyu@gmail.com",
+		    role  = c("aut", "cre")),
+  	     person(given = "Alexey", family = "Stukalov",
+	            email = "astukalov@gmail.com",
+		    role  = "ctb"))
+Author: Guangchuang Yu <guangchuangyu@gmail.com> with contributions from
+        Alexey Stukalov.
 Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
 Description: Implemented five methods proposed by Resnik, Schlicker,
     Jiang, Lin and Wang respectively for estimating GO semantic
@@ -11,7 +18,7 @@ Description: Implemented five methods proposed by Resnik, Schlicker,
     strain K12 and Sakai, Fly, Gondii, Human, Malaria, Mouse, Pig, Rhesus,
     Rat, Worm, Xenopus, Yeast, and Zebrafish.
 Depends:
-    R (>= 3.0.0)
+    R (>= 3.1.0)
 LinkingTo: Rcpp
 Imports:
     Rcpp,
