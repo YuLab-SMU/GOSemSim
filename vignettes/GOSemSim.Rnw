@@ -89,7 +89,7 @@ GO. Each of these methods has its own advantages and
 weaknesses. \Biocpkg{GOSemSim} package  \cite{yu2010} is developed to compute
 semantic similarity among GO terms, sets of GO terms, gene products,
 and gene clusters, providing both five methods mentioned above. I have
-developed another package, \Biocpkg{DOSE}, for measuring semantic
+developed another package, \Biocpkg{DOSE} \cite{yu_dose_2015}, for measuring semantic
 similarity among DO terms and gene products at disease perspective.
 \\
 
@@ -311,6 +311,14 @@ similarity of microRNAs \cite{yu_new_2011}. This method was based on semantic si
 of microRNAs' target genes, and was calculated by \Biocpkg{GOSemSim}. We
 further analyzed viral microRNAs using this method and compared significant KEGG pathways regulated by different viruses' microRNAs \cite{yu2011} using \Biocpkg{clusterProfiler}  \cite{yu2012}.
 
+
+\section{GO enrichment analysis}
+
+GO enrichment analysis can be supported by our package \Biocpkg{clusterProfiler} \cite{yu2012}, which supports hypergeometric test and Gene Set Enrichment Analysis (GSEA). Enrichment results across different gene clusters can be compared using \Rfunction{compareCluster} function.
+
+\section{Disease Ontology Semantic and Enrichment analysis}
+
+Disease Ontology (DO) annotates human genes in the context of disease. DO is important annotation in translating molecular findings from high-throughput data to clinical relevance. \Biocpkg{DOSE} \cite{yu_dose_2015} supports semantic similarity computation among DO terms and genes. Enrichment analysis including hypergeometric model and GSEA are also implemented to support discovering disease associations of high-throughput biological data.
 
 \section{Session Information}
 
