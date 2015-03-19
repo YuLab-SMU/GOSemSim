@@ -320,6 +320,16 @@ GO enrichment analysis can be supported by our package \Biocpkg{clusterProfiler}
 
 Disease Ontology (DO) annotates human genes in the context of disease. DO is important annotation in translating molecular findings from high-throughput data to clinical relevance. \Biocpkg{DOSE} \cite{yu_dose_2015} supports semantic similarity computation among DO terms and genes. Enrichment analysis including hypergeometric model and GSEA are also implemented to support discovering disease associations of high-throughput biological data.
 
+
+\section{External documents}
+
+\begin{itemize}
+  \item \href{http://ygc.name/2014/11/23/proper-use-of-gosemsim/}{proper use of GOSemSim}
+\end{itemize}
+
+\section{Session Information}
+
+
 \section{Session Information}
 
 Here is the output of \Rcode{sessionInfo()} on the system on which this document was compiled:
