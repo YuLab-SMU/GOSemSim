@@ -55,9 +55,10 @@ If you would like to copy and paste source code, you should acknowledge the sour
   \url{http://bioinformatics.oxfordjournals.org/cgi/content/abstract/26/7/976}
   PMID: 20179076
   }
-
-Please also refer to my blog post: proper use of [GOSemSim](http://ygc.name/2014/11/23/proper-use-of-gosemsim/)
 ```
+
+Please also refer to my blog post: proper use of [GOSemSim](http://ygc.name/2014/11/23/proper-use-of-gosemsim/).
+
 
 You are welcome to use `GOSemSim` in the way you like, but please cite it and give it the proper credit. I hope you can understand.
 
