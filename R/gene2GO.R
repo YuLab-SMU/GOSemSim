@@ -38,7 +38,7 @@ loadGOMap_internal <- function(organism){
 
     ## loading annotation pakcage
     ## require(annoDb, character.only = TRUE)
-    requireNamespace(annoDb, quietly=TRUE)
+    requireNamespace(annoDb)
     
     gomap <- switch(organism,
                     anopheles    = "org.Ag.egGO",

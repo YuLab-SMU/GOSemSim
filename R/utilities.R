@@ -53,7 +53,7 @@ getSupported_Org <- function() {
     if (ont == "DO") {
         db <- "DO.db"
         ## require(db, character.only=TRUE)
-        requireNamespace(db, quietly=TRUE)
+        requireNamespace(db)
     }
     Parents <- eval(parse(text=Parents))
     return(Parents)
