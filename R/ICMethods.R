@@ -57,7 +57,7 @@ getAncestors <- function(ont) {
                         MF = "GOMFANCESTOR",
                         BP = "GOBPANCESTOR",
                         CC = "GOCCANCESTOR",
-                        DO = "DOANCESTOR"
+                        DO = "DO.db::DOANCESTOR"
                         )
     if (ont == "DO") {
         db <- "DO.db"

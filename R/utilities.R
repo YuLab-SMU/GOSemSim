@@ -48,11 +48,10 @@ getSupported_Org <- function() {
                       MF = "GOMFPARENTS",
                       BP = "GOBPPARENTS",
                       CC = "GOCCPARENTS",
-                      DO = "DOPARENTS"
+                      DO = "DO.db::DOPARENTS"
                       )
     if (ont == "DO") {
         db <- "DO.db"
-        ## require(db, character.only=TRUE)
         requireNamespace(db)
     }
     Parents <- eval(parse(text=Parents))
