@@ -63,6 +63,7 @@ loadGOMap_internal <- function(organism){
                     yeast        = "org.Sc.sgdGO",
                     zebrafish    = "org.Dr.egGO",
                     )
+    gomap <- paste0(annoDb, "::", gomap)
     gomap <- eval(parse(text=gomap))
     assign("gomap", gomap, envir=GOSemSimEnv)
     assign("gomap.flag", organism, envir=GOSemSimEnv)

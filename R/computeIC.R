@@ -100,7 +100,7 @@ rebuildAllICdata <- function() {
 install_dependent_db <- function() {
     ## require("BiocInstaller", character.only=TRUE)
     requireNamespace("BiocInstaller")
-    biocLite <- eval(parse(text="biocLite"))
+    biocLite <- eval(parse(text="BiocInstaller::biocLite"))
 
     species <- get("SupportedSpecies",envir=GOSemSimEnv)
     for (organism in species) {
