@@ -62,7 +62,7 @@ getAncestors <- function(ont) {
     if (ont == "DO") {
         db <- "DO.db"
         ## require(db, character.only=TRUE)
-        requireNamespace(db, quietly=TRUE)
+        requireNamespace(db)
     }
     return (eval(parse(text=Ancestors)))
 }

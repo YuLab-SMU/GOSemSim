@@ -99,14 +99,14 @@ rebuildAllICdata <- function() {
 
 install_dependent_db <- function() {
     ## require("BiocInstaller", character.only=TRUE)
-    requireNamespace("BiocInstaller", quietly=TRUE)
+    requireNamespace("BiocInstaller")
     biocLite <- eval(parse(text="biocLite"))
 
     species <- get("SupportedSpecies",envir=GOSemSimEnv)
     for (organism in species) {
         annoDb <- getDb(organism)
         ## if (!require(annoDb, character.only=TRUE)) {
-        if (! requireNamespace(annoDb, quietly=TRUE)) {
+        if (! requireNamespace(annoDb)) {
             biocLite(annoDb)
         }
     }
