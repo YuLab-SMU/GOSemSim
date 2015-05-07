@@ -57,10 +57,12 @@ If you would like to copy and paste source code, you should acknowledge the sour
   }
 ```
 
-Please also refer to my blog post: [proper use of GOSemSim](http://ygc.name/2014/11/23/proper-use-of-gosemsim/).
-
-
 You are welcome to use `GOSemSim` in the way you like, but please cite it and give it the proper credit. I hope you can understand.
+
+## External documents
+
++ [proper use of GOSemSim](http://ygc.name/2014/11/23/proper-use-of-gosemsim/)
++ [using GOSemSim to rank proteins obtained by co-IP](http://ygc.name/2015/05/04/using-gosemsim-to-rank-proteins-obtained-by-co-ip/)
 
 
 ## Bugs/Feature requests ##
