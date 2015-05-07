@@ -324,11 +324,9 @@ Disease Ontology (DO) annotates human genes in the context of disease. DO is imp
 \section{External documents}
 
 \begin{itemize}
-  \item \href{http://ygc.name/2014/11/23/proper-use-of-gosemsim/}{proper use of GOSemSim}
+    \item \href{http://ygc.name/2014/11/23/proper-use-of-gosemsim/}{proper use of GOSemSim}
+    \item \href{http://ygc.name/2015/05/04/using-gosemsim-to-rank-proteins-obtained-by-co-ip/}{using GOSemSim to rank proteins obtained by co-IP}
 \end{itemize}
-
-\section{Session Information}
-
 
 \section{Session Information}
 
