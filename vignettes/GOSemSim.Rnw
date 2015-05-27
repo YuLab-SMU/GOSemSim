@@ -173,7 +173,7 @@ calculate the information content.
   \item \Biocannopkg{org.Ss.eg.db}      for \textit{Pig}
   \item \Biocannopkg{org.Rn.eg.db}      for \textit{Rat}
   \item \Biocannopkg{org.Mmu.eg.db}     for \textit{Rhesus}
-  \item \Biocannopkg{org.Ce.eg.db}      for \textit{Worm}
+  \item \Biocannopkg{org.Ce.eg.db}      for \textit{Celegans}
   \item \Biocannopkg{org.Xl.eg.db}      for \textit{Xenopus}
   \item \Biocannopkg{org.Sc.sgd.db}     for \textit{Yeast}
   \item \Biocannopkg{org.Dr.eg.db}      for \textit{Zebrafish}
