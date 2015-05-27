@@ -7,6 +7,11 @@
 ##' @export
 ##' @author Yu Guangchuang
 getDb <- function(organism) {
+    if (organism == "worm") {
+        organism = "celegans"
+        warning("'worm' is deprecated, please use 'celegans' instead...")
+    }
+    
     annoDb <- switch(organism,
                      anopheles   = "org.Ag.eg.db",
                      arabidopsis = "org.At.tair.db",
