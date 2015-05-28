@@ -19,7 +19,8 @@
                                  "rat",
                                  "rhesus",
                                  "coelicolor",
-                                 "worm",
+                                 "worm", ## remove in future
+                                 "celegans",
                                  "xenopus",
                                  "yeast",
                                  "zebrafish"),
