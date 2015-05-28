@@ -19,7 +19,6 @@
                                  "rat",
                                  "rhesus",
                                  "coelicolor",
-                                 "worm", ## remove in future
                                  "celegans",
                                  "xenopus",
                                  "yeast",
@@ -37,9 +36,14 @@
 ##' @author Yu Guangchuang
 getSupported_Org <- function() {
     if (!exists("GOSemSimEnv")) .initial()
+    if (organism == "worm") {
+        organism = "celegans"
+        warning("'worm' is deprecated, please use 'celegans' instead...")
+    }
     supported_Org <- get("SupportedSpecies", envir=GOSemSimEnv)
     return(supported_Org)
 }
+
 
 ##' @importFrom GO.db GOMFPARENTS
 ##' @importFrom GO.db GOBPPARENTS
