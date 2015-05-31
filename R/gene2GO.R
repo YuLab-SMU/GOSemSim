@@ -17,6 +17,7 @@ getDb <- function(organism) {
                      arabidopsis = "org.At.tair.db",
                      bovine      = "org.Bt.eg.db",
                      canine      = "org.Cf.eg.db",
+                     celegans    = "org.Ce.eg.db",
                      chicken     = "org.Gg.eg.db",
                      chimp       = "org.Pt.eg.db",
                      coelicolor  = "org.Sco.eg.db", 
@@ -30,7 +31,6 @@ getDb <- function(organism) {
                      pig         = "org.Ss.eg.db",
                      rat         = "org.Rn.eg.db",
                      rhesus      = "org.Mmu.eg.db",
-                     celegans    = "org.Ce.eg.db",
                      xenopus     = "org.Xl.eg.db",
                      yeast       = "org.Sc.sgd.db",
                      zebrafish   = "org.Dr.eg.db",
@@ -50,6 +50,7 @@ loadGOMap_internal <- function(organism){
                     arabidopsis  = "org.At.tairGO",
                     bovine       = "org.Bt.egGO",
                     canine       = "org.Cf.egGO",
+                    celegans     = "org.Ce.egGO",
                     chicken      = "org.Gg.egGO",
                     chimp        = "org.Pt.egGO",
                     coelicolor   = "org.Sco.egGO", 
@@ -63,7 +64,6 @@ loadGOMap_internal <- function(organism){
                     pig          = "org.Ss.egGO",
                     rat          = "org.Rn.egGO",
                     rhesus       = "org.Mmu.egGO",
-                    celegans     = "org.Ce.egGO",
                     xenopus      = "org.Xl.egGO",
                     yeast        = "org.Sc.sgdGO",
                     zebrafish    = "org.Dr.egGO",
@@ -97,6 +97,11 @@ loadGOMap <- function(organism) {
 
 ##' @importMethodsFrom AnnotationDbi get
 gene2GO <- function(gene, organism, ont, dropCodes) {
+    if (organism == "worm") {
+        organism = "celegans"
+        warning("'worm' is deprecated, please use 'celegans' instead...")
+    }
+    
     gene <- as.character(gene)
     loadGOMap(organism)
     gomap <- get("gomap", envir=GOSemSimEnv)
