@@ -2,15 +2,15 @@ CHANGES IN VERSION 1.27.4
 ------------------------
  o convert vignette from Rnw to Rmd <2015-06-23, Tue>
 
-CHANGES IN VERSION 1.25.3
+CHANGES IN VERSION 1.27.3
 ------------------------
  o bug fixed in getSupported_Org <2015-05-31, Sun>
  
-CHANGES IN VERSION 1.25.2
+CHANGES IN VERSION 1.27.2
 ------------------------
  o deprecate 'worm' and use 'celegans' instead.
  
-CHANGES IN VERSION 1.25.1
+CHANGES IN VERSION 1.27.1
 ------------------------
  o add external documents <2015-05-07, Thu>
  
