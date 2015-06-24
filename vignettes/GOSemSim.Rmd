@@ -256,7 +256,7 @@ GO enrichment analysis can be supported by our package `r Biocpkg("clusterProfil
 # Disease Ontology Semantic and Enrichment analysis
 
 Disease Ontology (DO) annotates human genes in the context of disease. DO is important annotation in translating molecular findings from high-throughput data to clinical relevance. 
-`r Biocpkg("DOSE")[@yu_dose_2015] supports semantic similarity computation among DO terms and genes. 
+`r Biocpkg("DOSE")`[@yu_dose_2015] supports semantic similarity computation among DO terms and genes. 
 Enrichment analysis including hypergeometric model and GSEA are also implemented to support discovering disease associations of high-throughput biological data.
 
 
