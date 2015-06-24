@@ -226,7 +226,7 @@ mgeneSim(genes=c("835", "5261","241", "994"),
 ```
 
 ## clusterSim and mclusterSim
-We also implemented __*clusterSim*__ for calculating semantic similarity between two gene clusters, 
+We also implemented __*clusterSim*__ for calculating semantic similarity between two gene clusters
 and __*mclusterSim*__ for calculating semantic similarities among multiple gene clusters.
 
 ```{r}
@@ -264,6 +264,10 @@ Enrichment analysis including hypergeometric model and GSEA are also implemented
 
 + [proper use of GOSemSim](http://ygc.name/2014/11/23/proper-use-of-gosemsim/)
 + [using GOSemSim to rank proteins obtained by co-IP](http://ygc.name/2015/05/04/using-gosemsim-to-rank-proteins-obtained-by-co-ip/)
+
+# Bugs/Feature Requests
+
+If you have any, [let me know](https://github.com/GuangchuangYu/GOSemSim/issues). 
 
 # Session Information
 
