@@ -1,0 +1,281 @@
+---
+title: "GO-terms Semantic Similarity Measures"
+author: "\\
+
+	Guangchuang Yu (<guangchuangyu@gmail.com>)\\
+
+        School of Public Health, The University of Hong Kong"
+date: "`r Sys.Date()`"
+bibliography: GOSemSim.bib
+csl: nature.csl
+output: 
+  BiocStyle::html_document:
+    toc: true
+  BiocStyle::pdf_document:
+    toc: true
+vignette: >
+  % \VignetteIndexEntry{An introduction to GOSemSim}
+  % \VignetteEngine{knitr::rmarkdown}
+  % \usepackage[utf8]{inputenc}
+---
+
+```{r style, echo=FALSE, results="asis", message=FALSE}
+BiocStyle::markdown()
+knitr::opts_chunk$set(tidy = FALSE,
+                      warning = FALSE,
+                      message = FALSE)
+```
+
+```{r echo=FALSE, results="hide", message=FALSE}
+library(org.Hs.eg.db)
+library(GO.db)
+library(GOSemSim)
+```
+
+# Citation
+
+If you use `r Biocpkg("GOSemSim")` in published research, please cite:
+
+```
+G Yu, F Li, Y Qin, X Bo, Y Wu, S Wang. 
+GOSemSim: an R package for measuring semantic similarity among GO terms and gene products.
+Bioinformatics 2010, 26(7):976-978.
+```
+
+URL: [http://dx.doi.org/10.1093/bioinformatics/btq064](http://dx.doi.org/10.1093/bioinformatics/btq064)
+
+# Introduction
+
+Functional similarity of gene products can be estimated by controlled
+biological vocabularies, such as Gene Ontology (GO). GO comprises of
+three orthogonal ontologies, i.e. molecular function (MF), biological
+process (BP), and cellular component (CC).
+
+
+Four methods have been presented to determine the semantic similarity
+of two GO terms based on the annotation statistics of their common
+ancestor terms Resnik[@philip_semantic_1999], Jiang[@jiang_semantic_1997],
+Lin[@lin_information-theoretic_1998] and Schlicker[@schlicker_new_2006]. Wang[@wang_new_2007] 
+proposed a method to measure the similarity based on the graph structure of
+GO. Each of these methods has its own advantages and
+weaknesses. `r Biocpkg("GOSemSim")` package[@yu2010] is developed to compute
+semantic similarity among GO terms, sets of GO terms, gene products,
+and gene clusters, providing both five methods mentioned above. We have
+developed another package, `r Biocpkg("DOSE")`[@yu_dose_2015], for measuring semantic
+similarity among Disease Ontology (DO) terms and gene products at disease perspective.
+
+
+To start with `r Biocpkg("GOSemSim")` package, type following code below:
+
+```{r eval=FALSE, results='hide'}
+library(GOSemSim)
+help(GOSemSim)
+```
+
+
+# Semantic Similarity Measurement Based on GO
+
+## Information content-based methods
+
+Four methods proposed by Resnik[@philip_semantic_1999],
+Jiang[@jiang_semantic_1997], Lin[@lin_information-theoretic_1998]
+and Schlicker[@schlicker_new_2006] are information content (IC) based, which
+depend on the frequencies of two GO terms involved and that of their
+closest common ancestor term in a specific corpus of GO
+annotations. The information content of a GO term is computed by the
+negative log probability of the term occurring in GO corpus. A rarely used term contains a
+greater amount of information.
+
+The frequency of a term t is defined as:
+$p(t) = \frac{n_{t'}}{N} | t' \in \left\{t, \; children\: of\: t \right\}$
+
+where $n_{t'}$ is the number of term __*t'*__, and __*N*__ is the total number of terms in GO corpus.
+
+Thus the information content is defined as:
+$IC(t) = -\log(p(t))$
+
+As GO allow multiple parents for each concept, two terms can share
+parents by multiple paths. IC-based methods calculate similarity of two GO terms based on the information content of their closest common ancestor term, which was also called most informative information ancestor (MICA).
+
+### Resnik method
+
+The Resnik method is defined as:
+$sim_{Resnik}(t_1,t_2) = IC(MICA)$
+
+### Lin method
+
+The Lin method is defined as:
+$sim_{Lin}(t_1,t_2) = \frac{2IC(MICA)}{IC(t_1)+IC(t_2)}$
+
+### Rel method
+
+The Relevance method, which was proposed by Schlicker, combine Resnik's and Lin's method 
+and is defined as:
+$sim_{Rel}(t_1,t_2) = \frac{2IC(MICA)(1-p(MICA))}{IC(t_1)+IC(t_2)}$
+
+### Jiang method
+
+The Jiang and Conrath's method is defined as:
+$sim_{Jiang}(t_1,t_2) = 1-\min(1, IC(t_1) + IC(t_2) - 2IC(MICA))$
+
+At present, `r Biocpkg("GOSemSim")` supports about 20 species internally.
+We used the following Bioconductor packages to calculate the information content.
+
++ `r Biocannopkg("org.At.tair.db")`    for __Arabidopsis__
++ `r Biocannopkg("org.Ag.eg.db")`      for __Anopheles__
++ `r Biocannopkg("org.Bt.eg.db")`      for __Bovine__
++ `r Biocannopkg("org.Cf.eg.db")`      for __Canine__
++ `r Biocannopkg("org.Gg.eg.db")`      for __Chicken__
++ `r Biocannopkg("org.Pt.eg.db")`      for __Chimp__
++ `r Biocannopkg("org.Sco.eg.db")`     for __Coelicolor__
++ `r Biocannopkg("org.EcK12.eg.db")`   for __E coli strain K12__
++ `r Biocannopkg("org.EcSakai.eg.db")` for __E coli strain Sakai__
++ `r Biocannopkg("org.Dm.eg.db")`      for __Fly__
++ `r Biocannopkg("org.Hs.eg.db")`      for __Human__
++ `r Biocannopkg("org.Pf.plasmo.db")`  for __Malaria__
++ `r Biocannopkg("org.Mm.eg.db")`      for __Mouse__
++ `r Biocannopkg("org.Ss.eg.db")`      for __Pig__
++ `r Biocannopkg("org.Rn.eg.db")`      for __Rat__
++ `r Biocannopkg("org.Mmu.eg.db")`     for __Rhesus__
++ `r Biocannopkg("org.Ce.eg.db")`      for __Celegans__
++ `r Biocannopkg("org.Xl.eg.db")`      for __Xenopus__
++ `r Biocannopkg("org.Sc.sgd.db")`     for __Yeast__
++ `r Biocannopkg("org.Dr.eg.db")`      for __Zebrafish__
+
+
+The information content will update regularly.
+
+## Graph-based method
+Graph-based methods using the topology of GO graph structure to
+compute semantic similarity. Formally, a GO term A can be represented
+as $DAG_{A}=(A,T_{A},E_{A})$ where $T_{A}$ is the set of GO terms in
+$DAG_{A}$, including term A and all of its ancestor terms in the GO
+graph, and $E_{A}$ is the set of edges connecting the GO terms in
+$DAG_{A}$.
+
+### Wang method
+To encode the semantic of a GO term in a measurable format to enable a quantitative comparison, Wang[@wang_new_2007] firstly defined the semantic value of term A as the aggregate contribution of all terms in $DAG_{A}$ to the semantics of term A, terms closer to term A in $DAG_{A}$ contribute more to its semantics. Thus, defined the contribution of a GO term __*t*__ to the semantic of GO term A as the S-value of GO term __*t*__ related to term A. For any of term __*t*__ in $DAG_{A}$, its S-value related to term A, $S_{A}(\textit{t})$ is defined as:
+$\left\{\begin{array}{l} S_{A}(A)=1 \\ S_{A}(\textit{t})=\max\{w_{e} \times S_{A}(\textit{t}') | \textit{t}' \in children \: of(\textit{t}) \} \; if \: \textit{t} \ne A \end{array} \right.$
+
+where $w_{e}$ is the semantic contribution factor for edge $e \in E_{A}$ linking term __*t*__ with its child term __*t'*__. 
+Term A contributes to its own is defined as one. After obtaining the S-values for all terms in $DAG_{A}$, 
+the semantic value of DO term A, SV(A), is calculated as:
+
+$SV(A)=\displaystyle\sum_{t \in T_{A}} S_{A}(t)$
+
+Thus given two GO terms A and B, the semantic similarity between these two terms is defined as:
+
+$sim_{Wang}(A, B) = \frac{\displaystyle\sum_{t \in T_{A} \cap T_{B}}{S_{A}(t) + S_{B}(t)}}{SV(A) + SV(B)}$
+
+where $S_{A}(\textit{t})$ is the S-value of GO term __*t*__ related to term A 
+and $S_{B}(\textit{t})$ is the S-value of GO term __*t*__ related to term B.
+
+This method proposed by Wang[@wang_new_2007] determines the semantic
+similarity of two GO terms based on both the locations of these terms
+in the GO graph and their relations with their ancestor terms.
+
+## goSim and mgoSim function
+In `r Biocpkg("GOSemSim")`, we implemented all these IC-based and graph-based methods. __*goSim*__ function calculates semantic similarity between two GO terms, while __*mgoSim*__ function calculates semantic similarity between two sets of GO terms.
+
+```{r}
+goSim("GO:0004022", "GO:0005515", ont="MF", measure="Wang")
+go1 = c("GO:0004022","GO:0004024","GO:0004174")
+go2 = c("GO:0009055","GO:0005515")
+mgoSim(go1, go2, ont="MF", measure="Wang", combine=NULL)
+mgoSim(go1, go2, ont="MF", measure="Wang", combine="BMA")
+```
+
+# Gene Semantic Similarity Measurement
+
+On the basis of semantic similarity between GO terms, `r Biocpkg("GOSemSim")` can
+also compute semantic similarity among sets of GO terms, gene products, and gene clusters.
+
+Suppose we have gene $g_1$ annotated by GO terms sets $GO_{1}=\{go_{11},go_{12} \cdots go_{1m}\}$
+and $g_2$ annotated by $GO_{2}=\{go_{21},go_{22} \cdots go_{2n}\}$, `r Biocpkg("GOSemSim")` implemented four methods which called __*max*__, __*avg*__, __*rcmax*__, and __*BMA*__ to combine
+semantic similarity scores of multiple GO terms. The similarities
+among gene products and gene clusters which annotated by multiple GO
+terms were also calculated by the same combine methods mentioned
+above.
+
+
+## Combine methods
+### max
+
+The __*max*__ method calculates the maximum semantic similarity score over all pairs of GO terms between these two GO term sets.
+$sim_{max}(g\_1, g\_2) = \displaystyle\max_{1 \le i \le m, 1 \le j \le n} sim(go_{1i}, go_{2j})$
+
+### avg
+The __*avg*__ calculates the average semantic similarity score over all pairs of GO terms.
+$sim_{avg}(g_1, g_2) = \frac{\displaystyle\sum_{i=1}^m\sum_{j=1}^nsim(go_{1i}, go_{2j})}{m \times n}$
+
+### rcmax
+Similarities among two sets of GO terms form a matrix, the __*rcmax*__ method uses the maximum of RowScore and ColumnScore as the similarity, where RowScore (or ColumnScore) is the average of maximum similarity on each row (or column).
+$sim_{rcmax}(g_1, g_2) = \max(\frac{\displaystyle\sum_{i=1}^m \max_{1 \le j \le n} sim(go_{1i}, go_{2j})}{m},\frac{\displaystyle\sum_{j=1}^n \max_{1 \le i \le m} sim(go_{1i},go_{2j})}{n})$
+
+### BMA
+The __*BMA*__ method, used the best-match average strategy, calculates the average of all maximum similarities on each row and column, and is defined as:
+$sim_{BMA}(g_1, g_2) = \frac{\displaystyle\sum_{1=i}^m \max_{1 \le j \le n}sim(go_{1i}, go_{2j}) + \displaystyle\sum_{1=j}^n \max_{1 \le i \le m}sim(go_{1i}, go_{2j})} {m+n}$
+
+## geneSim and mgeneSim
+In `r Biocpkg("GOSemSim")`, we implemented __*geneSim*__ to calculate semantic similarity between two gene products, and __*mgeneSim*__ to calculate semantic similarity among multiple gene products.
+
+```{r}
+geneSim("241", "251", ont="MF", organism="human", measure="Wang", combine="BMA")
+mgeneSim(genes=c("835", "5261","241", "994"), 
+	 ont="MF", organism="human", measure="Wang",verbose=FALSE)
+```
+
+## clusterSim and mclusterSim
+We also implemented __*clusterSim*__ for calculating semantic similarity between two gene clusters
+and __*mclusterSim*__ for calculating semantic similarities among multiple gene clusters.
+
+```{r}
+gs1 <- c("835", "5261","241", "994", "514", "533")
+gs2 <- c("578","582", "400", "409", "411")
+clusterSim(gs1, gs2, ont="MF", organism="human", measure="Wang", combine="BMA")
+
+x <- org.Hs.egGO
+hsEG <- mappedkeys(x)
+set.seed <- 123
+clusters <- list(a=sample(hsEG, 20), b=sample(hsEG, 20), c=sample(hsEG, 20))
+mclusterSim(clusters, ont="MF", organism="human", measure="Wang", combine="BMA")
+```
+
+# Case Study
+
+We proposed a method for measuring functional similarity of microRNAs[@yu_new_2011]. 
+This method was based on semantic similarity of microRNAs' target genes, 
+and was calculated by `r Biocpkg("GOSemSim")`. 
+We further analyzed viral microRNAs using this method and compared significant KEGG pathways regulated by different viruses' microRNAs[@yu2011] using `r Biocpkg("clusterProfiler")`[@yu2012].
+
+
+# GO enrichment analysis
+
+GO enrichment analysis can be supported by our package `r Biocpkg("clusterProfiler")`[@yu2012], which supports hypergeometric test and Gene Set Enrichment Analysis (GSEA). Enrichment results across different gene clusters can be compared using __*compareCluster*__ function.
+
+# Disease Ontology Semantic and Enrichment analysis
+
+Disease Ontology (DO) annotates human genes in the context of disease. DO is important annotation in translating molecular findings from high-throughput data to clinical relevance. 
+`r Biocpkg("DOSE")`[@yu_dose_2015] supports semantic similarity computation among DO terms and genes. 
+Enrichment analysis including hypergeometric model and GSEA are also implemented to support discovering disease associations of high-throughput biological data.
+
+
+# External documents
+
++ [proper use of GOSemSim](http://ygc.name/2014/11/23/proper-use-of-gosemsim/)
++ [using GOSemSim to rank proteins obtained by co-IP](http://ygc.name/2015/05/04/using-gosemsim-to-rank-proteins-obtained-by-co-ip/)
+
+# Bugs/Feature Requests
+
+If you have any, [let me know](https://github.com/GuangchuangYu/GOSemSim/issues). 
+
+# Session Information
+
+Here is the output of `sessionInfo()` on the system on which this document was compiled:
+
+```{r echo=FALSE}
+sessionInfo()
+```
+
+# References
+
