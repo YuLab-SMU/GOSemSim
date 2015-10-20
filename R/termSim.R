@@ -18,6 +18,11 @@ termSim <- function(t1,
                     organism="human",
                     ont="BP") {
 
+    if (organism == "worm") {
+        organism = "celegans"
+        warning("'worm' is deprecated, please use 'celegans' instead...")
+    }
+    
     method <- match.arg(method)
 
     if (all(is.na(t1)) || all(is.na(t2)))
