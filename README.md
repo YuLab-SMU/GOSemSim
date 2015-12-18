@@ -36,16 +36,15 @@ To install:
  * the latest released version:
    `biocLite("GOSemSim")`
  * the latest development version:
-   `install_github("GuangchuangYu/GOSemSim")`
+   `devtools::install_github("GuangchuangYu/GOSemSim")`
 
 Find out more at [http://www.bioconductor.org/packages/release/bioc/html/GOSemSim.html](http://www.bioconductor.org/packages/release/bioc/html/GOSemSim.html) and check out the [vignette](http://www.bioconductor.org/packages/release/bioc/vignettes/clusterProfiler/inst/doc/GOSemSim.pdf).
 
 
 ## External documents
 
-+ [proper use of GOSemSim](http://ygc.name/2014/11/23/proper-use-of-gosemsim/)
-+ [using GOSemSim to rank proteins obtained by co-IP](http://ygc.name/2015/05/04/using-gosemsim-to-rank-proteins-obtained-by-co-ip/)
-+ [Proper use of GOSemSim](https://github.com/GuangchuangYu/GOSemSim/wiki/Proper-use-of-GOSemSim)
++ [proper use of GOSemSim](http://guangchuangyu.github.io/2014/11/proper-use-of-gosemsim/)
++ [using GOSemSim to rank proteins obtained by co-IP](http://guangchuangyu.github.io/2015/05/using-gosemsim-to-rank-proteins-obtained-by-co-ip/)
 
 ## Bugs/Feature requests ##
 
