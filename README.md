@@ -43,8 +43,7 @@ Find out more at [http://www.bioconductor.org/packages/release/bioc/html/GOSemSi
 
 ## External documents
 
-+ [proper use of GOSemSim](http://guangchuangyu.github.io/2014/11/proper-use-of-gosemsim/)
-+ [using GOSemSim to rank proteins obtained by co-IP](http://guangchuangyu.github.io/2015/05/using-gosemsim-to-rank-proteins-obtained-by-co-ip/)
+More documents can be found in <http://guangchuangyu.github.io/categories/gosemsim>.
 
 ## Bugs/Feature requests ##
 
