@@ -41,9 +41,15 @@ To install:
 Find out more at [http://www.bioconductor.org/packages/release/bioc/html/GOSemSim.html](http://www.bioconductor.org/packages/release/bioc/html/GOSemSim.html) and check out the [vignette](http://www.bioconductor.org/packages/release/bioc/vignettes/clusterProfiler/inst/doc/GOSemSim.pdf).
 
 
-## External documents
+## Documentation ##
 
-More documents can be found in <http://guangchuangyu.github.io/categories/gosemsim>.
+
+To view the vignette of `GOSemSim` installed in your system, start R and enter:
+```r
+vignette("GOSemSim", package="GOSemSim")
+```
+
+More documents can be found in <http://www.bioconductor.org/packages/clusterProfiler>, <http://www.bioconductor.org/packages/DOSE> and <http://guangchuangyu.github.io/tags/gosemsim>.
 
 ## Bugs/Feature requests ##
 
