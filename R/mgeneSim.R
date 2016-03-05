@@ -27,6 +27,8 @@
 ##'PMID: 20179076
 ##'
 ##'@keywords manip
+##' @importFrom utils setTxtProgressBar
+##' @importFrom utils txtProgressBar
 ##'@export
 ##'@examples
 ##'
