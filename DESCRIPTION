@@ -1,7 +1,7 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-Version: 1.29.0
+Version: 1.29.1
 Authors@R: c(person(given = "Guangchuang", family = "Yu",
                     email = "guangchuangyu@gmail.com",
 		    role  = c("aut", "cre")),
@@ -9,7 +9,7 @@ Authors@R: c(person(given = "Guangchuang", family = "Yu",
 	            email = "astukalov@gmail.com",
 		    role  = "ctb"))
 Author: Guangchuang Yu <guangchuangyu@gmail.com> with contributions from
-        Alexey Stukalov.
+    Alexey Stukalov.
 Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
 Description: Implemented five methods proposed by Resnik, Schlicker,
     Jiang, Lin and Wang respectively for estimating GO semantic
@@ -23,7 +23,8 @@ LinkingTo: Rcpp
 Imports:
     Rcpp,
     AnnotationDbi,
-    GO.db
+    GO.db,
+    utils
 Suggests:
     DOSE,
     clusterProfiler,
@@ -37,3 +38,4 @@ URL: https://github.com/GuangchuangYu/GOSemSim
 BugReports: https://github.com/GuangchuangYu/GOSemSim/issues
 Packaged: 2012-08-29 06:44:50 UTC; root
 biocViews: Annotation, GO, Clustering, Pathways, Network, Software
+RoxygenNote: 5.0.1
