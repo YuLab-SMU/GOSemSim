@@ -11,7 +11,7 @@ Implemented five methods proposed by Resnik, Schlicker, Jiang, Lin and Wang resp
 
 ## Authors ##
 
-Guangchuang YU, School of Public Health, The University of Hong Kong [http://ygc.name](http://ygc.name)
+Guangchuang YU, School of Public Health, The University of Hong Kong <http://guangchuangyu.github.io>
 
 ## Citation ##
 
