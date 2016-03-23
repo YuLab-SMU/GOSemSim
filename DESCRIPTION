@@ -7,6 +7,9 @@ Authors@R: c(person(given = "Guangchuang", family = "Yu",
 		    role  = c("aut", "cre")),
   	     person(given = "Alexey", family = "Stukalov",
 	            email = "astukalov@gmail.com",
+		    role  = "ctb"),
+	     person(given = "Chuanle", family = "Xiao",
+	     	    email = "xiaochuanle@126.com",
 		    role  = "ctb"))
 Author: Guangchuang Yu <guangchuangyu@gmail.com> with contributions from
     Alexey Stukalov.
