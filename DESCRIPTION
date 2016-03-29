@@ -12,7 +12,7 @@ Authors@R: c(person(given = "Guangchuang", family = "Yu",
 	     	    email = "xiaochuanle@126.com",
 		    role  = "ctb"))
 Author: Guangchuang Yu <guangchuangyu@gmail.com> with contributions from
-    Alexey Stukalov.
+    Alexey Stukalov and Chuanle Xiao.
 Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
 Description: Implemented five methods proposed by Resnik, Schlicker,
     Jiang, Lin and Wang respectively for estimating GO semantic
