@@ -6,6 +6,7 @@
 [![post](http://www.bioconductor.org/shields/posts/GOSemSim.svg)](https://support.bioconductor.org/t/GOSemSim/)
 [![commit](http://www.bioconductor.org/shields/commits/bioc/GOSemSim.svg)](http://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#svn_source)
 [![download](http://www.bioconductor.org/shields/downloads/GOSemSim.svg)](http://bioconductor.org/packages/stats/bioc/GOSemSim.html)
+[![gitter](https://img.shields.io/badge/GITTER-join%20chat-green.svg)](https://gitter.im/GuangchuangYu/Bioinformatics)
 
 Implemented five methods proposed by Resnik, Schlicker, Jiang, Lin and Wang respectively for estimating GO semantic similarities. Support many species, including Anopheles, Arabidopsis, Bovine, Canine, Chicken, Chimp, Coelicolor, E coli strain K12 and Sakai, Fly, Human, Malaria, Mouse, Pig, Rhesus, Rat, Worm, Xenopus, Yeast, and Zebrafish.
 
