@@ -1,3 +1,15 @@
+CHANGES IN VERSION 1.31.2
+------------------------
+ o https://github.com/Bioconductor-mirror/GOSemSim/commit/71c29280c560e0293569121aeeecb0ed7b37055a
+
+CHANGES IN VERSION 1.31.1
+------------------------
+ o https://github.com/Bioconductor-mirror/GOSemSim/commit/a829a50a017b90f08c41b5955df176dfad333d06
+
+CHANGES IN VERSION 1.30.0
+------------------------
+ o BioC 3.3 released <2016-05-05, Thu>
+
 CHANGES IN VERSION 1.29.2
 ------------------------
  o update IC data <2016-04-21, Mon>
