@@ -36,6 +36,7 @@ Suggests:
     BiocStyle,
     BiocInstaller
 VignetteBuilder: knitr
+ByteCompile: true
 License: Artistic-2.0
 URL: http://guangchuangyu.github.io/GOSemSim
 BugReports: https://github.com/GuangchuangYu/GOSemSim/issues
