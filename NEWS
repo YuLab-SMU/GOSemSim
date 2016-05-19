@@ -1,5 +1,6 @@
 CHANGES IN VERSION 1.31.2
 ------------------------
+ o use byte compiler <2016-05-18, Wed>
  o https://github.com/Bioconductor-mirror/GOSemSim/commit/71c29280c560e0293569121aeeecb0ed7b37055a
 
 CHANGES IN VERSION 1.31.1
