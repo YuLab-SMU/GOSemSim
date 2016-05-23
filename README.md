@@ -39,9 +39,6 @@ To install:
  * the latest development version:
    `devtools::install_github("GuangchuangYu/GOSemSim")`
 
-Find out more at [http://www.bioconductor.org/packages/release/bioc/html/GOSemSim.html](http://www.bioconductor.org/packages/release/bioc/html/GOSemSim.html) and check out the [vignette](http://www.bioconductor.org/packages/release/bioc/vignettes/clusterProfiler/inst/doc/GOSemSim.pdf).
-
-
 ## Documentation ##
 
 
@@ -50,7 +47,7 @@ To view the vignette of `GOSemSim` installed in your system, start R and enter:
 vignette("GOSemSim", package="GOSemSim")
 ```
 
-More documents can be found in <http://www.bioconductor.org/packages/clusterProfiler>, <http://www.bioconductor.org/packages/DOSE> and <http://guangchuangyu.github.io/tags/gosemsim>.
+More documents can be found in <http://guangchuangyu.github.io/GOSemSim>.
 
 ## Bugs/Feature requests ##
 
