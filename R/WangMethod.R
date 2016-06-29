@@ -10,9 +10,14 @@
 wangMethod <- function(ID1, ID2, ont="BP") {
     if (ID1 == ID2)
         return (sim=1)
+    if (ont == "DO") {
 
-    sv.a <- getSV(ID1, ont)
-    sv.b <- getSV(ID2, ont)
+    } else {
+        if (!exists(".GOSemSimEnv")) .initial()
+        rel_df <- get("godata", envir=.GOSemSimEnv)        
+    }
+    sv.a <- getSV(ID1, ont, rel_df)
+    sv.b <- getSV(ID2, ont, rel_df)
 
     if(all(is.na(sv.a)) || all(is.na(sv.b)))
         return (NA)
@@ -31,72 +36,43 @@ wangMethod <- function(ID1, ID2, ont="BP") {
     return(sim)
 }
 
-##' @importMethodsFrom AnnotationDbi exists
-##' @importMethodsFrom AnnotationDbi get
-getSV <- function(ID, ont) {
-    if (!exists("SemSimCache")) .initial()
-    if( exists(ID, envir=SemSimCache) ) {
+getSV <- function(ID, ont, rel_df, weight=NULL) {
+    if (!exists(".SemSimCache")) .initial()
+    if( exists(ID, envir=.SemSimCache) ) {
         sv <- get(ID, envir=SemSimCache)
-    } else {
-        Parents     <- .getParents(ont)
-        if ( !exists(ID, Parents))
-            return(NA)
-        
-        if (ont == "DO") {
-            topNode <- "DOID:4"
-        } else {
-            topNode <- "all"
-        }
-
-        if (ID == topNode) {
-            sv <- 1
-            names(sv) <- topNode
-            return (sv)
-        }
-
-        sv.name <- c(ID, getAncestors(ont)[[ID]])
-        sv <- rep(NA, length(sv.name))
-        names(sv) <- sv.name
-        sv[ID] <- 1
-        if(ont != "DO")
-            sv[topNode] <- 0
-
-        w <- c(0.8, 0.6, 0.7)
-        names(w) <- c("is_a", "part_of", "other")
-
-
-        pID <- ID
-        while(any(is.na(sv))) {
-            pp <- c()
-            for (i in seq_along(pID)) {
-                if (pID[i] != topNode) {
-                    j <- get(pID[i], Parents)
-                    idx <- which(is.na(sv[j]))
-                    if (length(idx)) {
-                        j <- j[idx]
-                        if (is.null(names(j)) || all(is.na(names(j))) ) {
-                            names(j) = "other"
-                        } else {
-                            names(j)[!names(j) %in% names(w)] = "other"
-                        }
-                        sv[j] = sv[pID[i]] * w[names(j)]
-                    }
-                }
-                pp <- c(pp, j)
-            }
-            pID <- unique(pp)
-            if (all(pID == topNode) || length(pID) == 0) {
-                sv <- sv[!is.na(sv)]
-                break
-            }
-        }
+        return(sv)
     }
 
-    if( ! exists(ID, envir=SemSimCache) ) {
+    if (is.null(weight)) {
+        weight <- c(0.8, 0.6, 0.7)
+        names(weight) <- c("is_a", "part_of", "other")
+    }
+    
+    rel_df <- rel_df[rel_df$Ontology == ont,]
+    rel_df$relationship[!rel_df$relationship %in% c("is_a", "part_of")] <- "other"
+    
+    id <- ID
+    sv <- 1
+    names(sv) <- id
+    allid <- ID
+
+    idx <- which(rel_df[,1] %in% id)
+    while (length(idx) != 0) {
+        p <- rel_df[idx,]
+        pid <- p$parent
+        allid <- c(allid, pid)
+        
+        sv <- c(sv, w[p$relationship]*sv[id])
+        names(sv) <- allid
+        idx <- which(rel_df[,1] %in% pid)
+    }
+
+    if( ! exists(ID, envir=.SemSimCache) ) {
         assign(ID,
                sv,
-               envir=SemSimCache)
+               envir=.SemSimCache)
     }
+
     return(sv)
 }
 

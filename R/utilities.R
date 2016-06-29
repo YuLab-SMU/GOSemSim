@@ -1,29 +1,34 @@
 .initial <- function() {
-    assign("GOSemSimEnv", new.env(),.GlobalEnv)
-    assign("SemSimCache", new.env(), .GlobalEnv)
-    assign("ICEnv", new.env(), .GlobalEnv)
+    assign(".GOSemSimEnv", new.env(),.GlobalEnv)
+    assign(".SemSimCache", new.env(), .GlobalEnv)
+    assign(".ICEnv", new.env(), .GlobalEnv)
+    tryCatch(utils::data(list="godata",
+                         package="GOSemSim"))
+    godata <- get("godata")
+    assign("godata", godata, envir = .GOSemSimEnv)
+
     assign("SupportedSpecies", c("anopheles",
-                                 "arabidopsis",
-                                 "bovine",
-                                 "canine",
-                                 "chicken",
-                                 "chimp",
-                                 "ecolik12",
-                                 "ecsakai",
-                                 "fly",
-                                 "gondii",
-                                 "human",
-                                 "malaria",
-                                 "mouse",
-                                 "pig",
-                                 "rat",
-                                 "rhesus",
-                                 "coelicolor",
-                                 "celegans",
+                                  "arabidopsis",
+                                  "bovine",
+                                  "canine",
+                                  "chicken",
+                                  "chimp",
+                                  "ecolik12",
+                                  "ecsakai",
+                                  "fly",
+                                  "gondii",
+                                  "human",
+                                  "malaria",
+                                  "mouse",
+                                  "pig",
+                                  "rat",
+                                  "rhesus",
+                                  "coelicolor",
+                                  "celegans",
                                  "xenopus",
                                  "yeast",
                                  "zebrafish"),
-           envir=GOSemSimEnv)
+           envir=.GOSemSimEnv)
     ## remove "coelicolor" as it is not supported by Bioconductor
 }
 
@@ -59,3 +64,25 @@ getSupported_Org <- function() {
     return(Parents)
 }
 
+prepare_relation_df <- function() {
+    gtb <- toTable(GOTERM)
+    gtb <- gtb[,c(2:4)]
+    gtb <- unique(gtb)
+
+    ptb <- lapply(c("BP", "MF", "CC"), function(ont) {
+        id <- with(gtb, go_id[Ontology == ont])
+        pid <- mget(id, .getParents(ont))
+        
+        n <- sapply(pid, length)
+        cid <- rep(names(pid), times=n)
+        relationship <- lapply(pid, names) %>% unlist
+        
+        data.frame(id=cid,
+                   relationship=relationship,
+                   parent=unlist(pid),
+                   stringsAsFactors = FALSE)
+    }) %>% do.call('rbind', .)
+    
+    godf <- merge(gtb, ptb, by.x="go_id", by.y="id")
+    return(godf)
+}
