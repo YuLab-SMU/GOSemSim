@@ -4,20 +4,15 @@
 \alias{clusterSim}
 \title{Semantic Similarity Between Two Gene Clusters}
 \usage{
-clusterSim(cluster1, cluster2, ont = "MF", organism = "human",
-  measure = "Wang", drop = "IEA", combine = "BMA")
+clusterSim(cluster1, cluster2, godata, measure = "Wang", drop = "IEA",
+  combine = "BMA")
 }
 \arguments{
 \item{cluster1}{A set of gene IDs.}
 
 \item{cluster2}{Another set of gene IDs.}
 
-\item{ont}{One of "MF", "BP", and "CC" subontologies.}
-
-\item{organism}{One of "anopheles", "arabidopsis", "bovine", "canine",
-"chicken", "chimp", "coelicolor", "ecolik12", "ecsakai", "fly", "gondii","human",
-"malaria", "mouse", "pig", "rat", "rhesus", "worm", "xenopus", "yeast" and
-"zebrafish".}
+\item{godata}{GOSemSimDATA object}
 
 \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 
@@ -36,11 +31,12 @@ Given two gene clusters, this function calculates semantic similarity between
 them.
 }
 \examples{
-
-## cluster1 <- c("835", "5261","241", "994")
-## cluster2 <- c("307", "308", "317", "321", "506", "540", "378", "388", "396")
-## clusterSim(cluster1, cluster2, ont="MF", organism="human", measure="Wang")
-
+\dontrun{
+    d <- godata('org.Hs.eg.db', ont="MF")
+    cluster1 <- c("835", "5261","241", "994")
+cluster2 <- c("307", "308", "317", "321", "506", "540", "378", "388", "396")
+clusterSim(cluster1, cluster2, godata=d, measure="Wang")
+}
 }
 \references{
 Yu et al. (2010) GOSemSim: an R package for measuring semantic

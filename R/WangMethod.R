@@ -1,3 +1,11 @@
+wangMethod <- function(t1, t2, ont) {
+    matrix( mapply( wangMethod_internal,
+                   rep( t1, length(t2) ),
+                   rep( t2, each=length(t1) ),
+                   MoreArgs = list( ont = ont ) ),
+           dimnames = list( t1, t2 ), ncol=length(t2) ) 
+}
+
 ##' Method Wang for semantic similarity measuring
 ##'
 ##'
@@ -7,15 +15,16 @@
 ##' @param ont Ontology
 ##' @return semantic similarity score
 ##' @author Guangchuang Yu \url{http://ygc.name}
-wangMethod <- function(ID1, ID2, ont="BP") {
+wangMethod_internal <- function(ID1, ID2, ont="BP") {
     if (ID1 == ID2)
         return (sim=1)
     if (ont == "DO") {
 
     } else {
         if (!exists(".GOSemSimEnv")) .initial()
-        rel_df <- get("godata", envir=.GOSemSimEnv)        
+        rel_df <- get("gotbl", envir=.GOSemSimEnv)        
     }
+    
     sv.a <- getSV(ID1, ont, rel_df)
     sv.b <- getSV(ID2, ont, rel_df)
 
@@ -39,7 +48,7 @@ wangMethod <- function(ID1, ID2, ont="BP") {
 getSV <- function(ID, ont, rel_df, weight=NULL) {
     if (!exists(".SemSimCache")) .initial()
     if( exists(ID, envir=.SemSimCache) ) {
-        sv <- get(ID, envir=SemSimCache)
+        sv <- get(ID, envir=.SemSimCache)
         return(sv)
     }
 
@@ -62,7 +71,7 @@ getSV <- function(ID, ont, rel_df, weight=NULL) {
         pid <- p$parent
         allid <- c(allid, pid)
         
-        sv <- c(sv, w[p$relationship]*sv[id])
+        sv <- c(sv, weight[p$relationship]*sv[id])
         names(sv) <- allid
         idx <- which(rel_df[,1] %in% pid)
     }

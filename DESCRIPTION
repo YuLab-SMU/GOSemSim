@@ -1,7 +1,7 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-Version: 1.31.2
+Version: 1.99.0
 Authors@R: c(person(given = "Guangchuang", family = "Yu",
                     email = "guangchuangyu@gmail.com",
 		    role  = c("aut", "cre")),
@@ -24,9 +24,9 @@ Depends:
     R (>= 3.3.0)
 LinkingTo: Rcpp
 Imports:
-    Rcpp,
     AnnotationDbi,
     GO.db,
+    methods,
     utils
 Suggests:
     DOSE,
