@@ -4,20 +4,15 @@
 \alias{geneSim}
 \title{Semantic Similarity Between two Genes}
 \usage{
-geneSim(gene1, gene2, ont = "MF", organism = "human", measure = "Wang",
-  drop = "IEA", combine = "BMA")
+geneSim(gene1, gene2, godata, measure = "Wang", drop = "IEA",
+  combine = "BMA")
 }
 \arguments{
 \item{gene1}{Entrez gene id.}
 
 \item{gene2}{Another entrez gene id.}
 
-\item{ont}{One of "MF", "BP", and "CC" subontologies.}
-
-\item{organism}{One of "anopheles", "arabidopsis", "bovine", "canine",
-"chicken", "chimp", "coelicolor", "ecolik12","ecsakai", "fly", "gondii","human",
-"malaria", "mouse", "pig", "rat","rhesus", "worm", "xenopus", "yeast" and
-"zebrafish".}
+\item{godata}{GOSemSimDATA object}
 
 \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 
@@ -36,9 +31,10 @@ Given two genes, this function will calculate the semantic similarity between
 them, and return their semantic similarity and the corresponding GO terms
 }
 \examples{
-
-geneSim("241", "251", ont="MF", organism="human", measure="Wang")
-
+\dontrun{
+    d <- godata('org.Hs.eg.db', ont="MF")
+geneSim("241", "251", godata=d, measure="Wang")
+}
 }
 \references{
 Yu et al. (2010) GOSemSim: an R package for measuring semantic

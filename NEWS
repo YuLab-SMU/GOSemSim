@@ -1,3 +1,8 @@
+CHANGES IN VERSION 1.99.0
+------------------------
+ o support all organisms that have OrgDb object <2016-07-05, Tue>
+ o optimize Wang method <2016-07-04, Mon>
+ 
 CHANGES IN VERSION 1.31.2
 ------------------------
  o use byte compiler <2016-05-18, Wed>

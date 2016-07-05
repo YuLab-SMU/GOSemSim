@@ -4,18 +4,16 @@
 \alias{infoContentMethod}
 \title{information content based methods}
 \usage{
-infoContentMethod(ID1, ID2, ont = "DO", method, organism = "human")
+infoContentMethod(ID1, ID2, method, godata)
 }
 \arguments{
 \item{ID1}{Ontology Term}
 
 \item{ID2}{Ontology Term}
 
-\item{ont}{Ontology}
-
 \item{method}{one of "Resnik", "Jiang", "Lin" and "Rel".}
 
-\item{organism}{one of supported species}
+\item{godata}{GOSemSimDATA object}
 }
 \value{
 semantic similarity score

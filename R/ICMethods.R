@@ -1,94 +1,24 @@
-##' Load Information Content data to DOSEEnv environment
-##'
-##'
-##' @title Load IC data
-##' @param organism "human"
-##' @param ont "DO"
-##' @return NULL
-##' @importFrom Rcpp sourceCpp
-##' @author Guangchuang Yu \url{http://ygc.name}
-loadICdata <- function(organism, ont) {
-    if(!exists("ICEnv")) .initial()
-    fname <- paste("Info_Contents",
-                   organism,
-                   ont,
-                   sep="_")
-    if (ont == "DO") {
-        tryCatch(utils::data(list=fname,
-                             package="DOSE"))
-    } else {
-        tryCatch(utils::data(list=fname,
-                             package="GOSemSim"))
-    }
-    IC <- get("IC")
-    org.ont.IC <- paste(organism,
-                        ont,
-                        "IC",
-                        sep="")
-    assign(eval(org.ont.IC),
-           IC,
-           envir=ICEnv)
-    rm (IC)
-}
-
-
-getIC <- function(organism, ont) {
-    if(!exists("ICEnv")) {
-        .initial()
-    }
-
-    org.ont.IC <- paste(organism,
-                        ont,
-                        "IC",
-                        sep="")
-
-    if(!exists(org.ont.IC, envir=ICEnv)) {
-        loadICdata(organism, ont)
-    }
-    IC <- get(org.ont.IC, envir=ICEnv)
-    return(IC)
-}
-
-##' @importFrom GO.db GOMFANCESTOR
-##' @importFrom GO.db GOBPANCESTOR
-##' @importFrom GO.db GOCCANCESTOR
-getAncestors <- function(ont) {
-    Ancestors <- switch(ont,
-                        MF = "GOMFANCESTOR",
-                        BP = "GOBPANCESTOR",
-                        CC = "GOCCANCESTOR",
-                        DO = "DO.db::DOANCESTOR"
-                        )
-    if (ont == "DO") {
-        db <- "DO.db"
-        ## require(db, character.only=TRUE)
-        requireNamespace(db)
-    }
-    return (eval(parse(text=Ancestors)))
-}
-
-
 ##' Information Content Based Methods for semantic similarity measuring
 ##'
 ##' implemented for methods proposed by Resnik, Jiang, Lin and Schlicker.
 ##' @title information content based methods
 ##' @param ID1 Ontology Term
 ##' @param ID2 Ontology Term
-##' @param ont Ontology
 ##' @param method one of "Resnik", "Jiang", "Lin" and "Rel".
-##' @param organism one of supported species
+##' @param godata GOSemSimDATA object
 ##' @return semantic similarity score
 ##' @useDynLib GOSemSim
 ##' @author Guangchuang Yu \url{http://ygc.name}
 infoContentMethod <- function(ID1,
                               ID2,
-                              ont="DO",
                               method,
-                              organism="human") {
+                              godata) {
     ## IC is biased
     ## because the IC of a term is dependent of its children but not on its parents.
+    ont <- godata@ont
+    IC <- godata@IC
     return ( infoContentMethod_cpp( ID1, ID2,
-                 AnnotationDbi::as.list(getAncestors(ont)[union(ID1,ID2)]), getIC(organism, ont),
+                 AnnotationDbi::as.list(getAncestors(ont)[union(ID1,ID2)]), IC,
                  method, ont ) )
 }
 

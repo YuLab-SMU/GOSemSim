@@ -5,12 +5,8 @@
 ##'
 ##'
 ##'@param clusters A list of gene clusters.
-##'@param ont One of "MF", "BP", and "CC" subontologies.
+##'@param godata GOSemSimDATA object
 ##'@param measure One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.
-##'@param organism One of "anopheles", "arabidopsis", "bovine", "canine",
-##'"chicken", "chimp", "coelicolor", "ecolik12", "ecsakai", "fly",
-##'"gondii","human","malaria", "mouse", "pig", "rat", "rhesus", "worm", "xenopus",
-##'"yeast" and "zebrafish".
 ##'@param drop A set of evidence codes based on which certain annotations are
 ##'dropped. Use NULL to keep all GO annotations.
 ##'@param combine One of "max", "average", "rcmax", "BMA" methods, for combining
@@ -28,18 +24,19 @@
 ##'@keywords manip
 ##' @export
 ##'@examples
-##'
-##'	## cluster1 <- c("835", "5261","241")
-##'	## cluster2 <- c("578","582")
-##'	## cluster3 <- c("307", "308", "317")
-##'	## clusters <- list(a=cluster1, b=cluster2, c=cluster3)
-##'	## mclusterSim(clusters, ont="MF", organism="human", measure="Wang")
-##'
-mclusterSim <- function(clusters, ont="MF", organism="human", measure="Wang", drop="IEA", combine="BMA") {
+##'\dontrun{
+##'  d <- godata('org.Hs.eg.db', ont="MF")
+##'  cluster1 <- c("835", "5261","241")
+##'  cluster2 <- c("578","582")
+##'  cluster3 <- c("307", "308", "317")
+##'  clusters <- list(a=cluster1, b=cluster2, c=cluster3)
+##'  mclusterSim(clusters, godata=d, measure="Wang")
+##' }
+mclusterSim <- function(clusters, godata, measure="Wang", drop="IEA", combine="BMA") {
     n <- length(clusters)
     cluster_gos <- list()
     for (i in 1:n) {
-        cluster_gos[[i]] <- sapply(clusters[[i]], gene2GO, organism=organism,ont=ont,dropCodes=drop)
+        cluster_gos[[i]] <- sapply(clusters[[i]], gene2GO, godata,dropCodes=drop)
     }
     scores <- matrix(NA, nrow=n, ncol=n)
     rownames(scores) <- names(clusters)
@@ -51,7 +48,7 @@ mclusterSim <- function(clusters, ont="MF", organism="human", measure="Wang", dr
             gos2 <- unlist(cluster_gos[[j]])
             gos2 <- gos2[!is.na(gos2)]
             if (length(gos1) != 0 && length(gos2) !=0)
-                scores[i,j] <- mgoSim(gos1, gos2, ont=ont, organism=organism, measure=measure, combine=combine)
+                scores[i,j] <- mgoSim(gos1, gos2, godata, measure=measure, combine=combine)
             if ( i != j)
                 scores[j,i] <- scores[i,j]
         }
