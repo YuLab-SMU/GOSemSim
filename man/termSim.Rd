@@ -4,19 +4,16 @@
 \alias{termSim}
 \title{termSim}
 \usage{
-termSim(t1, t2, method = c("Wang", "Resnik", "Rel", "Jiang", "Lin"),
-  organism = "human", ont = "BP")
+termSim(t1, t2, godata, method = c("Wang", "Resnik", "Rel", "Jiang", "Lin"))
 }
 \arguments{
 \item{t1}{term vector}
 
 \item{t2}{term vector}
 
+\item{godata}{GOSemSimDATA object}
+
 \item{method}{one of "Wang", "Resnik", "Rel", "Jiang", and "Lin".}
-
-\item{organism}{about 20 species supported, please refer to the vignettes}
-
-\item{ont}{ontology}
 }
 \value{
 score matrix

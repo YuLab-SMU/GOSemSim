@@ -4,20 +4,14 @@
 \alias{mgoSim}
 \title{Semantic Similarity Between two GO terms lists}
 \usage{
-mgoSim(GO1, GO2, ont = "MF", organism = "human", measure = "Wang",
-  combine = "BMA")
+mgoSim(GO1, GO2, godata, measure = "Wang", combine = "BMA")
 }
 \arguments{
 \item{GO1}{A set of go terms.}
 
 \item{GO2}{Another set of go terms.}
 
-\item{ont}{One of "MF", "BP", and "CC" subontologies.}
-
-\item{organism}{One of "anopheles", "arabidopsis", "bovine", "canine",
-"chicken", "chimp", "coelicolor", "ecolik12", "ecsakai", "fly", "human",
-"malaria", "mouse", "pig", "rat", "rhesus", "worm", "xenopus", "yeast" and
-"zebrafish".}
+\item{godata}{GOSemSimDATA object}
 
 \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 
@@ -33,12 +27,13 @@ Given two GO term sets, this function will calculate the semantic similarity
 between them, and return their semantic similarity
 }
 \examples{
-
+\dontrun{
+    d <- godata('org.Hs.eg.db', ont="MF")
 go1 <- c("GO:0004022", "GO:0004024", "GO:0004023")
 go2 <- c("GO:0009055", "GO:0020037")
-mgoSim("GO:0003824", go2, measure="Wang")
-mgoSim(go1, go2, ont="MF", organism="human", measure="Wang")
-
+mgoSim("GO:0003824", go2, godata=d, measure="Wang")
+mgoSim(go1, go2, godata=d, measure="Wang")
+}
 }
 \references{
 Yu et al. (2010) GOSemSim: an R package for measuring semantic

@@ -4,18 +4,13 @@
 \alias{mgeneSim}
 \title{Pairwise Semantic Similarity for a List of Genes}
 \usage{
-mgeneSim(genes, ont = "MF", organism = "human", measure = "Wang",
-  drop = "IEA", combine = "BMA", verbose = TRUE)
+mgeneSim(genes, godata, measure = "Wang", drop = "IEA", combine = "BMA",
+  verbose = TRUE)
 }
 \arguments{
 \item{genes}{A list of entrez gene IDs.}
 
-\item{ont}{One of "MF", "BP", and "CC" subontologies.}
-
-\item{organism}{One of "anopheles", "arabidopsis", "bovine", "canine",
-"chicken", "chimp", "coelicolor", "ecolik12", "ecsakai", "fly", "gondii","human",
-"malaria", "mouse", "pig", "rat", "rhesus", "worm", "xenopus", "yeast" and
-"zebrafish".}
+\item{godata}{GOSemSimDATA object}
 
 \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 
@@ -36,9 +31,10 @@ Given a list of genes, this function calculates pairwise semantic
 similarities.
 }
 \examples{
-
-mgeneSim(c("835", "5261","241"), ont="MF", organism="human", measure="Wang")
-
+\dontrun{
+    d <- godata('org.Hs.eg.db', ont="MF")
+mgeneSim(c("835", "5261","241"), godata=d, measure="Wang")
+}
 }
 \references{
 Yu et al. (2010) GOSemSim: an R package for measuring semantic

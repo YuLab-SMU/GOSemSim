@@ -4,19 +4,14 @@
 \alias{goSim}
 \title{Semantic Similarity Between Two GO Terms}
 \usage{
-goSim(GOID1, GOID2, ont = "MF", organism = "human", measure = "Wang")
+goSim(GOID1, GOID2, godata, measure = "Wang")
 }
 \arguments{
 \item{GOID1}{GO ID 1.}
 
 \item{GOID2}{GO ID 2.}
 
-\item{ont}{One of "MF", "BP", and "CC" subontologies.}
-
-\item{organism}{One of "anopheles", "arabidopsis", "bovine", "canine",
-"chicken", "chimp", "coelicolor", "ecolik12", "ecsakai", "fly", "human",
-"malaria", "mouse", "pig", "rat","rhesus", "worm", "xenopus", "yeast" and
-"zebrafish".}
+\item{godata}{GOSemSimDATA object}
 
 \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 }
@@ -27,9 +22,10 @@ similarity
 Given two GO IDs, this function calculates their semantic similarity.
 }
 \examples{
-
-goSim("GO:0004022", "GO:0005515", ont="MF", measure="Wang")
-
+\dontrun{
+    d <- godata('org.Hs.eg.db', ont="MF")
+goSim("GO:0004022", "GO:0005515", godata=d, measure="Wang")
+}
 }
 \references{
 Yu et al. (2010) GOSemSim: an R package for measuring semantic

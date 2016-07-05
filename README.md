@@ -1,11 +1,11 @@
 #  GOSemSim
 
-[![platform](http://www.bioconductor.org/shields/availability/devel/GOSemSim.svg)](http://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#archives)
-[![Build Status](http://www.bioconductor.org/shields/build/devel/bioc/GOSemSim.svg)](http://bioconductor.org/checkResults/devel/bioc-LATEST/GOSemSim/)
-[![Bioc](http://www.bioconductor.org/shields/years-in-bioc/GOSemSim.svg)](http://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#since)
+[![platform](http://www.bioconductor.org/shields/availability/devel/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#archives)
+[![Build Status](http://www.bioconductor.org/shields/build/devel/bioc/GOSemSim.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/GOSemSim/)
+[![Bioc](http://www.bioconductor.org/shields/years-in-bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#since)
 [![post](http://www.bioconductor.org/shields/posts/GOSemSim.svg)](https://support.bioconductor.org/t/GOSemSim/)
-[![commit](http://www.bioconductor.org/shields/commits/bioc/GOSemSim.svg)](http://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#svn_source)
-[![download](http://www.bioconductor.org/shields/downloads/GOSemSim.svg)](http://bioconductor.org/packages/stats/bioc/GOSemSim.html)
+[![commit](http://www.bioconductor.org/shields/commits/bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#svn_source)
+[![download](http://www.bioconductor.org/shields/downloads/GOSemSim.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 [![gitter](https://img.shields.io/badge/GITTER-join%20chat-green.svg)](https://gitter.im/GuangchuangYu/Bioinformatics)
 
 Implemented five methods proposed by Resnik, Schlicker, Jiang, Lin and Wang respectively for estimating GO semantic similarities. Support many species, including Anopheles, Arabidopsis, Bovine, Canine, Chicken, Chimp, Coelicolor, E coli strain K12 and Sakai, Fly, Human, Malaria, Mouse, Pig, Rhesus, Rat, Worm, Xenopus, Yeast, and Zebrafish.
@@ -39,9 +39,6 @@ To install:
  * the latest development version:
    `devtools::install_github("GuangchuangYu/GOSemSim")`
 
-Find out more at [http://www.bioconductor.org/packages/release/bioc/html/GOSemSim.html](http://www.bioconductor.org/packages/release/bioc/html/GOSemSim.html) and check out the [vignette](http://www.bioconductor.org/packages/release/bioc/vignettes/clusterProfiler/inst/doc/GOSemSim.pdf).
-
-
 ## Documentation ##
 
 
@@ -50,7 +47,7 @@ To view the vignette of `GOSemSim` installed in your system, start R and enter:
 vignette("GOSemSim", package="GOSemSim")
 ```
 
-More documents can be found in <http://www.bioconductor.org/packages/clusterProfiler>, <http://www.bioconductor.org/packages/DOSE> and <http://guangchuangyu.github.io/tags/gosemsim>.
+More documents can be found in <http://guangchuangyu.github.io/GOSemSim>.
 
 ## Bugs/Feature requests ##
 

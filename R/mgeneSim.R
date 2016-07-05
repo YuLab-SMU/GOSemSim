@@ -5,12 +5,8 @@
 ##'
 ##'
 ##'@param genes A list of entrez gene IDs.
-##'@param ont One of "MF", "BP", and "CC" subontologies.
+##'@param godata GOSemSimDATA object
 ##'@param measure One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.
-##'@param organism One of "anopheles", "arabidopsis", "bovine", "canine",
-##'"chicken", "chimp", "coelicolor", "ecolik12", "ecsakai", "fly", "gondii","human",
-##'"malaria", "mouse", "pig", "rat", "rhesus", "worm", "xenopus", "yeast" and
-##'"zebrafish".
 ##'@param drop A set of evidence codes based on which certain annotations are
 ##'dropped. Use NULL to keep all GO annotations.
 ##'@param combine One of "max", "average", "rcmax", "BMA" methods, for combining
@@ -31,18 +27,19 @@
 ##' @importFrom utils txtProgressBar
 ##'@export
 ##'@examples
-##'
-##'	mgeneSim(c("835", "5261","241"), ont="MF", organism="human", measure="Wang")
-##'
-mgeneSim <- function (genes, ont="MF", organism="human", measure="Wang", drop="IEA", combine="BMA", verbose=TRUE) {
+##'\dontrun{
+##'     d <- godata('org.Hs.eg.db', ont="MF")
+##'	mgeneSim(c("835", "5261","241"), godata=d, measure="Wang")
+##'}
+mgeneSim <- function (genes, godata, measure="Wang", drop="IEA", combine="BMA", verbose=TRUE) {
     genes <- unique(as.character(genes))
     n <- length(genes)
     scores <- matrix(NA, nrow=n, ncol=n)
     rownames(scores) <- genes
     colnames(scores) <- genes
-
-    gos <- lapply(genes, gene2GO, organism=organism, ont=ont, dropCodes=drop)
-
+    
+    gos <- lapply(genes, gene2GO, godata, dropCodes=drop)
+    
     if (verbose) {
         cnt <- 1
         pb <- txtProgressBar(min=0, max=sum(1:n), style=3)
@@ -53,10 +50,9 @@ mgeneSim <- function (genes, ont="MF", organism="human", measure="Wang", drop="I
                 setTxtProgressBar(pb, cnt)
                 cnt <- cnt + 1
             }
-            scores[i,j] <- mgoSim(gos[[i]], gos[[j]], ont=ont,
-                                  organism=organism, measure=measure,
+            scores[i,j] <- mgoSim(gos[[i]], gos[[j]], godata, measure=measure,
                                   combine=combine)
-
+            
             if (j != i) {
                 scores[j,i] <- scores[i,j]
             }

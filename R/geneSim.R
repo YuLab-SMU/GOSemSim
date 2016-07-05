@@ -6,11 +6,7 @@
 ##'
 ##'@param gene1 Entrez gene id.
 ##'@param gene2 Another entrez gene id.
-##'@param ont One of "MF", "BP", and "CC" subontologies.
-##'@param organism One of "anopheles", "arabidopsis", "bovine", "canine",
-##'"chicken", "chimp", "coelicolor", "ecolik12","ecsakai", "fly", "gondii","human",
-##'"malaria", "mouse", "pig", "rat","rhesus", "worm", "xenopus", "yeast" and
-##'"zebrafish".
+##'@param godata GOSemSimDATA object
 ##'@param measure One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.
 ##'@param drop A set of evidence codes based on which certain annotations are
 ##'dropped. Use NULL to keep all GO annotations.
@@ -29,15 +25,16 @@
 ##'@keywords manip
 ##' @export
 ##'@examples
-##'
-##'	geneSim("241", "251", ont="MF", organism="human", measure="Wang")
-##'
-geneSim <- function(gene1, gene2, ont="MF", organism="human", measure="Wang", drop="IEA", combine="BMA"){
-    go1 <- gene2GO(gene1, organism=organism, ont=ont, dropCodes=drop)
-    go2 <- gene2GO(gene2, organism=organism, ont=ont, dropCodes=drop)
+##'\dontrun{
+##'     d <- godata('org.Hs.eg.db', ont="MF")
+##'	geneSim("241", "251", godata=d, measure="Wang")
+##'}
+geneSim <- function(gene1, gene2, godata, measure="Wang", drop="IEA", combine="BMA"){
+    go1 <- gene2GO(gene1, godata, dropCodes=drop)
+    go2 <- gene2GO(gene2, godata, dropCodes=drop)
     if (is.na(go1) || is.na(go2))
         return (NA)
-    res <- mgoSim(go1, go2, ont=ont, organism=organism, measure=measure, combine=combine)
+    res <- mgoSim(go1, go2, godata=godata, measure=measure, combine=combine)
     return (list(geneSim=res, GO1=go1, GO2=go2))
 }
 

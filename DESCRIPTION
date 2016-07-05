@@ -1,7 +1,7 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-Version: 1.31.2
+Version: 1.99.0
 Authors@R: c(person(given = "Guangchuang", family = "Yu",
                     email = "guangchuangyu@gmail.com",
 		    role  = c("aut", "cre")),
@@ -21,12 +21,12 @@ Description: Implemented five methods proposed by Resnik, Schlicker,
     strain K12 and Sakai, Fly, Gondii, Human, Malaria, Mouse, Pig, Rhesus,
     Rat, Worm, Xenopus, Yeast, and Zebrafish.
 Depends:
-    R (>= 3.2.0)
+    R (>= 3.3.0)
 LinkingTo: Rcpp
 Imports:
-    Rcpp,
     AnnotationDbi,
     GO.db,
+    methods,
     utils
 Suggests:
     DOSE,
