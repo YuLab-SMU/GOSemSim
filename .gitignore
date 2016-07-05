@@ -2,3 +2,4 @@
 .svn
 __pycache__
 *~
+*.Rhistory

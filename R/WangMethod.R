@@ -19,7 +19,8 @@ wangMethod_internal <- function(ID1, ID2, ont="BP") {
     if (ID1 == ID2)
         return (sim=1)
     if (ont == "DO") {
-
+        .DOSEEnv <- get(".DOSEEnv", envir=.GlobalEnv)
+        rel_df <- get("dotbl", envir=.DOSEEnv)
     } else {
         if (!exists(".GOSemSimEnv")) .initial()
         rel_df <- get("gotbl", envir=.GOSemSimEnv)        
@@ -56,7 +57,7 @@ getSV <- function(ID, ont, rel_df, weight=NULL) {
         weight <- c(0.8, 0.6, 0.7)
         names(weight) <- c("is_a", "part_of", "other")
     }
-    
+
     rel_df <- rel_df[rel_df$Ontology == ont,]
     rel_df$relationship[!rel_df$relationship %in% c("is_a", "part_of")] <- "other"
     
@@ -71,17 +72,20 @@ getSV <- function(ID, ont, rel_df, weight=NULL) {
         pid <- p$parent
         allid <- c(allid, pid)
         
-        sv <- c(sv, weight[p$relationship]*sv[id])
+        sv <- c(sv, weight[p$relationship]*sv[p[,1]])
         names(sv) <- allid
         idx <- which(rel_df[,1] %in% pid)
     }
 
+    sv <- sv[!is.na(names(sv))]
+    sv <- sv[!duplicated(names(sv))]
+    
     if( ! exists(ID, envir=.SemSimCache) ) {
         assign(ID,
                sv,
                envir=.SemSimCache)
     }
-
+    
     return(sv)
 }
 

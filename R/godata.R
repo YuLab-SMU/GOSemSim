@@ -42,6 +42,22 @@ godata <- function(OrgDb=NULL, keytype = "ENTREZID", ont, computeIC = TRUE) {
         metadata = metadata(OrgDb))
 }
 
+##' Class "GOSemSimDATA"
+##' This class stores IC and gene to go mapping for semantic similarity measurement
+##'
+##'
+##' @name GOSemSimDATA-class
+##' @aliases GOSemSimDATA-class
+##'   show,GOSemSimDATA-method
+##' 
+##' @docType class
+##' @slot keys gene ID
+##' @slot ont ontology
+##' @slot IC IC data
+##' @slot goAnno gene to GO mapping
+##' @slot metadata metadata
+##' @exportClass GOSemSimDATA
+##' @keywords classes
 ##' @importFrom methods setClass
 setClass("GOSemSimDATA",
          representation = representation(
