@@ -5,6 +5,7 @@
                          package="GOSemSim"))
     gotbl <- get("gotbl")
     assign("gotbl", gotbl, envir = .GOSemSimEnv)
+    rm(gotbl, envir = .GlobalEnv)
 }
 
 ##' load OrgDb
