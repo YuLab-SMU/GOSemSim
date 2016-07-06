@@ -27,6 +27,8 @@ godata <- function(OrgDb=NULL, keytype = "ENTREZID", ont, computeIC = TRUE) {
     goAnno <- suppressMessages(
         select(OrgDb, keys=kk, keytype=keytype,
                columns=c("GO", "ONTOLOGY")))
+
+    goAnno <- goAnno[!is.na(goAnno$GO), ]
     goAnno <- goAnno[goAnno$ONTOLOGY == ont,]
     if (computeIC) {
         print('preparing IC data...')
