@@ -36,7 +36,7 @@ mclusterSim <- function(clusters, godata, measure="Wang", drop="IEA", combine="B
     n <- length(clusters)
     cluster_gos <- list()
     for (i in 1:n) {
-        cluster_gos[[i]] <- sapply(clusters[[i]], gene2GO, godata,dropCodes=drop)
+        cluster_gos[[i]] <- sapply(clusters[[i]], gene2GO, godata, dropCodes=drop)
     }
     scores <- matrix(NA, nrow=n, ncol=n)
     rownames(scores) <- names(clusters)
