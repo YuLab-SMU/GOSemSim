@@ -8,49 +8,9 @@
 [![download](http://www.bioconductor.org/shields/downloads/GOSemSim.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 [![gitter](https://img.shields.io/badge/GITTER-join%20chat-green.svg)](https://gitter.im/GuangchuangYu/Bioinformatics)
 
-Implemented five methods proposed by Resnik, Schlicker, Jiang, Lin and Wang respectively for estimating GO semantic similarities. Support many species, including Anopheles, Arabidopsis, Bovine, Canine, Chicken, Chimp, Coelicolor, E coli strain K12 and Sakai, Fly, Human, Malaria, Mouse, Pig, Rhesus, Rat, Worm, Xenopus, Yeast, and Zebrafish.
 
-## Authors ##
-
-Guangchuang YU, School of Public Health, The University of Hong Kong <http://guangchuangyu.github.io>
-
-## Citation ##
-
-Please cite the following article when using `GOSemSim`:
-
-```
-Yu G, Li F, Qin Y, Bo X, Wu Y and Wang S. 
-GOSemSim: an R package for measuring semantic similarity among GO terms and gene products.
-Bioinformatics, 2010, 26(7):976-978. 
-```
-
-URL: [http://bioinformatics.oxfordjournals.org/content/26/7/976.full](http://bioinformatics.oxfordjournals.org/content/26/7/976.full)
-
-## License ##
-
-All source code is copyright, under the Artistic-2.0 License.
-For more information on Artistic-2.0 License see [http://opensource.org/licenses/Artistic-2.0](http://opensource.org/licenses/Artistic-2.0)
-
-## Installation ##
-
-To install:
- * the latest released version:
-   `biocLite("GOSemSim")`
- * the latest development version:
-   `devtools::install_github("GuangchuangYu/GOSemSim")`
-
-## Documentation ##
+The semantic comparisons of Gene Ontology (GO) annotations provide quantitative ways to compute similarities between genes and gene groups, and have became important basis for many bioinformatics analysis approaches. `GOSemSim` is an R package for semantic similarity computation among GO terms, sets of GO terms, gene products and gene clusters. `GOSemSim` implemented five methods proposed by *Resnik*, *Schlicker*, *Jiang*, *Lin* and *Wang* respectively.
 
 
-To view the vignette of `GOSemSim` installed in your system, start R and enter:
-```r
-vignette("GOSemSim", package="GOSemSim")
-```
-
-More documents can be found in <http://guangchuangyu.github.io/GOSemSim>.
-
-## Bugs/Feature requests ##
-
- - If you have any, [let me know](https://github.com/GuangchuangYu/GOSemSim/issues). Thx!
-
+For details, please visit our project website, <https://guangchuangyu.github.io/GOSemSim>.
 
