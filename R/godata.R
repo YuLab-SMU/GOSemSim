@@ -33,15 +33,18 @@ godata <- function(OrgDb=NULL, keytype = "ENTREZID", ont, computeIC = TRUE) {
     if (computeIC) {
         print('preparing IC data...')
         IC <- computeIC(goAnno, ont)
-    } else {
-        IC <- NULL
     }
-    new("GOSemSimDATA",
-        keys = kk,
-        ont = ont,
-        IC = IC,
-        goAnno = goAnno,
-        metadata = metadata(OrgDb))
+    
+    res <- new("GOSemSimDATA",
+               keys = kk,
+               ont = ont,
+               goAnno = goAnno,
+               metadata = metadata(OrgDb))
+    if (computeIC) {
+        res@IC <- IC
+    }
+
+    return(res)
 }
 
 ##' Class "GOSemSimDATA"
