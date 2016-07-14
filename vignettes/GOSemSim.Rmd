@@ -34,14 +34,12 @@ library(GOSemSim)
 
 # Citation
 
-If you use `r Biocpkg("GOSemSim")` in published research, please cite G. Yu (2010). 
-
+Please cite the following article when using `r Biocpkg("GOSemSim")`:
 
 __G Yu__, F Li, Y Qin, X Bo, Y Wu, S Wang. 
 GOSemSim: an R package for measuring semantic similarity among GO terms and gene products.
 **_Bioinformatics_** 2010, 26(7):976-978.
-doi:[10.1093/bioinformatics/btq064](http://dx.doi.org/10.1093/bioinformatics/btq064)
-
+doi: [10.1093/bioinformatics/btq064](http://dx.doi.org/10.1093/bioinformatics/btq064).
 
 
 # Introduction
@@ -65,6 +63,11 @@ semantic similarity among GO terms, sets of GO terms, gene products,
 and gene clusters, providing five methods mentioned above. We have
 developed another package, `r Biocpkg("DOSE")`[@yu_dose_2015], for measuring semantic
 similarity among Disease Ontology (DO) terms and gene products at disease perspective.
+
+
+## Homepage
+
+Please visit [GOSemSim homepage](https://guangchuangyu.github.io/GOSemSim/) for more information.
 
 
 # Semantic Similarity Measurement Based on GO
@@ -237,7 +240,6 @@ In `r Biocpkg("GOSemSim")`, we implemented __*geneSim*__ to calculate semantic s
 
 ```{r}
 geneSim("241", "251", godata=hsGO, measure="Wang", combine="BMA")
-geneSim("241", "251", godata=hsGO, measure="Jiang", combine="BMA")
 mgeneSim(genes=c("835", "5261","241", "994"), 
          godata=hsGO, measure="Wang",verbose=FALSE)
 mgeneSim(genes=c("835", "5261","241", "994"), 
@@ -251,8 +253,11 @@ Here as an example, we use `SYMBOL` as `keytype` and calculate semantic similari
 ```{r}
 hsGO2 <- godata('org.Hs.eg.db', keytype = "SYMBOL", ont="MF", computeIC=FALSE)
 genes <- c("CDC45", "MCM10", "CDC20", "NMU", "MMP1")
-mgeneSim(genes, godata=hsGO2, measure="Wang", combine="BMA")
+mgeneSim(genes, godata=hsGO2, measure="Wang", combine="BMA", verbose=FALSE)
 ```
+
+Users can also use [`clusterProfiler::bitr`](https://bioconductor.org/packages/release/bioc/vignettes/clusterProfiler/inst/doc/clusterProfiler.html#bitr-biological-id-translator) to translate biological IDs.
+
 
 ## clusterSim and mclusterSim
 
@@ -264,6 +269,7 @@ gs1 <- c("835", "5261","241", "994", "514", "533")
 gs2 <- c("578","582", "400", "409", "411")
 clusterSim(gs1, gs2, godata=hsGO, measure="Wang", combine="BMA")
 
+library(org.Hs.eg.db)
 x <- org.Hs.egGO
 hsEG <- mappedkeys(x)
 set.seed <- 123
@@ -271,12 +277,18 @@ clusters <- list(a=sample(hsEG, 20), b=sample(hsEG, 20), c=sample(hsEG, 20))
 mclusterSim(clusters, godata=hsGO, measure="Wang", combine="BMA")
 ```
 
-# Case Study
+# Applications
 
-We proposed a method for measuring functional similarity of microRNAs[@yu_new_2011]. 
-This method was based on semantic similarity of microRNAs' target genes, 
-and was calculated by `r Biocpkg("GOSemSim")`. 
-We further analyzed viral microRNAs using this method and compared significant KEGG pathways regulated by different viruses' microRNAs[@yu2011] using `r Biocpkg("clusterProfiler")`[@yu2012].
+`r Biocpkg("GOSemSim")` was cited by more than [200 papers](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322,17633835198940746971,18126401808149291947) and had been applied to many research domains, including:
+
++ [Disease or Drug analysis](https://guangchuangyu.github.io/GOSemSim/featuredArticles/#diease-or-drug-analysis)
++ [Gene/Protein functional analysis](https://guangchuangyu.github.io/GOSemSim/featuredArticles/#geneprotein-functional-analysis)
++ [Protein-Protein interaction](https://guangchuangyu.github.io/GOSemSim/featuredArticles/#protein-protein-interaction)
++ [miRNA-mRNA interaction](https://guangchuangyu.github.io/GOSemSim/featuredArticles/#mirna-mrna-interaction)
++ [sRNA regulation](https://guangchuangyu.github.io/GOSemSim/featuredArticles/#srna-regulation)
++ [Evolution](https://guangchuangyu.github.io/GOSemSim/featuredArticles/#evolution)
+
+Find out more on <https://guangchuangyu.github.io/GOSemSim/featuredArticles/>.
 
 
 # GO enrichment analysis
@@ -285,18 +297,10 @@ GO enrichment analysis can be supported by our package `r Biocpkg("clusterProfil
 
 # Disease Ontology Semantic and Enrichment analysis
 
-Disease Ontology (DO) annotates human genes in the context of disease. DO is important annotation in translating molecular findings from high-throughput data to clinical relevance. 
+Disease Ontology (DO) annotates human genes in the context of disease. DO is an important annotation in translating molecular findings from high-throughput data to clinical relevance. 
 `r Biocpkg("DOSE")`[@yu_dose_2015] supports semantic similarity computation among DO terms and genes. 
 Enrichment analysis including hypergeometric model and GSEA are also implemented to support discovering disease associations of high-throughput biological data.
 
-
-# External documents
-
-More documents can be found in <http://guangchuangyu.github.io/GOSemSim>.
-
-# Bugs/Feature Requests
-
-If you have any, [let me know](https://github.com/GuangchuangYu/GOSemSim/issues). 
 
 # Session Information
 
