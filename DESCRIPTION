@@ -1,7 +1,7 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-Version: 1.99.1
+Version: 1.99.2
 Authors@R: c(person(given = "Guangchuang", family = "Yu",
                     email = "guangchuangyu@gmail.com",
 		    role  = c("aut", "cre")),
@@ -14,12 +14,12 @@ Authors@R: c(person(given = "Guangchuang", family = "Yu",
 Author: Guangchuang Yu <guangchuangyu@gmail.com> with contributions from
     Alexey Stukalov and Chuanle Xiao.
 Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
-Description: Implemented five methods proposed by Resnik, Schlicker,
-    Jiang, Lin and Wang respectively for estimating GO semantic
-    similarities. Support many species, including Anopheles,
-    Arabidopsis, Bovine, Canine, Chicken, Chimp, Coelicolor, E coli
-    strain K12 and Sakai, Fly, Gondii, Human, Malaria, Mouse, Pig, Rhesus,
-    Rat, Worm, Xenopus, Yeast, and Zebrafish.
+Description: The semantic comparisons of Gene Ontology (GO) annotations
+	     provide quantitative ways to compute similarities between genes and gene groups,
+	     and have became important basis for many bioinformatics analysis approaches.
+	     GOSemSim is an R package for semantic similarity computation among GO terms,
+	     sets of GO terms, gene products and gene clusters. GOSemSim implemented five methods
+	     proposed by Resnik, Schlicker, Jiang, Lin and Wang respectively.
 Depends:
     R (>= 3.3.0)
 LinkingTo: Rcpp

@@ -1,3 +1,8 @@
+CHANGES IN VERSION 1.99.2
+------------------------
+ o fixed Rcpp issue <2016-07-19, Tue>
+   + https://github.com/GuangchuangYu/GOSemSim/issues/6
+ 
 CHANGES IN VERSION 1.99.1
 ------------------------
  o update vignette <2016-07-14, Thu>
