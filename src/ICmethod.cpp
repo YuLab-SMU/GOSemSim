@@ -88,7 +88,7 @@ Rcpp::NumericMatrix infoContentMethod_cpp(
     for (std::size_t i=0; i < ic_.size(); i++ ) {
       const double cic = ic_[i];
       if ( Rcpp::NumericVector::is_na( cic ) || cic == R_PosInf ) continue;
-      normIcMap.insert( std::make_pair( icNames[i], cic / mic ) );
+      normIcMap.insert( std::make_pair( (std::string) icNames[i], cic / mic ) );
     }
   }
 
@@ -109,7 +109,7 @@ Rcpp::NumericMatrix infoContentMethod_cpp(
       term_set_t ancestors( ancVec.begin(), ancVec.end() );
       // term itself is also considered an ancestor
       ancestors.insert( (std::string)goTerms[i] );
-      ancMap.insert( std::make_pair( goTerms[i], ancestors ) );
+      ancMap.insert( std::make_pair( (std::string) goTerms[i], ancestors ) );
     }
   }
 
