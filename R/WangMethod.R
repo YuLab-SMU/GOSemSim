@@ -53,6 +53,18 @@ getSV <- function(ID, ont, rel_df, weight=NULL) {
         return(sv)
     }
 
+    if (ont == "DO") {
+        topNode <- "DOID:4"
+    } else {
+        topNode <- "all"
+    }
+    
+    if (ID == topNode) {
+        sv <- 1
+        names(sv) <- topNode
+        return (sv)
+    }
+    
     if (is.null(weight)) {
         weight <- c(0.8, 0.6, 0.7)
         names(weight) <- c("is_a", "part_of", "other")
@@ -61,12 +73,12 @@ getSV <- function(ID, ont, rel_df, weight=NULL) {
     rel_df <- rel_df[rel_df$Ontology == ont,]
     rel_df$relationship[!rel_df$relationship %in% c("is_a", "part_of")] <- "other"
     
-    id <- ID
+
     sv <- 1
-    names(sv) <- id
+    names(sv) <- ID
     allid <- ID
 
-    idx <- which(rel_df[,1] %in% id)
+    idx <- which(rel_df[,1] %in% ID)
     while (length(idx) != 0) {
         p <- rel_df[idx,]
         pid <- p$parent
@@ -79,7 +91,10 @@ getSV <- function(ID, ont, rel_df, weight=NULL) {
 
     sv <- sv[!is.na(names(sv))]
     sv <- sv[!duplicated(names(sv))]
-    
+
+    if(ont != "DO")
+        sv[topNode] <- 0
+
     if( ! exists(ID, envir=.SemSimCache) ) {
         assign(ID,
                sv,
