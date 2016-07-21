@@ -39,7 +39,7 @@ Suggests:
 VignetteBuilder: knitr
 ByteCompile: true
 License: Artistic-2.0
-URL: http://guangchuangyu.github.io/GOSemSim
+URL: https://guangchuangyu.github.io/GOSemSim
 BugReports: https://github.com/GuangchuangYu/GOSemSim/issues
 Packaged: 2012-08-29 06:44:50 UTC; root
 biocViews: Annotation, GO, Clustering, Pathways, Network, Software
