@@ -14,6 +14,7 @@
 ##' @title load_OrgDb
 ##' @param OrgDb OrgDb object or OrgDb name
 ##' @return OrgDb object
+##' @importFrom methods is
 ##' @export
 ##' @author Guangchuang Yu
 load_OrgDb <- function(OrgDb) {
