@@ -10,6 +10,7 @@
 ##' @importFrom AnnotationDbi keys
 ##' @importFrom AnnotationDbi select
 ##' @importFrom AnnotationDbi metadata
+##' @importFrom methods new
 ##' @export
 ##' @author Guangchuang Yu
 godata <- function(OrgDb=NULL, keytype = "ENTREZID", ont, computeIC = TRUE) {
