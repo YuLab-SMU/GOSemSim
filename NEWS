@@ -1,5 +1,6 @@
 CHANGES IN VERSION 1.99.2
 ------------------------
+ o changes to satisfy meshsim package <2016-08-04, Thu>
  o fixed Rcpp issue <2016-07-19, Tue>
    + https://github.com/GuangchuangYu/GOSemSim/issues/6
  
