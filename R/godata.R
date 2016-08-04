@@ -77,6 +77,6 @@ setClass("GOSemSimDATA",
 ##' @importFrom methods setMethod
 setMethod("show", signature(object = "GOSemSimDATA"),
           function(object) {
-              cat("#\n# DATA for GOSemSim ...\n#\n")
+              cat("#\n# DATA for Semantic Similarity calculation ...\n#\n")
           })
              
