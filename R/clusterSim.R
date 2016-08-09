@@ -6,7 +6,7 @@
 ##'
 ##'@param cluster1 A set of gene IDs.
 ##'@param cluster2 Another set of gene IDs.
-##'@param godata GOSemSimDATA object
+##'@param semData GOSemSimDATA object
 ##'@param measure One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.
 ##'@param drop A set of evidence codes based on which certain annotations are
 ##'dropped. Use NULL to keep all GO annotations.
@@ -26,16 +26,16 @@
 ##' @export
 ##'@examples
 ##' \dontrun{
-##'     d <- godata('org.Hs.eg.db', ont="MF")
+##'     d <- semData('org.Hs.eg.db', ont="MF")
 ##'     cluster1 <- c("835", "5261","241", "994")
 ##'	cluster2 <- c("307", "308", "317", "321", "506", "540", "378", "388", "396")
-##'	clusterSim(cluster1, cluster2, godata=d, measure="Wang")
+##'	clusterSim(cluster1, cluster2, semData=d, measure="Wang")
 ##'}
-clusterSim <- function(cluster1, cluster2, godata, measure="Wang", drop="IEA", combine="BMA"){
-    cgo1 <- sapply(cluster1, gene2GO, godata, dropCodes=drop)
-    cgo2 <- sapply(cluster2, gene2GO, godata, dropCodes=drop)
+clusterSim <- function(cluster1, cluster2, semData, measure="Wang", drop="IEA", combine="BMA"){
+    cgo1 <- sapply(cluster1, gene2GO, semData, dropCodes=drop)
+    cgo2 <- sapply(cluster2, gene2GO, semData, dropCodes=drop)
     cgo1 <- unlist(cgo1)
     cgo2 <- unlist(cgo2)
-    res <- mgoSim(cgo1, cgo2, godata, measure=measure, combine=combine)
+    res <- mgoSim(cgo1, cgo2, semData, measure=measure, combine=combine)
     return(res)
 }

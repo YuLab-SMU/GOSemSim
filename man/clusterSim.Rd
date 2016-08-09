@@ -4,7 +4,7 @@
 \alias{clusterSim}
 \title{Semantic Similarity Between Two Gene Clusters}
 \usage{
-clusterSim(cluster1, cluster2, godata, measure = "Wang", drop = "IEA",
+clusterSim(cluster1, cluster2, semData, measure = "Wang", drop = "IEA",
   combine = "BMA")
 }
 \arguments{
@@ -12,7 +12,7 @@ clusterSim(cluster1, cluster2, godata, measure = "Wang", drop = "IEA",
 
 \item{cluster2}{Another set of gene IDs.}
 
-\item{godata}{GOSemSimDATA object}
+\item{semData}{GOSemSimDATA object}
 
 \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 
@@ -32,10 +32,10 @@ them.
 }
 \examples{
 \dontrun{
-    d <- godata('org.Hs.eg.db', ont="MF")
+    d <- semData('org.Hs.eg.db', ont="MF")
     cluster1 <- c("835", "5261","241", "994")
 cluster2 <- c("307", "308", "317", "321", "506", "540", "378", "388", "396")
-clusterSim(cluster1, cluster2, godata=d, measure="Wang")
+clusterSim(cluster1, cluster2, semData=d, measure="Wang")
 }
 }
 \references{

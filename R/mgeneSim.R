@@ -5,7 +5,7 @@
 ##'
 ##'
 ##'@param genes A list of entrez gene IDs.
-##'@param godata GOSemSimDATA object
+##'@param semData GOSemSimDATA object
 ##'@param measure One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.
 ##'@param drop A set of evidence codes based on which certain annotations are
 ##'dropped. Use NULL to keep all GO annotations.
@@ -28,17 +28,17 @@
 ##'@export
 ##'@examples
 ##'\dontrun{
-##'     d <- godata('org.Hs.eg.db', ont="MF")
-##'	mgeneSim(c("835", "5261","241"), godata=d, measure="Wang")
+##'     d <- semData('org.Hs.eg.db', ont="MF")
+##'	mgeneSim(c("835", "5261","241"), semData=d, measure="Wang")
 ##'}
-mgeneSim <- function (genes, godata, measure="Wang", drop="IEA", combine="BMA", verbose=TRUE) {
+mgeneSim <- function (genes, semData, measure="Wang", drop="IEA", combine="BMA", verbose=TRUE) {
     genes <- unique(as.character(genes))
     n <- length(genes)
     scores <- matrix(NA, nrow=n, ncol=n)
     rownames(scores) <- genes
     colnames(scores) <- genes
     
-    gos <- lapply(genes, gene2GO, godata, dropCodes=drop)
+    gos <- lapply(genes, gene2GO, semData, dropCodes=drop)
     
     if (verbose) {
         cnt <- 1
@@ -50,7 +50,7 @@ mgeneSim <- function (genes, godata, measure="Wang", drop="IEA", combine="BMA", 
                 setTxtProgressBar(pb, cnt)
                 cnt <- cnt + 1
             }
-            scores[i,j] <- mgoSim(gos[[i]], gos[[j]], godata, measure=measure,
+            scores[i,j] <- mgoSim(gos[[i]], gos[[j]], semData, measure=measure,
                                   combine=combine)
             
             if (j != i) {

@@ -7,13 +7,12 @@
 ##'@param t1 term vector
 ##'@param t2 term vector
 ##'@param method one of "Wang", "Resnik", "Rel", "Jiang", and "Lin".
-##'@param godata GOSemSimDATA object
+##'@param semData GOSemSimDATA object
 ##'@return score matrix
-##' @export
 ##'@author Guangchuang Yu \url{http://ygc.name}
 termSim <- function(t1,
                     t2,
-                    godata,
+                    semData,
                     method=c("Wang","Resnik","Rel","Jiang","Lin")
                     ) {
                     
@@ -28,8 +27,8 @@ termSim <- function(t1,
     t2 <- unique(t2)
 
     if ( method %in% c("Resnik", "Jiang", "Lin", "Rel") ) {
-        return(infoContentMethod(t1, t2, method=method, godata))
+        return(infoContentMethod(t1, t2, method=method, semData))
     } else if ( method == "Wang" ) {
-        return(wangMethod(t1, t2, godata@ont))
+        return(wangMethod(t1, t2, semData@ont))
     }
 }

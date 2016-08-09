@@ -4,14 +4,14 @@
 \alias{mgoSim}
 \title{Semantic Similarity Between two GO terms lists}
 \usage{
-mgoSim(GO1, GO2, godata, measure = "Wang", combine = "BMA")
+mgoSim(GO1, GO2, semData, measure = "Wang", combine = "BMA")
 }
 \arguments{
 \item{GO1}{A set of go terms.}
 
 \item{GO2}{Another set of go terms.}
 
-\item{godata}{GOSemSimDATA object}
+\item{semData}{GOSemSimDATA object}
 
 \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 
@@ -28,11 +28,11 @@ between them, and return their semantic similarity
 }
 \examples{
 \dontrun{
-    d <- godata('org.Hs.eg.db', ont="MF")
+    d <- semData('org.Hs.eg.db', ont="MF")
 go1 <- c("GO:0004022", "GO:0004024", "GO:0004023")
 go2 <- c("GO:0009055", "GO:0020037")
-mgoSim("GO:0003824", go2, godata=d, measure="Wang")
-mgoSim(go1, go2, godata=d, measure="Wang")
+mgoSim("GO:0003824", go2, semData=d, measure="Wang")
+mgoSim(go1, go2, semData=d, measure="Wang")
 }
 }
 \references{
