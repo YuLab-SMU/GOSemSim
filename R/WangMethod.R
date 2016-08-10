@@ -23,6 +23,7 @@ wangMethod_internal <- function(ID1, ID2, ont="BP") {
         rel_df <- get("dotbl", envir=.DOSEEnv)
     } else if (ont %in% c("BP", "CC", "MF")) {
         if (!exists(".GOSemSimEnv")) .initial()
+        .GOSemSimEnv <- get(".GOSemSimEnv", envir=.GlobalEnv)
         rel_df <- get("gotbl", envir=.GOSemSimEnv)
     } else {
         .meshsimEnv <- get(".meshsimEnv", envir=.GlobalEnv)
@@ -52,6 +53,8 @@ wangMethod_internal <- function(ID1, ID2, ont="BP") {
 
 getSV <- function(ID, ont, rel_df, weight=NULL) {
     if (!exists(".SemSimCache")) .initial()
+    .SemSimCache <- get(".SemSimCache", envir=.GlobalEnv)
+    
     if( exists(ID, envir=.SemSimCache) ) {
         sv <- get(ID, envir=.SemSimCache)
         return(sv)
