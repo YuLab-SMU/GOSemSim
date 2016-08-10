@@ -39,7 +39,7 @@ godata <- function(OrgDb=NULL, keytype = "ENTREZID", ont, computeIC = TRUE) {
     res <- new("GOSemSimDATA",
                keys = kk,
                ont = ont,
-               goAnno = goAnno,
+               geneAnno = goAnno,
                metadata = metadata(OrgDb))
     if (computeIC) {
         res@IC <- IC
@@ -60,7 +60,7 @@ godata <- function(OrgDb=NULL, keytype = "ENTREZID", ont, computeIC = TRUE) {
 ##' @slot keys gene ID
 ##' @slot ont ontology
 ##' @slot IC IC data
-##' @slot goAnno gene to GO mapping
+##' @slot geneAnno gene to GO mapping
 ##' @slot metadata metadata
 ##' @exportClass GOSemSimDATA
 ##' @keywords classes
@@ -70,7 +70,7 @@ setClass("GOSemSimDATA",
              keys = "character",
              ont = "character",
              IC = "numeric",
-             goAnno = "data.frame",
+             geneAnno = "data.frame",
              metadata = "data.frame"
          ))
 

@@ -9,6 +9,7 @@
 ##'@param method one of "Wang", "Resnik", "Rel", "Jiang", and "Lin".
 ##'@param semData GOSemSimDATA object
 ##'@return score matrix
+##'@export
 ##'@author Guangchuang Yu \url{http://ygc.name}
 termSim <- function(t1,
                     t2,

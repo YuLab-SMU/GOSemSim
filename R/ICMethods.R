@@ -21,7 +21,7 @@ infoContentMethod <- function(ID1,
     if (ont %in% c("MF", "BP", "CC", "DO")) {
         .anc <- AnnotationDbi::as.list(getAncestors(ont)[union(ID1,ID2)])
     } else {
-        mesh_getAnc <- eval(parse(text="meshsim:::getAncestors"))
+        mesh_getAnc <- eval(parse(text="meshes:::getAncestors"))
         .anc <- lapply(union(ID1, ID2), mesh_getAnc)
         names(.anc) <- union(ID1, ID2)
     }

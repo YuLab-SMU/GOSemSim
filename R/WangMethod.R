@@ -26,8 +26,8 @@ wangMethod_internal <- function(ID1, ID2, ont="BP") {
         .GOSemSimEnv <- get(".GOSemSimEnv", envir=.GlobalEnv)
         rel_df <- get("gotbl", envir=.GOSemSimEnv)
     } else {
-        .meshsimEnv <- get(".meshsimEnv", envir=.GlobalEnv)
-        rel_df <- get("meshtbl", envir=.meshsimEnv)
+        .meshesEnv <- get(".meshesEnv", envir=.GlobalEnv)
+        rel_df <- get("meshtbl", envir=.meshesEnv)
     }
     
     
