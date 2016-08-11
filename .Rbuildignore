@@ -1,5 +1,7 @@
 .svnignore
 ^.*\.DS_Store
 Makefile
-README.Rmdappveyor.yml
+README.Rmd
+appveyor.yml
 .travis.yml
+
