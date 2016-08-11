@@ -7,6 +7,9 @@ all: check clean
 docs:
 	Rscript -e 'roxygen2::roxygenise(".")'
 
+readme:
+	Rscript -e 'rmarkdown::render("README.Rmd")'
+
 build:
 	cd ..;\
 	R CMD build $(PKGSRC)
@@ -17,7 +20,11 @@ install:
 
 check: build
 	cd ..;\
-	R CMD check $(PKGNAME)_$(PKGVERS).tar.gz
+	R CMD check $(PKGNAME)_$(PKGVERS).tar.gz;\
+
+bioccheck:
+	cd ..;\
+	Rscript -e 'BiocCheck::BiocCheck("$(PKGNAME)_$(PKGVERS).tar.gz")'
 
 clean:
 	cd ..;\

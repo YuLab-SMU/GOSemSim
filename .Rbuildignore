@@ -1,3 +1,4 @@
 .svnignore
-
+^.*\.DS_Store
 Makefile
+README.Rmd
