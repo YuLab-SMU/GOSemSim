@@ -13,7 +13,7 @@ install:
 # Adapt as necessary starting from here
 
 build_script:
-  - travis-tool.sh install_bioc BiocStyle Biostrings  
+  - travis-tool.sh install_bioc BiocStyle GO.db org.Hs.eg.db  
   - travis-tool.sh install_deps
 
 test_script:
