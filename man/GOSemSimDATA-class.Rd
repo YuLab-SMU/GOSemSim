@@ -19,7 +19,7 @@ This class stores IC and gene to go mapping for semantic similarity measurement
 
 \item{\code{IC}}{IC data}
 
-\item{\code{goAnno}}{gene to GO mapping}
+\item{\code{geneAnno}}{gene to GO mapping}
 
 \item{\code{metadata}}{metadata}
 }}

@@ -5,7 +5,7 @@
 ##'
 ##' @param GOID1 GO ID 1.
 ##' @param GOID2 GO ID 2.
-##' @param godata GOSemSimDATA object
+##' @param semData GOSemSimDATA object
 ##' @param measure One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.
 ##' @return similarity
 ##' @seealso \code{\link{mgoSim}}
@@ -22,11 +22,11 @@
 ##' @export
 ##' @examples
 ##' \dontrun{
-##'     d <- godata('org.Hs.eg.db', ont="MF")
-##'	goSim("GO:0004022", "GO:0005515", godata=d, measure="Wang")
+##'     d <- semData('org.Hs.eg.db', ont="MF")
+##'	goSim("GO:0004022", "GO:0005515", semData=d, measure="Wang")
 ##' }
-goSim <- function(GOID1, GOID2, godata, measure="Wang") {
-    res <- termSim(GOID1, GOID2, godata, method=measure)
+goSim <- function(GOID1, GOID2, semData, measure="Wang") {
+    res <- termSim(GOID1, GOID2, semData, method=measure)
     res <- as.numeric(res)
     return(round(res,digits=3))
 }

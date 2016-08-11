@@ -1,6 +1,8 @@
 .initial <- function() {
     assign(".GOSemSimEnv", new.env(),.GlobalEnv)
     assign(".SemSimCache", new.env(), .GlobalEnv)
+    .GOSemSimEnv <- get(".GOSemSimEnv", envir=.GlobalEnv)
+    
     tryCatch(utils::data(list="gotbl",
                          package="GOSemSim"))
     gotbl <- get("gotbl")

@@ -21,10 +21,15 @@ wangMethod_internal <- function(ID1, ID2, ont="BP") {
     if (ont == "DO") {
         .DOSEEnv <- get(".DOSEEnv", envir=.GlobalEnv)
         rel_df <- get("dotbl", envir=.DOSEEnv)
-    } else {
+    } else if (ont %in% c("BP", "CC", "MF")) {
         if (!exists(".GOSemSimEnv")) .initial()
-        rel_df <- get("gotbl", envir=.GOSemSimEnv)        
+        .GOSemSimEnv <- get(".GOSemSimEnv", envir=.GlobalEnv)
+        rel_df <- get("gotbl", envir=.GOSemSimEnv)
+    } else {
+        .meshesEnv <- get(".meshesEnv", envir=.GlobalEnv)
+        rel_df <- get("meshtbl", envir=.meshesEnv)
     }
+    
     
     sv.a <- getSV(ID1, ont, rel_df)
     sv.b <- getSV(ID2, ont, rel_df)
@@ -48,6 +53,8 @@ wangMethod_internal <- function(ID1, ID2, ont="BP") {
 
 getSV <- function(ID, ont, rel_df, weight=NULL) {
     if (!exists(".SemSimCache")) .initial()
+    .SemSimCache <- get(".SemSimCache", envir=.GlobalEnv)
+    
     if( exists(ID, envir=.SemSimCache) ) {
         sv <- get(ID, envir=.SemSimCache)
         return(sv)
@@ -71,6 +78,9 @@ getSV <- function(ID, ont, rel_df, weight=NULL) {
     }
 
     rel_df <- rel_df[rel_df$Ontology == ont,]
+    if (! 'relationship' %in% colnames(rel_df))
+        rel_df$relationship <- "other"
+    
     rel_df$relationship[!rel_df$relationship %in% c("is_a", "part_of")] <- "other"
     
 

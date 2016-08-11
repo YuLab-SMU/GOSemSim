@@ -4,13 +4,13 @@
 \alias{mclusterSim}
 \title{Pairwise Semantic Similarities for a List of Gene Clusters}
 \usage{
-mclusterSim(clusters, godata, measure = "Wang", drop = "IEA",
+mclusterSim(clusters, semData, measure = "Wang", drop = "IEA",
   combine = "BMA")
 }
 \arguments{
 \item{clusters}{A list of gene clusters.}
 
-\item{godata}{GOSemSimDATA object}
+\item{semData}{GOSemSimDATA object}
 
 \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 
@@ -30,12 +30,12 @@ similarities.
 }
 \examples{
 \dontrun{
- d <- godata('org.Hs.eg.db', ont="MF")
+ d <- semData('org.Hs.eg.db', ont="MF")
  cluster1 <- c("835", "5261","241")
  cluster2 <- c("578","582")
  cluster3 <- c("307", "308", "317")
  clusters <- list(a=cluster1, b=cluster2, c=cluster3)
- mclusterSim(clusters, godata=d, measure="Wang")
+ mclusterSim(clusters, semData=d, measure="Wang")
 }
 }
 \references{

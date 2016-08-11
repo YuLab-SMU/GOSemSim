@@ -1,5 +1,5 @@
 gene2GO <- function(gene, godata, dropCodes) {
-    goAnno <- godata@goAnno
+    goAnno <- godata@geneAnno
     if (! "EVIDENCE" %in% colnames(goAnno)) {
         warning("Evidence codes not found, 'drop' parameter will be ignored...")
     } else {
