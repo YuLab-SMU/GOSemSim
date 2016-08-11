@@ -18,7 +18,9 @@ env:
     - _R_CHECK_FORCE_SUGGESTS_=False
     - R_LIBS="http://cran.rstudio.com"
 
-r_packages: knitr, rmarkdown
+r_packages:
+    - knitr
+    - rmarkdown
 
 
 after_failure:
