@@ -4,7 +4,7 @@
 \alias{geneSim}
 \title{Semantic Similarity Between two Genes}
 \usage{
-geneSim(gene1, gene2, godata, measure = "Wang", drop = "IEA",
+geneSim(gene1, gene2, semData, measure = "Wang", drop = "IEA",
   combine = "BMA")
 }
 \arguments{
@@ -12,7 +12,7 @@ geneSim(gene1, gene2, godata, measure = "Wang", drop = "IEA",
 
 \item{gene2}{Another entrez gene id.}
 
-\item{godata}{GOSemSimDATA object}
+\item{semData}{GOSemSimDATA object}
 
 \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 
@@ -32,8 +32,8 @@ them, and return their semantic similarity and the corresponding GO terms
 }
 \examples{
 \dontrun{
-    d <- godata('org.Hs.eg.db', ont="MF")
-geneSim("241", "251", godata=d, measure="Wang")
+    d <- semData('org.Hs.eg.db', ont="MF")
+geneSim("241", "251", semData=d, measure="Wang")
 }
 }
 \references{

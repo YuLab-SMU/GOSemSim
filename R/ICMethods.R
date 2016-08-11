@@ -17,8 +17,16 @@ infoContentMethod <- function(ID1,
     ## because the IC of a term is dependent of its children but not on its parents.
     ont <- godata@ont
     IC <- godata@IC
+
+    if (ont %in% c("MF", "BP", "CC", "DO")) {
+        .anc <- AnnotationDbi::as.list(getAncestors(ont)[union(ID1,ID2)])
+    } else {
+        mesh_getAnc <- eval(parse(text="meshes:::getAncestors"))
+        .anc <- lapply(union(ID1, ID2), mesh_getAnc)
+        names(.anc) <- union(ID1, ID2)
+    }
     return ( infoContentMethod_cpp( ID1, ID2,
-                 AnnotationDbi::as.list(getAncestors(ont)[union(ID1,ID2)]), IC,
+                 .anc, IC,
                  method, ont ) )
 }
 

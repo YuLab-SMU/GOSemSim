@@ -4,14 +4,14 @@
 \alias{goSim}
 \title{Semantic Similarity Between Two GO Terms}
 \usage{
-goSim(GOID1, GOID2, godata, measure = "Wang")
+goSim(GOID1, GOID2, semData, measure = "Wang")
 }
 \arguments{
 \item{GOID1}{GO ID 1.}
 
 \item{GOID2}{GO ID 2.}
 
-\item{godata}{GOSemSimDATA object}
+\item{semData}{GOSemSimDATA object}
 
 \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 }
@@ -23,8 +23,8 @@ Given two GO IDs, this function calculates their semantic similarity.
 }
 \examples{
 \dontrun{
-    d <- godata('org.Hs.eg.db', ont="MF")
-goSim("GO:0004022", "GO:0005515", godata=d, measure="Wang")
+    d <- semData('org.Hs.eg.db', ont="MF")
+goSim("GO:0004022", "GO:0005515", semData=d, measure="Wang")
 }
 }
 \references{

@@ -5,7 +5,7 @@
 ##'
 ##'
 ##'@param clusters A list of gene clusters.
-##'@param godata GOSemSimDATA object
+##'@param semData GOSemSimDATA object
 ##'@param measure One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.
 ##'@param drop A set of evidence codes based on which certain annotations are
 ##'dropped. Use NULL to keep all GO annotations.
@@ -25,18 +25,18 @@
 ##' @export
 ##'@examples
 ##'\dontrun{
-##'  d <- godata('org.Hs.eg.db', ont="MF")
+##'  d <- semData('org.Hs.eg.db', ont="MF")
 ##'  cluster1 <- c("835", "5261","241")
 ##'  cluster2 <- c("578","582")
 ##'  cluster3 <- c("307", "308", "317")
 ##'  clusters <- list(a=cluster1, b=cluster2, c=cluster3)
-##'  mclusterSim(clusters, godata=d, measure="Wang")
+##'  mclusterSim(clusters, semData=d, measure="Wang")
 ##' }
-mclusterSim <- function(clusters, godata, measure="Wang", drop="IEA", combine="BMA") {
+mclusterSim <- function(clusters, semData, measure="Wang", drop="IEA", combine="BMA") {
     n <- length(clusters)
     cluster_gos <- list()
     for (i in 1:n) {
-        cluster_gos[[i]] <- sapply(clusters[[i]], gene2GO, godata, dropCodes=drop)
+        cluster_gos[[i]] <- sapply(clusters[[i]], gene2GO, semData, dropCodes=drop)
     }
     scores <- matrix(NA, nrow=n, ncol=n)
     rownames(scores) <- names(clusters)
@@ -48,7 +48,7 @@ mclusterSim <- function(clusters, godata, measure="Wang", drop="IEA", combine="B
             gos2 <- unlist(cluster_gos[[j]])
             gos2 <- gos2[!is.na(gos2)]
             if (length(gos1) != 0 && length(gos2) !=0)
-                scores[i,j] <- mgoSim(gos1, gos2, godata, measure=measure, combine=combine)
+                scores[i,j] <- mgoSim(gos1, gos2, semData, measure=measure, combine=combine)
             if ( i != j)
                 scores[j,i] <- scores[i,j]
         }

@@ -182,12 +182,12 @@ In `r Biocpkg("GOSemSim")`, we implemented all these IC-based and graph-based me
 
 
 ```{r}
-goSim("GO:0004022", "GO:0005515", godata=hsGO, measure="Jiang")
-goSim("GO:0004022", "GO:0005515", godata=hsGO, measure="Wang")
+goSim("GO:0004022", "GO:0005515", semData=hsGO, measure="Jiang")
+goSim("GO:0004022", "GO:0005515", semData=hsGO, measure="Wang")
 go1 = c("GO:0004022","GO:0004024","GO:0004174")
 go2 = c("GO:0009055","GO:0005515")
-mgoSim(go1, go2, godata=hsGO, measure="Wang", combine=NULL)
-mgoSim(go1, go2, godata=hsGO, measure="Wang", combine="BMA")
+mgoSim(go1, go2, semData=hsGO, measure="Wang", combine=NULL)
+mgoSim(go1, go2, semData=hsGO, measure="Wang", combine="BMA")
 ```
 
 # Gene Semantic Similarity Measurement
@@ -239,11 +239,11 @@ $sim_{BMA}(g_1, g_2) = \frac{\displaystyle\sum_{1=i}^m \max_{1 \le j \le n}sim(g
 In `r Biocpkg("GOSemSim")`, we implemented __*geneSim*__ to calculate semantic similarity between two gene products, and __*mgeneSim*__ to calculate semantic similarity among multiple gene products.
 
 ```{r}
-geneSim("241", "251", godata=hsGO, measure="Wang", combine="BMA")
+geneSim("241", "251", semData=hsGO, measure="Wang", combine="BMA")
 mgeneSim(genes=c("835", "5261","241", "994"), 
-         godata=hsGO, measure="Wang",verbose=FALSE)
+         semData=hsGO, measure="Wang",verbose=FALSE)
 mgeneSim(genes=c("835", "5261","241", "994"), 
-       godata=hsGO, measure="Rel",verbose=FALSE)
+       semData=hsGO, measure="Rel",verbose=FALSE)
 ```
 
 By default, `godata` function use `ENTREZID` as keytype, and the input ID type is `ENTREZID`. User can use other ID types such as `ENSEMBL`, `UNIPROT`, `REFSEQ`, `ACCNUM`, `SYMBOL` _et al_.
@@ -253,7 +253,7 @@ Here as an example, we use `SYMBOL` as `keytype` and calculate semantic similari
 ```{r}
 hsGO2 <- godata('org.Hs.eg.db', keytype = "SYMBOL", ont="MF", computeIC=FALSE)
 genes <- c("CDC45", "MCM10", "CDC20", "NMU", "MMP1")
-mgeneSim(genes, godata=hsGO2, measure="Wang", combine="BMA", verbose=FALSE)
+mgeneSim(genes, semData=hsGO2, measure="Wang", combine="BMA", verbose=FALSE)
 ```
 
 Users can also use [`clusterProfiler::bitr`](https://bioconductor.org/packages/release/bioc/vignettes/clusterProfiler/inst/doc/clusterProfiler.html#bitr-biological-id-translator) to translate biological IDs.
@@ -267,14 +267,14 @@ and __*mclusterSim*__ for calculating semantic similarities among multiple gene 
 ```{r}
 gs1 <- c("835", "5261","241", "994", "514", "533")
 gs2 <- c("578","582", "400", "409", "411")
-clusterSim(gs1, gs2, godata=hsGO, measure="Wang", combine="BMA")
+clusterSim(gs1, gs2, semData=hsGO, measure="Wang", combine="BMA")
 
 library(org.Hs.eg.db)
 x <- org.Hs.egGO
 hsEG <- mappedkeys(x)
 set.seed <- 123
 clusters <- list(a=sample(hsEG, 20), b=sample(hsEG, 20), c=sample(hsEG, 20))
-mclusterSim(clusters, godata=hsGO, measure="Wang", combine="BMA")
+mclusterSim(clusters, semData=hsGO, measure="Wang", combine="BMA")
 ```
 
 # Applications

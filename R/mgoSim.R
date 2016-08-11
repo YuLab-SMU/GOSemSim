@@ -6,7 +6,7 @@
 ##'
 ##'@param GO1 A set of go terms.
 ##'@param GO2 Another set of go terms.
-##'@param godata GOSemSimDATA object
+##'@param semData GOSemSimDATA object
 ##'@param measure One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.
 ##'@param combine One of "max", "average", "rcmax", "BMA" methods, for combining
 ##'semantic similarity scores of multiple GO terms associated with protein or
@@ -24,14 +24,14 @@
 ##' @export
 ##'@examples
 ##' \dontrun{
-##'     d <- godata('org.Hs.eg.db', ont="MF")
+##'     d <- semData('org.Hs.eg.db', ont="MF")
 ##'	go1 <- c("GO:0004022", "GO:0004024", "GO:0004023")
 ##'	go2 <- c("GO:0009055", "GO:0020037")
-##'	mgoSim("GO:0003824", go2, godata=d, measure="Wang")
-##'	mgoSim(go1, go2, godata=d, measure="Wang")
+##'	mgoSim("GO:0003824", go2, semData=d, measure="Wang")
+##'	mgoSim(go1, go2, semData=d, measure="Wang")
 ##' }
-mgoSim <- function(GO1, GO2, godata, measure="Wang", combine="BMA"){
-    scores <- termSim(GO1, GO2, godata, method=measure)
+mgoSim <- function(GO1, GO2, semData, measure="Wang", combine="BMA"){
+    scores <- termSim(GO1, GO2, semData, method=measure)
     res <- combineScores(scores, combine)
     return(round(res, digits=3))
 }

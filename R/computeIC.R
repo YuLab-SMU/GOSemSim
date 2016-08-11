@@ -5,6 +5,7 @@
 computeIC <- function(goAnno, ont) {
     ## goAnno, see godata function
     if (!exists(".GOSemSimEnv")) .initial()
+    .GOSemSimEnv <- get(".GOSemSimEnv", envir=.GlobalEnv)
     godata <- get("gotbl", envir=.GOSemSimEnv)        
     
     goids <- unique(godata[godata$Ontology == ont, "go_id"])

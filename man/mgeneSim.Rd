@@ -4,13 +4,13 @@
 \alias{mgeneSim}
 \title{Pairwise Semantic Similarity for a List of Genes}
 \usage{
-mgeneSim(genes, godata, measure = "Wang", drop = "IEA", combine = "BMA",
+mgeneSim(genes, semData, measure = "Wang", drop = "IEA", combine = "BMA",
   verbose = TRUE)
 }
 \arguments{
 \item{genes}{A list of entrez gene IDs.}
 
-\item{godata}{GOSemSimDATA object}
+\item{semData}{GOSemSimDATA object}
 
 \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 
@@ -32,8 +32,8 @@ similarities.
 }
 \examples{
 \dontrun{
-    d <- godata('org.Hs.eg.db', ont="MF")
-mgeneSim(c("835", "5261","241"), godata=d, measure="Wang")
+    d <- semData('org.Hs.eg.db', ont="MF")
+mgeneSim(c("835", "5261","241"), semData=d, measure="Wang")
 }
 }
 \references{

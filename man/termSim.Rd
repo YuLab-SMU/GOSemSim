@@ -4,14 +4,14 @@
 \alias{termSim}
 \title{termSim}
 \usage{
-termSim(t1, t2, godata, method = c("Wang", "Resnik", "Rel", "Jiang", "Lin"))
+termSim(t1, t2, semData, method = c("Wang", "Resnik", "Rel", "Jiang", "Lin"))
 }
 \arguments{
 \item{t1}{term vector}
 
 \item{t2}{term vector}
 
-\item{godata}{GOSemSimDATA object}
+\item{semData}{GOSemSimDATA object}
 
 \item{method}{one of "Wang", "Resnik", "Rel", "Jiang", and "Lin".}
 }
