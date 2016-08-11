@@ -11,9 +11,9 @@ The semantic comparisons of Gene Ontology (GO) annotations provide quantitative 
 
 ------------------------------------------------------------------------
 
-Please cite the following article when using `GOSemSim`: [![doi](https://img.shields.io/badge/doi-10.1093/bioinformatics/btq064-green.svg?style=flat)](http://dx.doi.org/10.1093/bioinformatics/btq064) [![citation](https://img.shields.io/badge/cited%20by-213-green.svg?style=flat)](https://scholar.google.com.hk/scholar?hl=en&as_sdt=0,5&sciodt=0,5&cites=9484177541993722322,17633835198940746971,18126401808149291947&scipsc=)
+Please cite the following article when using `GOSemSim`:
 
-**Yu G**<sup>†</sup>, Li F<sup>†</sup>, Qin Y, Bo X<sup>\*</sup>, Wu Y and Wang S<sup>\*</sup>. GOSemSim: an R package for measuring semantic similarity among GO terms and gene products. ***Bioinformatics***. 2010, 26(7):976-978.
+**Yu G**<sup>†</sup>, Li F<sup>†</sup>, Qin Y, Bo X<sup>\*</sup>, Wu Y and Wang S<sup>\*</sup>. GOSemSim: an R package for measuring semantic similarity among GO terms and gene products. ***Bioinformatics***. 2010, 26(7):976-978. [![doi](https://img.shields.io/badge/doi-10.1093/bioinformatics/btq064-green.svg?style=flat)](http://dx.doi.org/10.1093/bioinformatics/btq064) [![citation](https://img.shields.io/badge/cited%20by-213-green.svg?style=flat)](https://scholar.google.com.hk/scholar?hl=en&as_sdt=0,5&sciodt=0,5&cites=9484177541993722322,17633835198940746971,18126401808149291947&scipsc=)
 
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/GuangchuangYu/ggtree.svg?style=social)](https://twitter.com/intent/tweet?hashtags=GOSemSim&url=https://guangchuangyu.github.io/GOSemSim)
 
@@ -28,17 +28,17 @@ For details, please visit our project website, <https://guangchuangyu.github.io/
 ### Citation [![citation](https://img.shields.io/badge/cited%20by-213-green.svg?style=flat)](https://scholar.google.com.hk/scholar?hl=en&as_sdt=0,5&sciodt=0,5&cites=9484177541993722322,17633835198940746971,18126401808149291947&scipsc=)
 
        +--+-------+-------+--------+-------+--------+-------+--+
-    20 +                                            ☘          +
-       |                           ☘       ☘        ☘       ☘  |
-       |                  ☘        ☘       ☘        ☘       ☘  |
-    15 +                  ☘        ☘       ☘        ☘       ☘  +
-       |                  ☘        ☘       ☘        ☘       ☘  |
-    10 +                  ☘        ☘       ☘        ☘       ☘  +
-       |                  ☘        ☘       ☘        ☘       ☘  |
-       |                  ☘        ☘       ☘        ☘       ☘  |
-     5 +          ☘       ☘        ☘       ☘        ☘       ☘  +
-       |  ☘       ☘       ☘        ☘       ☘        ☘       ☘  |
-     0 +  ☘       ☘       ☘        ☘       ☘        ☘       ☘  +
+    20 +                                            *          +
+       |                           *       *        *       *  |
+       |                  *        *       *        *       *  |
+    15 +                  *        *       *        *       *  +
+       |                  *        *       *        *       *  |
+    10 +                  *        *       *        *       *  +
+       |                  *        *       *        *       *  |
+       |                  *        *       *        *       *  |
+     5 +          *       *        *       *        *       *  +
+       |  *       *       *        *       *        *       *  |
+     0 +  *       *       *        *       *        *       *  +
        +--+-------+-------+--------+-------+--------+-------+--+
           1       2       3        4       5        6       7   
     Legend: 1=2010, 2=2011, 3=2012, 4=2013, 5=2014, 6=2015, 7=2016
