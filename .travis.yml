@@ -22,7 +22,10 @@ r_packages:
     - knitr
     - rmarkdown
 
-
+bioc_packages:
+    - GO.db
+    - org.Hs.eg.db
+    
 after_failure:
   - ./travis-tool.sh dump_logs
 
