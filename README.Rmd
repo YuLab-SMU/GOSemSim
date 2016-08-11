@@ -52,8 +52,7 @@ For details, please visit our project website, <https://guangchuangyu.github.io/
 
 ```{r echo=F, comment=NA}
 d <- scholar::get_article_cite_history('DO5oG40AAAAJ', 'tuHXwOkdijsC')
-cites <- with(d, rep(year, times=cites))
-txtplot::txtbarchart(factor(cites))
+txtplot::txtplot(d$year, d$cites)
 ```
 
 ### Download stats
