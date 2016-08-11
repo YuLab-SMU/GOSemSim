@@ -49,7 +49,7 @@ For details, please visit our project website, <https://guangchuangyu.github.io/
 
 ### Download stats
 
-[![download](http://www.bioconductor.org/shields/downloads/GOSemSim.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim/) [![total](https://img.shields.io/badge/downloads-53986/tatal-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim/) [![month](https://img.shields.io/badge/downloads-2265/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim/)
+[![download](http://www.bioconductor.org/shields/downloads/GOSemSim.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim/) [![total](https://img.shields.io/badge/downloads-53986/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim/) [![month](https://img.shields.io/badge/downloads-2265/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim/)
 
          +--------------+---------------------+----------------------+---------------------+-----------+
          |                                                                                        *    |

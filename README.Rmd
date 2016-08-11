@@ -61,7 +61,7 @@ txtplot::txtplot(d$year, d$cites)
 ### Download stats
 
 [![download](http://www.bioconductor.org/shields/downloads/GOSemSim.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim/)
-[![total](https://img.shields.io/badge/downloads-`r sum(dlstats::bioc_stats("GOSemSim")$Nb_of_downloads)`/tatal-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim/)
+[![total](https://img.shields.io/badge/downloads-`r sum(dlstats::bioc_stats("GOSemSim")$Nb_of_downloads)`/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim/)
 [![month](https://img.shields.io/badge/downloads-`r x <- dlstats::bioc_stats("GOSemSim"); x$Nb_of_downloads[nrow(x)-1]`/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim/)
 
 ```{r echo=F, comment=NA}
