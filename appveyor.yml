@@ -41,3 +41,10 @@ artifacts:
 
   - path: '\*_*.zip'
     name: Windows Package
+
+notifications:
+- provider: Email
+  to:
+  - gcyu@connect.hku.hk
+  on_build_success: false
+

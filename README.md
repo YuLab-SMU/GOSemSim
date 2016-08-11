@@ -9,13 +9,15 @@ GOSemSim: GO semantic similarity measurement
 
 The semantic comparisons of Gene Ontology (GO) annotations provide quantitative ways to compute similarities between genes and gene groups, and have became important basis for many bioinformatics analysis approaches. `GOSemSim` is an R package for semantic similarity computation among GO terms, sets of GO terms, gene products and gene clusters. `GOSemSim` implemented five methods proposed by *Resnik*, *Schlicker*, *Jiang*, *Lin* and *Wang* respectively.
 
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/GuangchuangYu/ggtree.svg?style=social)](https://twitter.com/intent/tweet?hashtags=GOSemSim&url=https://guangchuangyu.github.io/GOSemSim)
+
 ------------------------------------------------------------------------
 
 Please cite the following article when using `GOSemSim`:
 
-**Yu G**<sup>†</sup>, Li F<sup>†</sup>, Qin Y, Bo X<sup>\*</sup>, Wu Y and Wang S<sup>\*</sup>. GOSemSim: an R package for measuring semantic similarity among GO terms and gene products. ***Bioinformatics***. 2010, 26(7):976-978. [![doi](https://img.shields.io/badge/doi-10.1093/bioinformatics/btq064-green.svg?style=flat)](http://dx.doi.org/10.1093/bioinformatics/btq064) [![citation](https://img.shields.io/badge/cited%20by-213-green.svg?style=flat)](https://scholar.google.com.hk/scholar?hl=en&as_sdt=0,5&sciodt=0,5&cites=9484177541993722322,17633835198940746971,18126401808149291947&scipsc=)
+**Yu G**<sup>†</sup>, Li F<sup>†</sup>, Qin Y, Bo X<sup>\*</sup>, Wu Y and Wang S<sup>\*</sup>. GOSemSim: an R package for measuring semantic similarity among GO terms and gene products. ***Bioinformatics***. 2010, 26(7):976-978.
 
-[![Twitter](https://img.shields.io/twitter/url/https/github.com/GuangchuangYu/ggtree.svg?style=social)](https://twitter.com/intent/tweet?hashtags=GOSemSim&url=https://guangchuangyu.github.io/GOSemSim)
+[![doi](https://img.shields.io/badge/doi-10.1093/bioinformatics/btq064-green.svg?style=flat)](http://dx.doi.org/10.1093/bioinformatics/btq064) [![citation](https://img.shields.io/badge/cited%20by-213-green.svg?style=flat)](https://scholar.google.com.hk/scholar?hl=en&as_sdt=0,5&sciodt=0,5&cites=9484177541993722322,17633835198940746971,18126401808149291947&scipsc=)
 
 ------------------------------------------------------------------------
 
@@ -25,7 +27,9 @@ For details, please visit our project website, <https://guangchuangyu.github.io/
 -   [Featured Articles](https://guangchuangyu.github.io/GOSemSim/featuredArticles/)
 -   [Feedback](https://guangchuangyu.github.io/GOSemSim/#feedback)
 
-### Citation [![citation](https://img.shields.io/badge/cited%20by-213-green.svg?style=flat)](https://scholar.google.com.hk/scholar?hl=en&as_sdt=0,5&sciodt=0,5&cites=9484177541993722322,17633835198940746971,18126401808149291947&scipsc=)
+### Citation
+
+[![citation](https://img.shields.io/badge/cited%20by-213-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?hl=en&as_sdt=0,5&sciodt=0,5&cites=9484177541993722322,17633835198940746971,18126401808149291947&scipsc=)
 
        +-+--------+-------+-------+--------+-------+-------+---+
        |                                           *           |
@@ -44,6 +48,8 @@ For details, please visit our project website, <https://guangchuangyu.github.io/
        2010     2011    2012    2013     2014    2015    2016   
 
 ### Download stats
+
+[![download](http://www.bioconductor.org/shields/downloads/GOSemSim.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim/) [![total](https://img.shields.io/badge/downloads-53986/tatal-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim/) [![month](https://img.shields.io/badge/downloads-2265/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim/)
 
          +--------------+---------------------+----------------------+---------------------+-----------+
          |                                                                                        *    |

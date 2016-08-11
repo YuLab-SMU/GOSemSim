@@ -35,7 +35,8 @@ Suggests:
     clusterProfiler,
     DOSE,
     knitr,
-    org.Hs.eg.db
+    org.Hs.eg.db,
+    testthat
 VignetteBuilder: knitr
 ByteCompile: true
 License: Artistic-2.0
