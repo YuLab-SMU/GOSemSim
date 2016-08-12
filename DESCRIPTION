@@ -1,7 +1,7 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-Version: 1.99.3
+Version: 1.99.4
 Authors@R: c(person(given = "Guangchuang", family = "Yu",
                     email = "guangchuangyu@gmail.com",
 		    role  = c("aut", "cre")),
@@ -35,7 +35,8 @@ Suggests:
     clusterProfiler,
     DOSE,
     knitr,
-    org.Hs.eg.db
+    org.Hs.eg.db,
+    testthat
 VignetteBuilder: knitr
 ByteCompile: true
 License: Artistic-2.0
