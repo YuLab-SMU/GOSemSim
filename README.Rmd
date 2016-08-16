@@ -21,8 +21,8 @@ html_preview: false
 [![GitHub stars](https://img.shields.io/github/stars/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/stargazers) 
 
 
-[![releaseVersion](https://img.shields.io/badge/release%20version-`r url="https://bioconductor.org/packages/release/bioc/html/GOSemSim.html"; x=readLines(url); gsub("\\D+(\\d+\\.\\d+\\.\\d+)\\D+", "\\1", x[grep("Version", x) +1])`-green.svg?style=flat)](https://bioconductor.org/packages/GOSemSim)
-[![develVersion](https://img.shields.io/badge/devel%20version-`r x=readLines("DESCRIPTION"); y=x[grep("^Version", x)]; sub("Version: ", "", y)`-green.svg?style=flat)](https://github.com/GuangchuangYu/GOSemSim)
+[![releaseVersion](https://img.shields.io/badge/release%20version-`r rvcheck::check_bioc("GOSemSim")$latest_version`-green.svg?style=flat)](https://bioconductor.org/packages/GOSemSim)
+[![develVersion](https://img.shields.io/badge/devel%20version-`r rvcheck:::get_devel_version("GuangchuangYu/GOSemSim")`-green.svg?style=flat)](https://github.com/GuangchuangYu/GOSemSim)
 [![Bioc](http://www.bioconductor.org/shields/years-in-bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#since)
 [![post](http://www.bioconductor.org/shields/posts/GOSemSim.svg)](https://support.bioconductor.org/t/GOSemSim/)
 [![download](http://www.bioconductor.org/shields/downloads/GOSemSim.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim/)
