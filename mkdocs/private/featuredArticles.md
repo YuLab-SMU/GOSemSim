@@ -11,7 +11,7 @@ Let us know if you have published using `GOSemSim` and your publication will be 
 <!-- article_citation:=tuHXwOkdijsC -->
 
 
-Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322,17633835198940746971,18126401808149291947).
+Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322).
 
 ## Diease or Drug analysis
  
