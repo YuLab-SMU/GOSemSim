@@ -17,6 +17,7 @@ Guangchuang Yu, School of Public Health, The University of Hong Kong.
 ## <i class="fa fa-book"></i> Citation
 
 <!-- doi:=10.1093/bioinformatics/btq064 -->
+<!-- citation:=tuHXwOkdijsC:=9484177541993722322 -->
 <!-- altmetric:=100979 -->
 
 Please cite the following article when using `GOSemSim`:
