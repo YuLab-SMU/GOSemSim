@@ -3,3 +3,5 @@
 __pycache__
 *~
 *.Rhistory
+__pycache__
+__init__.py
