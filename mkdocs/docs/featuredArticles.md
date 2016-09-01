@@ -15,7 +15,7 @@
 Let us know if you have published using `GOSemSim` and your publication will be featured here.
 
 
-[![citation](https://img.shields.io/badge/cited%20by-213-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
+[![citation](https://img.shields.io/badge/cited%20by-214-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
 
 <link rel='stylesheet' href=https://guangchuangyu.github.io/resume/css/morris.css>
 <script src='https://guangchuangyu.github.io/resume/css/jquery.min.js' type='text/javascript'></script>
@@ -33,10 +33,10 @@ Let us know if you have published using `GOSemSim` and your publication will be 
   }  
   </style>
 
-<div id = 'chart18c11ba0305f' class = 'rChart morris'></div>
+<div id = 'chart383811b8e22b' class = 'rChart morris'></div>
 <script type='text/javascript'>
     var chartParams = {
- "element": "chart18c11ba0305f",
+ "element": "chart383811b8e22b",
 "width":            800,
 "height":            400,
 "xkey": "year",
@@ -76,11 +76,11 @@ Let us know if you have published using `GOSemSim` and your publication will be 
 },
 {
  "year": 2016,
-"cites":             38,
+"cites":             39,
 "pubid": "tuHXwOkdijsC" 
 } 
 ],
-"id": "chart18c11ba0305f",
+"id": "chart383811b8e22b",
 "labels": "cites" 
 },
       chartType = "Bar"
@@ -88,7 +88,7 @@ Let us know if you have published using `GOSemSim` and your publication will be 
 </script>
 
 
-Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322,17633835198940746971,18126401808149291947).
+Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322).
 
 ## Diease or Drug analysis
  
