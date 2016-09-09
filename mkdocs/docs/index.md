@@ -13,6 +13,8 @@
 <script async src="//static.addtoany.com/menu/page.js"></script>
 <!-- AddToAny END -->
 
+<link rel="stylesheet" href="https://guangchuangyu.github.io/css/font-awesome.min.css">
+
 [![releaseVersion](https://img.shields.io/badge/release%20version-1.30.3-blue.svg?style=flat)](https://bioconductor.org/packages/GOSemSim)
 [![develVersion](https://img.shields.io/badge/devel%20version-1.99.4-blue.svg?style=flat)](https://github.com/GuangchuangYu/GOSemSim)
 [![total](https://img.shields.io/badge/downloads-55879/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)

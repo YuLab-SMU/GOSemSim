@@ -13,9 +13,10 @@
 <script async src="//static.addtoany.com/menu/page.js"></script>
 <!-- AddToAny END -->
 
+<link rel="stylesheet" href="https://guangchuangyu.github.io/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://guangchuangyu.github.io/css/academicons.min.css">
 
-<br>
+
 Let us know if you have published using `GOSemSim` and your publication will be featured here.
 
 
@@ -37,10 +38,10 @@ Let us know if you have published using `GOSemSim` and your publication will be 
   }  
   </style>
 
-<div id = 'chart205a76332e7b' class = 'rChart morris'></div>
+<div id = 'chart21dd625d7517' class = 'rChart morris'></div>
 <script type='text/javascript'>
     var chartParams = {
- "element": "chart205a76332e7b",
+ "element": "chart21dd625d7517",
 "width":            800,
 "height":            400,
 "xkey": "year",
@@ -84,7 +85,7 @@ Let us know if you have published using `GOSemSim` and your publication will be 
 "pubid": "tuHXwOkdijsC" 
 } 
 ],
-"id": "chart205a76332e7b",
+"id": "chart21dd625d7517",
 "labels": "cites" 
 },
       chartType = "Bar"
