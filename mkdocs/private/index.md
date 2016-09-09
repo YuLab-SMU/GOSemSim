@@ -88,11 +88,13 @@ biocLite("GOSemSim")
 + [LANDD](https://cran.r-project.org/package=LANDD): Liquid Association for Network Dynamics Detection 
 + [ppiPre](https://cran.r-project.org/package=ppiPre): Predict Protein-Protein Interactions Based on Functional and Topological Similarities
 + [protr](https://cran.r-project.org/package=protr): Generating Various Numerical Representation Schemes of Protein Sequence
++ [rDNAse](https://cran.r-project.org/package=rDNAse): Generating Various Numerical Representation Schemes of DNA Sequences
 
 #### <i class="fa fa-angle-double-right"></i> Bioconductor packages
 
 + [DOSE](https://www.bioconductor.org/packages/DOSE/): Disease Ontology Semantic and Enrichment analysis
 + [Rcpi](https://www.bioconductor.org/packages/Rcpi/): Toolkit for Compound-Protein Interaction in Drug Discovery
++ [SemDist](https://www.bioconductor.org/packages/SemDist): Information Accretion-based Function Predictor Evaluation
 + [tRanslatome](https://www.bioconductor.org/packages/tRanslatome/): Comparison between multiple levels of gene expression
 
 

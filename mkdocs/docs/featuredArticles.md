@@ -4,10 +4,14 @@
 <a class="a2a_button_facebook"></a>
 <a class="a2a_button_twitter"></a>
 <a class="a2a_button_google_plus"></a>
+<a class="a2a_button_pinterest"></a>
+<a class="a2a_button_reddit"></a>
+<a class="a2a_button_sina_weibo"></a>
+<a class="a2a_button_wechat"></a>
+<a class="a2a_button_douban"></a>
 </div>
 <script async src="//static.addtoany.com/menu/page.js"></script>
 <!-- AddToAny END -->
-
 
 <link rel="stylesheet" href="https://guangchuangyu.github.io/css/academicons.min.css">
 
@@ -15,7 +19,7 @@
 Let us know if you have published using `GOSemSim` and your publication will be featured here.
 
 
-[![citation](https://img.shields.io/badge/cited%20by-214-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
+[![citation](https://img.shields.io/badge/cited%20by-215-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
 
 <link rel='stylesheet' href=https://guangchuangyu.github.io/resume/css/morris.css>
 <script src='https://guangchuangyu.github.io/resume/css/jquery.min.js' type='text/javascript'></script>
@@ -33,10 +37,10 @@ Let us know if you have published using `GOSemSim` and your publication will be 
   }  
   </style>
 
-<div id = 'chart383811b8e22b' class = 'rChart morris'></div>
+<div id = 'chart205a76332e7b' class = 'rChart morris'></div>
 <script type='text/javascript'>
     var chartParams = {
- "element": "chart383811b8e22b",
+ "element": "chart205a76332e7b",
 "width":            800,
 "height":            400,
 "xkey": "year",
@@ -76,11 +80,11 @@ Let us know if you have published using `GOSemSim` and your publication will be 
 },
 {
  "year": 2016,
-"cites":             39,
+"cites":             40,
 "pubid": "tuHXwOkdijsC" 
 } 
 ],
-"id": "chart383811b8e22b",
+"id": "chart205a76332e7b",
 "labels": "cites" 
 },
       chartType = "Bar"

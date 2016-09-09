@@ -4,15 +4,19 @@
 <a class="a2a_button_facebook"></a>
 <a class="a2a_button_twitter"></a>
 <a class="a2a_button_google_plus"></a>
+<a class="a2a_button_pinterest"></a>
+<a class="a2a_button_reddit"></a>
+<a class="a2a_button_sina_weibo"></a>
+<a class="a2a_button_wechat"></a>
+<a class="a2a_button_douban"></a>
 </div>
 <script async src="//static.addtoany.com/menu/page.js"></script>
 <!-- AddToAny END -->
 
-
 [![releaseVersion](https://img.shields.io/badge/release%20version-1.30.3-blue.svg?style=flat)](https://bioconductor.org/packages/GOSemSim)
 [![develVersion](https://img.shields.io/badge/devel%20version-1.99.4-blue.svg?style=flat)](https://github.com/GuangchuangYu/GOSemSim)
-[![total](https://img.shields.io/badge/downloads-55491/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
-[![month](https://img.shields.io/badge/downloads-2265/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![total](https://img.shields.io/badge/downloads-55879/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![month](https://img.shields.io/badge/downloads-2125/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 
 The semantic comparisons of Gene Ontology (GO) annotations provide quantitative ways to compute similarities between genes and gene groups, and have became important basis for many bioinformatics analysis approaches. `GOSemSim` is an R package for semantic similarity computation among GO terms, sets of GO terms, gene products and gene clusters. `GOSemSim` implemented five methods proposed by _Resnik_, _Schlicker_, _Jiang_, _Lin_ and _Wang_ respectively.
 
@@ -26,7 +30,7 @@ Guangchuang Yu, School of Public Health, The University of Hong Kong.
 ## <i class="fa fa-book"></i> Citation
 
 [![doi](https://img.shields.io/badge/doi-10.1093/bioinformatics/btq064-blue.svg?style=flat)](http://dx.doi.org/10.1093/bioinformatics/btq064)
-[![citation](https://img.shields.io/badge/cited%20by-214-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
+[![citation](https://img.shields.io/badge/cited%20by-215-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
 [![Altmetric](https://img.shields.io/badge/Altmetric-6-blue.svg?style=flat)](https://www.altmetric.com/details/100979)
 
 Please cite the following article when using `GOSemSim`:
@@ -97,11 +101,13 @@ biocLite("GOSemSim")
 + [LANDD](https://cran.r-project.org/package=LANDD): Liquid Association for Network Dynamics Detection 
 + [ppiPre](https://cran.r-project.org/package=ppiPre): Predict Protein-Protein Interactions Based on Functional and Topological Similarities
 + [protr](https://cran.r-project.org/package=protr): Generating Various Numerical Representation Schemes of Protein Sequence
++ [rDNAse](https://cran.r-project.org/package=rDNAse): Generating Various Numerical Representation Schemes of DNA Sequences
 
 #### <i class="fa fa-angle-double-right"></i> Bioconductor packages
 
 + [DOSE](https://www.bioconductor.org/packages/DOSE/): Disease Ontology Semantic and Enrichment analysis
 + [Rcpi](https://www.bioconductor.org/packages/Rcpi/): Toolkit for Compound-Protein Interaction in Drug Discovery
++ [SemDist](https://www.bioconductor.org/packages/SemDist): Information Accretion-based Function Predictor Evaluation
 + [tRanslatome](https://www.bioconductor.org/packages/tRanslatome/): Comparison between multiple levels of gene expression
 
 
