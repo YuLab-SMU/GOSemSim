@@ -17,7 +17,7 @@
 
 [![releaseVersion](https://img.shields.io/badge/release%20version-1.30.3-blue.svg?style=flat)](https://bioconductor.org/packages/GOSemSim)
 [![develVersion](https://img.shields.io/badge/devel%20version-1.99.4-blue.svg?style=flat)](https://github.com/GuangchuangYu/GOSemSim)
-[![total](https://img.shields.io/badge/downloads-55879/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![total](https://img.shields.io/badge/downloads-56058/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 [![month](https://img.shields.io/badge/downloads-2125/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 
 The semantic comparisons of Gene Ontology (GO) annotations provide quantitative ways to compute similarities between genes and gene groups, and have became important basis for many bioinformatics analysis approaches. `GOSemSim` is an R package for semantic similarity computation among GO terms, sets of GO terms, gene products and gene clusters. `GOSemSim` implemented five methods proposed by _Resnik_, _Schlicker_, _Jiang_, _Lin_ and _Wang_ respectively.
@@ -31,11 +31,11 @@ Guangchuang Yu, School of Public Health, The University of Hong Kong.
 
 ## <i class="fa fa-book"></i> Citation
 
-[![doi](https://img.shields.io/badge/doi-10.1093/bioinformatics/btq064-blue.svg?style=flat)](http://dx.doi.org/10.1093/bioinformatics/btq064)
-[![citation](https://img.shields.io/badge/cited%20by-215-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
-[![Altmetric](https://img.shields.io/badge/Altmetric-6-blue.svg?style=flat)](https://www.altmetric.com/details/100979)
-
 Please cite the following article when using `GOSemSim`:
+
+[![doi](https://img.shields.io/badge/doi-10.1093/bioinformatics/btq064-blue.svg?style=flat)](http://dx.doi.org/10.1093/bioinformatics/btq064)
+[![citation](https://img.shields.io/badge/cited%20by-216-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
+[![Altmetric](https://img.shields.io/badge/Altmetric-6-blue.svg?style=flat)](https://www.altmetric.com/details/100979)
 
 __Yu G__<sup>†</sup>, Li F<sup>†</sup>, Qin Y, Bo X<sup>\*</sup>, Wu Y and Wang S<sup>\*</sup>. 
 GOSemSim: an R package for measuring semantic similarity among GO terms and gene products.
@@ -95,27 +95,19 @@ biocLite("GOSemSim")
 
 <i class="fa fa-hand-o-right"></i> Find out more on [projects](https://guangchuangyu.github.io/#projects).
 
-## <i class="fa fa-code-fork"></i> Projects that depend on GOSemSim
+## <i class="fa fa-code-fork"></i> Projects that depend on _GOSemSim_
 
 #### <i class="fa fa-angle-double-right"></i> CRAN packages
-
 + [BiSEp](https://cran.r-project.org/package=BiSEp): Toolkit to Identify Candidate Synthetic Lethality
-+ [LANDD](https://cran.r-project.org/package=LANDD): Liquid Association for Network Dynamics Detection 
++ [LANDD](https://cran.r-project.org/package=LANDD): Liquid Association for Network Dynamics Detection
 + [ppiPre](https://cran.r-project.org/package=ppiPre): Predict Protein-Protein Interactions Based on Functional and Topological Similarities
-+ [protr](https://cran.r-project.org/package=protr): Generating Various Numerical Representation Schemes of Protein Sequence
-+ [rDNAse](https://cran.r-project.org/package=rDNAse): Generating Various Numerical Representation Schemes of DNA Sequences
 
 #### <i class="fa fa-angle-double-right"></i> Bioconductor packages
-
-+ [DOSE](https://www.bioconductor.org/packages/DOSE/): Disease Ontology Semantic and Enrichment analysis
-+ [Rcpi](https://www.bioconductor.org/packages/Rcpi/): Toolkit for Compound-Protein Interaction in Drug Discovery
-+ [SemDist](https://www.bioconductor.org/packages/SemDist): Information Accretion-based Function Predictor Evaluation
-+ [tRanslatome](https://www.bioconductor.org/packages/tRanslatome/): Comparison between multiple levels of gene expression
-
-
-<!--
-<i class="fa fa-hand-o-right"></i> Find out more on <i class="fa fa-github-alt"></i> [github](http://scisoft-net-map.isri.cmu.edu/application/GOSemSim/gitprojects).
--->
++ [clusterProfiler](https://www.bioconductor.org/packages/clusterProfiler): statistical analysis and visualization of functional profiles for genes and gene clusters
++ [DOSE](https://www.bioconductor.org/packages/DOSE): Disease Ontology Semantic and Enrichment analysis
++ [Rcpi](https://www.bioconductor.org/packages/Rcpi): Toolkit for Compound-Protein Interaction in Drug Discovery
++ [ReactomePA](https://www.bioconductor.org/packages/ReactomePA): Reactome Pathway Analysis
++ [tRanslatome](https://www.bioconductor.org/packages/tRanslatome): Comparison between multiple levels of gene expression
 
 
 ## <i class="fa fa-comment"></i> Feedback

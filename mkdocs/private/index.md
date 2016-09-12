@@ -18,11 +18,11 @@ Guangchuang Yu, School of Public Health, The University of Hong Kong.
 
 ## <i class="fa fa-book"></i> Citation
 
+Please cite the following article when using `GOSemSim`:
+
 <!-- doi:=10.1093/bioinformatics/btq064 -->
 <!-- citation:=tuHXwOkdijsC:=9484177541993722322 -->
 <!-- altmetric:=100979 -->
-
-Please cite the following article when using `GOSemSim`:
 
 __Yu G__<sup>†</sup>, Li F<sup>†</sup>, Qin Y, Bo X<sup>\*</sup>, Wu Y and Wang S<sup>\*</sup>. 
 GOSemSim: an R package for measuring semantic similarity among GO terms and gene products.
@@ -82,27 +82,11 @@ biocLite("GOSemSim")
 
 <i class="fa fa-hand-o-right"></i> Find out more on [projects](https://guangchuangyu.github.io/#projects).
 
-## <i class="fa fa-code-fork"></i> Projects that depend on GOSemSim
+## <i class="fa fa-code-fork"></i> Projects that depend on _GOSemSim_
 
-#### <i class="fa fa-angle-double-right"></i> CRAN packages
+<!-- package_depend:=GOSemSim:=CRAN -->
 
-+ [BiSEp](https://cran.r-project.org/package=BiSEp): Toolkit to Identify Candidate Synthetic Lethality
-+ [LANDD](https://cran.r-project.org/package=LANDD): Liquid Association for Network Dynamics Detection 
-+ [ppiPre](https://cran.r-project.org/package=ppiPre): Predict Protein-Protein Interactions Based on Functional and Topological Similarities
-+ [protr](https://cran.r-project.org/package=protr): Generating Various Numerical Representation Schemes of Protein Sequence
-+ [rDNAse](https://cran.r-project.org/package=rDNAse): Generating Various Numerical Representation Schemes of DNA Sequences
-
-#### <i class="fa fa-angle-double-right"></i> Bioconductor packages
-
-+ [DOSE](https://www.bioconductor.org/packages/DOSE/): Disease Ontology Semantic and Enrichment analysis
-+ [Rcpi](https://www.bioconductor.org/packages/Rcpi/): Toolkit for Compound-Protein Interaction in Drug Discovery
-+ [SemDist](https://www.bioconductor.org/packages/SemDist): Information Accretion-based Function Predictor Evaluation
-+ [tRanslatome](https://www.bioconductor.org/packages/tRanslatome/): Comparison between multiple levels of gene expression
-
-
-<!--
-<i class="fa fa-hand-o-right"></i> Find out more on <i class="fa fa-github-alt"></i> [github](http://scisoft-net-map.isri.cmu.edu/application/GOSemSim/gitprojects).
--->
+<!-- package_depend:=GOSemSim:=BioC -->
 
 
 ## <i class="fa fa-comment"></i> Feedback

@@ -20,7 +20,7 @@
 Let us know if you have published using `GOSemSim` and your publication will be featured here.
 
 
-[![citation](https://img.shields.io/badge/cited%20by-215-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
+[![citation](https://img.shields.io/badge/cited%20by-216-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
 
 <link rel='stylesheet' href=https://guangchuangyu.github.io/resume/css/morris.css>
 <script src='https://guangchuangyu.github.io/resume/css/jquery.min.js' type='text/javascript'></script>
@@ -38,10 +38,10 @@ Let us know if you have published using `GOSemSim` and your publication will be 
   }  
   </style>
 
-<div id = 'chart21dd625d7517' class = 'rChart morris'></div>
+<div id = 'chart23517c32bb5e' class = 'rChart morris'></div>
 <script type='text/javascript'>
     var chartParams = {
- "element": "chart21dd625d7517",
+ "element": "chart23517c32bb5e",
 "width":            800,
 "height":            400,
 "xkey": "year",
@@ -81,11 +81,11 @@ Let us know if you have published using `GOSemSim` and your publication will be 
 },
 {
  "year": 2016,
-"cites":             40,
+"cites":             41,
 "pubid": "tuHXwOkdijsC" 
 } 
 ],
-"id": "chart21dd625d7517",
+"id": "chart23517c32bb5e",
 "labels": "cites" 
 },
       chartType = "Bar"
