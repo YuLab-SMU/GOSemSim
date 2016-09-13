@@ -43,7 +43,8 @@ Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://s
 
 ## Protein-Protein Interaction
 
-+ [Integration of multiple biological features yields high confidence human protein interactome](http://dx.doi.org.eproxy1.lib.hku.hk/10.1016/j.jtbi.2016.05.020>). **Journal of Theoretical Biology**. 2016, 403:85-96.
++ [Analyzing and interpreting genome data at the network level with ConsensusPathDB](http://www.nature.com/nprot/journal/v11/n10/abs/nprot.2016.117.html). **Nature Protocols**. 2016, 11:1889-1907.
++ [Integration of multiple biological features yields high confidence human protein interactome](http://dx.doi.org/10.1016/j.jtbi.2016.05.020>). **Journal of Theoretical Biology**. 2016, 403:85-96.
 + [Computational prediction of virus–human protein–protein interactions using embedding kernelized heterogeneous data](http://dx.doi.org/10.1039/C6MB00065G>). **Mol. BioSyst**. 2016, 12:1976-1986.
 + [Computational probing protein–protein interactions targeting small molecules](http://dx.doi.org/10.1093/bioinformatics/btv528>). **Bioinformatics**. 2016, 32(2):226-234.
 + [An integrative *C. elegans* protein–protein interaction network with reliability assessment based on a probabilistic graphical model](http://dx.doi.org/10.1039/C5MB00417A>). **Mol. Biosyst**. 2016, 12:85-92.

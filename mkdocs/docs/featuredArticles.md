@@ -20,7 +20,7 @@
 Let us know if you have published using `GOSemSim` and your publication will be featured here.
 
 
-[![citation](https://img.shields.io/badge/cited%20by-216-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
+[![citation](https://img.shields.io/badge/cited%20by-217-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
 
 <link rel='stylesheet' href=https://guangchuangyu.github.io/resume/css/morris.css>
 <script src='https://guangchuangyu.github.io/resume/css/jquery.min.js' type='text/javascript'></script>
@@ -38,10 +38,10 @@ Let us know if you have published using `GOSemSim` and your publication will be 
   }  
   </style>
 
-<div id = 'chart23517c32bb5e' class = 'rChart morris'></div>
+<div id = 'chart203378342553' class = 'rChart morris'></div>
 <script type='text/javascript'>
     var chartParams = {
- "element": "chart23517c32bb5e",
+ "element": "chart203378342553",
 "width":            800,
 "height":            400,
 "xkey": "year",
@@ -81,11 +81,11 @@ Let us know if you have published using `GOSemSim` and your publication will be 
 },
 {
  "year": 2016,
-"cites":             41,
+"cites":             42,
 "pubid": "tuHXwOkdijsC" 
 } 
 ],
-"id": "chart23517c32bb5e",
+"id": "chart203378342553",
 "labels": "cites" 
 },
       chartType = "Bar"
@@ -124,7 +124,8 @@ Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://s
 
 ## Protein-Protein Interaction
 
-+ [Integration of multiple biological features yields high confidence human protein interactome](http://dx.doi.org.eproxy1.lib.hku.hk/10.1016/j.jtbi.2016.05.020>). **Journal of Theoretical Biology**. 2016, 403:85-96.
++ [Analyzing and interpreting genome data at the network level with ConsensusPathDB](http://www.nature.com/nprot/journal/v11/n10/abs/nprot.2016.117.html). **Nature Protocols**. 2016, 11:1889-1907.
++ [Integration of multiple biological features yields high confidence human protein interactome](http://dx.doi.org/10.1016/j.jtbi.2016.05.020>). **Journal of Theoretical Biology**. 2016, 403:85-96.
 + [Computational prediction of virus–human protein–protein interactions using embedding kernelized heterogeneous data](http://dx.doi.org/10.1039/C6MB00065G>). **Mol. BioSyst**. 2016, 12:1976-1986.
 + [Computational probing protein–protein interactions targeting small molecules](http://dx.doi.org/10.1093/bioinformatics/btv528>). **Bioinformatics**. 2016, 32(2):226-234.
 + [An integrative *C. elegans* protein–protein interaction network with reliability assessment based on a probabilistic graphical model](http://dx.doi.org/10.1039/C5MB00417A>). **Mol. Biosyst**. 2016, 12:85-92.
