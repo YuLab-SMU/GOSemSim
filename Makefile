@@ -44,6 +44,8 @@ mdfiles:
 	Rscript -e 'library(ypages); gendoc("private/index.md", "blue", "docs/index.md")';\
 	Rscript -e 'library(ypages); gendoc("private/documentation.md", "blue", "docs/documentation.md")';\
 	Rscript -e 'library(ypages); gendoc("private/featuredArticles.md", "blue", "docs/featuredArticles.md")';\
+	cd docs;\
+	ln -f -s ../mysoftware/* ./
 
 svnignore:
 	svn propset svn:ignore -F .svnignore .
