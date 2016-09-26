@@ -17,7 +17,7 @@
 
 [![releaseVersion](https://img.shields.io/badge/release%20version-1.30.3-blue.svg?style=flat)](https://bioconductor.org/packages/GOSemSim)
 [![develVersion](https://img.shields.io/badge/devel%20version-1.99.4-blue.svg?style=flat)](https://github.com/GuangchuangYu/GOSemSim)
-[![total](https://img.shields.io/badge/downloads-56058/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![total](https://img.shields.io/badge/downloads-56966/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 [![month](https://img.shields.io/badge/downloads-2125/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 
 The semantic comparisons of Gene Ontology (GO) annotations provide quantitative ways to compute similarities between genes and gene groups, and have became important basis for many bioinformatics analysis approaches. `GOSemSim` is an R package for semantic similarity computation among GO terms, sets of GO terms, gene products and gene clusters. `GOSemSim` implemented five methods proposed by _Resnik_, _Schlicker_, _Jiang_, _Lin_ and _Wang_ respectively.
@@ -100,13 +100,12 @@ biocLite("GOSemSim")
 #### <i class="fa fa-angle-double-right"></i> CRAN packages
 + [BiSEp](https://cran.r-project.org/package=BiSEp): Toolkit to Identify Candidate Synthetic Lethality
 + [LANDD](https://cran.r-project.org/package=LANDD): Liquid Association for Network Dynamics Detection
-+ [ppiPre](https://cran.r-project.org/package=ppiPre): Predict Protein-Protein Interactions Based on Functional and Topological Similarities
++ [ppiPre](https://cran.r-project.org/package=ppiPre): Predict Protein-Protein Interactions Based on Functional and
 
 #### <i class="fa fa-angle-double-right"></i> Bioconductor packages
 + [clusterProfiler](https://www.bioconductor.org/packages/clusterProfiler): statistical analysis and visualization of functional profiles for genes and gene clusters
 + [DOSE](https://www.bioconductor.org/packages/DOSE): Disease Ontology Semantic and Enrichment analysis
 + [Rcpi](https://www.bioconductor.org/packages/Rcpi): Toolkit for Compound-Protein Interaction in Drug Discovery
-+ [tRanslatome](https://www.bioconductor.org/packages/tRanslatome): Comparison between multiple levels of gene expression
 
 
 ## <i class="fa fa-comment"></i> Feedback

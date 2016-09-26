@@ -7,15 +7,26 @@ html_preview: false
 
 
 ```{r echo=FALSE, results="hide", message=FALSE}
-library("ggtree") 
+library("ypages")
 library("txtplot")
-library("scholar")
-library("dlstats")
-library("rvcheck") 
-get_devel_version <- rvcheck:::get_devel_version
 ```
 
 #  GOSemSim: GO semantic similarity measurement
+
+`r badge_release("GOSemSim", "green")`
+`r badge_devel("GOSemSim", "green")`
+[![Bioc](http://www.bioconductor.org/shields/years-in-bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#since)
+`r badge_download("GOSemSim", "total", "blue")`
+`r badge_download("GOSemSim", "month", "blue")`
+
+
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![codecov](https://codecov.io/gh/GuangchuangYu/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/GuangchuangYu/GOSemSim/)
+[![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-green.svg)](https://github.com/GuangchuangYu/GOSemSim/commits/master)
+[![commit](http://www.bioconductor.org/shields/commits/bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#svn_source)
+[![GitHub forks](https://img.shields.io/github/forks/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/network)
+[![GitHub stars](https://img.shields.io/github/stars/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/stargazers)
+
 
 [![platform](http://www.bioconductor.org/shields/availability/devel/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#archives)
 [![Build Status](http://www.bioconductor.org/shields/build/devel/bioc/GOSemSim.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/GOSemSim/)
@@ -23,33 +34,22 @@ get_devel_version <- rvcheck:::get_devel_version
 [![AppVeyor Build Status](https://img.shields.io/appveyor/ci/Guangchuangyu/GOSemSim/master.svg?label=Windows)](https://ci.appveyor.com/project/GuangchuangYu/GOSemSim)
 [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-green.svg?style=flat)](http://bioconda.github.io/recipes/bioconductor-gosemsim/README.html)
 
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![codecov](https://codecov.io/gh/GuangchuangYu/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/GuangchuangYu/GOSemSim/)
-[![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-green.svg)](https://github.com/GuangchuangYu/GOSemSim/commits/master)
-[![commit](http://www.bioconductor.org/shields/commits/bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#svn_source)
-[![GitHub forks](https://img.shields.io/github/forks/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/network) 
-[![GitHub stars](https://img.shields.io/github/stars/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/stargazers) 
-
-
-[![releaseVersion](https://img.shields.io/badge/release%20version-`r check_bioc("GOSemSim")$latest_version`-green.svg?style=flat)](https://bioconductor.org/packages/GOSemSim)
-[![develVersion](https://img.shields.io/badge/devel%20version-`r get_devel_version("GuangchuangYu/GOSemSim")`-green.svg?style=flat)](https://github.com/GuangchuangYu/GOSemSim)
-[![Bioc](http://www.bioconductor.org/shields/years-in-bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#since)
-[![post](http://www.bioconductor.org/shields/posts/GOSemSim.svg)](https://support.bioconductor.org/t/GOSemSim/)
-[![download](http://www.bioconductor.org/shields/downloads/GOSemSim.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim/)
-
 
 The semantic comparisons of Gene Ontology (GO) annotations provide quantitative ways to compute similarities between genes and gene groups, and have became important basis for many bioinformatics analysis approaches. `GOSemSim` is an R package for semantic similarity computation among GO terms, sets of GO terms, gene products and gene clusters. `GOSemSim` implemented five methods proposed by *Resnik*, *Schlicker*, *Jiang*, *Lin* and *Wang* respectively.
 
-[![Twitter](https://img.shields.io/twitter/url/https/github.com/GuangchuangYu/GOSemSim.svg?style=social)](https://twitter.com/intent/tweet?hashtags=GOSemSim&url=http://bioinformatics.oxfordjournals.org/content/26/7/976)
+[![Twitter](https://img.shields.io/twitter/url/https/github.com/GuangchuangYu/GOSemSim.svg?style=social)](https://twitter.com/intent/tweet?hashtags=GOSemSim&url=http://bioinformatics.oxfordjournals.org/content/26/7/976&screen_name=guangchuangyu)
 
 ------------------------------------------------------------------------
 
-Please cite the following article when using `GOSemSim`: 
+Please cite the following article when using `GOSemSim`:
 
-**Yu G**^†^, Li F^†^, Qin Y, Bo X^\*^, Wu Y and Wang S^\*^. GOSemSim: an R package for measuring semantic similarity among GO terms and gene products. ***Bioinformatics***. 2010, 26(7):976-978. 
+**Yu G**^†^, Li F^†^, Qin Y, Bo X^\*^, Wu Y and Wang S^\*^. GOSemSim: an R package for measuring semantic similarity among GO terms and gene products. ***Bioinformatics***. 2010, 26(7):976-978.
 
-[![doi](https://img.shields.io/badge/doi-10.1093/bioinformatics/btq064-green.svg?style=flat)](http://dx.doi.org/10.1093/bioinformatics/btq064) 
-[![citation](https://img.shields.io/badge/cited%20by-`r sum(get_article_cite_history('DO5oG40AAAAJ', 'tuHXwOkdijsC')$cites)`-green.svg?style=flat)](https://scholar.google.com.hk/scholar?hl=en&as_sdt=0,5&sciodt=0,5&cites=9484177541993722322)
+
+`r badge_doi("10.1093/bioinformatics/btq064", "green")`
+`r badge_citation("tuHXwOkdijsC", "9484177541993722322", "green")`
+`r badge_altmetric("100979", "green")`
+
 
 ------------------------------------------------------------------------
 
@@ -59,9 +59,9 @@ For details, please visit our project website, <https://guangchuangyu.github.io/
 + [Featured Articles](https://guangchuangyu.github.io/GOSemSim/featuredArticles/)
 + [Feedback](https://guangchuangyu.github.io/GOSemSim/#feedback)
 
-### Citation 
+### Citation
 
-[![citation](https://img.shields.io/badge/cited%20by-`r sum(get_article_cite_history('DO5oG40AAAAJ', 'tuHXwOkdijsC')$cites)`-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?hl=en&as_sdt=0,5&sciodt=0,5&cites=9484177541993722322,17633835198940746971,18126401808149291947&scipsc=)
+`r badge_citation("tuHXwOkdijsC", "9484177541993722322", "green")`
 
 ```{r echo=F, comment=NA}
 d <- get_article_cite_history('DO5oG40AAAAJ', 'tuHXwOkdijsC')
@@ -71,13 +71,14 @@ txtplot(d$year, d$cites)
 ### Download stats
 
 [![download](http://www.bioconductor.org/shields/downloads/GOSemSim.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim/)
-[![total](https://img.shields.io/badge/downloads-`r sum(bioc_stats("GOSemSim")$Nb_of_downloads)`/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim/)
-[![month](https://img.shields.io/badge/downloads-`r x <- bioc_stats("GOSemSim"); x$Nb_of_downloads[nrow(x)-1]`/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim/)
+`r badge_download("GOSemSim", "total", "blue")`
+`r badge_download("GOSemSim", "month", "blue")`
+
 
 ```{r echo=F, comment=NA}
-x <- bioc_stats("GOSemSim")
+x <- dlstats::bioc_stats("GOSemSim")
 x <- x[-nrow(x), ] # last month data is not complete
-txtplot(Date2decimal(x$end), x$Nb_of_downloads, width=100, height=25)
+txtplot(ggtree::Date2decimal(x$end), x$Nb_of_downloads, width=100, height=25)
 ```
 
 
