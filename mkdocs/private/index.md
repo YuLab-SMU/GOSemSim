@@ -24,14 +24,14 @@ Please cite the following article when using `GOSemSim`:
 <!-- citation:=tuHXwOkdijsC:=9484177541993722322 -->
 <!-- altmetric:=100979 -->
 
-__Yu G__<sup>†</sup>, Li F<sup>†</sup>, Qin Y, Bo X<sup>\*</sup>, Wu Y and Wang S<sup>\*</sup>. 
+__Yu G__<sup>†</sup>, Li F<sup>†</sup>, Qin Y, Bo X<sup>\*</sup>, Wu Y and Wang S<sup>\*</sup>.
 GOSemSim: an R package for measuring semantic similarity among GO terms and gene products.
-__*Bioinformatics*__. 2010, 26(7):976-978. 
+__*Bioinformatics*__. 2010, 26(7):976-978.
 
 
 ## <i class="fa fa-pencil"></i> Featured Articles
 
-<img src="featured_img/2014PNAS.png" width="650">
+<img src="https://guangchuangyu.github.io/featured_img/GOSemSim/2014PNAS.png" width="650">
 
 <i class="fa fa-hand-o-right"></i> Find out more on <i class="fa fa-pencil"></i> [Featured Articles](https://guangchuangyu.github.io/GOSemSim/featuredArticles/).
 
