@@ -17,8 +17,8 @@
 
 [![releaseVersion](https://img.shields.io/badge/release%20version-1.30.3-blue.svg?style=flat)](https://bioconductor.org/packages/GOSemSim)
 [![develVersion](https://img.shields.io/badge/devel%20version-1.99.4-blue.svg?style=flat)](https://github.com/GuangchuangYu/GOSemSim)
-[![total](https://img.shields.io/badge/downloads-56966/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
-[![month](https://img.shields.io/badge/downloads-2125/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![total](https://img.shields.io/badge/downloads-58258/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![month](https://img.shields.io/badge/downloads-1846/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 
 The semantic comparisons of Gene Ontology (GO) annotations provide quantitative ways to compute similarities between genes and gene groups, and have became important basis for many bioinformatics analysis approaches. `GOSemSim` is an R package for semantic similarity computation among GO terms, sets of GO terms, gene products and gene clusters. `GOSemSim` implemented five methods proposed by _Resnik_, _Schlicker_, _Jiang_, _Lin_ and _Wang_ respectively.
 
@@ -34,7 +34,7 @@ Guangchuang Yu, School of Public Health, The University of Hong Kong.
 Please cite the following article when using `GOSemSim`:
 
 [![doi](https://img.shields.io/badge/doi-10.1093/bioinformatics/btq064-blue.svg?style=flat)](http://dx.doi.org/10.1093/bioinformatics/btq064)
-[![citation](https://img.shields.io/badge/cited%20by-217-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
+[![citation](https://img.shields.io/badge/cited%20by-219-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
 [![Altmetric](https://img.shields.io/badge/Altmetric-6-blue.svg?style=flat)](https://www.altmetric.com/details/100979)
 
 __Yu G__<sup>†</sup>, Li F<sup>†</sup>, Qin Y, Bo X<sup>\*</sup>, Wu Y and Wang S<sup>\*</sup>. 
@@ -105,7 +105,9 @@ biocLite("GOSemSim")
 #### <i class="fa fa-angle-double-right"></i> Bioconductor packages
 + [clusterProfiler](https://www.bioconductor.org/packages/clusterProfiler): statistical analysis and visualization of functional profiles for genes and gene clusters
 + [DOSE](https://www.bioconductor.org/packages/DOSE): Disease Ontology Semantic and Enrichment analysis
++ [meshes](https://www.bioconductor.org/packages/meshes): MeSH Enrichment and Semantic analyses
 + [Rcpi](https://www.bioconductor.org/packages/Rcpi): Toolkit for Compound-Protein Interaction in Drug Discovery
++ [tRanslatome](https://www.bioconductor.org/packages/tRanslatome): Comparison between multiple levels of gene expression
 
 
 ## <i class="fa fa-comment"></i> Feedback
