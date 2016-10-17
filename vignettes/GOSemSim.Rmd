@@ -8,7 +8,7 @@ author: "\\
 date: "`r Sys.Date()`"
 bibliography: GOSemSim.bib
 csl: nature.csl
-output: 
+output:
   BiocStyle::html_document:
     toc: true
   BiocStyle::pdf_document:
@@ -36,7 +36,7 @@ library(GOSemSim)
 
 Please cite the following article when using `r Biocpkg("GOSemSim")`:
 
-__G Yu__, F Li, Y Qin, X Bo, Y Wu, S Wang. 
+__G Yu__, F Li, Y Qin, X Bo, Y Wu, S Wang.
 GOSemSim: an R package for measuring semantic similarity among GO terms and gene products.
 **_Bioinformatics_** 2010, 26(7):976-978.
 doi: [10.1093/bioinformatics/btq064](http://dx.doi.org/10.1093/bioinformatics/btq064).
@@ -53,10 +53,10 @@ process (BP), and cellular component (CC).
 Four methods including Resnik[@philip_semantic_1999], Jiang[@jiang_semantic_1997],
 Lin[@lin_information-theoretic_1998] and Schlicker[@schlicker_new_2006] have been presented to determine the semantic similarity
 of two GO terms based on the annotation statistics of their common
-ancestor terms. Wang[@wang_new_2007] 
+ancestor terms. Wang[@wang_new_2007]
 proposed a method to measure the similarity based on the graph structure of
 GO. Each of these methods has its own advantages and
-weaknesses. 
+weaknesses.
 
 `r Biocpkg("GOSemSim")` package[@yu2010] is developed to compute
 semantic similarity among GO terms, sets of GO terms, gene products,
@@ -106,7 +106,7 @@ $sim_{Lin}(t_1,t_2) = \frac{2IC(MICA)}{IC(t_1)+IC(t_2)}$
 
 ### Rel method
 
-The Relevance method, which was proposed by Schlicker, combine Resnik's and Lin's method 
+The Relevance method, which was proposed by Schlicker, combine Resnik's and Lin's method
 and is defined as:
 $sim_{Rel}(t_1,t_2) = \frac{2IC(MICA)(1-p(MICA))}{IC(t_1)+IC(t_2)}$
 
@@ -125,14 +125,14 @@ graph, and $E_{A}$ is the set of edges connecting the GO terms in
 $DAG_{A}$.
 
 ### Wang method
-To encode the semantic of a GO term in a measurable format to enable a quantitative comparison, Wang[@wang_new_2007] firstly defined the semantic value of term A as the aggregate contribution of all terms in $DAG_{A}$ to the semantics of term A, terms closer to term A in $DAG_{A}$ contribute more to its semantics. Thus, defined the contribution of a GO term $t$ to the semantic of GO term $A$ as the S-value of GO term $t$ related to term $A$. 
+To encode the semantic of a GO term in a measurable format to enable a quantitative comparison, Wang[@wang_new_2007] firstly defined the semantic value of term A as the aggregate contribution of all terms in $DAG_{A}$ to the semantics of term A, terms closer to term A in $DAG_{A}$ contribute more to its semantics. Thus, defined the contribution of a GO term $t$ to the semantic of GO term $A$ as the S-value of GO term $t$ related to term $A$.
 For any of term $t$ in $DAG_{A}$, its S-value related to term $A$, $S_{A}(\textit{t})$ is defined as:
 
 
 $\left\{\begin{array}{l} S_{A}(A)=1 \\ S_{A}(\textit{t})=\max\{w_{e} \times S_{A}(\textit{t}') | \textit{t}' \in children \: of(\textit{t}) \} \; if \: \textit{t} \ne A \end{array} \right.$
 
-where $w_{e}$ is the semantic contribution factor for edge $e \in E_{A}$ linking term $t$ with its child term $t'$. 
-Term $A$ contributes to its own is defined as 1. After obtaining the S-values for all terms in $DAG_{A}$, 
+where $w_{e}$ is the semantic contribution factor for edge $e \in E_{A}$ linking term $t$ with its child term $t'$.
+Term $A$ contributes to its own is defined as 1. After obtaining the S-values for all terms in $DAG_{A}$,
 the semantic value of DO term A, $SV(A)$, is calculated as:
 
 $SV(A)=\displaystyle\sum_{t \in T_{A}} S_{A}(t)$
@@ -141,7 +141,7 @@ Thus given two GO terms A and B, the semantic similarity between these two terms
 
 $sim_{Wang}(A, B) = \frac{\displaystyle\sum_{t \in T_{A} \cap T_{B}}{S_{A}(t) + S_{B}(t)}}{SV(A) + SV(B)}$
 
-where $S_{A}(\textit{t})$ is the S-value of GO term $t$ related to term $A$ 
+where $S_{A}(\textit{t})$ is the S-value of GO term $t$ related to term $A$
 and $S_{B}(\textit{t})$ is the S-value of GO term $t$ related to term $B$.
 
 This method proposed by Wang[@wang_new_2007] determines the semantic
@@ -240,9 +240,9 @@ In `r Biocpkg("GOSemSim")`, we implemented __*geneSim*__ to calculate semantic s
 
 ```{r}
 geneSim("241", "251", semData=hsGO, measure="Wang", combine="BMA")
-mgeneSim(genes=c("835", "5261","241", "994"), 
+mgeneSim(genes=c("835", "5261","241", "994"),
          semData=hsGO, measure="Wang",verbose=FALSE)
-mgeneSim(genes=c("835", "5261","241", "994"), 
+mgeneSim(genes=c("835", "5261","241", "994"),
        semData=hsGO, measure="Rel",verbose=FALSE)
 ```
 
@@ -295,11 +295,18 @@ Find out more on <https://guangchuangyu.github.io/GOSemSim/featuredArticles/>.
 
 GO enrichment analysis can be supported by our package `r Biocpkg("clusterProfiler")`[@yu2012], which supports hypergeometric test and Gene Set Enrichment Analysis (GSEA). Enrichment results across different gene clusters can be compared using __*compareCluster*__ function.
 
-# Disease Ontology Semantic and Enrichment analysis
+# Disease Ontology Semantic and Enrichment analyses
 
-Disease Ontology (DO) annotates human genes in the context of disease. DO is an important annotation in translating molecular findings from high-throughput data to clinical relevance. 
-`r Biocpkg("DOSE")`[@yu_dose_2015] supports semantic similarity computation among DO terms and genes. 
+Disease Ontology (DO) annotates human genes in the context of disease. DO is an important annotation in translating molecular findings from high-throughput data to clinical relevance.
+`r Biocpkg("DOSE")`[@yu_dose_2015] supports semantic similarity computation among DO terms and genes.
 Enrichment analysis including hypergeometric model and GSEA are also implemented to support discovering disease associations of high-throughput biological data.
+
+# MeSH enrichment and semantic analyses
+
+MeSH (Medical Subject Headings) is the NLM controlled vocabulary used
+to manually index articles for MEDLINE/PubMed. `r Biocpkg("meshes")`
+supports enrichment (hypergeometric test and GSEA) and semantic
+similarity analyses for more than 70 species.
 
 
 # Session Information
