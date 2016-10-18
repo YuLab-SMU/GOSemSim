@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="https://guangchuangyu.github.io/css/font-awesome.min.css">
 
 [![releaseVersion](https://img.shields.io/badge/release%20version-1.30.3-blue.svg?style=flat)](https://bioconductor.org/packages/GOSemSim)
-[![develVersion](https://img.shields.io/badge/devel%20version-1.99.4-blue.svg?style=flat)](https://github.com/GuangchuangYu/GOSemSim)
+[![develVersion](https://img.shields.io/badge/devel%20version-2.1.0-blue.svg?style=flat)](https://github.com/GuangchuangYu/GOSemSim)
 [![total](https://img.shields.io/badge/downloads-58258/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 [![month](https://img.shields.io/badge/downloads-1846/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 
@@ -34,7 +34,7 @@ Guangchuang Yu, School of Public Health, The University of Hong Kong.
 Please cite the following article when using `GOSemSim`:
 
 [![doi](https://img.shields.io/badge/doi-10.1093/bioinformatics/btq064-blue.svg?style=flat)](http://dx.doi.org/10.1093/bioinformatics/btq064)
-[![citation](https://img.shields.io/badge/cited%20by-219-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
+[![citation](https://img.shields.io/badge/cited%20by-220-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
 [![Altmetric](https://img.shields.io/badge/Altmetric-6-blue.svg?style=flat)](https://www.altmetric.com/details/100979)
 
 __Yu G__<sup>†</sup>, Li F<sup>†</sup>, Qin Y, Bo X<sup>\*</sup>, Wu Y and Wang S<sup>\*</sup>.
