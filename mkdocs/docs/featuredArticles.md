@@ -38,10 +38,10 @@ Let us know if you have published using `GOSemSim` and your publication will be 
   }  
   </style>
 
-<div id = 'chart15c0987994a' class = 'rChart morris'></div>
+<div id = 'chart30fb2bf9a931' class = 'rChart morris'></div>
 <script type='text/javascript'>
     var chartParams = {
- "element": "chart15c0987994a",
+ "element": "chart30fb2bf9a931",
 "width":            800,
 "height":            400,
 "xkey": "year",
@@ -85,7 +85,7 @@ Let us know if you have published using `GOSemSim` and your publication will be 
 "pubid": "tuHXwOkdijsC" 
 } 
 ],
-"id": "chart15c0987994a",
+"id": "chart30fb2bf9a931",
 "labels": "cites" 
 },
       chartType = "Bar"
