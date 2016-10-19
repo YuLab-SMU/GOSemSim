@@ -15,9 +15,9 @@
 
 <link rel="stylesheet" href="https://guangchuangyu.github.io/css/font-awesome.min.css">
 
-[![releaseVersion](https://img.shields.io/badge/release%20version-1.30.3-blue.svg?style=flat)](https://bioconductor.org/packages/GOSemSim)
+[![releaseVersion](https://img.shields.io/badge/release%20version-2.0.0-blue.svg?style=flat)](https://bioconductor.org/packages/GOSemSim)
 [![develVersion](https://img.shields.io/badge/devel%20version-2.1.0-blue.svg?style=flat)](https://github.com/GuangchuangYu/GOSemSim)
-[![total](https://img.shields.io/badge/downloads-58258/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![total](https://img.shields.io/badge/downloads-58500/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 [![month](https://img.shields.io/badge/downloads-1846/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 
 The semantic comparisons of Gene Ontology (GO) annotations provide quantitative ways to compute similarities between genes and gene groups, and have became important basis for many bioinformatics analysis approaches. `GOSemSim` is an R package for semantic similarity computation among GO terms, sets of GO terms, gene products and gene clusters. `GOSemSim` implemented five methods proposed by _Resnik_, _Schlicker_, _Jiang_, _Lin_ and _Wang_ respectively.

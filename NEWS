@@ -6,25 +6,25 @@ CHANGES IN VERSION 1.99.4
 ------------------------
  o fixed NOTE in R check <2016-08-12, Fri>
  o add unit test using testthat <2016-08-11, Thu>
- 
+
 CHANGES IN VERSION 1.99.3
 ------------------------
- o changes to satisfy meshsim package <2016-08-05, Fri>
- 
+ o changes to satisfy meshes package <2016-08-05, Fri>
+
 CHANGES IN VERSION 1.99.2
 ------------------------
  o fixed Rcpp issue <2016-07-19, Tue>
    + https://github.com/GuangchuangYu/GOSemSim/issues/6
- 
+
 CHANGES IN VERSION 1.99.1
 ------------------------
  o update vignette <2016-07-14, Thu>
- 
+
 CHANGES IN VERSION 1.99.0
 ------------------------
  o support all organisms that have OrgDb object <2016-07-05, Tue>
  o optimize Wang method <2016-07-04, Mon>
- 
+
 CHANGES IN VERSION 1.31.2
 ------------------------
  o use byte compiler <2016-05-18, Wed>
@@ -41,7 +41,7 @@ CHANGES IN VERSION 1.30.0
 CHANGES IN VERSION 1.29.2
 ------------------------
  o update IC data <2016-04-21, Mon>
- 
+
 CHANGES IN VERSION 1.29.1
 ------------------------
  o fixed R check <2016-03-05, Sat>
@@ -54,23 +54,23 @@ CHANGES IN VERSION 1.27.4
 CHANGES IN VERSION 1.27.3
 ------------------------
  o bug fixed in getSupported_Org <2015-05-31, Sun>
- 
+
 CHANGES IN VERSION 1.27.2
 ------------------------
  o deprecate 'worm' and use 'celegans' instead.
- 
+
 CHANGES IN VERSION 1.27.1
 ------------------------
  o add external documents <2015-05-07, Thu>
- 
+
 CHANGES IN VERSION 1.25.5
 ------------------------
  o update information content files <2015-03-12, Thu>
- 
+
 CHANGES IN VERSION 1.25.4
 ------------------------
  o update vignette and add DOSE citation <2015-02-13, Fri>
- 
+
 CHANGES IN VERSION 1.25.3
 ------------------------
  o add doi in CITATION <2015-01-28, Wed>

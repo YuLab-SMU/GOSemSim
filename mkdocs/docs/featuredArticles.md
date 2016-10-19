@@ -38,10 +38,10 @@ Let us know if you have published using `GOSemSim` and your publication will be 
   }  
   </style>
 
-<div id = 'chart5ea2c216b55' class = 'rChart morris'></div>
+<div id = 'chart15c0987994a' class = 'rChart morris'></div>
 <script type='text/javascript'>
     var chartParams = {
- "element": "chart5ea2c216b55",
+ "element": "chart15c0987994a",
 "width":            800,
 "height":            400,
 "xkey": "year",
@@ -85,7 +85,7 @@ Let us know if you have published using `GOSemSim` and your publication will be 
 "pubid": "tuHXwOkdijsC" 
 } 
 ],
-"id": "chart5ea2c216b55",
+"id": "chart15c0987994a",
 "labels": "cites" 
 },
       chartType = "Bar"
@@ -148,8 +148,9 @@ Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://s
 + [myMIR: a genome-wide microRNA targets identification and annotation tool](https://bib.oxfordjournals.org/content/12/6/588.short). **Briefings in Bioinformatics**. 2011, 12(6):588-600.
 + [Functional similarity analysis of human virus-encoded miRNAs](https://jclinbioinformatics.biomedcentral.com/articles/10.1186/2043-9113-1-15). **Journal of Clinical Bioinformatics**. 2011, 1:15.
 
-## sRNA regulation
+## non-coding RNA
 
++ [Global and cell-type specific properties of lincRNAs with ribosome occupancy](http://nar.oxfordjournals.org/content/early/2016/10/12/nar.gkw909.full). ** Nucl. Acids Res**. 2016.
 + [Advantages of mixing bioinformatics and visualization approaches for analyzing sRNA-mediated regulatory bacterial networks](https://bib.oxfordjournals.org/content/early/2014/12/03/bib.bbu045.short). **Briefings In Bioinformatics**. 2015, 16(5):795-805.
 
 
