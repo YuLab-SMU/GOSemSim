@@ -25,9 +25,9 @@
 
 + [GOSemSim an R package for measuring semantic similarity among GO terms and gene products](https://guangchuangyu.github.io/2010/05/gosemsim-an-r-package-for-measuring-semantic-similarity-among-go-terms-and-gene-products)
 + [proper use of GOSemSim](https://guangchuangyu.github.io/2014/11/proper-use-of-gosemsim)
-+ [BioC 3.1: NEWS of my BioC packages](https://guangchuangyu.github.io/2015/04/news-of-my-bioc-packages)
-+ [BioC 3.2: NEWS of my BioC packages](https://guangchuangyu.github.io/2015/10/news-of-my-bioc-packages)
-+ [BioC 3.3: NEWS of my BioC packages](https://guangchuangyu.github.io/2016/05/news-of-my-bioc-packages)
++ [BioC 3.1: NEWS of my BioC packages](https://guangchuangyu.github.io/2015/04/bioc-31-news-of-my-bioc-packages)
++ [BioC 3.2: NEWS of my BioC packages](https://guangchuangyu.github.io/2015/10/bioc-32-news-of-my-bioc-packages)
++ [BioC 3.3: NEWS of my BioC packages](https://guangchuangyu.github.io/2016/05/bioc-33-news-of-my-bioc-packages/)
 + [BioC 3.4: NEWS of my BioC packages](https://guangchuangyu.github.io/2016/10/bioc-34-news-of-my-bioc-packages)
 
 ### <i class="fa fa-angle-double-right"></i> Applications
@@ -36,5 +36,3 @@
 
 
 <i class="fa fa-hand-o-right"></i> Find out more on <https://guangchuangyu.github.io/tags/gosemsim>.
-
-
