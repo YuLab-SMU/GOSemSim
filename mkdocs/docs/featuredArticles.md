@@ -17,10 +17,10 @@
 <link rel="stylesheet" href="https://guangchuangyu.github.io/css/academicons.min.css">
 
 
-Let us know if you have published using `GOSemSim` and your publication will be featured here.
+[Let us know](https://github.com/GuangchuangYu/featured_img) if you have published using `GOSemSim` and your publication will be featured here.
 
 
-[![citation](https://img.shields.io/badge/cited%20by-220-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
+[![citation](https://img.shields.io/badge/cited%20by-223-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
 
 <link rel='stylesheet' href=https://guangchuangyu.github.io/resume/css/morris.css>
 <script src='https://guangchuangyu.github.io/resume/css/jquery.min.js' type='text/javascript'></script>
@@ -38,10 +38,10 @@ Let us know if you have published using `GOSemSim` and your publication will be 
   }  
   </style>
 
-<div id = 'chart715207cccce' class = 'rChart morris'></div>
+<div id = 'chartc0242aa76c7' class = 'rChart morris'></div>
 <script type='text/javascript'>
     var chartParams = {
- "element": "chart715207cccce",
+ "element": "chartc0242aa76c7",
 "width":            800,
 "height":            400,
 "xkey": "year",
@@ -81,11 +81,11 @@ Let us know if you have published using `GOSemSim` and your publication will be 
 },
 {
  "year": 2016,
-"cites":             45,
+"cites":             48,
 "pubid": "tuHXwOkdijsC" 
 } 
 ],
-"id": "chart715207cccce",
+"id": "chartc0242aa76c7",
 "labels": "cites" 
 },
       chartType = "Bar"
@@ -96,7 +96,7 @@ Let us know if you have published using `GOSemSim` and your publication will be 
 Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322).
 
 ## Diease or Drug analysis
- 
+
 + [Regulatory T Cells Orchestrate Similar Immune Evasion of Fetuses and Tumors in Mice](http://dx.doi.org/10.4049/jimmunol.1501834). **The Journal of Immunology**. 2016, 196(2):678-690.
 + [DOSE: an R/Bioconductor package for disease ontology semantic and enrichment analysis](http://bioinformatics.oxfordjournals.org/content/31/4/608.short). **Bioinformatics**. 2015, 31(4):608-609.
 + [TFmiR: a web server for constructing and analyzing disease-specific transcription factor and miRNA co-regulatory networks](http://nar.oxfordjournals.org/content/43/W1/W283.short). **Nucleic Acids Research**. 2015, 43(W1):W283-W288.
