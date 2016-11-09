@@ -1,7 +1,7 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-Version: 2.1.0
+Version: 2.1.1
 Authors@R: c(person(given = "Guangchuang", family = "Yu",
                     email = "guangchuangyu@gmail.com",
 		    role  = c("aut", "cre")),
@@ -11,8 +11,6 @@ Authors@R: c(person(given = "Guangchuang", family = "Yu",
 	     person(given = "Chuanle", family = "Xiao",
 	     	    email = "xiaochuanle@126.com",
 		    role  = "ctb"))
-Author: Guangchuang Yu <guangchuangyu@gmail.com> with contributions from
-    Alexey Stukalov and Chuanle Xiao.
 Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
 Description: The semantic comparisons of Gene Ontology (GO) annotations
 	     provide quantitative ways to compute similarities between genes and gene groups,
