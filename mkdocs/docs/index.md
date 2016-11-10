@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="https://guangchuangyu.github.io/css/font-awesome.min.css">
 
 [![releaseVersion](https://img.shields.io/badge/release%20version-2.0.0-blue.svg?style=flat)](https://bioconductor.org/packages/GOSemSim)
-[![develVersion](https://img.shields.io/badge/devel%20version-2.1.0-blue.svg?style=flat)](https://github.com/GuangchuangYu/GOSemSim)
+[![develVersion](https://img.shields.io/badge/devel%20version-2.1.1-blue.svg?style=flat)](https://github.com/GuangchuangYu/GOSemSim)
 [![total](https://img.shields.io/badge/downloads-60324/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 [![month](https://img.shields.io/badge/downloads-2313/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 
