@@ -29,7 +29,6 @@ Imports:
 Suggests:
     AnnotationHub,
     BiocInstaller,
-    BiocStyle,
     clusterProfiler,
     DOSE,
     knitr,
