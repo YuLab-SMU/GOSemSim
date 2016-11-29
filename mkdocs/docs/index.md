@@ -15,7 +15,7 @@
 
 <link rel="stylesheet" href="https://guangchuangyu.github.io/css/font-awesome.min.css">
 
-[![releaseVersion](https://img.shields.io/badge/release%20version-2.0.1-blue.svg?style=flat)](https://bioconductor.org/packages/GOSemSim)
+[![releaseVersion](https://img.shields.io/badge/release%20version-2.0.2-blue.svg?style=flat)](https://bioconductor.org/packages/GOSemSim)
 [![develVersion](https://img.shields.io/badge/devel%20version-2.1.2-blue.svg?style=flat)](https://github.com/GuangchuangYu/GOSemSim)
 [![total](https://img.shields.io/badge/downloads-60874/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 [![month](https://img.shields.io/badge/downloads-2313/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
@@ -101,7 +101,7 @@ biocLite("GOSemSim")
 #### <i class="fa fa-angle-double-right"></i> CRAN packages
 + [BiSEp](https://cran.r-project.org/package=BiSEp): Toolkit to Identify Candidate Synthetic Lethality
 + [LANDD](https://cran.r-project.org/package=LANDD): Liquid Association for Network Dynamics Detection
-+ [ppiPre](https://cran.r-project.org/package=ppiPre): Predict Protein-Protein Interactions Based on Functional and
++ [ppiPre](https://cran.r-project.org/package=ppiPre): Predict Protein-Protein Interactions Based on Functional and Topological Similarities
 
 #### <i class="fa fa-angle-double-right"></i> Bioconductor packages
 + [clusterProfiler](https://www.bioconductor.org/packages/clusterProfiler): statistical analysis and visualization of functional profiles for genes and gene clusters

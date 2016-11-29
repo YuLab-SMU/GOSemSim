@@ -14,7 +14,7 @@
 
 Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322).
 
-## Diease or Drug analysis
+## Disease or Drug analysis
 
 + [Regulatory T Cells Orchestrate Similar Immune Evasion of Fetuses and Tumors in Mice](http://dx.doi.org/10.4049/jimmunol.1501834). **The Journal of Immunology**. 2016, 196(2):678-690.
 + [DOSE: an R/Bioconductor package for disease ontology semantic and enrichment analysis](http://bioinformatics.oxfordjournals.org/content/31/4/608.short). **Bioinformatics**. 2015, 31(4):608-609.
