@@ -33,6 +33,7 @@ Suggests:
     DOSE,
     knitr,
     org.Hs.eg.db,
+    prettydoc,
     testthat
 VignetteBuilder: knitr
 ByteCompile: true

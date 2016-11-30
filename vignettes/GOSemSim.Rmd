@@ -2,15 +2,17 @@
 title: "GO Semantic Similarity Analysis"
 author: "\\
 
-	Guangchuang Yu (<guangchuangyu@gmail.com>)\\
+	Guangchuang Yu\\
 
         School of Public Health, The University of Hong Kong"
 date: "`r Sys.Date()`"
 bibliography: GOSemSim.bib
 csl: nature.csl
 output:
-  html_document:
+  prettydoc::html_pretty:
     toc: true
+    theme: cayman
+    highlight: github
   pdf_document:
     toc: true
 vignette: >
