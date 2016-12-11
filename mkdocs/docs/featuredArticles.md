@@ -20,7 +20,7 @@
 [Let us know](https://github.com/GuangchuangYu/featured_img) if you have published using `GOSemSim` and your publication will be featured here.
 
 
-[![citation](https://img.shields.io/badge/cited%20by-233-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
+[![citation](https://img.shields.io/badge/cited%20by-236-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
 
 <link rel='stylesheet' href=https://guangchuangyu.github.io/resume/css/morris.css>
 <script src='https://guangchuangyu.github.io/resume/css/jquery.min.js' type='text/javascript'></script>
@@ -38,10 +38,10 @@
   }  
   </style>
 
-<div id = 'chartca04e18ee53' class = 'rChart morris'></div>
+<div id = 'chart2d276d1409c3' class = 'rChart morris'></div>
 <script type='text/javascript'>
     var chartParams = {
- "element": "chartca04e18ee53",
+ "element": "chart2d276d1409c3",
 "width":            800,
 "height":            400,
 "xkey": "year",
@@ -71,7 +71,7 @@
 },
 {
  "year": 2014,
-"cites":             41,
+"cites":             40,
 "pubid": "tuHXwOkdijsC" 
 },
 {
@@ -81,11 +81,11 @@
 },
 {
  "year": 2016,
-"cites":             58,
+"cites":             62,
 "pubid": "tuHXwOkdijsC" 
 } 
 ],
-"id": "chartca04e18ee53",
+"id": "chart2d276d1409c3",
 "labels": "cites" 
 },
       chartType = "Bar"
@@ -141,6 +141,8 @@ Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://s
 
 
 ## miRNA-mRNA Interaction
+
++ [miR-17∼92 family clusters control iNKT cell ontogenesis via modulation of TGF-β signaling](http://www.pnas.org/content/early/2016/12/02/1612024114.full). **PNAS**. 2016.
 
 + [Identifying Functional cancer-specific miRNA-mRNA interactions in testicular germ cell tumor](http://dx.doi.org/10.1016/j.jtbi.2016.05.026>). **Journal of Theoretical Biology**. 2016, 404:82-96.
 + [miR2GO: comparative functional analysis for microRNAs](http://bioinformatics.oxfordjournals.org/content/31/14/2403). **Bioinformatics**. 2015, 31(14):2403-2405.

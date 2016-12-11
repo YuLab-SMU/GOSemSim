@@ -1,193 +1,193 @@
 {
     "docs": [
         {
-            "location": "/", 
-            "text": "The semantic comparisons of Gene Ontology (GO) annotations provide quantitative ways to compute similarities between genes and gene groups, and have became important basis for many bioinformatics analysis approaches. \nGOSemSim\n is an R package for semantic similarity computation among GO terms, sets of GO terms, gene products and gene clusters. \nGOSemSim\n implemented five methods proposed by \nResnik\n, \nSchlicker\n, \nJiang\n, \nLin\n and \nWang\n respectively.\n\n\nGOSemSim\n is released within the \nBioconductor\n project and the source code is hosted on \n GitHub\n.\n\n\n Author\n\n\nGuangchuang Yu, School of Public Health, The University of Hong Kong.\n\n\n Citation\n\n\nPlease cite the following article when using \nGOSemSim\n:\n\n\n\n\n\n\n\n\nYu G\n\u2020\n, Li F\n\u2020\n, Qin Y, Bo X\n*\n, Wu Y and Wang S\n*\n.\nGOSemSim: an R package for measuring semantic similarity among GO terms and gene products.\n\nBioinformatics\n. 2010, 26(7):976-978.\n\n\n Featured Articles\n\n\n\n\n Find out more on \n \nFeatured Articles\n.\n\n\n Installation\n\n\nInstall \nGOSemSim\n is easy, follow the guide in the \nBioconductor page\n:\n\n\n## try http:// if https:// URLs are not supported\nsource(\nhttps://bioconductor.org/biocLite.R\n)\n## biocLite(\nBiocUpgrade\n) ## you may need this\nbiocLite(\nGOSemSim\n)\n\n\n\n\n Overview\n\n\n Methods\n\n\n\n\nInformation content based methods proposed by \nResnik\n, \nSchlicker\n, \nJiang\n and \nLin\n\n\nGraph structure based method proposed by \nWang\n\n\n\n\n Combine methods for aggregating multiple GO terms\n\n\n\n\nmax\n\n\navg\n\n\nrcmax\n\n\nBMA\n\n\n\n\n Functions\n\n\n\n\ngoSim and mgoSim for measureing semantic similarity among GO terms\n\n\ngeneSim and mgeneSim for measureing semantic similarity among genes\n\n\nclusterSim and mclusterSim for measureing semantic similarity among gene clusters\n\n\n\n\n Supported organisms\n\n\n\n\n20 species that have OrgDb available in Bioconductor\n\n\nMany other species with e GO annotation query online via \nAnnotationHub\n)\n\n\n\n\n Find out details and examples on \n \nDocumentation\n.\n\n\n Related Tools\n\n\n\n    \nclusterProfiler\n for Ontologies/pathways enrichment analyses\n\n    \nDOSE\n for Disease Ontology Semantic and Enrichment analyses\n\n    \nmeshes\n for MeSH Enrichment and Semantic analysis\n\n\n\n\n\n Find out more on \nprojects\n.\n\n\n Projects that depend on \nGOSemSim\n\n\n CRAN packages\n\n\n\n\nBiSEp\n: Toolkit to Identify Candidate Synthetic Lethality\n\n\nLANDD\n: Liquid Association for Network Dynamics Detection\n\n\nppiPre\n: Predict Protein-Protein Interactions Based on Functional and Topological Similarities\n\n\n\n\n Bioconductor packages\n\n\n\n\nclusterProfiler\n: statistical analysis and visualization of functional profiles for genes and gene clusters\n\n\nDOSE\n: Disease Ontology Semantic and Enrichment analysis\n\n\nmeshes\n: MeSH Enrichment and Semantic analyses\n\n\nRcpi\n: Toolkit for Compound-Protein Interaction in Drug Discovery\n\n\ntRanslatome\n: Comparison between multiple levels of gene expression\n\n\n\n\n Feedback\n\n\n\n    \n Please make sure you \nfollow the guide\n before posting any issue/question\n\n    \n For bugs or feature requests, please post to \n \ngithub issue\n\n    \n  For user questions, please post to \nBioconductor support site\n and \nBiostars\n. We are following every post tagged with \nGOSemSim\n\n    \n Join the group chat on \n and", 
+            "location": "/",
+            "text": "The semantic comparisons of Gene Ontology (GO) annotations provide quantitative ways to compute similarities between genes and gene groups, and have became important basis for many bioinformatics analysis approaches. \nGOSemSim\n is an R package for semantic similarity computation among GO terms, sets of GO terms, gene products and gene clusters. \nGOSemSim\n implemented five methods proposed by \nResnik\n, \nSchlicker\n, \nJiang\n, \nLin\n and \nWang\n respectively.\n\n\nGOSemSim\n is released within the \nBioconductor\n project and the source code is hosted on \n GitHub\n.\n\n\n Author\n\n\nGuangchuang Yu, School of Public Health, The University of Hong Kong.\n\n\n Citation\n\n\nPlease cite the following article when using \nGOSemSim\n:\n\n\n\n\n\n\n\n\nYu G\n\u2020\n, Li F\n\u2020\n, Qin Y, Bo X\n*\n, Wu Y and Wang S\n*\n.\nGOSemSim: an R package for measuring semantic similarity among GO terms and gene products.\n\nBioinformatics\n. 2010, 26(7):976-978.\n\n\n Featured Articles\n\n\n\n\n Find out more on \n \nFeatured Articles\n.\n\n\n Installation\n\n\nInstall \nGOSemSim\n is easy, follow the guide in the \nBioconductor page\n:\n\n\n## try http:// if https:// URLs are not supported\nsource(\"https://bioconductor.org/biocLite.R\")\n## biocLite(\"BiocUpgrade\") ## you may need this\nbiocLite(\"GOSemSim\")\n\n\n\n\n Overview\n\n\n Methods\n\n\n\n\nInformation content based methods proposed by \nResnik\n, \nSchlicker\n, \nJiang\n and \nLin\n\n\nGraph structure based method proposed by \nWang\n\n\n\n\n Combine methods for aggregating multiple GO terms\n\n\n\n\nmax\n\n\navg\n\n\nrcmax\n\n\nBMA\n\n\n\n\n Functions\n\n\n\n\ngoSim and mgoSim for measureing semantic similarity among GO terms\n\n\ngeneSim and mgeneSim for measureing semantic similarity among genes\n\n\nclusterSim and mclusterSim for measureing semantic similarity among gene clusters\n\n\n\n\n Supported organisms\n\n\n\n\n20 species that have OrgDb available in Bioconductor\n\n\nMany other species with e GO annotation query online via \nAnnotationHub\n)\n\n\n\n\n Find out details and examples on \n \nDocumentation\n.\n\n\n Related Tools\n\n\n\n    \nclusterProfiler\n for Ontologies/pathways enrichment analyses\n\n    \nDOSE\n for Disease Ontology Semantic and Enrichment analyses\n\n    \nmeshes\n for MeSH Enrichment and Semantic analysis\n\n\n\n\n\n Find out more on \nprojects\n.\n\n\n Projects that depend on \nGOSemSim\n\n\n CRAN packages\n\n\n\n\nBiSEp\n: Toolkit to Identify Candidate Synthetic Lethality\n\n\nLANDD\n: Liquid Association for Network Dynamics Detection\n\n\nppiPre\n: Predict Protein-Protein Interactions Based on Functional and\n\n\n\n\n Bioconductor packages\n\n\n\n\nclusterProfiler\n: statistical analysis and visualization of functional profiles for genes and gene clusters\n\n\nDOSE\n: Disease Ontology Semantic and Enrichment analysis\n\n\nmeshes\n: MeSH Enrichment and Semantic analyses\n\n\nRcpi\n: Toolkit for Compound-Protein Interaction in Drug Discovery\n\n\ntRanslatome\n: Comparison between multiple levels of gene expression\n\n\n\n\n Feedback\n\n\n\n    \n Please make sure you \nfollow the guide\n before posting any issue/question\n\n    \n For bugs or feature requests, please post to \n \ngithub issue\n\n    \n  For user questions, please post to \nBioconductor support site\n and \nBiostars\n. We are following every post tagged with \nGOSemSim\n\n    \n Join the group chat on \n and",
             "title": "Home"
-        }, 
+        },
         {
-            "location": "/#author", 
-            "text": "Guangchuang Yu, School of Public Health, The University of Hong Kong.", 
+            "location": "/#author",
+            "text": "Guangchuang Yu, School of Public Health, The University of Hong Kong.",
             "title": " Author"
-        }, 
+        },
         {
-            "location": "/#citation", 
-            "text": "Please cite the following article when using  GOSemSim :     Yu G \u2020 , Li F \u2020 , Qin Y, Bo X * , Wu Y and Wang S * .\nGOSemSim: an R package for measuring semantic similarity among GO terms and gene products. Bioinformatics . 2010, 26(7):976-978.", 
+            "location": "/#citation",
+            "text": "Please cite the following article when using  GOSemSim :     Yu G \u2020 , Li F \u2020 , Qin Y, Bo X * , Wu Y and Wang S * .\nGOSemSim: an R package for measuring semantic similarity among GO terms and gene products. Bioinformatics . 2010, 26(7):976-978.",
             "title": " Citation"
-        }, 
+        },
         {
-            "location": "/#featured-articles", 
-            "text": "Find out more on    Featured Articles .", 
+            "location": "/#featured-articles",
+            "text": "Find out more on    Featured Articles .",
             "title": " Featured Articles"
-        }, 
+        },
         {
-            "location": "/#installation", 
-            "text": "Install  GOSemSim  is easy, follow the guide in the  Bioconductor page :  ## try http:// if https:// URLs are not supported\nsource( https://bioconductor.org/biocLite.R )\n## biocLite( BiocUpgrade ) ## you may need this\nbiocLite( GOSemSim )", 
+            "location": "/#installation",
+            "text": "Install  GOSemSim  is easy, follow the guide in the  Bioconductor page :  ## try http:// if https:// URLs are not supported\nsource(\"https://bioconductor.org/biocLite.R\")\n## biocLite(\"BiocUpgrade\") ## you may need this\nbiocLite(\"GOSemSim\")",
             "title": " Installation"
-        }, 
+        },
         {
-            "location": "/#overview", 
-            "text": "", 
+            "location": "/#overview",
+            "text": "",
             "title": " Overview"
-        }, 
+        },
         {
-            "location": "/#methods", 
-            "text": "Information content based methods proposed by  Resnik ,  Schlicker ,  Jiang  and  Lin  Graph structure based method proposed by  Wang", 
+            "location": "/#methods",
+            "text": "Information content based methods proposed by  Resnik ,  Schlicker ,  Jiang  and  Lin  Graph structure based method proposed by  Wang",
             "title": " Methods"
-        }, 
+        },
         {
-            "location": "/#combine-methods-for-aggregating-multiple-go-terms", 
-            "text": "max  avg  rcmax  BMA", 
+            "location": "/#combine-methods-for-aggregating-multiple-go-terms",
+            "text": "max  avg  rcmax  BMA",
             "title": " Combine methods for aggregating multiple GO terms"
-        }, 
+        },
         {
-            "location": "/#functions", 
-            "text": "goSim and mgoSim for measureing semantic similarity among GO terms  geneSim and mgeneSim for measureing semantic similarity among genes  clusterSim and mclusterSim for measureing semantic similarity among gene clusters", 
+            "location": "/#functions",
+            "text": "goSim and mgoSim for measureing semantic similarity among GO terms  geneSim and mgeneSim for measureing semantic similarity among genes  clusterSim and mclusterSim for measureing semantic similarity among gene clusters",
             "title": " Functions"
-        }, 
+        },
         {
-            "location": "/#supported-organisms", 
-            "text": "20 species that have OrgDb available in Bioconductor  Many other species with e GO annotation query online via  AnnotationHub )    Find out details and examples on    Documentation .", 
+            "location": "/#supported-organisms",
+            "text": "20 species that have OrgDb available in Bioconductor  Many other species with e GO annotation query online via  AnnotationHub )    Find out details and examples on    Documentation .",
             "title": " Supported organisms"
-        }, 
+        },
         {
-            "location": "/#related-tools", 
-            "text": "clusterProfiler  for Ontologies/pathways enrichment analyses \n     DOSE  for Disease Ontology Semantic and Enrichment analyses \n     meshes  for MeSH Enrichment and Semantic analysis    Find out more on  projects .", 
+            "location": "/#related-tools",
+            "text": "clusterProfiler  for Ontologies/pathways enrichment analyses \n     DOSE  for Disease Ontology Semantic and Enrichment analyses \n     meshes  for MeSH Enrichment and Semantic analysis    Find out more on  projects .",
             "title": " Related Tools"
-        }, 
+        },
         {
-            "location": "/#projects-that-depend-on-gosemsim", 
-            "text": "", 
+            "location": "/#projects-that-depend-on-gosemsim",
+            "text": "",
             "title": " Projects that depend on GOSemSim"
-        }, 
+        },
         {
-            "location": "/#cran-packages", 
-            "text": "BiSEp : Toolkit to Identify Candidate Synthetic Lethality  LANDD : Liquid Association for Network Dynamics Detection  ppiPre : Predict Protein-Protein Interactions Based on Functional and Topological Similarities", 
+            "location": "/#cran-packages",
+            "text": "BiSEp : Toolkit to Identify Candidate Synthetic Lethality  LANDD : Liquid Association for Network Dynamics Detection  ppiPre : Predict Protein-Protein Interactions Based on Functional and",
             "title": " CRAN packages"
-        }, 
+        },
         {
-            "location": "/#bioconductor-packages", 
-            "text": "clusterProfiler : statistical analysis and visualization of functional profiles for genes and gene clusters  DOSE : Disease Ontology Semantic and Enrichment analysis  meshes : MeSH Enrichment and Semantic analyses  Rcpi : Toolkit for Compound-Protein Interaction in Drug Discovery  tRanslatome : Comparison between multiple levels of gene expression", 
+            "location": "/#bioconductor-packages",
+            "text": "clusterProfiler : statistical analysis and visualization of functional profiles for genes and gene clusters  DOSE : Disease Ontology Semantic and Enrichment analysis  meshes : MeSH Enrichment and Semantic analyses  Rcpi : Toolkit for Compound-Protein Interaction in Drug Discovery  tRanslatome : Comparison between multiple levels of gene expression",
             "title": " Bioconductor packages"
-        }, 
+        },
         {
-            "location": "/#feedback", 
-            "text": "Please make sure you  follow the guide  before posting any issue/question \n      For bugs or feature requests, please post to    github issue \n       For user questions, please post to  Bioconductor support site  and  Biostars . We are following every post tagged with  GOSemSim \n      Join the group chat on   and", 
+            "location": "/#feedback",
+            "text": "Please make sure you  follow the guide  before posting any issue/question \n      For bugs or feature requests, please post to    github issue \n       For user questions, please post to  Bioconductor support site  and  Biostars . We are following every post tagged with  GOSemSim \n      Join the group chat on   and",
             "title": " Feedback"
-        }, 
+        },
         {
-            "location": "/documentation/", 
-            "text": "Vignettes\n\n\n\n\nAn introduction to GOSemSim\n\n\n\n\n Blog posts\n\n\n News and updates\n\n\n\n\nGOSemSim an R package for measuring semantic similarity among GO terms and gene products\n\n\nproper use of GOSemSim\n\n\nBioC 3.1: NEWS of my BioC packages\n\n\nBioC 3.2: NEWS of my BioC packages\n\n\nBioC 3.3: NEWS of my BioC packages\n\n\nBioC 3.4: NEWS of my BioC packages\n\n\n\n\n Applications\n\n\n\n\nusing GOSemSim to rank proteins obtained by co-IP\n\n\n\n\n Find out more on \nhttps://guangchuangyu.github.io/tags/gosemsim\n.", 
+            "location": "/documentation/",
+            "text": "Vignettes\n\n\n\n\nAn introduction to GOSemSim\n\n\n\n\n Blog posts\n\n\n News and updates\n\n\n\n\nGOSemSim an R package for measuring semantic similarity among GO terms and gene products\n\n\nproper use of GOSemSim\n\n\nBioC 3.1: NEWS of my BioC packages\n\n\nBioC 3.2: NEWS of my BioC packages\n\n\nBioC 3.3: NEWS of my BioC packages\n\n\nBioC 3.4: NEWS of my BioC packages\n\n\n\n\n Applications\n\n\n\n\nusing GOSemSim to rank proteins obtained by co-IP\n\n\n\n\n Find out more on \nhttps://guangchuangyu.github.io/tags/gosemsim\n.",
             "title": "Documentation"
-        }, 
+        },
         {
-            "location": "/documentation/#vignettes", 
-            "text": "An introduction to GOSemSim", 
+            "location": "/documentation/#vignettes",
+            "text": "An introduction to GOSemSim",
             "title": " Vignettes"
-        }, 
+        },
         {
-            "location": "/documentation/#blog-posts", 
-            "text": "", 
+            "location": "/documentation/#blog-posts",
+            "text": "",
             "title": " Blog posts"
-        }, 
+        },
         {
-            "location": "/documentation/#news-and-updates", 
-            "text": "GOSemSim an R package for measuring semantic similarity among GO terms and gene products  proper use of GOSemSim  BioC 3.1: NEWS of my BioC packages  BioC 3.2: NEWS of my BioC packages  BioC 3.3: NEWS of my BioC packages  BioC 3.4: NEWS of my BioC packages", 
+            "location": "/documentation/#news-and-updates",
+            "text": "GOSemSim an R package for measuring semantic similarity among GO terms and gene products  proper use of GOSemSim  BioC 3.1: NEWS of my BioC packages  BioC 3.2: NEWS of my BioC packages  BioC 3.3: NEWS of my BioC packages  BioC 3.4: NEWS of my BioC packages",
             "title": " News and updates"
-        }, 
+        },
         {
-            "location": "/documentation/#applications", 
-            "text": "using GOSemSim to rank proteins obtained by co-IP    Find out more on  https://guangchuangyu.github.io/tags/gosemsim .", 
+            "location": "/documentation/#applications",
+            "text": "using GOSemSim to rank proteins obtained by co-IP    Find out more on  https://guangchuangyu.github.io/tags/gosemsim .",
             "title": " Applications"
-        }, 
+        },
         {
-            "location": "/featuredArticles/", 
-            "text": "Let us know\n if you have published using \nGOSemSim\n and your publication will be featured here.\n\n\n\n\n\n\n\n\n\n\n\n\n\n  .rChart {\n    display: block;\n    margin-left: auto; \n    margin-right: auto;\n    width: 800px;\n    height: 300px;\n  }  \n  \n\n\n\n\n\n\n\n    var chartParams = {\n \"element\": \"chartca04e18ee53\",\n\"width\":            800,\n\"height\":            400,\n\"xkey\": \"year\",\n\"ykeys\": [\n \"cites\" \n],\n\"data\": [\n {\n \"year\": 2010,\n\"cites\":              6,\n\"pubid\": \"tuHXwOkdijsC\" \n},\n{\n \"year\": 2011,\n\"cites\":              9,\n\"pubid\": \"tuHXwOkdijsC\" \n},\n{\n \"year\": 2012,\n\"cites\":             34,\n\"pubid\": \"tuHXwOkdijsC\" \n},\n{\n \"year\": 2013,\n\"cites\":             40,\n\"pubid\": \"tuHXwOkdijsC\" \n},\n{\n \"year\": 2014,\n\"cites\":             41,\n\"pubid\": \"tuHXwOkdijsC\" \n},\n{\n \"year\": 2015,\n\"cites\":             45,\n\"pubid\": \"tuHXwOkdijsC\" \n},\n{\n \"year\": 2016,\n\"cites\":             58,\n\"pubid\": \"tuHXwOkdijsC\" \n} \n],\n\"id\": \"chartca04e18ee53\",\n\"labels\": \"cites\" \n},\n      chartType = \"Bar\"\n    new Morris[chartType](chartParams)\n\n\n\n\nFind out more on \n google scholar\n.\n\n\nDisease or Drug analysis\n\n\n\n\nRegulatory T Cells Orchestrate Similar Immune Evasion of Fetuses and Tumors in Mice\n. \nThe Journal of Immunology\n. 2016, 196(2):678-690.\n\n\nDOSE: an R/Bioconductor package for disease ontology semantic and enrichment analysis\n. \nBioinformatics\n. 2015, 31(4):608-609.\n\n\nTFmiR: a web server for constructing and analyzing disease-specific transcription factor and miRNA co-regulatory networks\n. \nNucleic Acids Research\n. 2015, 43(W1):W283-W288.\n\n\nHuman Monogenic Disease Genes Have Frequently Functionally Redundant Paralogs\n. \nPLoS Computational Biology\n. 2013, 9(5):e1003073.\n\n\n\n\nGene/Protein functional analysis\n\n\n\n\nNetwork-driven plasma proteomics expose molecular changes in the Alzheimer\u2019s brain\n. \nMolecular Neurodegeneration\n. 2016, 11:31.\n\n\nSingle-Cell Co-expression Analysis Reveals Distinct Functional Modules, Co-regulation Mechanisms and Clinical Outcomes\n. \nPLOS Computational Biology\n. 2016, 12(4):e1004892.\n\n\nCrosstalk of dynamic functional modules in lung development of rhesus macaques\n. \nMol. Biosyst.\n. 2016, 12:1342-1349.\n\n\nComparative transcriptomics reveals the conserved building blocks involved in parallel evolution of diverse phenotypic traits in ants\n. \nGenome Biology\n. 2016, 17:43.\n\n\nprotr/ProtrWeb: R package and web server for generating various numerical representation schemes of protein sequences\n. \nBioinformatics\n. 2015, 31(11):1857-1859.\n\n\ntRanslatome: an R/Bioconductor package to portray translational control\n. \nBioinformatics\n. 2014, 30(2):289-291.\n\n\nEvoCor: a platform for predicting functionally related genes using phylogenetic and expression profiles\n. \nNucleic Acids Research\n. 2014, 42(W1):W72-W75.\n\n\nGenome-wide activity of unliganded estrogen receptor-\u03b1 in breast cancer cells\n. \nProc Natl Acad Sci\n. 2014, 111(13):4892-4897.\n\n\n\n\n\n\n\n\nConstitutively Elevated Salicylic Acid Levels Alter Photosynthesis and Oxidative State but Not Growth in Transgenic \nPopulus\n. \nThe Plant Cell\n. 2013, 25(7):2714-2730.\n\n\n\n\nExpression data processing\n\n\n\n\nRobust Detection of Outlier Samples and Genes in Expression Datasets\n. \nJournal of Proteomics \n Bioinformatics\n. 2016, 9:38-48.\n\n\nMissing value imputation for microRNA expression data by using a GO-based similarity measure\n. \nBMC Bioinformatics\n. 2016, 17:10.\n\n\n\n\nProtein-Protein Interaction\n\n\n\n\nAnalyzing and interpreting genome data at the network level with ConsensusPathDB\n. \nNature Protocols\n. 2016, 11:1889-1907.\n\n\nIntegration of multiple biological features yields high confidence human protein interactome\n. \nJournal of Theoretical Biology\n. 2016, 403:85-96.\n\n\nComputational prediction of virus\u2013human protein\u2013protein interactions using embedding kernelized heterogeneous data\n. \nMol. BioSyst\n. 2016, 12:1976-1986.\n\n\nComputational probing protein\u2013protein interactions targeting small molecules\n. \nBioinformatics\n. 2016, 32(2):226-234.\n\n\nAn integrative \nC. elegans\n protein\u2013protein interaction network with reliability assessment based on a probabilistic graphical model\n. \nMol. Biosyst\n. 2016, 12:85-92.\n\n\nA Highly Efficient Approach to Protein Interactome Mapping Based on Collaborative Filtering Framework\n. \nScientific Reports\n. 5:7702.\n\n\nDeciphering Signaling Pathway Networks to Understand the Molecular Mechanisms of Metformin Action\n. \nPLoS Comput Biol\n. 2015, 11(6):e1004202.\n\n\nA novel link prediction algorithm for reconstructing protein\u2013protein interaction networks by topological similarity\n. \nBioinformatics\n. 2013, 29(3):355-364.\n\n\nMinimum curvilinearity to enhance topological prediction of protein interactions by network embedding\n. \nBioinformatics\n. 2013, 29(13):i199-i209.\n\n\nIntScore: a web tool for confidence scoring of biological interactions\n. \nNucl. Acids Res.\n, 2012, 40(W1):W140-W146.\n\n\n\n\nMotif analysis\n\n\n\n\nComparative pan-cancer DNA methylation analysis reveals cancer common and specific patterns\n. \nBrief Bioinform\n, 2016\n\n\n\n\nmiRNA-mRNA Interaction\n\n\n\n\nIdentifying Functional cancer-specific miRNA-mRNA interactions in testicular germ cell tumor\n. \nJournal of Theoretical Biology\n. 2016, 404:82-96.\n\n\nmiR2GO: comparative functional analysis for microRNAs\n. \nBioinformatics\n. 2015, 31(14):2403-2405.\n\n\nUncovering MicroRNA and Transcription Factor Mediated Regulatory Networks in Glioblastoma\n. \nPLoS Comput Biol\n. 2012, 8(7):e1002488.\n\n\nmyMIR: a genome-wide microRNA targets identification and annotation tool\n. \nBriefings in Bioinformatics\n. 2011, 12(6):588-600.\n\n\nFunctional similarity analysis of human virus-encoded miRNAs\n. \nJournal of Clinical Bioinformatics\n. 2011, 1:15.\n\n\n\n\nnon-coding RNA\n\n\n\n\nGlobal and cell-type specific properties of lincRNAs with ribosome occupancy\n. \n Nucl. Acids Res\n. 2016.\n\n\nAdvantages of mixing bioinformatics and visualization approaches for analyzing sRNA-mediated regulatory bacterial networks\n. \nBriefings In Bioinformatics\n. 2015, 16(5):795-805.\n\n\n\n\nSemantic Similarity analysis\n\n\n\n\nA-DaGO-Fun: an adaptable Gene Ontology semantic similarity-based functional analysis tool\n. \nBioinformatics\n. 2016, 32(3):477-479.\n\n\nThe semantic measures library and toolkit: fast computation of semantic similarity and relatedness using biomedical ontologies\n. \nBioinformatics\n. 2014, 30(5):740-742.\n\n\nSemantic similarity analysis of protein data: assessment with biological features and issues\n. \nBriefings in Bioinformatics\n. 2012, 13(5):569-585.\n\n\n\n\nEvolution\n\n\n\n\nVenus flytrap carnivorous lifestyle builds on herbivore defense strategies\n. \nCold Spring Harbor Laboratory Press\n. 2016, 26:812-825.\n\n\nFunTree: advances in a resource for exploring and contextualising protein function evolution\n, \nNucl. Acids Res.\n. 2016, 44(D1):D317-D323.\n\n\nEvolutionary rate covariation reveals shared functionality and coexpression of genes\n. \nGenome Research\n. 2012, 22:714-720.", 
+            "location": "/featuredArticles/",
+            "text": "Let us know\n if you have published using \nGOSemSim\n and your publication will be featured here.\n\n\n\n\n\n\n\n\n\n\n\n\n\n  .rChart {\n    display: block;\n    margin-left: auto; \n    margin-right: auto;\n    width: 800px;\n    height: 300px;\n  }  \n  \n\n\n\n\n\n\n\n    var chartParams = {\n \"element\": \"chart2d276d1409c3\",\n\"width\":            800,\n\"height\":            400,\n\"xkey\": \"year\",\n\"ykeys\": [\n \"cites\" \n],\n\"data\": [\n {\n \"year\": 2010,\n\"cites\":              6,\n\"pubid\": \"tuHXwOkdijsC\" \n},\n{\n \"year\": 2011,\n\"cites\":              9,\n\"pubid\": \"tuHXwOkdijsC\" \n},\n{\n \"year\": 2012,\n\"cites\":             34,\n\"pubid\": \"tuHXwOkdijsC\" \n},\n{\n \"year\": 2013,\n\"cites\":             40,\n\"pubid\": \"tuHXwOkdijsC\" \n},\n{\n \"year\": 2014,\n\"cites\":             40,\n\"pubid\": \"tuHXwOkdijsC\" \n},\n{\n \"year\": 2015,\n\"cites\":             45,\n\"pubid\": \"tuHXwOkdijsC\" \n},\n{\n \"year\": 2016,\n\"cites\":             62,\n\"pubid\": \"tuHXwOkdijsC\" \n} \n],\n\"id\": \"chart2d276d1409c3\",\n\"labels\": \"cites\" \n},\n      chartType = \"Bar\"\n    new Morris[chartType](chartParams)\n\n\n\n\nFind out more on \n google scholar\n.\n\n\nDisease or Drug analysis\n\n\n\n\nRegulatory T Cells Orchestrate Similar Immune Evasion of Fetuses and Tumors in Mice\n. \nThe Journal of Immunology\n. 2016, 196(2):678-690.\n\n\nDOSE: an R/Bioconductor package for disease ontology semantic and enrichment analysis\n. \nBioinformatics\n. 2015, 31(4):608-609.\n\n\nTFmiR: a web server for constructing and analyzing disease-specific transcription factor and miRNA co-regulatory networks\n. \nNucleic Acids Research\n. 2015, 43(W1):W283-W288.\n\n\nHuman Monogenic Disease Genes Have Frequently Functionally Redundant Paralogs\n. \nPLoS Computational Biology\n. 2013, 9(5):e1003073.\n\n\n\n\nGene/Protein functional analysis\n\n\n\n\nNetwork-driven plasma proteomics expose molecular changes in the Alzheimer\u2019s brain\n. \nMolecular Neurodegeneration\n. 2016, 11:31.\n\n\nSingle-Cell Co-expression Analysis Reveals Distinct Functional Modules, Co-regulation Mechanisms and Clinical Outcomes\n. \nPLOS Computational Biology\n. 2016, 12(4):e1004892.\n\n\nCrosstalk of dynamic functional modules in lung development of rhesus macaques\n. \nMol. Biosyst.\n. 2016, 12:1342-1349.\n\n\nComparative transcriptomics reveals the conserved building blocks involved in parallel evolution of diverse phenotypic traits in ants\n. \nGenome Biology\n. 2016, 17:43.\n\n\nprotr/ProtrWeb: R package and web server for generating various numerical representation schemes of protein sequences\n. \nBioinformatics\n. 2015, 31(11):1857-1859.\n\n\ntRanslatome: an R/Bioconductor package to portray translational control\n. \nBioinformatics\n. 2014, 30(2):289-291.\n\n\nEvoCor: a platform for predicting functionally related genes using phylogenetic and expression profiles\n. \nNucleic Acids Research\n. 2014, 42(W1):W72-W75.\n\n\nGenome-wide activity of unliganded estrogen receptor-\u03b1 in breast cancer cells\n. \nProc Natl Acad Sci\n. 2014, 111(13):4892-4897.\n\n\n\n\n\n\n\n\nConstitutively Elevated Salicylic Acid Levels Alter Photosynthesis and Oxidative State but Not Growth in Transgenic \nPopulus\n. \nThe Plant Cell\n. 2013, 25(7):2714-2730.\n\n\n\n\nExpression data processing\n\n\n\n\nRobust Detection of Outlier Samples and Genes in Expression Datasets\n. \nJournal of Proteomics & Bioinformatics\n. 2016, 9:38-48.\n\n\nMissing value imputation for microRNA expression data by using a GO-based similarity measure\n. \nBMC Bioinformatics\n. 2016, 17:10.\n\n\n\n\nProtein-Protein Interaction\n\n\n\n\nAnalyzing and interpreting genome data at the network level with ConsensusPathDB\n. \nNature Protocols\n. 2016, 11:1889-1907.\n\n\nIntegration of multiple biological features yields high confidence human protein interactome\n. \nJournal of Theoretical Biology\n. 2016, 403:85-96.\n\n\nComputational prediction of virus\u2013human protein\u2013protein interactions using embedding kernelized heterogeneous data\n. \nMol. BioSyst\n. 2016, 12:1976-1986.\n\n\nComputational probing protein\u2013protein interactions targeting small molecules\n. \nBioinformatics\n. 2016, 32(2):226-234.\n\n\nAn integrative \nC. elegans\n protein\u2013protein interaction network with reliability assessment based on a probabilistic graphical model\n. \nMol. Biosyst\n. 2016, 12:85-92.\n\n\nA Highly Efficient Approach to Protein Interactome Mapping Based on Collaborative Filtering Framework\n. \nScientific Reports\n. 5:7702.\n\n\nDeciphering Signaling Pathway Networks to Understand the Molecular Mechanisms of Metformin Action\n. \nPLoS Comput Biol\n. 2015, 11(6):e1004202.\n\n\nA novel link prediction algorithm for reconstructing protein\u2013protein interaction networks by topological similarity\n. \nBioinformatics\n. 2013, 29(3):355-364.\n\n\nMinimum curvilinearity to enhance topological prediction of protein interactions by network embedding\n. \nBioinformatics\n. 2013, 29(13):i199-i209.\n\n\nIntScore: a web tool for confidence scoring of biological interactions\n. \nNucl. Acids Res.\n, 2012, 40(W1):W140-W146.\n\n\n\n\nMotif analysis\n\n\n\n\nComparative pan-cancer DNA methylation analysis reveals cancer common and specific patterns\n. \nBrief Bioinform\n, 2016\n\n\n\n\nmiRNA-mRNA Interaction\n\n\n\n\n\n\nmiR-17\u223c92 family clusters control iNKT cell ontogenesis via modulation of TGF-\u03b2 signaling\n. \nPNAS\n. 2016.\n\n\n\n\n\n\nIdentifying Functional cancer-specific miRNA-mRNA interactions in testicular germ cell tumor\n. \nJournal of Theoretical Biology\n. 2016, 404:82-96.\n\n\n\n\nmiR2GO: comparative functional analysis for microRNAs\n. \nBioinformatics\n. 2015, 31(14):2403-2405.\n\n\nUncovering MicroRNA and Transcription Factor Mediated Regulatory Networks in Glioblastoma\n. \nPLoS Comput Biol\n. 2012, 8(7):e1002488.\n\n\nmyMIR: a genome-wide microRNA targets identification and annotation tool\n. \nBriefings in Bioinformatics\n. 2011, 12(6):588-600.\n\n\nFunctional similarity analysis of human virus-encoded miRNAs\n. \nJournal of Clinical Bioinformatics\n. 2011, 1:15.\n\n\n\n\nnon-coding RNA\n\n\n\n\nGlobal and cell-type specific properties of lincRNAs with ribosome occupancy\n. \n Nucl. Acids Res\n. 2016.\n\n\nAdvantages of mixing bioinformatics and visualization approaches for analyzing sRNA-mediated regulatory bacterial networks\n. \nBriefings In Bioinformatics\n. 2015, 16(5):795-805.\n\n\n\n\nSemantic Similarity analysis\n\n\n\n\nA-DaGO-Fun: an adaptable Gene Ontology semantic similarity-based functional analysis tool\n. \nBioinformatics\n. 2016, 32(3):477-479.\n\n\nThe semantic measures library and toolkit: fast computation of semantic similarity and relatedness using biomedical ontologies\n. \nBioinformatics\n. 2014, 30(5):740-742.\n\n\nSemantic similarity analysis of protein data: assessment with biological features and issues\n. \nBriefings in Bioinformatics\n. 2012, 13(5):569-585.\n\n\n\n\nEvolution\n\n\n\n\nVenus flytrap carnivorous lifestyle builds on herbivore defense strategies\n. \nCold Spring Harbor Laboratory Press\n. 2016, 26:812-825.\n\n\nFunTree: advances in a resource for exploring and contextualising protein function evolution\n, \nNucl. Acids Res.\n. 2016, 44(D1):D317-D323.\n\n\nEvolutionary rate covariation reveals shared functionality and coexpression of genes\n. \nGenome Research\n. 2012, 22:714-720.",
             "title": "Featured Articles"
-        }, 
+        },
         {
-            "location": "/featuredArticles/#disease-or-drug-analysis", 
-            "text": "Regulatory T Cells Orchestrate Similar Immune Evasion of Fetuses and Tumors in Mice .  The Journal of Immunology . 2016, 196(2):678-690.  DOSE: an R/Bioconductor package for disease ontology semantic and enrichment analysis .  Bioinformatics . 2015, 31(4):608-609.  TFmiR: a web server for constructing and analyzing disease-specific transcription factor and miRNA co-regulatory networks .  Nucleic Acids Research . 2015, 43(W1):W283-W288.  Human Monogenic Disease Genes Have Frequently Functionally Redundant Paralogs .  PLoS Computational Biology . 2013, 9(5):e1003073.", 
+            "location": "/featuredArticles/#disease-or-drug-analysis",
+            "text": "Regulatory T Cells Orchestrate Similar Immune Evasion of Fetuses and Tumors in Mice .  The Journal of Immunology . 2016, 196(2):678-690.  DOSE: an R/Bioconductor package for disease ontology semantic and enrichment analysis .  Bioinformatics . 2015, 31(4):608-609.  TFmiR: a web server for constructing and analyzing disease-specific transcription factor and miRNA co-regulatory networks .  Nucleic Acids Research . 2015, 43(W1):W283-W288.  Human Monogenic Disease Genes Have Frequently Functionally Redundant Paralogs .  PLoS Computational Biology . 2013, 9(5):e1003073.",
             "title": "Disease or Drug analysis"
-        }, 
+        },
         {
-            "location": "/featuredArticles/#geneprotein-functional-analysis", 
-            "text": "Network-driven plasma proteomics expose molecular changes in the Alzheimer\u2019s brain .  Molecular Neurodegeneration . 2016, 11:31.  Single-Cell Co-expression Analysis Reveals Distinct Functional Modules, Co-regulation Mechanisms and Clinical Outcomes .  PLOS Computational Biology . 2016, 12(4):e1004892.  Crosstalk of dynamic functional modules in lung development of rhesus macaques .  Mol. Biosyst. . 2016, 12:1342-1349.  Comparative transcriptomics reveals the conserved building blocks involved in parallel evolution of diverse phenotypic traits in ants .  Genome Biology . 2016, 17:43.  protr/ProtrWeb: R package and web server for generating various numerical representation schemes of protein sequences .  Bioinformatics . 2015, 31(11):1857-1859.  tRanslatome: an R/Bioconductor package to portray translational control .  Bioinformatics . 2014, 30(2):289-291.  EvoCor: a platform for predicting functionally related genes using phylogenetic and expression profiles .  Nucleic Acids Research . 2014, 42(W1):W72-W75.  Genome-wide activity of unliganded estrogen receptor-\u03b1 in breast cancer cells .  Proc Natl Acad Sci . 2014, 111(13):4892-4897.     Constitutively Elevated Salicylic Acid Levels Alter Photosynthesis and Oxidative State but Not Growth in Transgenic  Populus .  The Plant Cell . 2013, 25(7):2714-2730.", 
+            "location": "/featuredArticles/#geneprotein-functional-analysis",
+            "text": "Network-driven plasma proteomics expose molecular changes in the Alzheimer\u2019s brain .  Molecular Neurodegeneration . 2016, 11:31.  Single-Cell Co-expression Analysis Reveals Distinct Functional Modules, Co-regulation Mechanisms and Clinical Outcomes .  PLOS Computational Biology . 2016, 12(4):e1004892.  Crosstalk of dynamic functional modules in lung development of rhesus macaques .  Mol. Biosyst. . 2016, 12:1342-1349.  Comparative transcriptomics reveals the conserved building blocks involved in parallel evolution of diverse phenotypic traits in ants .  Genome Biology . 2016, 17:43.  protr/ProtrWeb: R package and web server for generating various numerical representation schemes of protein sequences .  Bioinformatics . 2015, 31(11):1857-1859.  tRanslatome: an R/Bioconductor package to portray translational control .  Bioinformatics . 2014, 30(2):289-291.  EvoCor: a platform for predicting functionally related genes using phylogenetic and expression profiles .  Nucleic Acids Research . 2014, 42(W1):W72-W75.  Genome-wide activity of unliganded estrogen receptor-\u03b1 in breast cancer cells .  Proc Natl Acad Sci . 2014, 111(13):4892-4897.     Constitutively Elevated Salicylic Acid Levels Alter Photosynthesis and Oxidative State but Not Growth in Transgenic  Populus .  The Plant Cell . 2013, 25(7):2714-2730.",
             "title": "Gene/Protein functional analysis"
-        }, 
+        },
         {
-            "location": "/featuredArticles/#expression-data-processing", 
-            "text": "Robust Detection of Outlier Samples and Genes in Expression Datasets .  Journal of Proteomics   Bioinformatics . 2016, 9:38-48.  Missing value imputation for microRNA expression data by using a GO-based similarity measure .  BMC Bioinformatics . 2016, 17:10.", 
+            "location": "/featuredArticles/#expression-data-processing",
+            "text": "Robust Detection of Outlier Samples and Genes in Expression Datasets .  Journal of Proteomics & Bioinformatics . 2016, 9:38-48.  Missing value imputation for microRNA expression data by using a GO-based similarity measure .  BMC Bioinformatics . 2016, 17:10.",
             "title": "Expression data processing"
-        }, 
+        },
         {
-            "location": "/featuredArticles/#protein-protein-interaction", 
-            "text": "Analyzing and interpreting genome data at the network level with ConsensusPathDB .  Nature Protocols . 2016, 11:1889-1907.  Integration of multiple biological features yields high confidence human protein interactome .  Journal of Theoretical Biology . 2016, 403:85-96.  Computational prediction of virus\u2013human protein\u2013protein interactions using embedding kernelized heterogeneous data .  Mol. BioSyst . 2016, 12:1976-1986.  Computational probing protein\u2013protein interactions targeting small molecules .  Bioinformatics . 2016, 32(2):226-234.  An integrative  C. elegans  protein\u2013protein interaction network with reliability assessment based on a probabilistic graphical model .  Mol. Biosyst . 2016, 12:85-92.  A Highly Efficient Approach to Protein Interactome Mapping Based on Collaborative Filtering Framework .  Scientific Reports . 5:7702.  Deciphering Signaling Pathway Networks to Understand the Molecular Mechanisms of Metformin Action .  PLoS Comput Biol . 2015, 11(6):e1004202.  A novel link prediction algorithm for reconstructing protein\u2013protein interaction networks by topological similarity .  Bioinformatics . 2013, 29(3):355-364.  Minimum curvilinearity to enhance topological prediction of protein interactions by network embedding .  Bioinformatics . 2013, 29(13):i199-i209.  IntScore: a web tool for confidence scoring of biological interactions .  Nucl. Acids Res. , 2012, 40(W1):W140-W146.", 
+            "location": "/featuredArticles/#protein-protein-interaction",
+            "text": "Analyzing and interpreting genome data at the network level with ConsensusPathDB .  Nature Protocols . 2016, 11:1889-1907.  Integration of multiple biological features yields high confidence human protein interactome .  Journal of Theoretical Biology . 2016, 403:85-96.  Computational prediction of virus\u2013human protein\u2013protein interactions using embedding kernelized heterogeneous data .  Mol. BioSyst . 2016, 12:1976-1986.  Computational probing protein\u2013protein interactions targeting small molecules .  Bioinformatics . 2016, 32(2):226-234.  An integrative  C. elegans  protein\u2013protein interaction network with reliability assessment based on a probabilistic graphical model .  Mol. Biosyst . 2016, 12:85-92.  A Highly Efficient Approach to Protein Interactome Mapping Based on Collaborative Filtering Framework .  Scientific Reports . 5:7702.  Deciphering Signaling Pathway Networks to Understand the Molecular Mechanisms of Metformin Action .  PLoS Comput Biol . 2015, 11(6):e1004202.  A novel link prediction algorithm for reconstructing protein\u2013protein interaction networks by topological similarity .  Bioinformatics . 2013, 29(3):355-364.  Minimum curvilinearity to enhance topological prediction of protein interactions by network embedding .  Bioinformatics . 2013, 29(13):i199-i209.  IntScore: a web tool for confidence scoring of biological interactions .  Nucl. Acids Res. , 2012, 40(W1):W140-W146.",
             "title": "Protein-Protein Interaction"
-        }, 
+        },
         {
-            "location": "/featuredArticles/#motif-analysis", 
-            "text": "Comparative pan-cancer DNA methylation analysis reveals cancer common and specific patterns .  Brief Bioinform , 2016", 
+            "location": "/featuredArticles/#motif-analysis",
+            "text": "Comparative pan-cancer DNA methylation analysis reveals cancer common and specific patterns .  Brief Bioinform , 2016",
             "title": "Motif analysis"
-        }, 
+        },
         {
-            "location": "/featuredArticles/#mirna-mrna-interaction", 
-            "text": "Identifying Functional cancer-specific miRNA-mRNA interactions in testicular germ cell tumor .  Journal of Theoretical Biology . 2016, 404:82-96.  miR2GO: comparative functional analysis for microRNAs .  Bioinformatics . 2015, 31(14):2403-2405.  Uncovering MicroRNA and Transcription Factor Mediated Regulatory Networks in Glioblastoma .  PLoS Comput Biol . 2012, 8(7):e1002488.  myMIR: a genome-wide microRNA targets identification and annotation tool .  Briefings in Bioinformatics . 2011, 12(6):588-600.  Functional similarity analysis of human virus-encoded miRNAs .  Journal of Clinical Bioinformatics . 2011, 1:15.", 
+            "location": "/featuredArticles/#mirna-mrna-interaction",
+            "text": "miR-17\u223c92 family clusters control iNKT cell ontogenesis via modulation of TGF-\u03b2 signaling .  PNAS . 2016.    Identifying Functional cancer-specific miRNA-mRNA interactions in testicular germ cell tumor .  Journal of Theoretical Biology . 2016, 404:82-96.   miR2GO: comparative functional analysis for microRNAs .  Bioinformatics . 2015, 31(14):2403-2405.  Uncovering MicroRNA and Transcription Factor Mediated Regulatory Networks in Glioblastoma .  PLoS Comput Biol . 2012, 8(7):e1002488.  myMIR: a genome-wide microRNA targets identification and annotation tool .  Briefings in Bioinformatics . 2011, 12(6):588-600.  Functional similarity analysis of human virus-encoded miRNAs .  Journal of Clinical Bioinformatics . 2011, 1:15.",
             "title": "miRNA-mRNA Interaction"
-        }, 
+        },
         {
-            "location": "/featuredArticles/#non-coding-rna", 
-            "text": "Global and cell-type specific properties of lincRNAs with ribosome occupancy .   Nucl. Acids Res . 2016.  Advantages of mixing bioinformatics and visualization approaches for analyzing sRNA-mediated regulatory bacterial networks .  Briefings In Bioinformatics . 2015, 16(5):795-805.", 
+            "location": "/featuredArticles/#non-coding-rna",
+            "text": "Global and cell-type specific properties of lincRNAs with ribosome occupancy .   Nucl. Acids Res . 2016.  Advantages of mixing bioinformatics and visualization approaches for analyzing sRNA-mediated regulatory bacterial networks .  Briefings In Bioinformatics . 2015, 16(5):795-805.",
             "title": "non-coding RNA"
-        }, 
+        },
         {
-            "location": "/featuredArticles/#semantic-similarity-analysis", 
-            "text": "A-DaGO-Fun: an adaptable Gene Ontology semantic similarity-based functional analysis tool .  Bioinformatics . 2016, 32(3):477-479.  The semantic measures library and toolkit: fast computation of semantic similarity and relatedness using biomedical ontologies .  Bioinformatics . 2014, 30(5):740-742.  Semantic similarity analysis of protein data: assessment with biological features and issues .  Briefings in Bioinformatics . 2012, 13(5):569-585.", 
+            "location": "/featuredArticles/#semantic-similarity-analysis",
+            "text": "A-DaGO-Fun: an adaptable Gene Ontology semantic similarity-based functional analysis tool .  Bioinformatics . 2016, 32(3):477-479.  The semantic measures library and toolkit: fast computation of semantic similarity and relatedness using biomedical ontologies .  Bioinformatics . 2014, 30(5):740-742.  Semantic similarity analysis of protein data: assessment with biological features and issues .  Briefings in Bioinformatics . 2012, 13(5):569-585.",
             "title": "Semantic Similarity analysis"
-        }, 
+        },
         {
-            "location": "/featuredArticles/#evolution", 
-            "text": "Venus flytrap carnivorous lifestyle builds on herbivore defense strategies .  Cold Spring Harbor Laboratory Press . 2016, 26:812-825.  FunTree: advances in a resource for exploring and contextualising protein function evolution ,  Nucl. Acids Res. . 2016, 44(D1):D317-D323.  Evolutionary rate covariation reveals shared functionality and coexpression of genes .  Genome Research . 2012, 22:714-720.", 
+            "location": "/featuredArticles/#evolution",
+            "text": "Venus flytrap carnivorous lifestyle builds on herbivore defense strategies .  Cold Spring Harbor Laboratory Press . 2016, 26:812-825.  FunTree: advances in a resource for exploring and contextualising protein function evolution ,  Nucl. Acids Res. . 2016, 44(D1):D317-D323.  Evolutionary rate covariation reveals shared functionality and coexpression of genes .  Genome Research . 2012, 22:714-720.",
             "title": "Evolution"
-        }, 
+        },
         {
-            "location": "/ChIPseeker/", 
-            "text": "", 
+            "location": "/ChIPseeker/",
+            "text": "",
             "title": "ChIPseeker"
-        }, 
+        },
         {
-            "location": "/clusterProfiler/", 
-            "text": "", 
+            "location": "/clusterProfiler/",
+            "text": "",
             "title": "clusterProfiler"
-        }, 
+        },
         {
-            "location": "/DOSE/", 
-            "text": "", 
+            "location": "/DOSE/",
+            "text": "",
             "title": "DOSE"
-        }, 
+        },
         {
-            "location": "/emojifont/", 
-            "text": "", 
+            "location": "/emojifont/",
+            "text": "",
             "title": "emojifont"
-        }, 
+        },
         {
-            "location": "/ggtree/", 
-            "text": "", 
+            "location": "/ggtree/",
+            "text": "",
             "title": "ggtree"
-        }, 
+        },
         {
-            "location": "/GOSemSim/", 
-            "text": "", 
+            "location": "/GOSemSim/",
+            "text": "",
             "title": "GOSemSim"
-        }, 
+        },
         {
-            "location": "/meshes/", 
-            "text": "", 
+            "location": "/meshes/",
+            "text": "",
             "title": "meshes"
-        }, 
+        },
         {
-            "location": "/ReactomePA/", 
-            "text": "", 
+            "location": "/ReactomePA/",
+            "text": "",
             "title": "ReactomePA"
         }
     ]
