@@ -32,7 +32,7 @@
 geneSim <- function(gene1, gene2, semData, measure="Wang", drop="IEA", combine="BMA"){
     go1 <- gene2GO(gene1, semData, dropCodes=drop)
     go2 <- gene2GO(gene2, semData, dropCodes=drop)
-    if (is.na(go1) || is.na(go2))
+    if (length(go1) == 0 || length(go2) == 0)
         return (NA)
     res <- mgoSim(go1, go2, semData=semData, measure=measure, combine=combine)
     return (list(geneSim=res, GO1=go1, GO2=go2))
