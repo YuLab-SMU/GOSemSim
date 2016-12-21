@@ -9,7 +9,7 @@ gene2GO <- function(gene, godata, dropCodes) {
     res <- go[!is.na(go)]
     if (length(res) == 0)
         return(NA)
-    return(es)
+    return(res)
 }
 
 
