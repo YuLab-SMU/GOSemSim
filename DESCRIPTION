@@ -1,7 +1,7 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-Version: 2.1.2
+Version: 2.1.3
 Authors@R: c(person(given = "Guangchuang", family = "Yu",
                     email = "guangchuangyu@gmail.com",
 		    role  = c("aut", "cre")),
@@ -19,7 +19,7 @@ Description: The semantic comparisons of Gene Ontology (GO) annotations
 	     sets of GO terms, gene products and gene clusters. GOSemSim implemented five methods
 	     proposed by Resnik, Schlicker, Jiang, Lin and Wang respectively.
 Depends:
-    R (>= 3.3.0)
+    R (>= 3.3.2)
 LinkingTo: Rcpp
 Imports:
     AnnotationDbi,
@@ -29,11 +29,11 @@ Imports:
 Suggests:
     AnnotationHub,
     BiocInstaller,
-    BiocStyle,
     clusterProfiler,
     DOSE,
     knitr,
     org.Hs.eg.db,
+    prettydoc,
     testthat
 VignetteBuilder: knitr
 ByteCompile: true

@@ -6,7 +6,10 @@ gene2GO <- function(gene, godata, dropCodes) {
         goAnno <- goAnno[!goAnno$EVIDENCE %in% dropCodes,]
     }
     go <- as.character(unique(goAnno[goAnno[,1] == gene, "GO"]))
-    return(go[!is.na(go)])
+    res <- go[!is.na(go)]
+    if (length(res) == 0)
+        return(NA)
+    return(res)
 }
 
 
