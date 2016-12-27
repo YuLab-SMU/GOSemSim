@@ -20,7 +20,7 @@
 [Let us know](https://github.com/GuangchuangYu/featured_img) if you have published using `GOSemSim` and your publication will be featured here.
 
 
-[![citation](https://img.shields.io/badge/cited%20by-237-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
+[![citation](https://img.shields.io/badge/cited%20by-240-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
 
 <link rel='stylesheet' href=https://guangchuangyu.github.io/resume/css/morris.css>
 <script src='https://guangchuangyu.github.io/resume/css/jquery.min.js' type='text/javascript'></script>
@@ -38,10 +38,10 @@
   }  
   </style>
 
-<div id = 'chart88417ede94bd' class = 'rChart morris'></div>
+<div id = 'chart187d7055f06f' class = 'rChart morris'></div>
 <script type='text/javascript'>
     var chartParams = {
- "element": "chart88417ede94bd",
+ "element": "chart187d7055f06f",
 "width":            800,
 "height":            400,
 "xkey": "year",
@@ -81,11 +81,11 @@
 },
 {
  "year": 2016,
-"cites":             63,
+"cites":             66,
 "pubid": "tuHXwOkdijsC" 
 } 
 ],
-"id": "chart88417ede94bd",
+"id": "chart187d7055f06f",
 "labels": "cites" 
 },
       chartType = "Bar"
@@ -101,6 +101,7 @@ Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://s
 + [DOSE: an R/Bioconductor package for disease ontology semantic and enrichment analysis](http://bioinformatics.oxfordjournals.org/content/31/4/608.short). **Bioinformatics**. 2015, 31(4):608-609.
 + [TFmiR: a web server for constructing and analyzing disease-specific transcription factor and miRNA co-regulatory networks](http://nar.oxfordjournals.org/content/43/W1/W283.short). **Nucleic Acids Research**. 2015, 43(W1):W283-W288.
 + [Human Monogenic Disease Genes Have Frequently Functionally Redundant Paralogs](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003073). **PLoS Computational Biology**. 2013, 9(5):e1003073.
++ [Flexible model-based clustering of mixed binary and continuous data: application to genetic regulation and cancer](http://10.1093/nar/gkw1270). **Nucleic Acids Research**. 2017
 
 ## Gene/Protein functional analysis
 
@@ -133,7 +134,11 @@ Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://s
 + [Deciphering Signaling Pathway Networks to Understand the Molecular Mechanisms of Metformin Action](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004202). **PLoS Comput Biol**. 2015, 11(6):e1004202.
 + [A novel link prediction algorithm for reconstructing protein–protein interaction networks by topological similarity](http://bioinformatics.oxfordjournals.org/content/29/3/355.short). **Bioinformatics**. 2013, 29(3):355-364.
 + [Minimum curvilinearity to enhance topological prediction of protein interactions by network embedding](http://bioinformatics.oxfordjournals.org/content/29/13/i199.short). **Bioinformatics**. 2013, 29(13):i199-i209.
-+ [IntScore: a web tool for confidence scoring of biological interactions](https://nar.oxfordjournals.org/content/40/W1/W140.short). **Nucl. Acids Res.**, 2012, 40(W1):W140-W146.
++ [IntScore: a web tool for confidence scoring of biological interactions](https://nar.oxfordjournals.org/content/40/W1/W140.short). **Nucl. Acids Res.**. 2012, 40(W1):W140-W146.
+
+## Cellular localization
+
++ [Hum-mPLoc 3.0: Prediction enhancement of human protein subcellular localization through modeling the hidden correlations of gene ontology and functional domain features](http://dx.doi.org/10.1093/bioinformatics/btw723). **Bioinformatics**. 2017.
 
 ## Motif analysis
 

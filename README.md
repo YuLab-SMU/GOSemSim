@@ -1,9 +1,9 @@
 GOSemSim: GO semantic similarity measurement
 ============================================
 
-[![releaseVersion](https://img.shields.io/badge/release%20version-2.0.2-green.svg?style=flat)](https://bioconductor.org/packages/GOSemSim) [![develVersion](https://img.shields.io/badge/devel%20version-2.1.3-green.svg?style=flat)](https://github.com/GuangchuangYu/GOSemSim) [![Bioc](http://www.bioconductor.org/shields/years-in-bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#since) [![total](https://img.shields.io/badge/downloads-64112/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim) [![month](https://img.shields.io/badge/downloads-2747/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![releaseVersion](https://img.shields.io/badge/release%20version-2.0.3-green.svg?style=flat)](https://bioconductor.org/packages/GOSemSim) [![develVersion](https://img.shields.io/badge/devel%20version-2.1.3-green.svg?style=flat)](https://github.com/GuangchuangYu/GOSemSim) [![Bioc](http://www.bioconductor.org/shields/years-in-bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#since) [![total](https://img.shields.io/badge/downloads-64365/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim) [![month](https://img.shields.io/badge/downloads-2747/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![codecov](https://codecov.io/gh/GuangchuangYu/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/GuangchuangYu/GOSemSim/) [![Last-changedate](https://img.shields.io/badge/last%20change-2016--12--21-green.svg)](https://github.com/GuangchuangYu/GOSemSim/commits/master) [![commit](http://www.bioconductor.org/shields/commits/bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#svn_source) [![GitHub forks](https://img.shields.io/github/forks/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/network) [![GitHub stars](https://img.shields.io/github/stars/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/stargazers)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![codecov](https://codecov.io/gh/GuangchuangYu/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/GuangchuangYu/GOSemSim/) [![Last-changedate](https://img.shields.io/badge/last%20change-2016--12--27-green.svg)](https://github.com/GuangchuangYu/GOSemSim/commits/master) [![commit](http://www.bioconductor.org/shields/commits/bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#svn_source) [![GitHub forks](https://img.shields.io/github/forks/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/network) [![GitHub stars](https://img.shields.io/github/stars/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/stargazers)
 
 [![platform](http://www.bioconductor.org/shields/availability/devel/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#archives) [![Build Status](http://www.bioconductor.org/shields/build/devel/bioc/GOSemSim.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/GOSemSim/) [![Linux/Mac Travis Build Status](https://img.shields.io/travis/GuangchuangYu/GOSemSim/master.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/GuangchuangYu/GOSemSim) [![AppVeyor Build Status](https://img.shields.io/appveyor/ci/Guangchuangyu/GOSemSim/master.svg?label=Windows)](https://ci.appveyor.com/project/GuangchuangYu/GOSemSim) [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-green.svg?style=flat)](http://bioconda.github.io/recipes/bioconductor-gosemsim/README.html)
 
@@ -17,7 +17,7 @@ Please cite the following article when using `GOSemSim`:
 
 **Yu G**<sup>†</sup>, Li F<sup>†</sup>, Qin Y, Bo X<sup>\*</sup>, Wu Y and Wang S<sup>\*</sup>. GOSemSim: an R package for measuring semantic similarity among GO terms and gene products. ***Bioinformatics***. 2010, 26(7):976-978.
 
-[![doi](https://img.shields.io/badge/doi-10.1093/bioinformatics/btq064-green.svg?style=flat)](http://dx.doi.org/10.1093/bioinformatics/btq064) [![citation](https://img.shields.io/badge/cited%20by-237-green.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322) [![Altmetric](https://img.shields.io/badge/Altmetric-18-green.svg?style=flat)](https://www.altmetric.com/details/100979)
+[![doi](https://img.shields.io/badge/doi-10.1093/bioinformatics/btq064-green.svg?style=flat)](http://dx.doi.org/10.1093/bioinformatics/btq064) [![citation](https://img.shields.io/badge/cited%20by-240-green.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322) [![Altmetric](https://img.shields.io/badge/Altmetric-18-green.svg?style=flat)](https://www.altmetric.com/details/100979)
 
 ------------------------------------------------------------------------
 
@@ -29,17 +29,17 @@ For details, please visit our project website, <https://guangchuangyu.github.io/
 
 ### Citation
 
-[![citation](https://img.shields.io/badge/cited%20by-237-green.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
+[![citation](https://img.shields.io/badge/cited%20by-240-green.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
 
        +-+--------+-------+-------+--------+-------+-------+---+
-    60 +                                                   *   +
+       |                                                   *   |
+    60 +                                                       +
        |                                                       |
     50 +                                                       +
        |                                           *           |
     40 +                          *        *                   +
-       |                                                       |
-    30 +                  *                                    +
-       |                                                       |
+       |                  *                                    |
+    30 +                                                       +
        |                                                       |
     20 +                                                       +
        |                                                       |
@@ -49,7 +49,7 @@ For details, please visit our project website, <https://guangchuangyu.github.io/
 
 ### Download stats
 
-[![download](http://www.bioconductor.org/shields/downloads/GOSemSim.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim/) [![total](https://img.shields.io/badge/downloads-64112/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim) [![month](https://img.shields.io/badge/downloads-2747/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![download](http://www.bioconductor.org/shields/downloads/GOSemSim.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim/) [![total](https://img.shields.io/badge/downloads-64365/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim) [![month](https://img.shields.io/badge/downloads-2747/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 
          +-------------+---------------------+--------------------+---------------------+--------------+
          |                                                                                        *    |
