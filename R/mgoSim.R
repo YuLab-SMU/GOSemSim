@@ -8,7 +8,7 @@
 ##'@param GO2 Another set of go terms.
 ##'@param semData GOSemSimDATA object
 ##'@param measure One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.
-##'@param combine One of "max", "average", "rcmax", "BMA" methods, for combining
+##'@param combine One of "max", "avg", "rcmax", "BMA" methods, for combining
 ##'semantic similarity scores of multiple GO terms associated with protein or
 ##'multiple proteins assiciated with protein cluster.
 ##'@return similarity

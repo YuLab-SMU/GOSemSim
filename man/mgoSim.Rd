@@ -15,7 +15,7 @@ mgoSim(GO1, GO2, semData, measure = "Wang", combine = "BMA")
 
 \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
 
-\item{combine}{One of "max", "average", "rcmax", "BMA" methods, for combining
+\item{combine}{One of "max", "avg", "rcmax", "BMA" methods, for combining
 semantic similarity scores of multiple GO terms associated with protein or
 multiple proteins assiciated with protein cluster.}
 }
