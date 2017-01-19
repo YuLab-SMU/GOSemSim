@@ -27,10 +27,10 @@
 ##' @importFrom utils txtProgressBar
 ##'@export
 ##'@examples
-##'\dontrun{
-##'     d <- semData('org.Hs.eg.db', ont="MF")
+##'
+##'     d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
 ##'	mgeneSim(c("835", "5261","241"), semData=d, measure="Wang")
-##'}
+##'
 mgeneSim <- function (genes, semData, measure="Wang", drop="IEA", combine="BMA", verbose=TRUE) {
     genes <- unique(as.character(genes))
     n <- length(genes)

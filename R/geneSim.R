@@ -25,10 +25,10 @@
 ##'@keywords manip
 ##' @export
 ##'@examples
-##'\dontrun{
-##'     d <- semData('org.Hs.eg.db', ont="MF")
+##'
+##'     d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
 ##'	geneSim("241", "251", semData=d, measure="Wang")
-##'}
+##'
 geneSim <- function(gene1, gene2, semData, measure="Wang", drop="IEA", combine="BMA"){
     go1 <- gene2GO(gene1, semData, dropCodes=drop)
     go2 <- gene2GO(gene2, semData, dropCodes=drop)

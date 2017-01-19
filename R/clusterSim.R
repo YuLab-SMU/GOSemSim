@@ -25,12 +25,12 @@
 ##'@keywords manip
 ##' @export
 ##'@examples
-##' \dontrun{
-##'     d <- semData('org.Hs.eg.db', ont="MF")
+##'
+##'     d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
 ##'     cluster1 <- c("835", "5261","241", "994")
 ##'	cluster2 <- c("307", "308", "317", "321", "506", "540", "378", "388", "396")
 ##'	clusterSim(cluster1, cluster2, semData=d, measure="Wang")
-##'}
+##'
 clusterSim <- function(cluster1, cluster2, semData, measure="Wang", drop="IEA", combine="BMA"){
     cgo1 <- sapply(cluster1, gene2GO, semData, dropCodes=drop)
     cgo2 <- sapply(cluster2, gene2GO, semData, dropCodes=drop)

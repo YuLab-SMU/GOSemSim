@@ -29,14 +29,14 @@ Given a list of gene clusters, this function calculates pairwise semantic
 similarities.
 }
 \examples{
-\dontrun{
- d <- semData('org.Hs.eg.db', ont="MF")
+
+ d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
  cluster1 <- c("835", "5261","241")
  cluster2 <- c("578","582")
  cluster3 <- c("307", "308", "317")
  clusters <- list(a=cluster1, b=cluster2, c=cluster3)
  mclusterSim(clusters, semData=d, measure="Wang")
-}
+
 }
 \references{
 Yu et al. (2010) GOSemSim: an R package for measuring semantic

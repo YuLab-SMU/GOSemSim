@@ -27,13 +27,13 @@ Given two GO term sets, this function will calculate the semantic similarity
 between them, and return their semantic similarity
 }
 \examples{
-\dontrun{
-    d <- semData('org.Hs.eg.db', ont="MF")
+
+    d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
 go1 <- c("GO:0004022", "GO:0004024", "GO:0004023")
 go2 <- c("GO:0009055", "GO:0020037")
 mgoSim("GO:0003824", go2, semData=d, measure="Wang")
 mgoSim(go1, go2, semData=d, measure="Wang")
-}
+
 }
 \references{
 Yu et al. (2010) GOSemSim: an R package for measuring semantic

@@ -31,10 +31,10 @@ Given a list of genes, this function calculates pairwise semantic
 similarities.
 }
 \examples{
-\dontrun{
-    d <- semData('org.Hs.eg.db', ont="MF")
+
+    d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
 mgeneSim(c("835", "5261","241"), semData=d, measure="Wang")
-}
+
 }
 \references{
 Yu et al. (2010) GOSemSim: an R package for measuring semantic

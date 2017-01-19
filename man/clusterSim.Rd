@@ -31,12 +31,12 @@ Given two gene clusters, this function calculates semantic similarity between
 them.
 }
 \examples{
-\dontrun{
-    d <- semData('org.Hs.eg.db', ont="MF")
+
+    d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
     cluster1 <- c("835", "5261","241", "994")
 cluster2 <- c("307", "308", "317", "321", "506", "540", "378", "388", "396")
 clusterSim(cluster1, cluster2, semData=d, measure="Wang")
-}
+
 }
 \references{
 Yu et al. (2010) GOSemSim: an R package for measuring semantic
