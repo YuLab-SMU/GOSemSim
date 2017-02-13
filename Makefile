@@ -46,6 +46,7 @@ mkdocs: mdfiles
 	rm -rf css/font-awesome*;\
 	Rscript -e 'library(ypages); add_biobabble("index.html")'
 
+
 mdfiles:
 	cd mkdocs;\
 	Rscript -e 'library(ypages); gendoc("src/index.md", "blue", "docs/index.md")';\

@@ -21,10 +21,10 @@
 ##' @keywords manip
 ##' @export
 ##' @examples
-##' \dontrun{
-##'     d <- semData('org.Hs.eg.db', ont="MF")
+##' 
+##'     d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
 ##'	goSim("GO:0004022", "GO:0005515", semData=d, measure="Wang")
-##' }
+##' 
 goSim <- function(GOID1, GOID2, semData, measure="Wang") {
     res <- termSim(GOID1, GOID2, semData, method=measure)
     res <- as.numeric(res)

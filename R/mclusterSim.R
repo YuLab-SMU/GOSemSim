@@ -9,7 +9,7 @@
 ##'@param measure One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.
 ##'@param drop A set of evidence codes based on which certain annotations are
 ##'dropped. Use NULL to keep all GO annotations.
-##'@param combine One of "max", "average", "rcmax", "BMA" methods, for combining
+##'@param combine One of "max", "avg", "rcmax", "BMA" methods, for combining
 ##'semantic similarity scores of multiple GO terms associated with protein or
 ##'multiple proteins assiciated with protein cluster.
 ##'@return similarity matrix
@@ -24,14 +24,14 @@
 ##'@keywords manip
 ##' @export
 ##'@examples
-##'\dontrun{
-##'  d <- semData('org.Hs.eg.db', ont="MF")
+##'
+##'  d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
 ##'  cluster1 <- c("835", "5261","241")
 ##'  cluster2 <- c("578","582")
 ##'  cluster3 <- c("307", "308", "317")
 ##'  clusters <- list(a=cluster1, b=cluster2, c=cluster3)
 ##'  mclusterSim(clusters, semData=d, measure="Wang")
-##' }
+##' 
 mclusterSim <- function(clusters, semData, measure="Wang", drop="IEA", combine="BMA") {
     n <- length(clusters)
     cluster_gos <- list()
