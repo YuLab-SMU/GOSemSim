@@ -22,10 +22,10 @@ similarity
 Given two GO IDs, this function calculates their semantic similarity.
 }
 \examples{
-\dontrun{
-    d <- semData('org.Hs.eg.db', ont="MF")
+
+    d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
 goSim("GO:0004022", "GO:0005515", semData=d, measure="Wang")
-}
+
 }
 \references{
 Yu et al. (2010) GOSemSim: an R package for measuring semantic

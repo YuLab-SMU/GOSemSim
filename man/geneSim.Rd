@@ -19,7 +19,7 @@ geneSim(gene1, gene2, semData, measure = "Wang", drop = "IEA",
 \item{drop}{A set of evidence codes based on which certain annotations are
 dropped. Use NULL to keep all GO annotations.}
 
-\item{combine}{One of "max", "average", "rcmax", "BMA" methods, for combining
+\item{combine}{One of "max", "avg", "rcmax", "BMA" methods, for combining
 semantic similarity scores of multiple GO terms associated with protein or
 multiple proteins assiciated with protein cluster.}
 }
@@ -31,10 +31,10 @@ Given two genes, this function will calculate the semantic similarity between
 them, and return their semantic similarity and the corresponding GO terms
 }
 \examples{
-\dontrun{
-    d <- semData('org.Hs.eg.db', ont="MF")
+
+    d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
 geneSim("241", "251", semData=d, measure="Wang")
-}
+
 }
 \references{
 Yu et al. (2010) GOSemSim: an R package for measuring semantic

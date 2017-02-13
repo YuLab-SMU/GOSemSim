@@ -10,7 +10,7 @@
 ##'@param measure One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.
 ##'@param drop A set of evidence codes based on which certain annotations are
 ##'dropped. Use NULL to keep all GO annotations.
-##'@param combine One of "max", "average", "rcmax", "BMA" methods, for combining
+##'@param combine One of "max", "avg", "rcmax", "BMA" methods, for combining
 ##'semantic similarity scores of multiple GO terms associated with protein or
 ##'multiple proteins assiciated with protein cluster.
 ##'@return similarity
@@ -25,12 +25,12 @@
 ##'@keywords manip
 ##' @export
 ##'@examples
-##' \dontrun{
-##'     d <- semData('org.Hs.eg.db', ont="MF")
+##'
+##'     d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
 ##'     cluster1 <- c("835", "5261","241", "994")
 ##'	cluster2 <- c("307", "308", "317", "321", "506", "540", "378", "388", "396")
 ##'	clusterSim(cluster1, cluster2, semData=d, measure="Wang")
-##'}
+##'
 clusterSim <- function(cluster1, cluster2, semData, measure="Wang", drop="IEA", combine="BMA"){
     cgo1 <- sapply(cluster1, gene2GO, semData, dropCodes=drop)
     cgo2 <- sapply(cluster2, gene2GO, semData, dropCodes=drop)

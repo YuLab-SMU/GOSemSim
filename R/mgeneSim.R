@@ -9,7 +9,7 @@
 ##'@param measure One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.
 ##'@param drop A set of evidence codes based on which certain annotations are
 ##'dropped. Use NULL to keep all GO annotations.
-##'@param combine One of "max", "average", "rcmax", "BMA" methods, for combining
+##'@param combine One of "max", "avg", "rcmax", "BMA" methods, for combining
 ##'semantic similarity scores of multiple GO terms associated with protein or
 ##'multiple proteins assiciated with protein cluster.
 ##' @param verbose show progress bar or not.
@@ -27,19 +27,19 @@
 ##' @importFrom utils txtProgressBar
 ##'@export
 ##'@examples
-##'\dontrun{
-##'     d <- semData('org.Hs.eg.db', ont="MF")
+##'
+##'     d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
 ##'	mgeneSim(c("835", "5261","241"), semData=d, measure="Wang")
-##'}
+##'
 mgeneSim <- function (genes, semData, measure="Wang", drop="IEA", combine="BMA", verbose=TRUE) {
     genes <- unique(as.character(genes))
     n <- length(genes)
     scores <- matrix(NA, nrow=n, ncol=n)
     rownames(scores) <- genes
     colnames(scores) <- genes
-    
+
     gos <- lapply(genes, gene2GO, semData, dropCodes=drop)
-    
+
     if (verbose) {
         cnt <- 1
         pb <- txtProgressBar(min=0, max=sum(1:n), style=3)
@@ -52,7 +52,7 @@ mgeneSim <- function (genes, semData, measure="Wang", drop="IEA", combine="BMA",
             }
             scores[i,j] <- mgoSim(gos[[i]], gos[[j]], semData, measure=measure,
                                   combine=combine)
-            
+
             if (j != i) {
                 scores[j,i] <- scores[i,j]
             }

@@ -10,7 +10,7 @@
 ##'@param measure One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.
 ##'@param drop A set of evidence codes based on which certain annotations are
 ##'dropped. Use NULL to keep all GO annotations.
-##'@param combine One of "max", "average", "rcmax", "BMA" methods, for combining
+##'@param combine One of "max", "avg", "rcmax", "BMA" methods, for combining
 ##'semantic similarity scores of multiple GO terms associated with protein or
 ##'multiple proteins assiciated with protein cluster.
 ##'@return list of similarity value and corresponding GO.
@@ -25,14 +25,14 @@
 ##'@keywords manip
 ##' @export
 ##'@examples
-##'\dontrun{
-##'     d <- semData('org.Hs.eg.db', ont="MF")
+##'
+##'     d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
 ##'	geneSim("241", "251", semData=d, measure="Wang")
-##'}
+##'
 geneSim <- function(gene1, gene2, semData, measure="Wang", drop="IEA", combine="BMA"){
     go1 <- gene2GO(gene1, semData, dropCodes=drop)
     go2 <- gene2GO(gene2, semData, dropCodes=drop)
-    if (is.na(go1) || is.na(go2))
+    if (length(go1) == 0 || length(go2) == 0)
         return (NA)
     res <- mgoSim(go1, go2, semData=semData, measure=measure, combine=combine)
     return (list(geneSim=res, GO1=go1, GO2=go2))
