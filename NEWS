@@ -1,5 +1,7 @@
 CHANGES IN VERSION 2.1.3
 ------------------------
+ o friendly error message for using IC method without IC computed <2017-02-17, Fri>
+   + https://github.com/GuangchuangYu/GOSemSim/issues/11
  o fixed https://github.com/GuangchuangYu/GOSemSim/issues/9 <2016-12-20, Tue>
 
 CHANGES IN VERSION 2.1.2

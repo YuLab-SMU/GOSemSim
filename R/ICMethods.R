@@ -18,6 +18,10 @@ infoContentMethod <- function(ID1,
     ont <- godata@ont
     IC <- godata@IC
 
+    if (length(IC) == 0) {
+        stop("IC data not found, please re-generate your `semData` with `computeIC=TRUE`...")
+    }
+
     if (ont %in% c("MF", "BP", "CC", "DO")) {
         .anc <- AnnotationDbi::as.list(getAncestors(ont)[union(ID1,ID2)])
     } else {
