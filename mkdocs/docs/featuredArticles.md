@@ -40,13 +40,13 @@ published using `GOSemSim` and your publication will be featured here.
     height: 300px;
   }  
   </style>
-<div id="chart55827999f3a7" class="rChart morris">
+<div id="chart8974de1af04" class="rChart morris">
 
 </div>
 
 <script type='text/javascript'>
     var chartParams = {
- "element": "chart55827999f3a7",
+ "element": "chart8974de1af04",
 "width":            800,
 "height":            400,
 "xkey": "year",
@@ -95,7 +95,7 @@ published using `GOSemSim` and your publication will be featured here.
 "pubid": "tuHXwOkdijsC" 
 } 
 ],
-"id": "chart55827999f3a7",
+"id": "chart8974de1af04",
 "labels": "cites" 
 },
       chartType = "Bar"

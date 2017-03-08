@@ -43,9 +43,7 @@ mkdocs: mdfiles
 	mkdocs build;\
 	cd ../docs;\
 	rm -rf fonts;\
-	rm -rf css/font-awesome*;\
-	Rscript -e 'library(ypages); add_biobabble("index.html")'
-
+	rm -rf css/font-awesome*
 
 mdfiles:
 	cd mkdocs;\
