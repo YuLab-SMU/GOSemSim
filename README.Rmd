@@ -13,11 +13,11 @@ library("txtplot")
 
 #  GOSemSim: GO semantic similarity measurement
 
-`r badge_release("GOSemSim", "green")`
+`r badge_bioc_release("GOSemSim", "green")`
 `r badge_devel("GOSemSim", "green")`
 [![Bioc](http://www.bioconductor.org/shields/years-in-bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#since)
-`r badge_download("GOSemSim", "total", "blue")`
-`r badge_download("GOSemSim", "month", "blue")`
+`r badge_bioc_download("GOSemSim", "total", "blue")`
+`r badge_bioc_download("GOSemSim", "month", "blue")`
 
 
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
@@ -71,8 +71,8 @@ txtplot(d$year, d$cites)
 ### Download stats
 
 [![download](http://www.bioconductor.org/shields/downloads/GOSemSim.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim/)
-`r badge_download("GOSemSim", "total", "blue")`
-`r badge_download("GOSemSim", "month", "blue")`
+`r badge_bioc_download("GOSemSim", "total", "blue")`
+`r badge_bioc_download("GOSemSim", "month", "blue")`
 
 
 ```{r echo=F, comment=NA}

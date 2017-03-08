@@ -1,11 +1,18 @@
-<!-- addtoany:= -->
+---
+output:
+  md_document:
+    variant: markdown
+html_preview: false
+---
+
+`r ypages:::addtoany()`
 
 <link rel="stylesheet" href="https://guangchuangyu.github.io/css/font-awesome.min.css">
 
-<!-- release:=GOSemSim -->
-<!-- devel:=GOSemSim -->
-<!-- download:=GOSemSim:=total -->
-<!-- download:=GOSemSim:=month -->
+`r badge_bioc_release("GOSemSim", "blue")`
+`r badge_devel("guangchuangyu/GOSemSim", "blue")`
+`r badge_bioc_download("GOSemSim", "total", "blue")`
+`r badge_bioc_download("GOSemSim", "month", "blue")`
 
 The semantic comparisons of Gene Ontology (GO) annotations provide quantitative ways to compute similarities between genes and gene groups, and have became important basis for many bioinformatics analysis approaches. `GOSemSim` is an R package for semantic similarity computation among GO terms, sets of GO terms, gene products and gene clusters. `GOSemSim` implemented five methods proposed by _Resnik_, _Schlicker_, _Jiang_, _Lin_ and _Wang_ respectively.
 
@@ -20,9 +27,9 @@ Guangchuang Yu, School of Public Health, The University of Hong Kong.
 
 Please cite the following article when using `GOSemSim`:
 
-<!-- doi:=10.1093/bioinformatics/btq064 -->
-<!-- citation:=tuHXwOkdijsC:=9484177541993722322 -->
-<!-- altmetric:=100979 -->
+`r badge_doi("10.1093/bioinformatics/btq064", "blue")`
+`r badge_citation("tuHXwOkdijsC", "9484177541993722322", "blue")`
+`r badge_altmetric("100979", "blue")`
 
 __Yu G__<sup>†</sup>, Li F<sup>†</sup>, Qin Y, Bo X<sup>\*</sup>, Wu Y and Wang S<sup>\*</sup>.
 GOSemSim: an R package for measuring semantic similarity among GO terms and gene products.
@@ -85,9 +92,9 @@ biocLite("GOSemSim")
 
 ## <i class="fa fa-code-fork"></i> Projects that depend on _GOSemSim_
 
-<!-- package_depend:=GOSemSim:=CRAN -->
+`r pkg_depend_info("GOSemSim", "CRAN")`
 
-<!-- package_depend:=GOSemSim:=BioC -->
+`r pkg_depend_info("GOSemSim", "BioC")`
 
 
 ## <i class="fa fa-comment"></i> Feedback
