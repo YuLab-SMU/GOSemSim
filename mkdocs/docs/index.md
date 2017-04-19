@@ -62,8 +62,9 @@ Guangchuang Yu, School of Public Health, The University of Hong Kong.
 Please cite the following article when using `GOSemSim`:
 
 [![](https://img.shields.io/badge/doi-10.1093/bioinformatics/btq064-blue.svg?style=flat)](http://dx.doi.org/10.1093/bioinformatics/btq064)
-[![citation](https://img.shields.io/badge/cited%20by-268-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
 [![](https://img.shields.io/badge/Altmetric-18-blue.svg?style=flat)](https://www.altmetric.com/details/100979)
+[![citation](https://img.shields.io/badge/cited%20by-268-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
+[![](https://img.shields.io/badge/ESI-Highly%20Cited%20Paper-blue.svg?style=flat)](http://apps.webofknowledge.com/InboundService.do?mode=FullRecord&customersID=RID&IsProductCode=Yes&product=WOS&Init=Yes&Func=Frame&DestFail=http%3A%2F%2Fwww.webofknowledge.com&action=retrieve&SrcApp=RID&SrcAuth=RID&SID=Y2CXu6nry8nDQZcUy1w&UT=WOS%3A000276045800023)
 
 **Yu G**<sup>†</sup>, Li F<sup>†</sup>, Qin Y, Bo X<sup>\*</sup>, Wu Y
 and Wang S<sup>\*</sup>. GOSemSim: an R package for measuring semantic
