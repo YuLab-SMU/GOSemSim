@@ -25,10 +25,10 @@ GOSemSim: GO semantic similarity measurement
 <link rel="stylesheet" href="https://guangchuangyu.github.io/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://guangchuangyu.github.io/css/academicons.min.css">
 
-[![releaseVersion](https://img.shields.io/badge/release%20version-2.0.4-blue.svg?style=flat)](https://bioconductor.org/packages/GOSemSim)
-[![develVersion](https://img.shields.io/badge/devel%20version-2.1.3-blue.svg?style=flat)](https://github.com/guangchuangyu/GOSemSim)
-[![total](https://img.shields.io/badge/downloads-43487/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
-[![month](https://img.shields.io/badge/downloads-1663/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![](https://img.shields.io/badge/release%20version-2.0.4-blue.svg?style=flat)](https://bioconductor.org/packages/GOSemSim)
+[![](https://img.shields.io/badge/devel%20version-2.1.3-blue.svg?style=flat)](https://github.com/guangchuangyu/GOSemSim)
+[![](https://img.shields.io/badge/download-46615/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![](https://img.shields.io/badge/download-2208/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 
 The semantic comparisons of Gene Ontology (GO) annotations provide
 quantitative ways to compute similarities between genes and gene groups,
@@ -61,9 +61,9 @@ Guangchuang Yu, School of Public Health, The University of Hong Kong.
 
 Please cite the following article when using `GOSemSim`:
 
-[![doi](https://img.shields.io/badge/doi-10.1093/bioinformatics/btq064-blue.svg?style=flat)](http://dx.doi.org/10.1093/bioinformatics/btq064)
-[![citation](https://img.shields.io/badge/cited%20by-260-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
-[![Altmetric](https://img.shields.io/badge/Altmetric-18-blue.svg?style=flat)](https://www.altmetric.com/details/100979)
+[![](https://img.shields.io/badge/doi-10.1093/bioinformatics/btq064-blue.svg?style=flat)](http://dx.doi.org/10.1093/bioinformatics/btq064)
+[![citation](https://img.shields.io/badge/cited%20by-268-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
+[![](https://img.shields.io/badge/Altmetric-18-blue.svg?style=flat)](https://www.altmetric.com/details/100979)
 
 **Yu G**<sup>†</sup>, Li F<sup>†</sup>, Qin Y, Bo X<sup>\*</sup>, Wu Y
 and Wang S<sup>\*</sup>. GOSemSim: an R package for measuring semantic
@@ -152,6 +152,9 @@ biocLite("GOSemSim")
 
 #### <i class="fa fa-angle-double-right"></i> Bioconductor packages
 
+-   [BioMedR](https://www.bioconductor.org/packages/BioMedR): Generating
+    Various Molecular Representations for Chemicals, Proteins, DNAs/RNAs
+    and Their Interactions
 -   [clusterProfiler](https://www.bioconductor.org/packages/clusterProfiler):
     statistical analysis and visualization of functional profiles for
     genes and gene clusters

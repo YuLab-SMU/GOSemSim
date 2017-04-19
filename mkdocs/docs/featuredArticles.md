@@ -25,7 +25,8 @@ output:
 [Let us know](https://github.com/GuangchuangYu/featured_img) if you have
 published using `GOSemSim` and your publication will be featured here.
 
-[![citation](https://img.shields.io/badge/cited%20by-260-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
+[![citation](https://img.shields.io/badge/cited%20by-268-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
+[![](https://img.shields.io/badge/ESI-Highly%20Cited%20Paper-blue.svg?style=flat)](http://apps.webofknowledge.com/InboundService.do?mode=FullRecord&customersID=RID&IsProductCode=Yes&product=WOS&Init=Yes&Func=Frame&DestFail=http%3A%2F%2Fwww.webofknowledge.com&action=retrieve&SrcApp=RID&SrcAuth=RID&SID=Y2CXu6nry8nDQZcUy1w&UT=WOS%3A000276045800023)
 
 <link rel='stylesheet' href=https://guangchuangyu.github.io/resume/css/morris.css>
 <script src='https://guangchuangyu.github.io/resume/css/jquery.min.js' type='text/javascript'></script>
@@ -40,13 +41,13 @@ published using `GOSemSim` and your publication will be featured here.
     height: 300px;
   }  
   </style>
-<div id="chart90804817bcce" class="rChart morris">
+<div id="chart630c9da193" class="rChart morris">
 
 </div>
 
 <script type='text/javascript'>
     var chartParams = {
- "element": "chart90804817bcce",
+ "element": "chart630c9da193",
 "width":            800,
 "height":            400,
 "xkey": "year",
@@ -76,12 +77,12 @@ published using `GOSemSim` and your publication will be featured here.
 },
 {
  "year": 2014,
-"cites":             44,
+"cites":             45,
 "pubid": "tuHXwOkdijsC" 
 },
 {
  "year": 2015,
-"cites":             46,
+"cites":             47,
 "pubid": "tuHXwOkdijsC" 
 },
 {
@@ -91,11 +92,11 @@ published using `GOSemSim` and your publication will be featured here.
 },
 {
  "year": 2017,
-"cites":              8,
+"cites":             14,
 "pubid": "tuHXwOkdijsC" 
 } 
 ],
-"id": "chart90804817bcce",
+"id": "chart630c9da193",
 "labels": "cites" 
 },
       chartType = "Bar"
