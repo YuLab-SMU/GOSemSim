@@ -50,7 +50,14 @@ Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://s
 + [Robust Detection of Outlier Samples and Genes in Expression Datasets](http://dx.doi.org/10.4172/jpb.1000387). **Journal of Proteomics & Bioinformatics**. 2016, 9:38-48.
 + [Missing value imputation for microRNA expression data by using a GO-based similarity measure](http://dx.doi.org/10.1186/s12859-015-0853-0>). **BMC Bioinformatics**. 2016, 17:10.
 
-## Protein-Protein Interaction
+## Interactions
+
+### Genetic interaction
+
++ [Inferring modulators of genetic interactions with epistatic nested effects models](https://www.ncbi.nlm.nih.gov/pubmed/28406896).  **PLoS Comput Biol.**. 2017, 13(4):e1005496
+
+
+### Protein-Protein Interaction
 
 + [Analyzing and interpreting genome data at the network level with ConsensusPathDB](http://www.nature.com/nprot/journal/v11/n10/abs/nprot.2016.117.html). **Nature Protocols**. 2016, 11:1889-1907.
 + [Integration of multiple biological features yields high confidence human protein interactome](http://dx.doi.org/10.1016/j.jtbi.2016.05.020>). **Journal of Theoretical Biology**. 2016, 403:85-96.
@@ -63,6 +70,17 @@ Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://s
 + [Minimum curvilinearity to enhance topological prediction of protein interactions by network embedding](http://bioinformatics.oxfordjournals.org/content/29/13/i199.short). **Bioinformatics**. 2013, 29(13):i199-i209.
 + [IntScore: a web tool for confidence scoring of biological interactions](https://nar.oxfordjournals.org/content/40/W1/W140.short). **Nucl. Acids Res.**. 2012, 40(W1):W140-W146.
 
+### miRNA-mRNA Interaction
+
++ [miR-17∼92 family clusters control iNKT cell ontogenesis via modulation of TGF-β signaling](http://www.pnas.org/content/early/2016/12/02/1612024114.full). **PNAS**. 2016.
+
++ [Identifying Functional cancer-specific miRNA-mRNA interactions in testicular germ cell tumor](http://dx.doi.org/10.1016/j.jtbi.2016.05.026>). **Journal of Theoretical Biology**. 2016, 404:82-96.
++ [miR2GO: comparative functional analysis for microRNAs](http://bioinformatics.oxfordjournals.org/content/31/14/2403). **Bioinformatics**. 2015, 31(14):2403-2405.
++ [Uncovering MicroRNA and Transcription Factor Mediated Regulatory Networks in Glioblastoma](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002488). **PLoS Comput Biol**. 2012, 8(7):e1002488.
++ [myMIR: a genome-wide microRNA targets identification and annotation tool](https://bib.oxfordjournals.org/content/12/6/588.short). **Briefings in Bioinformatics**. 2011, 12(6):588-600.
++ [Functional similarity analysis of human virus-encoded miRNAs](https://jclinbioinformatics.biomedcentral.com/articles/10.1186/2043-9113-1-15). **Journal of Clinical Bioinformatics**. 2011, 1:15.
+
+
 ## Cellular localization
 
 + [Hum-mPLoc 3.0: Prediction enhancement of human protein subcellular localization through modeling the hidden correlations of gene ontology and functional domain features](http://dx.doi.org/10.1093/bioinformatics/btw723). **Bioinformatics**. 2017.
@@ -72,15 +90,6 @@ Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://s
 + [Comparative pan-cancer DNA methylation analysis reveals cancer common and specific patterns](http://dx.doi.org/10.1093/bib/bbw063). **Brief Bioinform**, 2016
 
 
-## miRNA-mRNA Interaction
-
-+ [miR-17∼92 family clusters control iNKT cell ontogenesis via modulation of TGF-β signaling](http://www.pnas.org/content/early/2016/12/02/1612024114.full). **PNAS**. 2016.
-
-+ [Identifying Functional cancer-specific miRNA-mRNA interactions in testicular germ cell tumor](http://dx.doi.org/10.1016/j.jtbi.2016.05.026>). **Journal of Theoretical Biology**. 2016, 404:82-96.
-+ [miR2GO: comparative functional analysis for microRNAs](http://bioinformatics.oxfordjournals.org/content/31/14/2403). **Bioinformatics**. 2015, 31(14):2403-2405.
-+ [Uncovering MicroRNA and Transcription Factor Mediated Regulatory Networks in Glioblastoma](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002488). **PLoS Comput Biol**. 2012, 8(7):e1002488.
-+ [myMIR: a genome-wide microRNA targets identification and annotation tool](https://bib.oxfordjournals.org/content/12/6/588.short). **Briefings in Bioinformatics**. 2011, 12(6):588-600.
-+ [Functional similarity analysis of human virus-encoded miRNAs](https://jclinbioinformatics.biomedcentral.com/articles/10.1186/2043-9113-1-15). **Journal of Clinical Bioinformatics**. 2011, 1:15.
 
 ## non-coding RNA
 

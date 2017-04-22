@@ -25,7 +25,7 @@ output:
 [Let us know](https://github.com/GuangchuangYu/featured_img) if you have
 published using `GOSemSim` and your publication will be featured here.
 
-[![citation](https://img.shields.io/badge/cited%20by-268-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
+[![citation](https://img.shields.io/badge/cited%20by-270-blue.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
 [![](https://img.shields.io/badge/ESI-Highly%20Cited%20Paper-blue.svg?style=flat)](http://apps.webofknowledge.com/InboundService.do?mode=FullRecord&customersID=RID&IsProductCode=Yes&product=WOS&Init=Yes&Func=Frame&DestFail=http%3A%2F%2Fwww.webofknowledge.com&action=retrieve&SrcApp=RID&SrcAuth=RID&SID=Y2CXu6nry8nDQZcUy1w&UT=WOS%3A000276045800023)
 
 <link rel='stylesheet' href=https://guangchuangyu.github.io/resume/css/morris.css>
@@ -41,13 +41,13 @@ published using `GOSemSim` and your publication will be featured here.
     height: 300px;
   }  
   </style>
-<div id="chart9cb27a54c34" class="rChart morris">
+<div id="chartca93f84e28d" class="rChart morris">
 
 </div>
 
 <script type='text/javascript'>
     var chartParams = {
- "element": "chart9cb27a54c34",
+ "element": "chartca93f84e28d",
 "width":            800,
 "height":            400,
 "xkey": "year",
@@ -92,11 +92,11 @@ published using `GOSemSim` and your publication will be featured here.
 },
 {
  "year": 2017,
-"cites":             14,
+"cites":             16,
 "pubid": "tuHXwOkdijsC" 
 } 
 ],
-"id": "chart9cb27a54c34",
+"id": "chartca93f84e28d",
 "labels": "cites" 
 },
       chartType = "Bar"
@@ -178,8 +178,16 @@ Expression data processing
     measure](http://dx.doi.org/10.1186/s12859-015-0853-0%3E). **BMC
     Bioinformatics**. 2016, 17:10.
 
-Protein-Protein Interaction
----------------------------
+Interactions
+------------
+
+### Genetic interaction
+
+-   [Inferring modulators of genetic interactions with epistatic nested
+    effects models](https://www.ncbi.nlm.nih.gov/pubmed/28406896).
+    **PLoS Comput Biol.**. 2017, 13(4):e1005496
+
+### Protein-Protein Interaction
 
 -   [Analyzing and interpreting genome data at the network level with
     ConsensusPathDB](http://www.nature.com/nprot/journal/v11/n10/abs/nprot.2016.117.html).
@@ -219,24 +227,7 @@ Protein-Protein Interaction
     interactions](https://nar.oxfordjournals.org/content/40/W1/W140.short).
     **Nucl. Acids Res.**. 2012, 40(W1):W140-W146.
 
-Cellular localization
----------------------
-
--   [Hum-mPLoc 3.0: Prediction enhancement of human protein subcellular
-    localization through modeling the hidden correlations of gene
-    ontology and functional domain
-    features](http://dx.doi.org/10.1093/bioinformatics/btw723).
-    **Bioinformatics**. 2017.
-
-Motif analysis
---------------
-
--   [Comparative pan-cancer DNA methylation analysis reveals cancer
-    common and specific patterns](http://dx.doi.org/10.1093/bib/bbw063).
-    **Brief Bioinform**, 2016
-
-miRNA-mRNA Interaction
-----------------------
+### miRNA-mRNA Interaction
 
 -   [miR-17∼92 family clusters control iNKT cell ontogenesis via
     modulation of TGF-β
@@ -260,6 +251,22 @@ miRNA-mRNA Interaction
 -   [Functional similarity analysis of human virus-encoded
     miRNAs](https://jclinbioinformatics.biomedcentral.com/articles/10.1186/2043-9113-1-15).
     **Journal of Clinical Bioinformatics**. 2011, 1:15.
+
+Cellular localization
+---------------------
+
+-   [Hum-mPLoc 3.0: Prediction enhancement of human protein subcellular
+    localization through modeling the hidden correlations of gene
+    ontology and functional domain
+    features](http://dx.doi.org/10.1093/bioinformatics/btw723).
+    **Bioinformatics**. 2017.
+
+Motif analysis
+--------------
+
+-   [Comparative pan-cancer DNA methylation analysis reveals cancer
+    common and specific patterns](http://dx.doi.org/10.1093/bib/bbw063).
+    **Brief Bioinform**, 2016
 
 non-coding RNA
 --------------
