@@ -41,13 +41,13 @@ published using `GOSemSim` and your publication will be featured here.
     height: 300px;
   }  
   </style>
-<div id="chartca93f84e28d" class="rChart morris">
+<div id="chartd283e080e94" class="rChart morris">
 
 </div>
 
 <script type='text/javascript'>
     var chartParams = {
- "element": "chartca93f84e28d",
+ "element": "chartd283e080e94",
 "width":            800,
 "height":            400,
 "xkey": "year",
@@ -96,7 +96,7 @@ published using `GOSemSim` and your publication will be featured here.
 "pubid": "tuHXwOkdijsC" 
 } 
 ],
-"id": "chartca93f84e28d",
+"id": "chartd283e080e94",
 "labels": "cites" 
 },
       chartType = "Bar"
@@ -159,9 +159,6 @@ Gene/Protein functional analysis
 -   [Genome-wide activity of unliganded estrogen receptor-α in breast
     cancer cells](http://www.pnas.org/content/111/13/4892.short). **Proc
     Natl Acad Sci**. 2014, 111(13):4892-4897.
-
-![](featured_img/2014PNAS.png)
-
 -   [Constitutively Elevated Salicylic Acid Levels Alter Photosynthesis
     and Oxidative State but Not Growth in Transgenic
     *Populus*](http://www.plantcell.org/content/25/7/2714.short). **The

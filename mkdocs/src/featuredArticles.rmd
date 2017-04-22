@@ -40,9 +40,6 @@ Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://s
 + [tRanslatome: an R/Bioconductor package to portray translational control](http://bioinformatics.oxfordjournals.org/content/30/2/289.short). **Bioinformatics**. 2014, 30(2):289-291.
 + [EvoCor: a platform for predicting functionally related genes using phylogenetic and expression profiles](https://nar.oxfordjournals.org/content/early/2014/05/21/nar.gku442.short). **Nucleic Acids Research**. 2014, 42(W1):W72-W75.
 + [Genome-wide activity of unliganded estrogen receptor-α in breast cancer cells](http://www.pnas.org/content/111/13/4892.short). **Proc Natl Acad Sci**. 2014, 111(13):4892-4897.
-
-![](featured_img/2014PNAS.png)
-
 + [Constitutively Elevated Salicylic Acid Levels Alter Photosynthesis and Oxidative State but Not Growth in Transgenic *Populus*](http://www.plantcell.org/content/25/7/2714.short). **The Plant Cell**. 2013, 25(7):2714-2730.
 
 ## Expression data processing
