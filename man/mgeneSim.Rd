@@ -48,4 +48,3 @@ PMID: 20179076
 \code{\link{clusterSim}} \code{\link{mclusterSim}}
 }
 \keyword{manip}
-
