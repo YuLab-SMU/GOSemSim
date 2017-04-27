@@ -2,8 +2,8 @@
 % Please edit documentation in R/GOSemSim-package.R
 \docType{package}
 \name{GOSemSim-package}
-\alias{GOSemSim-package}
 \alias{GOSemSim}
+\alias{GOSemSim-package}
 \title{Gene Ontology-based Sematic Similarity Measures}
 \description{
 Implementation of semantic similarity measures to estimate the functional
@@ -30,6 +30,11 @@ Imports: \tab methods, AnnotationDbi, GO.db\cr
 Suggests:\tab clusterProfiler, DOSE\cr
 License: \tab Artistic-2.0\cr }
 }
+\author{
+Guangchuang Yu
+
+Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
+}
 \references{
 Yu et al. (2010) GOSemSim: an R package for measuring semantic
 similarity among GO terms and gene products \emph{Bioinformatics} (Oxford,
@@ -41,9 +46,5 @@ PMID: 20179076
 \code{\link{goSim}} \code{\link{mgoSim}} \code{\link{geneSim}}
 \code{\link{mgeneSim}} \code{\link{clusterSim}} \code{\link{mclusterSim}}
 }
-\author{
-Guangchuang Yu
-
-Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
-}
 \keyword{package}
+

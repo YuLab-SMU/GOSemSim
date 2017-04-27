@@ -43,6 +43,7 @@ Please cite the following article when using `GOSemSim`:
 `r badge_doi("10.1093/bioinformatics/btq064", "blue")`
 `r badge_altmetric("100979", "blue")`
 `r badge_citation("tuHXwOkdijsC", "9484177541993722322", "blue")`
+`r badge_sci_citation("http://apps.webofknowledge.com/InboundService.do?mode=FullRecord&customersID=RID&IsProductCode=Yes&product=WOS&Init=Yes&Func=Frame&DestFail=http%3A%2F%2Fwww.webofknowledge.com&action=retrieve&SrcApp=RID&SrcAuth=RID&SID=Y2CXu6nry8nDQZcUy1w&UT=WOS%3A000276045800023", "blue")`
 `r badge_custom("ESI", "Highly Cited Paper", "blue", "http://apps.webofknowledge.com/InboundService.do?mode=FullRecord&customersID=RID&IsProductCode=Yes&product=WOS&Init=Yes&Func=Frame&DestFail=http%3A%2F%2Fwww.webofknowledge.com&action=retrieve&SrcApp=RID&SrcAuth=RID&SID=Y2CXu6nry8nDQZcUy1w&UT=WOS%3A000276045800023")`
 
 

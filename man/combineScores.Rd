@@ -20,3 +20,4 @@ Functions for combining similarity matrix to similarity score
 \author{
 Guangchuang Yu \url{http://ygc.name}
 }
+

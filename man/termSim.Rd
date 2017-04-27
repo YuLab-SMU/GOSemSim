@@ -27,3 +27,4 @@ provide two term vectors, this function will calculate their similarities.
 \author{
 Guangchuang Yu \url{http://ygc.name}
 }
+
