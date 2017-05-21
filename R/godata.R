@@ -1,6 +1,6 @@
 ##' prepare GO DATA for measuring semantic similarity
 ##'
-##' 
+##'
 ##' @title godata
 ##' @param OrgDb OrgDb object
 ##' @param keytype keytype
@@ -21,10 +21,10 @@ godata <- function(OrgDb=NULL, keytype = "ENTREZID", ont, computeIC = TRUE) {
         return(new("GOSemSimDATA",
                    ont = ont))
     }
-    
+
     OrgDb <- load_OrgDb(OrgDb)
     kk <- keys(OrgDb, keytype=keytype)
-    print('preparing gene to GO mapping data...')
+    message('preparing gene to GO mapping data...')
     goAnno <- suppressMessages(
         select(OrgDb, keys=kk, keytype=keytype,
                columns=c("GO", "ONTOLOGY")))
@@ -32,10 +32,10 @@ godata <- function(OrgDb=NULL, keytype = "ENTREZID", ont, computeIC = TRUE) {
     goAnno <- goAnno[!is.na(goAnno$GO), ]
     goAnno <- goAnno[goAnno$ONTOLOGY == ont,]
     if (computeIC) {
-        print('preparing IC data...')
+        message('preparing IC data...')
         IC <- computeIC(goAnno, ont)
     }
-    
+
     res <- new("GOSemSimDATA",
                keys = kk,
                ont = ont,
@@ -55,7 +55,7 @@ godata <- function(OrgDb=NULL, keytype = "ENTREZID", ont, computeIC = TRUE) {
 ##' @name GOSemSimDATA-class
 ##' @aliases GOSemSimDATA-class
 ##'   show,GOSemSimDATA-method
-##' 
+##'
 ##' @docType class
 ##' @slot keys gene ID
 ##' @slot ont ontology
@@ -79,4 +79,4 @@ setMethod("show", signature(object = "GOSemSimDATA"),
           function(object) {
               cat("#\n# DATA for Semantic Similarity calculation ...\n#\n")
           })
-             
+
