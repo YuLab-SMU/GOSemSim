@@ -31,25 +31,29 @@
 ##'  cluster3 <- c("307", "308", "317")
 ##'  clusters <- list(a=cluster1, b=cluster2, c=cluster3)
 ##'  mclusterSim(clusters, semData=d, measure="Wang")
-##' 
+##'
 mclusterSim <- function(clusters, semData, measure="Wang", drop="IEA", combine="BMA") {
     n <- length(clusters)
     cluster_gos <- list()
     for (i in 1:n) {
         cluster_gos[[i]] <- sapply(clusters[[i]], gene2GO, semData, dropCodes=drop)
     }
+
+    uniqueGO <-  unique(unlist(cluster_gos))
+    go_matrix <- mgoSim(uniqueGO, uniqueGO, semData, measure = measure, combine = NULL)
+
     scores <- matrix(NA, nrow=n, ncol=n)
     rownames(scores) <- names(clusters)
     colnames(scores) <- names(clusters)
+
     for (i in seq_along(clusters)) {
         gos1 <- unlist(cluster_gos[[i]])
         gos1 <- gos1[!is.na(gos1)]
-        for (j in 1:i) {
+        for (j in seq_len(i)) {
             gos2 <- unlist(cluster_gos[[j]])
             gos2 <- gos2[!is.na(gos2)]
             if (length(gos1) != 0 && length(gos2) !=0)
-                scores[i,j] <- mgoSim(gos1, gos2, semData, measure=measure, combine=combine)
-            if ( i != j)
+                scores[i,j] <- combineScores(go_matrix[gos1, gos2], combine=combine)
                 scores[j,i] <- scores[i,j]
         }
     }
