@@ -1,11 +1,23 @@
-<!-- addtoany:= -->
+---
+output:
+  md_document:
+    variant: markdown
+html_preview: false
+---
+
+# GOSemSim: GO semantic similarity measurement
+
+
+`r ypages:::addtoany()`
 
 <link rel="stylesheet" href="https://guangchuangyu.github.io/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://guangchuangyu.github.io/css/academicons.min.css">
 
-<!-- release:=GOSemSim -->
-<!-- devel:=GOSemSim -->
-<!-- download:=GOSemSim:=total -->
-<!-- download:=GOSemSim:=month -->
+
+`r badge_bioc_release("GOSemSim", "blue")`
+`r badge_devel("guangchuangyu/GOSemSim", "blue")`
+`r badge_bioc_download("GOSemSim", "total", "blue")`
+`r badge_bioc_download("GOSemSim", "month", "blue")`
 
 The semantic comparisons of Gene Ontology (GO) annotations provide quantitative ways to compute similarities between genes and gene groups, and have became important basis for many bioinformatics analysis approaches. `GOSemSim` is an R package for semantic similarity computation among GO terms, sets of GO terms, gene products and gene clusters. `GOSemSim` implemented five methods proposed by _Resnik_, _Schlicker_, _Jiang_, _Lin_ and _Wang_ respectively.
 
@@ -16,13 +28,24 @@ The semantic comparisons of Gene Ontology (GO) annotations provide quantitative 
 
 Guangchuang Yu, School of Public Health, The University of Hong Kong.
 
+<a href="https://twitter.com/guangchuangyu"><i class="fa fa-twitter fa-3x"></i></a>
+<a href="https://guangchuangyu.github.io/blog_images/biobabble.jpg"><i class="fa fa-wechat fa-3x"></i></a>
+<a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=Guangchuang+Yu[Author+-+Full]"><i class="ai ai-pubmed ai-3x"></i></a>
+<a href="https://scholar.google.com.hk/citations?user=DO5oG40AAAAJ&hl=en"><i class="ai ai-google-scholar ai-3x"></i></a>
+<a href="https://orcid.org/0000-0002-6485-8781"><i class="ai ai-orcid ai-3x"></i></a>
+<a href="https://impactstory.org/u/0000-0002-6485-8781"><i class="ai ai-impactstory ai-3x"></i></a>
+
+
 ## <i class="fa fa-book"></i> Citation
 
 Please cite the following article when using `GOSemSim`:
 
-<!-- doi:=10.1093/bioinformatics/btq064 -->
-<!-- citation:=tuHXwOkdijsC:=9484177541993722322 -->
-<!-- altmetric:=100979 -->
+`r badge_doi("10.1093/bioinformatics/btq064", "blue")`
+`r badge_altmetric("100979", "blue")`
+`r badge_citation("tuHXwOkdijsC", "9484177541993722322", "blue")`
+`r badge_sci_citation("http://apps.webofknowledge.com/InboundService.do?mode=FullRecord&customersID=RID&IsProductCode=Yes&product=WOS&Init=Yes&Func=Frame&DestFail=http%3A%2F%2Fwww.webofknowledge.com&action=retrieve&SrcApp=RID&SrcAuth=RID&SID=Y2CXu6nry8nDQZcUy1w&UT=WOS%3A000276045800023", "blue")`
+`r badge_custom("ESI", "Highly Cited Paper", "blue", "http://apps.webofknowledge.com/InboundService.do?mode=FullRecord&customersID=RID&IsProductCode=Yes&product=WOS&Init=Yes&Func=Frame&DestFail=http%3A%2F%2Fwww.webofknowledge.com&action=retrieve&SrcApp=RID&SrcAuth=RID&SID=Y2CXu6nry8nDQZcUy1w&UT=WOS%3A000276045800023")`
+
 
 __Yu G__<sup>†</sup>, Li F<sup>†</sup>, Qin Y, Bo X<sup>\*</sup>, Wu Y and Wang S<sup>\*</sup>.
 GOSemSim: an R package for measuring semantic similarity among GO terms and gene products.
@@ -85,14 +108,14 @@ biocLite("GOSemSim")
 
 ## <i class="fa fa-code-fork"></i> Projects that depend on _GOSemSim_
 
-<!-- package_depend:=GOSemSim:=CRAN -->
+`r pkg_depend_info("GOSemSim", "CRAN")`
 
-<!-- package_depend:=GOSemSim:=BioC -->
+`r pkg_depend_info("GOSemSim", "BioC")`
 
 
 ## <i class="fa fa-comment"></i> Feedback
 <ul class="fa-ul">
-	<li><i class="fa-li fa fa-hand-o-right"></i> Please make sure you [follow the guide](https://guangchuangyu.github.io/2016/07/how-to-bug-author/) before posting any issue/question</li>
+	<li><i class="fa-li fa fa-hand-o-right"></i> Please make sure you have followed <a href="https://guangchuangyu.github.io/2016/07/how-to-bug-author/"><strong>the important guide</strong></a> before posting any issue/question</li>
 	<li><i class="fa-li fa fa-bug"></i> For bugs or feature requests, please post to <i class="fa fa-github-alt"></i> [github issue](https://github.com/GuangchuangYu/GOSemSim/issues)</li>
 	<li><i class="fa-li fa fa-question"></i>  For user questions, please post to [Bioconductor support site](https://support.bioconductor.org/) and [Biostars](https://www.biostars.org/). We are following every post tagged with **GOSemSim**</li>
 	<li><i class="fa-li fa fa-commenting"></i> Join the group chat on <a href="https://twitter.com/hashtag/GOSemSim"><i class="fa fa-twitter fa-lg"></i></a> and <a href="http://huati.weibo.com/k/GOSemSim"><i class="fa fa-weibo fa-lg"></i></a></li>

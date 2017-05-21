@@ -3,3 +3,4 @@
 appveyor.yml
 docs
 mkdocs
+.github

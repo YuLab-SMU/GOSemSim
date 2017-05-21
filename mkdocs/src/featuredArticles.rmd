@@ -1,4 +1,11 @@
-<!-- addtoany:= -->
+---
+output:
+  md_document:
+    variant: markdown
+html_preview: false
+---
+
+`r ypages:::addtoany()`
 
 <link rel="stylesheet" href="https://guangchuangyu.github.io/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://guangchuangyu.github.io/css/academicons.min.css">
@@ -7,9 +14,10 @@
 [Let us know](https://github.com/GuangchuangYu/featured_img) if you have published using `GOSemSim` and your publication will be featured here.
 
 
-<!-- citation:=tuHXwOkdijsC:=9484177541993722322 -->
+`r badge_citation("tuHXwOkdijsC", "9484177541993722322", "blue")`
+`r badge_custom("ESI", "Highly Cited Paper", "blue", "http://apps.webofknowledge.com/InboundService.do?mode=FullRecord&customersID=RID&IsProductCode=Yes&product=WOS&Init=Yes&Func=Frame&DestFail=http%3A%2F%2Fwww.webofknowledge.com&action=retrieve&SrcApp=RID&SrcAuth=RID&SID=Y2CXu6nry8nDQZcUy1w&UT=WOS%3A000276045800023")`
 
-<!-- article_citation:=tuHXwOkdijsC -->
+`r article_citation_trend("tuHXwOkdijsC")`
 
 
 Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322).
@@ -32,9 +40,6 @@ Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://s
 + [tRanslatome: an R/Bioconductor package to portray translational control](http://bioinformatics.oxfordjournals.org/content/30/2/289.short). **Bioinformatics**. 2014, 30(2):289-291.
 + [EvoCor: a platform for predicting functionally related genes using phylogenetic and expression profiles](https://nar.oxfordjournals.org/content/early/2014/05/21/nar.gku442.short). **Nucleic Acids Research**. 2014, 42(W1):W72-W75.
 + [Genome-wide activity of unliganded estrogen receptor-α in breast cancer cells](http://www.pnas.org/content/111/13/4892.short). **Proc Natl Acad Sci**. 2014, 111(13):4892-4897.
-
-![](featured_img/2014PNAS.png)
-
 + [Constitutively Elevated Salicylic Acid Levels Alter Photosynthesis and Oxidative State but Not Growth in Transgenic *Populus*](http://www.plantcell.org/content/25/7/2714.short). **The Plant Cell**. 2013, 25(7):2714-2730.
 
 ## Expression data processing
@@ -42,7 +47,14 @@ Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://s
 + [Robust Detection of Outlier Samples and Genes in Expression Datasets](http://dx.doi.org/10.4172/jpb.1000387). **Journal of Proteomics & Bioinformatics**. 2016, 9:38-48.
 + [Missing value imputation for microRNA expression data by using a GO-based similarity measure](http://dx.doi.org/10.1186/s12859-015-0853-0>). **BMC Bioinformatics**. 2016, 17:10.
 
-## Protein-Protein Interaction
+## Interactions
+
+### Genetic interaction
+
++ [Inferring modulators of genetic interactions with epistatic nested effects models](https://www.ncbi.nlm.nih.gov/pubmed/28406896).  **PLoS Comput Biol.**. 2017, 13(4):e1005496
+
+
+### Protein-Protein Interaction
 
 + [Analyzing and interpreting genome data at the network level with ConsensusPathDB](http://www.nature.com/nprot/journal/v11/n10/abs/nprot.2016.117.html). **Nature Protocols**. 2016, 11:1889-1907.
 + [Integration of multiple biological features yields high confidence human protein interactome](http://dx.doi.org/10.1016/j.jtbi.2016.05.020>). **Journal of Theoretical Biology**. 2016, 403:85-96.
@@ -55,6 +67,17 @@ Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://s
 + [Minimum curvilinearity to enhance topological prediction of protein interactions by network embedding](http://bioinformatics.oxfordjournals.org/content/29/13/i199.short). **Bioinformatics**. 2013, 29(13):i199-i209.
 + [IntScore: a web tool for confidence scoring of biological interactions](https://nar.oxfordjournals.org/content/40/W1/W140.short). **Nucl. Acids Res.**. 2012, 40(W1):W140-W146.
 
+### miRNA-mRNA Interaction
+
++ [miR-17∼92 family clusters control iNKT cell ontogenesis via modulation of TGF-β signaling](http://www.pnas.org/content/early/2016/12/02/1612024114.full). **PNAS**. 2016.
+
++ [Identifying Functional cancer-specific miRNA-mRNA interactions in testicular germ cell tumor](http://dx.doi.org/10.1016/j.jtbi.2016.05.026>). **Journal of Theoretical Biology**. 2016, 404:82-96.
++ [miR2GO: comparative functional analysis for microRNAs](http://bioinformatics.oxfordjournals.org/content/31/14/2403). **Bioinformatics**. 2015, 31(14):2403-2405.
++ [Uncovering MicroRNA and Transcription Factor Mediated Regulatory Networks in Glioblastoma](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002488). **PLoS Comput Biol**. 2012, 8(7):e1002488.
++ [myMIR: a genome-wide microRNA targets identification and annotation tool](https://bib.oxfordjournals.org/content/12/6/588.short). **Briefings in Bioinformatics**. 2011, 12(6):588-600.
++ [Functional similarity analysis of human virus-encoded miRNAs](https://jclinbioinformatics.biomedcentral.com/articles/10.1186/2043-9113-1-15). **Journal of Clinical Bioinformatics**. 2011, 1:15.
+
+
 ## Cellular localization
 
 + [Hum-mPLoc 3.0: Prediction enhancement of human protein subcellular localization through modeling the hidden correlations of gene ontology and functional domain features](http://dx.doi.org/10.1093/bioinformatics/btw723). **Bioinformatics**. 2017.
@@ -64,15 +87,6 @@ Find out more on [<i class="ai ai-google-scholar"></i> google scholar](https://s
 + [Comparative pan-cancer DNA methylation analysis reveals cancer common and specific patterns](http://dx.doi.org/10.1093/bib/bbw063). **Brief Bioinform**, 2016
 
 
-## miRNA-mRNA Interaction
-
-+ [miR-17∼92 family clusters control iNKT cell ontogenesis via modulation of TGF-β signaling](http://www.pnas.org/content/early/2016/12/02/1612024114.full). **PNAS**. 2016.
-
-+ [Identifying Functional cancer-specific miRNA-mRNA interactions in testicular germ cell tumor](http://dx.doi.org/10.1016/j.jtbi.2016.05.026>). **Journal of Theoretical Biology**. 2016, 404:82-96.
-+ [miR2GO: comparative functional analysis for microRNAs](http://bioinformatics.oxfordjournals.org/content/31/14/2403). **Bioinformatics**. 2015, 31(14):2403-2405.
-+ [Uncovering MicroRNA and Transcription Factor Mediated Regulatory Networks in Glioblastoma](http://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002488). **PLoS Comput Biol**. 2012, 8(7):e1002488.
-+ [myMIR: a genome-wide microRNA targets identification and annotation tool](https://bib.oxfordjournals.org/content/12/6/588.short). **Briefings in Bioinformatics**. 2011, 12(6):588-600.
-+ [Functional similarity analysis of human virus-encoded miRNAs](https://jclinbioinformatics.biomedcentral.com/articles/10.1186/2043-9113-1-15). **Journal of Clinical Bioinformatics**. 2011, 1:15.
 
 ## non-coding RNA
 
