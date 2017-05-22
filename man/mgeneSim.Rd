@@ -32,7 +32,7 @@ similarities.
 }
 \examples{
 
-    d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
+d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
 mgeneSim(c("835", "5261","241"), semData=d, measure="Wang")
 
 }
@@ -48,4 +48,3 @@ PMID: 20179076
 \code{\link{clusterSim}} \code{\link{mclusterSim}}
 }
 \keyword{manip}
-
