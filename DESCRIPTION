@@ -1,25 +1,6 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-<<<<<<< HEAD
-Version: 2.3.0
-Authors@R: c(person(given = "Guangchuang", family = "Yu",
-                    email = "guangchuangyu@gmail.com",
-		    role  = c("aut", "cre")),
-  	     person(given = "Alexey", family = "Stukalov",
-	            email = "astukalov@gmail.com",
-		    role  = "ctb"),
-	     person(given = "Chuanle", family = "Xiao",
-	     	    email = "xiaochuanle@126.com",
-		    role  = "ctb"))
-Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
-Description: The semantic comparisons of Gene Ontology (GO) annotations
-	     provide quantitative ways to compute similarities between genes and gene groups,
-	     and have became important basis for many bioinformatics analysis approaches.
-	     GOSemSim is an R package for semantic similarity computation among GO terms,
-	     sets of GO terms, gene products and gene clusters. GOSemSim implemented five methods
-	     proposed by Resnik, Schlicker, Jiang, Lin and Wang respectively.
-=======
 Version: 2.3.1
 Authors@R: c( person(given = "Guangchuang", family = "Yu",             email = "guangchuangyu@gmail.com", role  = c("aut", "cre")),
               person(given = "Alexey",      family = "Stukalov",       email = "astukalov@gmail.com",     role  = "ctb"),
@@ -33,7 +14,6 @@ Description: The semantic comparisons of Gene Ontology (GO) annotations provide
     GOSemSim is an R package for semantic similarity computation among GO terms,
     sets of GO terms, gene products and gene clusters. GOSemSim implemented five
     methods proposed by Resnik, Schlicker, Jiang, Lin and Wang respectively.
->>>>>>> upstream/master
 Depends:
     R (>= 3.3.2)
 LinkingTo: Rcpp
@@ -54,16 +34,9 @@ Suggests:
 VignetteBuilder: knitr
 ByteCompile: true
 License: Artistic-2.0
-<<<<<<< HEAD
-=======
 Encoding: UTF-8
->>>>>>> upstream/master
 URL: https://guangchuangyu.github.io/GOSemSim
 BugReports: https://github.com/GuangchuangYu/GOSemSim/issues
 Packaged: 2012-08-29 06:44:50 UTC; root
 biocViews: Annotation, GO, Clustering, Pathways, Network, Software
-<<<<<<< HEAD
-RoxygenNote: 5.0.1
-=======
 RoxygenNote: 6.0.1
->>>>>>> upstream/master

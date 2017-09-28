@@ -23,10 +23,5 @@ This class stores IC and gene to go mapping for semantic similarity measurement
 
 \item{\code{metadata}}{metadata}
 }}
-<<<<<<< HEAD
-\keyword{classes}
-
-=======
 
 \keyword{classes}
->>>>>>> upstream/master

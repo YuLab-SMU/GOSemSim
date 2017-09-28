@@ -24,7 +24,3 @@ prepare GO DATA for measuring semantic similarity
 \author{
 Guangchuang Yu
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> upstream/master

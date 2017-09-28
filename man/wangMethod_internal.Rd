@@ -22,7 +22,3 @@ Method Wang for semantic similarity measuring
 \author{
 Guangchuang Yu \url{http://ygc.name}
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> upstream/master

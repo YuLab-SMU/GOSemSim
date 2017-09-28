@@ -32,19 +32,6 @@ similarities.
 }
 \examples{
 
-<<<<<<< HEAD
-    d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
-mgeneSim(c("835", "5261","241"), semData=d, measure="Wang")
-
-}
-\references{
-Yu et al. (2010) GOSemSim: an R package for measuring semantic
-similarity among GO terms and gene products \emph{Bioinformatics} (Oxford,
-England), 26:7 976--978, April 2010. ISSN 1367-4803
-\url{http://bioinformatics.oxfordjournals.org/cgi/content/abstract/26/7/976}
-PMID: 20179076
-}
-=======
 d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
 mgeneSim(c("835", "5261","241"), semData=d, measure="Wang")
 
@@ -56,13 +43,8 @@ England), 26:7 976--978, April 2010. ISSN 1367-4803
 \url{http://bioinformatics.oxfordjournals.org/cgi/content/abstract/26/7/976}
 PMID: 20179076
 }
->>>>>>> upstream/master
 \seealso{
 \code{\link{goSim}} \code{\link{mgoSim}} \code{\link{geneSim}}
 \code{\link{clusterSim}} \code{\link{mclusterSim}}
 }
 \keyword{manip}
-<<<<<<< HEAD
-
-=======
->>>>>>> upstream/master

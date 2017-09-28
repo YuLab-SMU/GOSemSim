@@ -50,7 +50,3 @@ PMID: 20179076
 \code{\link{mgeneSim}} \code{\link{clusterSim}}
 }
 \keyword{manip}
-<<<<<<< HEAD
-
-=======
->>>>>>> upstream/master

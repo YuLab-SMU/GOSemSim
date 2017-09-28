@@ -41,19 +41,9 @@ similarity among GO terms and gene products \emph{Bioinformatics} (Oxford,
 England), 26:7 976--978, April 2010. ISSN 1367-4803
 \url{http://bioinformatics.oxfordjournals.org/cgi/content/abstract/26/7/976}
 PMID: 20179076
-<<<<<<< HEAD
 }
 \seealso{
 \code{\link{goSim}} \code{\link{geneSim}} \code{\link{mgeneSim}}
 \code{\link{clusterSim}} \code{\link{mclusterSim}}
 }
 \keyword{manip}
-
-=======
-}
-\seealso{
-\code{\link{goSim}} \code{\link{geneSim}} \code{\link{mgeneSim}}
-\code{\link{clusterSim}} \code{\link{mclusterSim}}
-}
-\keyword{manip}
->>>>>>> upstream/master

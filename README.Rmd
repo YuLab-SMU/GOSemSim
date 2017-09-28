@@ -7,9 +7,10 @@ html_preview: false
 
 
 ```{r echo=FALSE, results="hide", message=FALSE}
-library("ypages")
 library("badger")
-library("txtplot")
+library("ypages")
+library("ggplot2")
+library("yyplot")
 ```
 
 #  GOSemSim: GO semantic similarity measurement
@@ -38,10 +39,6 @@ library("txtplot")
 
 The semantic comparisons of Gene Ontology (GO) annotations provide quantitative ways to compute similarities between genes and gene groups, and have became important basis for many bioinformatics analysis approaches. `GOSemSim` is an R package for semantic similarity computation among GO terms, sets of GO terms, gene products and gene clusters. `GOSemSim` implemented five methods proposed by *Resnik*, *Schlicker*, *Jiang*, *Lin* and *Wang* respectively.
 
-<<<<<<< HEAD
-[![Twitter](https://img.shields.io/twitter/url/https/github.com/GuangchuangYu/GOSemSim.svg?style=social)](https://twitter.com/intent/tweet?hashtags=GOSemSim&url=http://bioinformatics.oxfordjournals.org/content/26/7/976&screen_name=guangchuangyu)
-
-=======
 
 For details, please visit our project website, <https://guangchuangyu.github.io/GOSemSim>.
 
@@ -53,7 +50,6 @@ For details, please visit our project website, <https://guangchuangyu.github.io/
 [![Twitter](https://img.shields.io/twitter/url/https/github.com/GuangchuangYu/GOSemSim.svg?style=social)](https://twitter.com/intent/tweet?hashtags=GOSemSim&url=http://bioinformatics.oxfordjournals.org/content/26/7/976&screen_name=guangchuangyu)
 
 
->>>>>>> upstream/master
 ------------------------------------------------------------------------
 
 Please cite the following article when using `GOSemSim`:
@@ -63,38 +59,23 @@ Please cite the following article when using `GOSemSim`:
 
 `r badge_doi("10.1093/bioinformatics/btq064", "green")`
 `r badge_altmetric("100979", "green")`
-<<<<<<< HEAD
-`r badge_citation("tuHXwOkdijsC", "9484177541993722322", "green")`
-`r badge_custom("ESI", "Highly Cited Paper", "green", "http://apps.webofknowledge.com/InboundService.do?mode=FullRecord&customersID=RID&IsProductCode=Yes&product=WOS&Init=Yes&Func=Frame&DestFail=http%3A%2F%2Fwww.webofknowledge.com&action=retrieve&SrcApp=RID&SrcAuth=RID&SID=Y2CXu6nry8nDQZcUy1w&UT=WOS%3A000276045800023")`
-
-------------------------------------------------------------------------
-
-For details, please visit our project website, <https://guangchuangyu.github.io/GOSemSim>.
-
-+ [Documentation](https://guangchuangyu.github.io/GOSemSim/documentation/)
-+ [Featured Articles](https://guangchuangyu.github.io/GOSemSim/featuredArticles/)
-+ [Feedback](https://guangchuangyu.github.io/GOSemSim/#feedback)
-=======
 
 
 ------------------------------------------------------------------------
 
->>>>>>> upstream/master
 
 ### Citation
 
 `r badge_citation("tuHXwOkdijsC", "9484177541993722322", "green")`
-<<<<<<< HEAD
-=======
-`r badge_sci_citation("http://apps.webofknowledge.com/InboundService.do?mode=FullRecord&customersID=RID&IsProductCode=Yes&product=WOS&Init=Yes&Func=Frame&DestFail=http%3A%2F%2Fwww.webofknowledge.com&action=retrieve&SrcApp=RID&SrcAuth=RID&SID=Y2CXu6nry8nDQZcUy1w&UT=WOS%3A000276045800023", "green")`
->>>>>>> upstream/master
-`r badge_custom("ESI", "Highly Cited Paper", "green", "http://apps.webofknowledge.com/InboundService.do?mode=FullRecord&customersID=RID&IsProductCode=Yes&product=WOS&Init=Yes&Func=Frame&DestFail=http%3A%2F%2Fwww.webofknowledge.com&action=retrieve&SrcApp=RID&SrcAuth=RID&SID=Y2CXu6nry8nDQZcUy1w&UT=WOS%3A000276045800023")`
 
 
 ```{r echo=F, comment=NA}
-d <- get_article_cite_history('DO5oG40AAAAJ', 'tuHXwOkdijsC')
-txtplot(d$year, d$cites)
+p <- plot_citation_trend('DO5oG40AAAAJ', 'tuHXwOkdijsC')
+ggsave(p, file="docs/images/citation.png", width=8, height=4)
 ```
+
+<img src="docs/images/citation.png" width="890"/>
+
 
 ### Download stats
 
@@ -106,8 +87,10 @@ txtplot(d$year, d$cites)
 ```{r echo=F, comment=NA}
 x <- dlstats::bioc_stats("GOSemSim")
 x <- x[-nrow(x), ] # last month data is not complete
-txtplot(ggtree::Date2decimal(x$end), x$Nb_of_downloads, width=100, height=25)
+p <- ggplot(x, aes(end, Nb_of_distinct_IPs)) + geom_point() + geom_line() +
+    theme_minimal() +xlab(NULL) + ylab(NULL) +
+    labs(title="GOSemSim", subtitle="Monthly download stats (distinct IPs)", caption="data from Bioconductor")
+ggsave(p, file="docs/images/dlstats.png", width=8, height=4)
 ```
 
-
-
+<img src="docs/images/dlstats.png" width="890"/>

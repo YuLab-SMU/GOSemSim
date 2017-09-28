@@ -37,7 +37,6 @@ them.
 cluster2 <- c("307", "308", "317", "321", "506", "540", "378", "388", "396")
 clusterSim(cluster1, cluster2, semData=d, measure="Wang")
 
-<<<<<<< HEAD
 }
 \references{
 Yu et al. (2010) GOSemSim: an R package for measuring semantic
@@ -46,22 +45,8 @@ England), 26:7 976--978, April 2010. ISSN 1367-4803
 \url{http://bioinformatics.oxfordjournals.org/cgi/content/abstract/26/7/976}
 PMID: 20179076
 }
-=======
-}
-\references{
-Yu et al. (2010) GOSemSim: an R package for measuring semantic
-similarity among GO terms and gene products \emph{Bioinformatics} (Oxford,
-England), 26:7 976--978, April 2010. ISSN 1367-4803
-\url{http://bioinformatics.oxfordjournals.org/cgi/content/abstract/26/7/976}
-PMID: 20179076
-}
->>>>>>> upstream/master
 \seealso{
 \code{\link{goSim}} \code{\link{mgoSim}} \code{\link{geneSim}}
 \code{\link{mgeneSim}} \code{\link{mclusterSim}}
 }
 \keyword{manip}
-<<<<<<< HEAD
-
-=======
->>>>>>> upstream/master

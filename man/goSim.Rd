@@ -42,4 +42,3 @@ PMID: 20179076
 \code{\link{mclusterSim}}
 }
 \keyword{manip}
-
