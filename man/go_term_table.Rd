@@ -2,8 +2,13 @@
 % Please edit documentation in R/GOSemSim-package.R
 \docType{data}
 \name{go_term_table}
+<<<<<<< HEAD
 \alias{GO}
 \alias{go_term_table}
+=======
+\alias{go_term_table}
+\alias{GO}
+>>>>>>> upstream/master
 \alias{gotbl}
 \title{Information content of GO terms}
 \description{
@@ -17,4 +22,7 @@ England), 26:7 976--978, April 2010. ISSN 1367-4803
 PMID: 20179076
 }
 \keyword{datasets}
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/master

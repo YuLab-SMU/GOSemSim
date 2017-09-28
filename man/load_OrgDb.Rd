@@ -18,4 +18,7 @@ load OrgDb
 \author{
 Guangchuang Yu
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/master

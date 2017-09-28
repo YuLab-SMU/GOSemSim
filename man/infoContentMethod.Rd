@@ -27,4 +27,7 @@ implemented for methods proposed by Resnik, Jiang, Lin and Schlicker.
 \author{
 Guangchuang Yu \url{http://ygc.name}
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/master

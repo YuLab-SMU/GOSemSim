@@ -3,7 +3,10 @@
 \docType{package}
 \name{GOSemSim-package}
 \alias{GOSemSim}
+<<<<<<< HEAD
 \alias{GOSemSim-package}
+=======
+>>>>>>> upstream/master
 \title{Gene Ontology-based Sematic Similarity Measures}
 \description{
 Implementation of semantic similarity measures to estimate the functional
@@ -29,12 +32,27 @@ Streptomyces_coelicolor, Sus_scrofa, Xenopus_laevis\cr Depends:\tab \cr
 Imports: \tab methods, AnnotationDbi, GO.db\cr
 Suggests:\tab clusterProfiler, DOSE\cr
 License: \tab Artistic-2.0\cr }
+<<<<<<< HEAD
+=======
+}
+\references{
+Yu et al. (2010) GOSemSim: an R package for measuring semantic
+similarity among GO terms and gene products \emph{Bioinformatics} (Oxford,
+England), 26:7 976--978, April 2010. ISSN 1367-4803
+\url{http://bioinformatics.oxfordjournals.org/cgi/content/abstract/26/7/976}
+PMID: 20179076
+}
+\seealso{
+\code{\link{goSim}} \code{\link{mgoSim}} \code{\link{geneSim}}
+\code{\link{mgeneSim}} \code{\link{clusterSim}} \code{\link{mclusterSim}}
+>>>>>>> upstream/master
 }
 \author{
 Guangchuang Yu
 
 Maintainer: Guangchuang Yu <guangchuangyu@gmail.com>
 }
+<<<<<<< HEAD
 \references{
 Yu et al. (2010) GOSemSim: an R package for measuring semantic
 similarity among GO terms and gene products \emph{Bioinformatics} (Oxford,
@@ -48,3 +66,6 @@ PMID: 20179076
 }
 \keyword{package}
 
+=======
+\keyword{package}
+>>>>>>> upstream/master

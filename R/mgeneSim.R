@@ -28,7 +28,11 @@
 ##'@export
 ##'@examples
 ##'
+<<<<<<< HEAD
 ##'     d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
+=======
+##' d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
+>>>>>>> upstream/master
 ##'	mgeneSim(c("835", "5261","241"), semData=d, measure="Wang")
 ##'
 mgeneSim <- function (genes, semData, measure="Wang", drop="IEA", combine="BMA", verbose=TRUE) {
@@ -39,6 +43,7 @@ mgeneSim <- function (genes, semData, measure="Wang", drop="IEA", combine="BMA",
     colnames(scores) <- genes
 
     gos <- lapply(genes, gene2GO, semData, dropCodes=drop)
+<<<<<<< HEAD
 
     if (verbose) {
         cnt <- 1
@@ -57,6 +62,23 @@ mgeneSim <- function (genes, semData, measure="Wang", drop="IEA", combine="BMA",
                 scores[j,i] <- scores[i,j]
             }
         }
+=======
+    uniqueGO <-  unique(unlist(gos))
+    go_matrix <- mgoSim(uniqueGO, uniqueGO, semData, measure = measure, combine = NULL)
+    if (verbose) {
+      cnt <- 1
+      pb <- txtProgressBar(min=0, max=sum(1:n), style=3)
+    }
+    for (i in seq_along(genes)) {
+      for (j in seq_len(i)){
+        if (verbose) {
+          setTxtProgressBar(pb, cnt)
+          cnt <- cnt + 1
+        }
+        scores[i,j] <- combineScores(go_matrix[gos[[i]], gos[[j]]], combine = combine)
+        scores[j,i] <- scores[i,j]
+      }
+>>>>>>> upstream/master
     }
     if (verbose)
         close(pb)
