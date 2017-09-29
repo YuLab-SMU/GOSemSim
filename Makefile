@@ -69,4 +69,3 @@ push: update
 	git merge upstream/master;\
 	git push -f origin master;\
 	git checkout master;\
-
