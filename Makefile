@@ -60,9 +60,13 @@ gitmaintain:
 update:
 	git fetch --all;\
 	git checkout master;\
-	git merge upstream/master;\
-	git merge origin/master
+	git merge upstream/master
+
 
 push: update
 	git push upstream master;\
-	git push origin master
+	git checkout github;\
+	git merge upstream/master;\
+	git push -f origin master;\
+	git checkout master;\
+
