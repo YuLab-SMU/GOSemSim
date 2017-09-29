@@ -67,5 +67,5 @@ push: update
 	git push upstream master;\
 	git checkout github;\
 	git merge upstream/master;\
-	git push -f origin master;\
+	git push -f origin HEAD:master;\
 	git checkout master;\
