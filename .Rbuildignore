@@ -8,3 +8,4 @@ appveyor.yml
 docs
 mkdocs
 .github
+site_src
