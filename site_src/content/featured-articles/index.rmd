@@ -93,6 +93,14 @@ weight: 30
 + [The semantic measures library and toolkit: fast computation of semantic similarity and relatedness using biomedical ontologies](http://bioinformatics.oxfordjournals.org/content/30/5/740.short). **Bioinformatics**. 2014, 30(5):740-742.
 + [Semantic similarity analysis of protein data: assessment with biological features and issues](https://bib.oxfordjournals.org/content/13/5/569.short). **Briefings in Bioinformatics**. 2012, 13(5):569-585.
 
+### Reducing GO term redundancy
+
++ [EGFR feedback-inhibition by Ran-binding protein 6 is disrupted in cancer](http://dx.doi.org/10.1038/s41467-017-02185-w)
+**_Nature Communications_**.
++
+  [Intracerebroventricular delivery of hematopoietic progenitors results in rapid and robust engraftment of microglia-like cells](http://advances.sciencemag.org/content/3/12/e1701211.full).
+  **_Science Advances_**. 2017, 3(12):e1701211.
+
 ## Evolution
 
 + [Venus flytrap carnivorous lifestyle builds on herbivore defense strategies](http://dx.doi.org/10.1101/gr.202200.115). **Cold Spring Harbor Laboratory Press**. 2016, 26:812-825.
