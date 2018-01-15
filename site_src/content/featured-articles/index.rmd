@@ -95,10 +95,11 @@ weight: 30
 
 ### Reducing GO term redundancy
 
-+ [EGFR feedback-inhibition by Ran-binding protein 6 is disrupted in cancer](http://dx.doi.org/10.1038/s41467-017-02185-w)
-**_Nature Communications_**.
-+
-  [Intracerebroventricular delivery of hematopoietic progenitors results in rapid and robust engraftment of microglia-like cells](http://advances.sciencemag.org/content/3/12/e1701211.full).
++ [Faulty neuronal determination and cell polarization are reverted by modulating HD early phenotypes](http://dx.doi.org/10.1073/pnas.1715865115)
+ **_PNAS_**. 2017.
++ [EGFR feedback-inhibition by Ran-binding protein 6 is disrupted in cancer](https://doi.org/10.1038/s41467-017-02185-w)
+ **_Nature Communications_**. 2017, 8(1):2035.
++ [Intracerebroventricular delivery of hematopoietic progenitors results in rapid and robust engraftment of microglia-like cells](http://advances.sciencemag.org/content/3/12/e1701211.full).
   **_Science Advances_**. 2017, 3(12):e1701211.
 
 ## Evolution
