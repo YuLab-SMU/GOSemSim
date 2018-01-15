@@ -63,7 +63,7 @@ update:
 	git merge upstream/master
 
 
-push: update
+push: 
 	git push upstream master;\
 	git checkout github;\
 	git merge -m 'merge from bioc repo' upstream/master;\
