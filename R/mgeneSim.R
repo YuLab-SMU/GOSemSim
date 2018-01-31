@@ -38,7 +38,7 @@ mgeneSim <- function (genes, semData, measure="Wang", drop="IEA", combine="BMA",
     rownames(scores) <- genes
     colnames(scores) <- genes
 
-    gos <- lapply(genes, gene2GO, semData, dropCodes=drop)
+    gos <- lapply(genes, gene2GO, godata=semData, dropCodes=drop)
     uniqueGO <-  unique(unlist(gos))
     go_matrix <- mgoSim(uniqueGO, uniqueGO, semData, measure = measure, combine = NULL)
     if (verbose) {
@@ -61,5 +61,4 @@ mgeneSim <- function (genes, semData, measure="Wang", drop="IEA", combine="BMA",
     removeColNA <- apply(!is.na(scores), 2, sum)>0
     return(scores[removeRowNA, removeColNA])
 }
-
 
