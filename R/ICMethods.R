@@ -8,7 +8,7 @@
 ##' @param godata GOSemSimDATA object
 ##' @return semantic similarity score
 ##' @useDynLib GOSemSim
-##' @author Guangchuang Yu \url{http://ygc.name}
+##' @author Guangchuang Yu \url{https://guangchuangyu.github.io}
 infoContentMethod <- function(ID1,
                               ID2,
                               method,

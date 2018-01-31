@@ -25,5 +25,5 @@ Information Content Based Methods for semantic similarity measuring
 implemented for methods proposed by Resnik, Jiang, Lin and Schlicker.
 }
 \author{
-Guangchuang Yu \url{http://ygc.name}
+Guangchuang Yu \url{https://guangchuangyu.github.io}
 }

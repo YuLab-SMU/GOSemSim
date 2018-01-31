@@ -7,7 +7,7 @@
 ##'@param combine combine method
 ##'@return similarity value
 ##'@export
-##'@author Guangchuang Yu \url{http://ygc.name}
+##'@author Guangchuang Yu \url{http://guangchuangyu.github.io}
 combineScores <- function(SimScores, combine) {
 
     if (length(combine) == 0) {  #if not define combine
@@ -44,7 +44,7 @@ combineScores <- function(SimScores, combine) {
             return (round(max(SimScores, na.rm=TRUE), digits=3))
         }
     }
-    
+
     if (combine        == "avg") {
         result   <- mean(SimScores, na.rm=TRUE)
     } else if (combine == "max") {

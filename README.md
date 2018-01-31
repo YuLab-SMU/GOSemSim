@@ -1,9 +1,9 @@
 GOSemSim: GO semantic similarity measurement
 ============================================
 
-[![releaseVersion](https://img.shields.io/badge/release%20version-2.4.0-green.svg?style=flat)](https://bioconductor.org/packages/GOSemSim) [![develVersion](https://img.shields.io/badge/devel%20version-2.5.0-green.svg?style=flat)](https://github.com/guangchuangyu/GOSemSim) [![Bioc](http://www.bioconductor.org/shields/years-in-bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#since) [![total](https://img.shields.io/badge/downloads-65569/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim) [![month](https://img.shields.io/badge/downloads-2010/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![releaseVersion](https://img.shields.io/badge/release%20version-2.4.0-green.svg?style=flat)](https://bioconductor.org/packages/GOSemSim) [![develVersion](https://img.shields.io/badge/devel%20version-2.5.0-green.svg?style=flat)](https://github.com/guangchuangyu/GOSemSim) [![Bioc](http://www.bioconductor.org/shields/years-in-bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#since) [![total](https://img.shields.io/badge/downloads-66910/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim) [![month](https://img.shields.io/badge/downloads-2010/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![codecov](https://codecov.io/gh/GuangchuangYu/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/GuangchuangYu/GOSemSim/) [![Last-changedate](https://img.shields.io/badge/last%20change-2018--01--15-green.svg)](https://github.com/GuangchuangYu/GOSemSim/commits/master) [![commit](http://www.bioconductor.org/shields/commits/bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#svn_source) [![GitHub forks](https://img.shields.io/github/forks/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/network) [![GitHub stars](https://img.shields.io/github/stars/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/stargazers)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![codecov](https://codecov.io/gh/GuangchuangYu/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/GuangchuangYu/GOSemSim/) [![Last-changedate](https://img.shields.io/badge/last%20change-2018--01--31-green.svg)](https://github.com/GuangchuangYu/GOSemSim/commits/master) [![commit](http://www.bioconductor.org/shields/commits/bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#svn_source) [![GitHub forks](https://img.shields.io/github/forks/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/network) [![GitHub stars](https://img.shields.io/github/stars/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/stargazers)
 
 [![platform](http://www.bioconductor.org/shields/availability/devel/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#archives) [![Build Status](http://www.bioconductor.org/shields/build/devel/bioc/GOSemSim.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/GOSemSim/) [![Linux/Mac Travis Build Status](https://img.shields.io/travis/GuangchuangYu/GOSemSim/master.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/GuangchuangYu/GOSemSim) [![AppVeyor Build Status](https://img.shields.io/appveyor/ci/Guangchuangyu/GOSemSim/master.svg?label=Windows)](https://ci.appveyor.com/project/GuangchuangYu/GOSemSim)
 
@@ -29,12 +29,12 @@ Please cite the following article when using `GOSemSim`:
 
 ### Citation
 
-[![citation](https://img.shields.io/badge/cited%20by-315-green.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
+[![citation](https://img.shields.io/badge/cited%20by-317-green.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
 
 <img src="docs/images/citation.png" width="890"/>
 
 ### Download stats
 
-[![download](http://www.bioconductor.org/shields/downloads/GOSemSim.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim/) [![total](https://img.shields.io/badge/downloads-65569/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim) [![month](https://img.shields.io/badge/downloads-2010/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![download](http://www.bioconductor.org/shields/downloads/GOSemSim.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim/) [![total](https://img.shields.io/badge/downloads-66910/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim) [![month](https://img.shields.io/badge/downloads-2010/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 
 <img src="docs/images/dlstats.png" width="890"/>
