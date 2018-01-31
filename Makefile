@@ -62,8 +62,12 @@ update:
 	git checkout master;\
 	git merge upstream/master
 
+release:
+	git checkout RELEASE_3_6;\
+	git fetch --all
 
-push: 
+
+push:
 	git push upstream master;\
 	git checkout github;\
 	git merge -m 'merge from bioc repo' upstream/master;\
