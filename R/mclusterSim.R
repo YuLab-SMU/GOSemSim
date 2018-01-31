@@ -61,4 +61,3 @@ mclusterSim <- function(clusters, semData, measure="Wang", drop="IEA", combine="
     removeColNA <- apply(!is.na(scores), 2, sum)>0
     return(scores[removeRowNA, removeColNA])
 }
-
