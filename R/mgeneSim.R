@@ -46,14 +46,14 @@ mgeneSim <- function (genes, semData, measure="Wang", drop="IEA", combine="BMA",
       pb <- txtProgressBar(min=0, max=sum(1:n), style=3)
     }
     for (i in seq_along(genes)) {
-      for (j in seq_len(i)){
-        if (verbose) {
-          setTxtProgressBar(pb, cnt)
-          cnt <- cnt + 1
+        for (j in seq_len(i)){
+            if (verbose) {
+                setTxtProgressBar(pb, cnt)
+                cnt <- cnt + 1
+            }
+            scores[i,j] <- combineScores(go_matrix[gos[[i]], gos[[j]]], combine = combine)
+            scores[j,i] <- scores[i,j]
         }
-        scores[i,j] <- combineScores(go_matrix[gos[[i]], gos[[j]]], combine = combine)
-        scores[j,i] <- scores[i,j]
-      }
     }
     if (verbose)
         close(pb)
