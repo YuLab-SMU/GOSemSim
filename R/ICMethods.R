@@ -23,7 +23,12 @@ infoContentMethod <- function(ID1,
     }
 
     if (ont %in% c("MF", "BP", "CC", "DO")) {
-        .anc <- AnnotationDbi::as.list(getAncestors(ont)[union(ID1,ID2)])
+        .anc <- tryCatch(getAncestors(ont)[union(ID1,ID2)], error=function(e) NULL)
+        if (is.null(.anc)) {
+            ## https://support.bioconductor.org/p/105822/
+            return(NA)
+        }
+        .anc <- AnnotationDbi::as.list(.anc)
     } else {
         mesh_getAnc <- eval(parse(text="meshes:::getAncestors"))
         .anc <- lapply(union(ID1, ID2), mesh_getAnc)
