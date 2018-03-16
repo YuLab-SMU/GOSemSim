@@ -18,14 +18,12 @@ library("yyplot")
 `r badge_bioc_release("GOSemSim", "green")`
 `r badge_devel("guangchuangyu/GOSemSim", "green")`
 [![Bioc](http://www.bioconductor.org/shields/years-in-bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#since)
-`r badge_bioc_download("GOSemSim", "total", "blue")`
-`r badge_bioc_download("GOSemSim", "month", "blue")`
+[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/GuangchuangYu)
 
 
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![codecov](https://codecov.io/gh/GuangchuangYu/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/GuangchuangYu/GOSemSim/)
 [![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-green.svg)](https://github.com/GuangchuangYu/GOSemSim/commits/master)
-[![commit](http://www.bioconductor.org/shields/commits/bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#svn_source)
 [![GitHub forks](https://img.shields.io/github/forks/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/network)
 [![GitHub stars](https://img.shields.io/github/stars/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/stargazers)
 
@@ -47,7 +45,9 @@ For details, please visit our project website, <https://guangchuangyu.github.io/
 + [Feedback](https://guangchuangyu.github.io/GOSemSim/#feedback)
 
 
-[![Twitter](https://img.shields.io/twitter/url/https/github.com/GuangchuangYu/GOSemSim.svg?style=social)](https://twitter.com/intent/tweet?hashtags=GOSemSim&url=http://bioinformatics.oxfordjournals.org/content/26/7/976&screen_name=guangchuangyu)
+[![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?hashtags=GOSemSim&url=http://bioinformatics.oxfordjournals.org/content/26/7/976&screen_name=guangchuangyu)
+`r badger::badge_custom("follow me on", "微信", "green", "https://guangchuangyu.github.io/blog_images/biobabble.jpg")`
+`r badger::badge_custom("打赏", "支付宝/微信", "green", "https://guangchuangyu.github.io/blog_images/pay_qrcode.png")`
 
 
 ------------------------------------------------------------------------
@@ -66,15 +66,8 @@ Please cite the following article when using `GOSemSim`:
 
 ### Citation
 
-`r badge_citation("tuHXwOkdijsC", "9484177541993722322", "green")`
 
-
-```{r echo=F, comment=NA}
-p <- plot_citation_trend('DO5oG40AAAAJ', 'tuHXwOkdijsC')
-ggsave(p, file="docs/images/citation.png", width=8, height=4)
-```
-
-<img src="docs/images/citation.png" width="890"/>
+<img src="https://guangchuangyu.github.io/software/GOSemSim/featured-articles/index_files/figure-html/citation-1.png" width="890"/>
 
 
 ### Download stats
@@ -84,13 +77,4 @@ ggsave(p, file="docs/images/citation.png", width=8, height=4)
 `r badge_bioc_download("GOSemSim", "month", "blue")`
 
 
-```{r echo=F, comment=NA}
-x <- dlstats::bioc_stats("GOSemSim")
-x <- x[-nrow(x), ] # last month data is not complete
-p <- ggplot(x, aes(end, Nb_of_distinct_IPs)) + geom_point() + geom_line() +
-    theme_minimal() +xlab(NULL) + ylab(NULL) +
-    labs(title="GOSemSim", subtitle="Monthly download stats (distinct IPs)", caption="data from Bioconductor")
-ggsave(p, file="docs/images/dlstats.png", width=8, height=4)
-```
-
-<img src="docs/images/dlstats.png" width="890"/>
+<img src="https://guangchuangyu.github.io/software/GOSemSim/index_files/figure-html/dlstats-1.png" width="890"/>

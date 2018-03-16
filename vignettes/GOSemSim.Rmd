@@ -19,6 +19,7 @@ vignette: >
   % \VignetteIndexEntry{An introduction to GOSemSim}
   % \VignetteEngine{knitr::rmarkdown}
   % \usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r style, echo=FALSE, results="asis", message=FALSE}
@@ -64,11 +65,6 @@ semantic similarity among GO terms, sets of GO terms, gene products,
 and gene clusters, providing five methods mentioned above. We have
 developed another package, [DOSE](https://www.bioconductor.org/packages/DOSE)[@yu_dose_2015], for measuring semantic
 similarity among Disease Ontology (DO) terms and gene products at disease perspective.
-
-
-## Homepage
-
-Please visit [GOSemSim homepage](https://guangchuangyu.github.io/GOSemSim/) for more information.
 
 
 # Semantic Similarity Measurement Based on GO
@@ -287,14 +283,14 @@ mclusterSim(clusters, semData=hsGO, measure="Wang", combine="BMA")
 
 [GOSemSim](https://www.bioconductor.org/packages/GOSemSim) was cited by more than [200 papers](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322,17633835198940746971,18126401808149291947) and had been applied to many research domains, including:
 
-+ [Disease or Drug analysis](https://guangchuangyu.github.io/GOSemSim/featuredArticles/#diease-or-drug-analysis)
-+ [Gene/Protein functional analysis](https://guangchuangyu.github.io/GOSemSim/featuredArticles/#geneprotein-functional-analysis)
-+ [Protein-Protein interaction](https://guangchuangyu.github.io/GOSemSim/featuredArticles/#protein-protein-interaction)
-+ [miRNA-mRNA interaction](https://guangchuangyu.github.io/GOSemSim/featuredArticles/#mirna-mrna-interaction)
-+ [sRNA regulation](https://guangchuangyu.github.io/GOSemSim/featuredArticles/#srna-regulation)
-+ [Evolution](https://guangchuangyu.github.io/GOSemSim/featuredArticles/#evolution)
++ [Disease or Drug analysis](https://guangchuangyu.github.io/software/GOSemSim/featuredArticles/#diease-or-drug-analysis)
++ [Gene/Protein functional analysis](https://guangchuangyu.github.io/software/GOSemSim/featuredArticles/#geneprotein-functional-analysis)
++ [Protein-Protein interaction](https://guangchuangyu.github.io/software/GOSemSim/featuredArticles/#protein-protein-interaction)
++ [miRNA-mRNA interaction](https://guangchuangyu.github.io/software/GOSemSim/featuredArticles/#mirna-mrna-interaction)
++ [sRNA regulation](https://guangchuangyu.github.io/software/GOSemSim/featuredArticles/#srna-regulation)
++ [Evolution](https://guangchuangyu.github.io/software/GOSemSim/featuredArticles/#evolution)
 
-Find out more on <https://guangchuangyu.github.io/GOSemSim/featuredArticles/>.
+Find out more on <https://guangchuangyu.github.io/software/GOSemSim/featuredArticles/>.
 
 
 # GO enrichment analysis
@@ -311,6 +307,24 @@ Enrichment analysis including hypergeometric model and GSEA are also implemented
 
 MeSH (Medical Subject Headings) is the NLM controlled vocabulary used to manually index articles for MEDLINE/PubMed. [meshes](https://www.bioconductor.org/packages/meshes) supports enrichment (hypergeometric test and GSEA) and semantic similarity analyses for more than 70 species.
 
+
+
+# Need helps?
+
+
+If you have questions/issues, please visit
+[GOSemSim homepage](https://guangchuangyu.github.io/software/GOSemSim/) first.
+Your problems are mostly documented. If you think you found a bug, please follow
+[the guide](https://guangchuangyu.github.io/2016/07/how-to-bug-author/) and
+provide a reproducible example to be posted
+on
+[github issue tracker](https://github.com/GuangchuangYu/GOSemSim/issues).
+For questions, please post
+to [Bioconductor support site](https://support.bioconductor.org/) and tag your
+post with *GOSemSim*.
+
+
+For Chinese user, you can follow me on [WeChat (微信)](https://guangchuangyu.github.io/blog_images/biobabble.jpg).
 
 # Session Information
 
