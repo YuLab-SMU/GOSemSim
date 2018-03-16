@@ -1,9 +1,9 @@
 GOSemSim: GO semantic similarity measurement
 ============================================
 
-[![releaseVersion](https://img.shields.io/badge/release%20version-2.4.1-green.svg?style=flat)](https://bioconductor.org/packages/GOSemSim) [![develVersion](https://img.shields.io/badge/devel%20version-2.5.1-green.svg?style=flat)](https://github.com/guangchuangyu/GOSemSim) [![Bioc](http://www.bioconductor.org/shields/years-in-bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#since) [![total](https://img.shields.io/badge/downloads-67785/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim) [![month](https://img.shields.io/badge/downloads-2375/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![releaseVersion](https://img.shields.io/badge/release%20version-2.4.1-green.svg?style=flat)](https://bioconductor.org/packages/GOSemSim) [![develVersion](https://img.shields.io/badge/devel%20version-2.5.2-green.svg?style=flat)](https://github.com/guangchuangyu/GOSemSim) [![Bioc](http://www.bioconductor.org/shields/years-in-bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#since) [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/GuangchuangYu)
 
-[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![codecov](https://codecov.io/gh/GuangchuangYu/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/GuangchuangYu/GOSemSim/) [![Last-changedate](https://img.shields.io/badge/last%20change-2018--02--09-green.svg)](https://github.com/GuangchuangYu/GOSemSim/commits/master) [![commit](http://www.bioconductor.org/shields/commits/bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#svn_source) [![GitHub forks](https://img.shields.io/github/forks/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/network) [![GitHub stars](https://img.shields.io/github/stars/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/stargazers)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active) [![codecov](https://codecov.io/gh/GuangchuangYu/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/GuangchuangYu/GOSemSim/) [![Last-changedate](https://img.shields.io/badge/last%20change-2018--03--16-green.svg)](https://github.com/GuangchuangYu/GOSemSim/commits/master) [![GitHub forks](https://img.shields.io/github/forks/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/network) [![GitHub stars](https://img.shields.io/github/stars/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/stargazers)
 
 [![platform](http://www.bioconductor.org/shields/availability/devel/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#archives) [![Build Status](http://www.bioconductor.org/shields/build/devel/bioc/GOSemSim.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/GOSemSim/) [![Linux/Mac Travis Build Status](https://img.shields.io/travis/GuangchuangYu/GOSemSim/master.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/GuangchuangYu/GOSemSim) [![AppVeyor Build Status](https://img.shields.io/appveyor/ci/Guangchuangyu/GOSemSim/master.svg?label=Windows)](https://ci.appveyor.com/project/GuangchuangYu/GOSemSim)
 
@@ -15,7 +15,7 @@ For details, please visit our project website, <https://guangchuangyu.github.io/
 -   [Featured Articles](https://guangchuangyu.github.io/GOSemSim/featuredArticles/)
 -   [Feedback](https://guangchuangyu.github.io/GOSemSim/#feedback)
 
-[![Twitter](https://img.shields.io/twitter/url/https/github.com/GuangchuangYu/GOSemSim.svg?style=social)](https://twitter.com/intent/tweet?hashtags=GOSemSim&url=http://bioinformatics.oxfordjournals.org/content/26/7/976&screen_name=guangchuangyu)
+[![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?hashtags=GOSemSim&url=http://bioinformatics.oxfordjournals.org/content/26/7/976&screen_name=guangchuangyu) [![](https://img.shields.io/badge/follow%20me%20on-微信-green.svg?style=flat)](https://guangchuangyu.github.io/blog_images/biobabble.jpg) [![](https://img.shields.io/badge/打赏-支付宝/微信-green.svg?style=flat)](https://guangchuangyu.github.io/blog_images/pay_qrcode.png)
 
 ------------------------------------------------------------------------
 
@@ -29,12 +29,10 @@ Please cite the following article when using `GOSemSim`:
 
 ### Citation
 
-[![citation](https://img.shields.io/badge/cited%20by-320-green.svg?style=flat)](https://scholar.google.com.hk/scholar?oi=bibs&hl=en&cites=9484177541993722322)
-
-<img src="docs/images/citation.png" width="890"/>
+<img src="https://guangchuangyu.github.io/software/GOSemSim/featured-articles/index_files/figure-html/citation-1.png" width="890"/>
 
 ### Download stats
 
-[![download](http://www.bioconductor.org/shields/downloads/GOSemSim.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim/) [![total](https://img.shields.io/badge/downloads-67785/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim) [![month](https://img.shields.io/badge/downloads-2375/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![download](http://www.bioconductor.org/shields/downloads/GOSemSim.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim/) [![total](https://img.shields.io/badge/downloads-71597/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim) [![month](https://img.shields.io/badge/downloads-3034/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 
-<img src="docs/images/dlstats.png" width="890"/>
+<img src="https://guangchuangyu.github.io/software/GOSemSim/index_files/figure-html/dlstats-1.png" width="890"/>
