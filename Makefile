@@ -4,7 +4,7 @@ PKGSRC  := $(shell basename `pwd`)
 
 all: rd readme check clean
 
-alldocs: rd readme site
+alldocs: rd readme
 
 rd:
 	Rscript -e 'roxygen2::roxygenise(".")'
@@ -35,20 +35,6 @@ bioccheck:
 clean:
 	cd ..;\
 	$(RM) -r $(PKGNAME).Rcheck/
-
-site:
-	cd site_src;\
-	ln -s ../../software/themes themes;\
-	Rscript -e 'blogdown::build_site()';\
-	rm themes;\
-	cd ..
-
-preview:
-	cd site_src;\
-	ln -s ../../software/themes themes;\
-	Rscript -e 'blogdown::serve_site()';\
-	rm themes;\
-	cd ..
 
 
 gitmaintain:
