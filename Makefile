@@ -63,14 +63,18 @@ update:
 	git merge upstream/master
 
 release:
-	git checkout RELEASE_3_6;\
+	git checkout RELEASE_3_7;\
 	git fetch --all
 
+biocinit:
+	git remote add upstream git@git.bioconductor.org:packages/$(PKGNAME).git;\
+	git fetch --all
 
 push:
 	git push upstream master;\
-	git checkout github;\
-	git merge -m 'merge from bioc repo' upstream/master;\
-	git push -f origin HEAD:master;\
-	git checkout master
+	git push origin master
+	#git checkout github;\
+	#git merge -m 'merge from bioc repo' upstream/master;\
+	#git push -f origin HEAD:master;\
+	#git checkout master
 
