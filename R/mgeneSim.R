@@ -59,6 +59,6 @@ mgeneSim <- function (genes, semData, measure="Wang", drop="IEA", combine="BMA",
         close(pb)
     removeRowNA <- apply(!is.na(scores), 1, sum)>0
     removeColNA <- apply(!is.na(scores), 2, sum)>0
-    return(scores[removeRowNA, removeColNA])
+    return(scores[removeRowNA, removeColNA, drop=FALSE])
 }
 

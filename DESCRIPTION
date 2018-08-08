@@ -1,7 +1,7 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-Version: 2.7.0
+Version: 2.7.1
 Authors@R: c( person(given = "Guangchuang", family = "Yu",             email = "guangchuangyu@gmail.com", role  = c("aut", "cre")),
               person(given = "Alexey",      family = "Stukalov",       email = "astukalov@gmail.com",     role  = "ctb"),
               person(given = "Chuanle",     family = "Xiao",           email = "xiaochuanle@126.com",     role  = "ctb"),
@@ -39,4 +39,4 @@ URL: https://guangchuangyu.github.io/software/GOSemSim
 BugReports: https://github.com/GuangchuangYu/GOSemSim/issues
 Packaged: 2012-08-29 06:44:50 UTC; root
 biocViews: Annotation, GO, Clustering, Pathways, Network, Software
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
