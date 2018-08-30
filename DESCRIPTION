@@ -24,7 +24,7 @@ Imports:
     utils
 Suggests:
     AnnotationHub,
-    BiocInstaller,
+    BiocManager,
     clusterProfiler,
     DOSE,
     knitr,
