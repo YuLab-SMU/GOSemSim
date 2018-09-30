@@ -15,7 +15,7 @@ Description: The semantic comparisons of Gene Ontology (GO) annotations provide
     sets of GO terms, gene products and gene clusters. GOSemSim implemented five
     methods proposed by Resnik, Schlicker, Jiang, Lin and Wang respectively.
 Depends:
-    R (>= 3.3.2)
+    R (>= 3.4.0)
 LinkingTo: Rcpp
 Imports:
     AnnotationDbi,

@@ -1,24 +1,16 @@
-|                           |
-|---------------------------|
-| output:                   |
-| md\_document:             |
-| variant: markdown\_github |
-| html\_preview: false      |
+# GOSemSim: GO semantic similarity measurement
 
-GOSemSim: GO semantic similarity measurement
-============================================
-
-[![releaseVersion](https://img.shields.io/badge/release%20version-2.6.0-green.svg?style=flat)](https://bioconductor.org/packages/GOSemSim)
+[![releaseVersion](https://img.shields.io/badge/release%20version-2.6.2-green.svg?style=flat)](https://bioconductor.org/packages/GOSemSim)
 [![develVersion](https://img.shields.io/badge/devel%20version-2.7.1-green.svg?style=flat)](https://github.com/guangchuangyu/GOSemSim)
 [![Bioc](http://www.bioconductor.org/shields/years-in-bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#since)
 [![Say
-Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/GuangchuangYu)
+Thanks\!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/GuangchuangYu)
 
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![codecov](https://codecov.io/gh/GuangchuangYu/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/GuangchuangYu/GOSemSim/)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2018--08--08-green.svg)](https://github.com/GuangchuangYu/GOSemSim/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2018--09--30-green.svg)](https://github.com/GuangchuangYu/GOSemSim/commits/master)
 [![GitHub
 forks](https://img.shields.io/github/forks/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/network)
 [![GitHub
@@ -43,16 +35,16 @@ clusters. `GOSemSim` implemented five methods proposed by *Resnik*,
 For details, please visit our project website,
 <https://guangchuangyu.github.io/GOSemSim>.
 
--   [Documentation](https://guangchuangyu.github.io/GOSemSim/documentation/)
--   [Featured
+  - [Documentation](https://guangchuangyu.github.io/GOSemSim/documentation/)
+  - [Featured
     Articles](https://guangchuangyu.github.io/GOSemSim/featuredArticles/)
--   [Feedback](https://guangchuangyu.github.io/GOSemSim/#feedback)
+  - [Feedback](https://guangchuangyu.github.io/GOSemSim/#feedback)
 
 [![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?hashtags=GOSemSim&url=http://bioinformatics.oxfordjournals.org/content/26/7/976&screen_name=guangchuangyu)
 [![](https://img.shields.io/badge/follow%20me%20on-微信-green.svg?style=flat)](https://guangchuangyu.github.io/blog_images/biobabble.jpg)
 [![](https://img.shields.io/badge/打赏-支付宝/微信-green.svg?style=flat)](https://guangchuangyu.github.io/blog_images/pay_qrcode.png)
 
-------------------------------------------------------------------------
+-----
 
 Please cite the following article when using `GOSemSim`:
 
@@ -64,7 +56,7 @@ similarity among GO terms and gene products. ***Bioinformatics***. 2010,
 [![doi](https://img.shields.io/badge/doi-10.1093/bioinformatics/btq064-green.svg?style=flat)](http://dx.doi.org/10.1093/bioinformatics/btq064)
 [![Altmetric](https://img.shields.io/badge/Altmetric-19-green.svg?style=flat)](https://www.altmetric.com/details/100979)
 
-------------------------------------------------------------------------
+-----
 
 ### Citation
 
@@ -73,7 +65,7 @@ similarity among GO terms and gene products. ***Bioinformatics***. 2010,
 ### Download stats
 
 [![download](http://www.bioconductor.org/shields/downloads/GOSemSim.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim/)
-[![total](https://img.shields.io/badge/downloads-87419/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
-[![month](https://img.shields.io/badge/downloads-3273/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![total](https://img.shields.io/badge/downloads-94026/total-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![month](https://img.shields.io/badge/downloads-3976/month-blue.svg?style=flat)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 
 <img src="https://guangchuangyu.github.io/software/GOSemSim/index_files/figure-html/dlstats-1.png" width="890"/>
