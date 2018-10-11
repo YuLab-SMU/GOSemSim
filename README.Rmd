@@ -15,17 +15,15 @@ library("yyplot")
 
 #  GOSemSim: GO semantic similarity measurement
 
+
 `r badge_bioc_release("GOSemSim", "green")`
 `r badge_devel("guangchuangyu/GOSemSim", "green")`
 [![Bioc](http://www.bioconductor.org/shields/years-in-bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#since)
-[![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/GuangchuangYu)
 
 
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![codecov](https://codecov.io/gh/GuangchuangYu/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/GuangchuangYu/GOSemSim/)
 [![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-green.svg)](https://github.com/GuangchuangYu/GOSemSim/commits/master)
-[![GitHub forks](https://img.shields.io/github/forks/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/network)
-[![GitHub stars](https://img.shields.io/github/stars/GuangchuangYu/GOSemSim.svg)](https://github.com/GuangchuangYu/GOSemSim/stargazers)
 
 
 [![platform](http://www.bioconductor.org/shields/availability/devel/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#archives)
@@ -38,14 +36,15 @@ library("yyplot")
 The semantic comparisons of Gene Ontology (GO) annotations provide quantitative ways to compute similarities between genes and gene groups, and have became important basis for many bioinformatics analysis approaches. `GOSemSim` is an R package for semantic similarity computation among GO terms, sets of GO terms, gene products and gene clusters. `GOSemSim` implemented five methods proposed by *Resnik*, *Schlicker*, *Jiang*, *Lin* and *Wang* respectively.
 
 
-For details, please visit our project website, <https://guangchuangyu.github.io/GOSemSim>.
+For details, please visit our project website, <https://guangchuangyu.github.io/software/GOSemSim>.
 
-+ [Documentation](https://guangchuangyu.github.io/GOSemSim/documentation/)
-+ [Featured Articles](https://guangchuangyu.github.io/GOSemSim/featuredArticles/)
-+ [Feedback](https://guangchuangyu.github.io/GOSemSim/#feedback)
++ [Documentation](https://guangchuangyu.github.io/software/GOSemSim/documentation/)
++ [Featured Articles](https://guangchuangyu.github.io/software/GOSemSim/featuredArticles/)
++ [Feedback](https://guangchuangyu.github.io/software/GOSemSim/#feedback)
 
 
 [![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?hashtags=GOSemSim&url=http://bioinformatics.oxfordjournals.org/content/26/7/976&screen_name=guangchuangyu)
+[![saythanks](https://img.shields.io/badge/say-thanks-ff69b4.svg)](https://saythanks.io/to/GuangchuangYu)
 `r badger::badge_custom("follow me on", "微信", "green", "https://guangchuangyu.github.io/blog_images/biobabble.jpg")`
 `r badger::badge_custom("打赏", "支付宝/微信", "green", "https://guangchuangyu.github.io/blog_images/pay_qrcode.png")`
 
@@ -62,6 +61,13 @@ Please cite the following article when using `GOSemSim`:
 
 
 ------------------------------------------------------------------------
+
+
+## Authors
+
+Guangchuang YU <https://guangchuangyu.github.io>
+
+School of Basic Medical Sciences, Southern Medical University
 
 
 ### Citation
