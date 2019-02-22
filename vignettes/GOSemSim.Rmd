@@ -89,7 +89,7 @@ Thus the information content is defined as:
 $IC(t) = -\log(p(t))$
 
 As GO allow multiple parents for each concept, two terms can share
-parents by multiple paths. IC-based methods calculate similarity of two GO terms based on the information content of their closest common ancestor term, which was also called most informative information ancestor (MICA).
+parents by multiple paths. IC-based methods calculate similarity of two GO terms based on the information content of their closest common ancestor term, which was also called most informative common ancestor (MICA).
 
 ### Resnik method
 
