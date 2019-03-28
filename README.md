@@ -1,9 +1,8 @@
 # GOSemSim: GO semantic similarity measurement
 
-[![releaseVersion](https://img.shields.io/badge/release%20version-2.6.2-green.svg?style=flat)](https://bioconductor.org/packages/GOSemSim)
-[![develVersion](https://img.shields.io/badge/devel%20version-2.7.1-green.svg?style=flat)](https://github.com/guangchuangyu/GOSemSim)
+[![releaseVersion](https://img.shields.io/badge/release%20version-2.8.0-green.svg?style=flat)](https://bioconductor.org/packages/GOSemSim)
+[![develVersion](https://img.shields.io/badge/devel%20version-2.9.1-green.svg?style=flat)](https://github.com/guangchuangyu/GOSemSim)
 [![Bioc](http://www.bioconductor.org/shields/years-in-bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#since)
-
 [![Project Status: Active - The project has reached a stable, usable
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
@@ -17,6 +16,9 @@ Status](http://www.bioconductor.org/shields/build/devel/bioc/GOSemSim.svg)](http
 Status](https://img.shields.io/travis/GuangchuangYu/GOSemSim/master.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/GuangchuangYu/GOSemSim)
 [![AppVeyor Build
 Status](https://img.shields.io/appveyor/ci/Guangchuangyu/GOSemSim/master.svg?label=Windows)](https://ci.appveyor.com/project/GuangchuangYu/GOSemSim)
+[![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?hashtags=GOSemSim&url=http://bioinformatics.oxfordjournals.org/content/26/7/976&screen_name=guangchuangyu)
+[![saythanks](https://img.shields.io/badge/say-thanks-ff69b4.svg)](https://saythanks.io/to/GuangchuangYu)
+
 
 The semantic comparisons of Gene Ontology (GO) annotations provide
 quantitative ways to compute similarities between genes and gene groups,
@@ -34,10 +36,7 @@ For details, please visit our project website,
     Articles](https://guangchuangyu.github.io/software/GOSemSim/featuredArticles/)
   - [Feedback](https://guangchuangyu.github.io/software/GOSemSim/#feedback)
 
-[![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?hashtags=GOSemSim&url=http://bioinformatics.oxfordjournals.org/content/26/7/976&screen_name=guangchuangyu)
-[![saythanks](https://img.shields.io/badge/say-thanks-ff69b4.svg)](https://saythanks.io/to/GuangchuangYu)
-[![](https://img.shields.io/badge/follow%20me%20on-微信-green.svg?style=flat)](https://guangchuangyu.github.io/blog_images/biobabble.jpg)
-[![](https://img.shields.io/badge/打赏-支付宝/微信-green.svg?style=flat)](https://guangchuangyu.github.io/blog_images/pay_qrcode.png)
+
 
 -----
 
