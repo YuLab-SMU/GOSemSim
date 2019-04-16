@@ -80,4 +80,4 @@ School of Basic Medical Sciences, Southern Medical University
 `r badge_bioc_download("GOSemSim", "month", "blue")`
 
 
-<img src="https://guangchuangyu.github.io/software/GOSemSim/index_files/figure-html/dlstats-1.png" width="890"/>
+<img src="https://guangchuangyu.github.io/software/dlstats/GOSemSim.png" width="890"/>

@@ -66,4 +66,4 @@ University
 [![](https://img.shields.io/badge/download-120586/total-blue.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 [![](https://img.shields.io/badge/download-4594/month-blue.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 
-<img src="https://guangchuangyu.github.io/software/GOSemSim/index_files/figure-html/dlstats-1.png" width="890"/>
+<img src="https://guangchuangyu.github.io/software/dlstats/GOSemSim.png" width="890"/>
