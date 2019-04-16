@@ -70,7 +70,7 @@ School of Basic Medical Sciences, Southern Medical University
 ### Citation
 
 
-<img src="https://guangchuangyu.github.io/software/GOSemSim/featured-articles/index_files/figure-html/citation-1.png" width="890"/>
+<img src="https://guangchuangyu.github.io/software/citation_trend/GOSemSim.png" width="890"/>
 
 
 ### Download stats
