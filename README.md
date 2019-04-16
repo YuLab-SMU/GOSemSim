@@ -39,9 +39,9 @@ For details, please visit our project website,
 
 Please cite the following article when using `GOSemSim`:
 
-**Yu G**^鈥燸, Li F^鈥燸, Qin Y, Bo X<sup>\*</sup>, Wu Y and Wang
-S<sup>\*</sup>. GOSemSim: an R package for measuring semantic similarity
-among GO terms and gene products. ***Bioinformatics***. 2010,
+**Yu G**<sup>\#</sup>, Li F<sup>\#</sup>, Qin Y, Bo X<sup>\*</sup>, Wu Y
+and Wang S<sup>\*</sup>. GOSemSim: an R package for measuring semantic
+similarity among GO terms and gene products. ***Bioinformatics***. 2010,
 26(7):976-978.
 
 [![](https://img.shields.io/badge/doi-10.1093/bioinformatics/btq064-green.svg)](https://doi.org/10.1093/bioinformatics/btq064)

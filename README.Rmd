@@ -50,7 +50,7 @@ For details, please visit our project website, <https://guangchuangyu.github.io/
 
 Please cite the following article when using `GOSemSim`:
 
-**Yu G**^†^, Li F^†^, Qin Y, Bo X^\*^, Wu Y and Wang S^\*^. GOSemSim: an R package for measuring semantic similarity among GO terms and gene products. ***Bioinformatics***. 2010, 26(7):976-978.
+**Yu G**^#^, Li F^#^, Qin Y, Bo X^\*^, Wu Y and Wang S^\*^. GOSemSim: an R package for measuring semantic similarity among GO terms and gene products. ***Bioinformatics***. 2010, 26(7):976-978.
 
 
 `r badge_doi("10.1093/bioinformatics/btq064", "green")`
