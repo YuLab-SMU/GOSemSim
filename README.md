@@ -39,15 +39,15 @@ School of Basic Medical Sciences, Southern Medical University
 If you use [GOSemSim](http://bioconductor.org/packages/GOSemSim) in
 published research, please cite:
 
+  - **Yu G**. [Gene Ontology Semantic Similarity Analysis Using
+    GOSemSim](http://dx.doi.org/10.1007/978-1-0716-0301-7_11). In:
+    Kidder B. (eds) Stem Cell Transcriptional Networks. ***Methods in
+    Molecular Biology***, 2020, vol 2117. Humana, New York, NY.
   - **Yu G**<sup>\#</sup>, Li F<sup>\#</sup>, Qin Y, Bo X<sup>\*</sup>,
     Wu Y and Wang S<sup>\*</sup>. [GOSemSim: an R package for measuring
     semantic similarity among GO terms and gene
     products](http://dx.doi.org/10.1093/bioinformatics/btq064).
     ***Bioinformatics***. 2010, 26(7):976-978.
-  - **Yu G**. [Gene Ontology Semantic Similarity Analysis Using
-    GOSemSim](http://dx.doi.org/10.1007/978-1-0716-0301-7_11). In:
-    Kidder B. (eds) Stem Cell Transcriptional Networks. ***Methods in
-    Molecular Biology***, 2020, vol 2117. Humana, New York, NY.
 
 ## :arrow\_double\_down: Installation
 
