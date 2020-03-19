@@ -9,30 +9,34 @@ html_preview: false
 ```{r echo=FALSE, results="hide", message=FALSE}
 library("badger")
 library("ypages")
-library("ggplot2")
-library("yyplot")
+
+Biocpkg <- function (pkg) {
+    sprintf("[%s](http://bioconductor.org/packages/%s)", pkg, pkg)
+}
 ```
 
 #  GOSemSim: GO semantic similarity measurement
 
 
-`r badge_bioc_release("GOSemSim", "green")`
-`r badge_devel("guangchuangyu/GOSemSim", "green")`
 [![Bioc](http://www.bioconductor.org/shields/years-in-bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#since)
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![codecov](https://codecov.io/gh/GuangchuangYu/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/GuangchuangYu/GOSemSim/)
-[![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-green.svg)](https://github.com/GuangchuangYu/GOSemSim/commits/master)
-
-
 [![platform](http://www.bioconductor.org/shields/availability/devel/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#archives)
-[![Build Status](http://www.bioconductor.org/shields/build/devel/bioc/GOSemSim.svg)](https://bioconductor.org/checkResults/devel/bioc-LATEST/GOSemSim/)
+[![codecov](https://codecov.io/gh/GuangchuangYu/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/GuangchuangYu/GOSemSim/)
+
+
+`r badge_bioc_release("GOSemSim", "green")`
+`r badge_devel("guangchuangyu/GOSemSim", "green")`
 [![Linux/Mac Travis Build Status](https://img.shields.io/travis/GuangchuangYu/GOSemSim/master.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/GuangchuangYu/GOSemSim)
 [![AppVeyor Build Status](https://img.shields.io/appveyor/ci/Guangchuangyu/GOSemSim/master.svg?label=Windows)](https://ci.appveyor.com/project/GuangchuangYu/GOSemSim)
-[![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?hashtags=GOSemSim&url=http://bioinformatics.oxfordjournals.org/content/26/7/976&screen_name=guangchuangyu)
-[![saythanks](https://img.shields.io/badge/say-thanks-ff69b4.svg)](https://saythanks.io/to/GuangchuangYu)
 
 
-The semantic comparisons of Gene Ontology (GO) annotations provide quantitative ways to compute similarities between genes and gene groups, and have became important basis for many bioinformatics analysis approaches. `GOSemSim` is an R package for semantic similarity computation among GO terms, sets of GO terms, gene products and gene clusters. `GOSemSim` implemented five methods proposed by *Resnik*, *Schlicker*, *Jiang*, *Lin* and *Wang* respectively.
+`r badge_bioc_download("GOSemSim", "total", "blue")`
+`r badge_bioc_download("GOSemSim", "month", "blue")`
+`r badge_bioc_download_rank("GOSemSim")`
+
+```{r comment="", echo=FALSE, results='asis'}
+cat(packageDescription('GOSemSim')$Description)
+```
 
 
 For details, please visit our project website, <https://guangchuangyu.github.io/software/GOSemSim>.
@@ -42,42 +46,48 @@ For details, please visit our project website, <https://guangchuangyu.github.io/
 + [Feedback](https://guangchuangyu.github.io/software/GOSemSim/#feedback)
 
 
+[![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?hashtags=GOSemSim&url=http://bioinformatics.oxfordjournals.org/content/26/7/976&screen_name=guangchuangyu)
+[![saythanks](https://img.shields.io/badge/say-thanks-ff69b4.svg)](https://saythanks.io/to/GuangchuangYu)
+`r badger::badge_custom("follow me on", "WeChat", "green", "https://guangchuangyu.github.io/blog_images/biobabble.jpg")`
 
 
 
-
-------------------------------------------------------------------------
-
-Please cite the following article when using `GOSemSim`:
-
-**Yu G**^#^, Li F^#^, Qin Y, Bo X^\*^, Wu Y and Wang S^\*^. GOSemSim: an R package for measuring semantic similarity among GO terms and gene products. ***Bioinformatics***. 2010, 26(7):976-978.
-
-
-`r badge_doi("10.1093/bioinformatics/btq064", "green")`
-`r badge_altmetric("100979", "green")`
-
-
-------------------------------------------------------------------------
-
-
-## Authors
+## :writing_hand: Authors
 
 Guangchuang YU <https://guangchuangyu.github.io>
 
 School of Basic Medical Sciences, Southern Medical University
 
 
-### Citation
+If you use `r Biocpkg('GOSemSim')` in published research, please cite:
+
++ **Yu G**^#^, Li F^#^, Qin Y, Bo X^\*^, Wu Y and Wang S^\*^. GOSemSim: an R package for measuring semantic similarity among GO terms and gene products. **_Bioinformatics_**. 2010, 26(7):976-978. doi: [10.1093/bioinformatics/btq064](http://dx.doi.org/10.1093/bioinformatics/btq064).
++ **Yu G**. Gene Ontology Semantic Similarity Analysis Using GOSemSim. **_Methods in Molecular Biology_**. 2020, 2117:207-215. doi: [10.1007/978-1-0716-0301-7_11](http://dx.doi.org/10.1007/978-1-0716-0301-7_11).
 
 
-<img src="https://guangchuangyu.github.io/software/citation_trend/GOSemSim.png" width="890"/>
+## :arrow_double_down: Installation
+
+Get the released version from Bioconductor:
+
+```r
+## try http:// if https:// URLs are not supported
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+## BiocManager::install("BiocUpgrade") ## you may need this
+BiocManager::install("GOSemSim")
+```
+
+Or the development version from github:
+
+```r
+## install.packages("remotes")
+remotes::install_github("GuangchuangYu/GOSemSim")
+```
 
 
-### Download stats
 
-[![download](http://www.bioconductor.org/shields/downloads/GOSemSim.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim/)
-`r badge_bioc_download("GOSemSim", "total", "blue")`
-`r badge_bioc_download("GOSemSim", "month", "blue")`
+## :sparkling_heart: Contributing
 
+We welcome any contributions! By participating in this project you agree to
+abide by the terms outlined in the [Contributor Code of Conduct](CONDUCT.md).
 
-<img src="https://guangchuangyu.github.io/software/dlstats/GOSemSim.png" width="890"/>

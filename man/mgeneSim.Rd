@@ -4,8 +4,14 @@
 \alias{mgeneSim}
 \title{Pairwise Semantic Similarity for a List of Genes}
 \usage{
-mgeneSim(genes, semData, measure = "Wang", drop = "IEA",
-  combine = "BMA", verbose = TRUE)
+mgeneSim(
+  genes,
+  semData,
+  measure = "Wang",
+  drop = "IEA",
+  combine = "BMA",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{genes}{A list of entrez gene IDs.}

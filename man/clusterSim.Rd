@@ -4,8 +4,14 @@
 \alias{clusterSim}
 \title{Semantic Similarity Between Two Gene Clusters}
 \usage{
-clusterSim(cluster1, cluster2, semData, measure = "Wang", drop = "IEA",
-  combine = "BMA")
+clusterSim(
+  cluster1,
+  cluster2,
+  semData,
+  measure = "Wang",
+  drop = "IEA",
+  combine = "BMA"
+)
 }
 \arguments{
 \item{cluster1}{A set of gene IDs.}

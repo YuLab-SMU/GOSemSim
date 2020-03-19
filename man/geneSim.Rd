@@ -4,8 +4,7 @@
 \alias{geneSim}
 \title{Semantic Similarity Between two Genes}
 \usage{
-geneSim(gene1, gene2, semData, measure = "Wang", drop = "IEA",
-  combine = "BMA")
+geneSim(gene1, gene2, semData, measure = "Wang", drop = "IEA", combine = "BMA")
 }
 \arguments{
 \item{gene1}{Entrez gene id.}

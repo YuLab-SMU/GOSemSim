@@ -4,8 +4,7 @@
 \alias{termSim}
 \title{termSim}
 \usage{
-termSim(t1, t2, semData, method = c("Wang", "Resnik", "Rel", "Jiang",
-  "Lin"))
+termSim(t1, t2, semData, method = c("Wang", "Resnik", "Rel", "Jiang", "Lin"))
 }
 \arguments{
 \item{t1}{term vector}

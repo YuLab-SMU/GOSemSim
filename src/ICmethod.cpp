@@ -114,7 +114,9 @@ Rcpp::NumericMatrix infoContentMethod_cpp(
   }
 
   Rcpp::NumericMatrix res( id1_.size(), id2_.size() );
-  res.attr("dimnames") = Rcpp::Rcpp_list2( id1_, id2_ );
+  // res.attr("dimnames") = Rcpp::Rcpp_list2( id1_, id2_ );
+  rownames(res) = id1_;
+  colnames(res) = id2_;
   for ( std::size_t i = 0; i < id1_.size(); i++ ) {
     const std::string id1_term = (std::string)id1_[i];
     const ic_map_t::const_iterator iIcIt = normIcMap.find( id1_term );

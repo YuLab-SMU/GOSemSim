@@ -4,8 +4,7 @@
 \alias{mclusterSim}
 \title{Pairwise Semantic Similarities for a List of Gene Clusters}
 \usage{
-mclusterSim(clusters, semData, measure = "Wang", drop = "IEA",
-  combine = "BMA")
+mclusterSim(clusters, semData, measure = "Wang", drop = "IEA", combine = "BMA")
 }
 \arguments{
 \item{clusters}{A list of gene clusters.}
