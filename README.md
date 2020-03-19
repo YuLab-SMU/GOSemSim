@@ -42,7 +42,7 @@ published research, please cite:
   - **Yu G**. [Gene Ontology Semantic Similarity Analysis Using
     GOSemSim](http://dx.doi.org/10.1007/978-1-0716-0301-7_11). In:
     Kidder B. (eds) Stem Cell Transcriptional Networks. ***Methods in
-    Molecular Biology***, 2020, vol 2117. Humana, New York, NY.
+    Molecular Biology***, 2020, 2117:207-215. Humana, New York, NY.
   - **Yu G**<sup>\#</sup>, Li F<sup>\#</sup>, Qin Y, Bo X<sup>\*</sup>,
     Wu Y and Wang S<sup>\*</sup>. [GOSemSim: an R package for measuring
     semantic similarity among GO terms and gene

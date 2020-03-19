@@ -1,6 +1,7 @@
 # GOSemSim 2.13.1
 
-+ fixed compiling error due to the change of Rcpp (2020-03-19, Thu)
++ add new citation (2020-03-19, Thu)
++ fixed compiling error due to the change of Rcpp 
   - <https://github.com/YuLab-SMU/GOSemSim/issues/27>
 
 # GOSemSim 2.7.1
