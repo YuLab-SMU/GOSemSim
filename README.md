@@ -26,14 +26,6 @@ among GO terms, sets of GO terms, gene products and gene clusters.
 GOSemSim implemented five methods proposed by Resnik, Schlicker, Jiang,
 Lin and Wang respectively.
 
-For details, please visit our project website,
-<https://guangchuangyu.github.io/software/GOSemSim>.
-
-  - [Documentation](https://guangchuangyu.github.io/software/GOSemSim/documentation/)
-  - [Featured
-    Articles](https://guangchuangyu.github.io/software/GOSemSim/featuredArticles/)
-  - [Feedback](https://guangchuangyu.github.io/software/GOSemSim/#feedback)
-
 [![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?hashtags=GOSemSim&url=http://bioinformatics.oxfordjournals.org/content/26/7/976&screen_name=guangchuangyu)
 [![saythanks](https://img.shields.io/badge/say-thanks-ff69b4.svg)](https://saythanks.io/to/GuangchuangYu)
 [![](https://img.shields.io/badge/follow%20me%20on-WeChat-green.svg)](https://guangchuangyu.github.io/blog_images/biobabble.jpg)
@@ -48,14 +40,14 @@ If you use [GOSemSim](http://bioconductor.org/packages/GOSemSim) in
 published research, please cite:
 
   - **Yu G**<sup>\#</sup>, Li F<sup>\#</sup>, Qin Y, Bo X<sup>\*</sup>,
-    Wu Y and Wang S<sup>\*</sup>. GOSemSim: an R package for measuring
-    semantic similarity among GO terms and gene products.
-    ***Bioinformatics***. 2010, 26(7):976-978. doi:
-    [10.1093/bioinformatics/btq064](http://dx.doi.org/10.1093/bioinformatics/btq064).
-  - **Yu G**. Gene Ontology Semantic Similarity Analysis Using GOSemSim.
-    In: Kidder B. (eds) Stem Cell Transcriptional Networks. ***Methods
-    in Molecular Biology***, 2020, vol 2117. Humana, New York, NY. doi:
-    [10.1007/978-1-0716-0301-7\_11](http://dx.doi.org/10.1007/978-1-0716-0301-7_11).
+    Wu Y and Wang S<sup>\*</sup>. [GOSemSim: an R package for measuring
+    semantic similarity among GO terms and gene
+    products](http://dx.doi.org/10.1093/bioinformatics/btq064).
+    ***Bioinformatics***. 2010, 26(7):976-978.
+  - **Yu G**. [Gene Ontology Semantic Similarity Analysis Using
+    GOSemSim](http://dx.doi.org/10.1007/978-1-0716-0301-7_11). In:
+    Kidder B. (eds) Stem Cell Transcriptional Networks. ***Methods in
+    Molecular Biology***, 2020, vol 2117. Humana, New York, NY.
 
 ## :arrow\_double\_down: Installation
 

@@ -39,13 +39,6 @@ cat(packageDescription('GOSemSim')$Description)
 ```
 
 
-For details, please visit our project website, <https://guangchuangyu.github.io/software/GOSemSim>.
-
-+ [Documentation](https://guangchuangyu.github.io/software/GOSemSim/documentation/)
-+ [Featured Articles](https://guangchuangyu.github.io/software/GOSemSim/featuredArticles/)
-+ [Feedback](https://guangchuangyu.github.io/software/GOSemSim/#feedback)
-
-
 [![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?hashtags=GOSemSim&url=http://bioinformatics.oxfordjournals.org/content/26/7/976&screen_name=guangchuangyu)
 [![saythanks](https://img.shields.io/badge/say-thanks-ff69b4.svg)](https://saythanks.io/to/GuangchuangYu)
 `r badger::badge_custom("follow me on", "WeChat", "green", "https://guangchuangyu.github.io/blog_images/biobabble.jpg")`
@@ -61,8 +54,8 @@ School of Basic Medical Sciences, Southern Medical University
 
 If you use `r Biocpkg('GOSemSim')` in published research, please cite:
 
-+ **Yu G**^#^, Li F^#^, Qin Y, Bo X^\*^, Wu Y and Wang S^\*^. GOSemSim: an R package for measuring semantic similarity among GO terms and gene products. **_Bioinformatics_**. 2010, 26(7):976-978. doi: [10.1093/bioinformatics/btq064](http://dx.doi.org/10.1093/bioinformatics/btq064).
-+ **Yu G**. Gene Ontology Semantic Similarity Analysis Using GOSemSim. In: Kidder B. (eds) Stem Cell Transcriptional Networks. **_Methods in Molecular Biology_**, 2020, vol 2117. Humana, New York, NY. doi: [10.1007/978-1-0716-0301-7_11](http://dx.doi.org/10.1007/978-1-0716-0301-7_11).
++ **Yu G**^#^, Li F^#^, Qin Y, Bo X^\*^, Wu Y and Wang S^\*^. [GOSemSim: an R package for measuring semantic similarity among GO terms and gene products](http://dx.doi.org/10.1093/bioinformatics/btq064). **_Bioinformatics_**. 2010, 26(7):976-978. 
++ **Yu G**. [Gene Ontology Semantic Similarity Analysis Using GOSemSim](http://dx.doi.org/10.1007/978-1-0716-0301-7_11). In: Kidder B. (eds) Stem Cell Transcriptional Networks. **_Methods in Molecular Biology_**, 2020, vol 2117. Humana, New York, NY. 
 
 
 ## :arrow_double_down: Installation
