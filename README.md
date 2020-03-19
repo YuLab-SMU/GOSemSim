@@ -8,7 +8,7 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 [![codecov](https://codecov.io/gh/GuangchuangYu/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/GuangchuangYu/GOSemSim/)
 
 [![](https://img.shields.io/badge/release%20version-2.12.0-green.svg)](https://www.bioconductor.org/packages/GOSemSim)
-[![](https://img.shields.io/badge/devel%20version-2.13.0-green.svg)](https://github.com/guangchuangyu/GOSemSim)
+[![](https://img.shields.io/badge/devel%20version-2.13.1-green.svg)](https://github.com/guangchuangyu/GOSemSim)
 [![Linux/Mac Travis Build
 Status](https://img.shields.io/travis/GuangchuangYu/GOSemSim/master.svg?label=Mac%20OSX%20%26%20Linux)](https://travis-ci.org/GuangchuangYu/GOSemSim)
 [![AppVeyor Build
@@ -53,7 +53,8 @@ published research, please cite:
     ***Bioinformatics***. 2010, 26(7):976-978. doi:
     [10.1093/bioinformatics/btq064](http://dx.doi.org/10.1093/bioinformatics/btq064).
   - **Yu G**. Gene Ontology Semantic Similarity Analysis Using GOSemSim.
-    ***Methods in Molecular Biology***. 2020, 2117:207-215. doi:
+    In: Kidder B. (eds) Stem Cell Transcriptional Networks. ***Methods
+    in Molecular Biology***, 2020, vol 2117. Humana, New York, NY. doi:
     [10.1007/978-1-0716-0301-7\_11](http://dx.doi.org/10.1007/978-1-0716-0301-7_11).
 
 ## :arrow\_double\_down: Installation
