@@ -32,7 +32,7 @@ infoContentMethod <- function(ID1,
 
         ## if some IDs are not valid, the above code will leading to return NA directly.
         .anc <- AnnotationDbi::as.list(getAncestors(ont))
-        allid=union(ID1, ID2)
+        allid <- union(ID1, ID2)
 
         invalid_ids <- c(ID1[!ID1 %in% names(.anc)], ID2[!ID2 %in% names(.anc)])
         if (length(invalid_ids) > 0) {
