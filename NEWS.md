@@ -1,3 +1,12 @@
+# GOSemSim 2.15.1
+
++ bug fixed of IC method when input IDs contain invalid terms. (2020-07-25, Sat)
+
+# GOSemSim 2.14.0
+
++ Bioconductor 3.11 release
+
+
 # GOSemSim 2.13.1
 
 + add new citation (2020-03-19, Thu)
