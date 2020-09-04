@@ -1,3 +1,9 @@
+# GOSemSim 2.15.2
+
++ new site, <https://yulab-smu.top/biomedical-knowledge-mining-book/> for documentation (2020-09-04, Fri)
++ update vignette
++ update `data/gotbl`
+
 # GOSemSim 2.15.1
 
 + bug fixed of IC method when input IDs contain invalid terms. (2020-07-25, Sat)

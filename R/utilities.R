@@ -74,7 +74,8 @@ prepare_relation_df <- function() {
     
     ptb <- lapply(c("BP", "MF", "CC"), function(ont) {
         id <- with(gtb, go_id[Ontology == ont])
-        pid <- mget(id, getParents(ont))
+        parentMap <- getParents(ont)
+        pid <- mget(id, parentMap)
         
         n <- sapply(pid, length)
         cid <- rep(names(pid), times=n)
@@ -88,6 +89,6 @@ prepare_relation_df <- function() {
     ptb <- do.call('rbind', ptb)
 
     gotbl <- merge(gtb, ptb, by.x="go_id", by.y="id")
-    save(gotbl, file="gotbl", compress="xz")
+    save(gotbl, file="gotbl.rda", compress="xz")
     invisible(gotbl)
 }
