@@ -35,7 +35,7 @@ VignetteBuilder: knitr
 ByteCompile: true
 License: Artistic-2.0
 Encoding: UTF-8
-URL: https://guangchuangyu.github.io/software/GOSemSim
+URL: https://yulab-smu.top/biomedical-knowledge-mining-book/
 BugReports: https://github.com/YuLab-SMU/GOSemSim/issues
 Packaged: 2012-08-29 06:44:50 UTC; root
 biocViews: Annotation, GO, Clustering, Pathways, Network, Software

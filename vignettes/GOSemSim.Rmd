@@ -1,8 +1,9 @@
 ---
 title: "GO Semantic Similarity Analysis"
-author: "Guangchuang Yu\\
-
-        School of Basic Medical Sciences, Southern Medical University"
+author: 
+- name: Guangchuang Yu
+  email: guangchuangyu@gmail.com
+  affiliation: Department of Bioinformatics, School of Basic Medical Sciences, Southern Medical University
 date: "`r Sys.Date()`"
 output:
   prettydoc::html_pretty:
