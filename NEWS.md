@@ -1,3 +1,7 @@
+# GOSemSim 2.16.0
+
++ Bioconductor 3.12 release (2020-10-28, Wed)
+
 # GOSemSim 2.15.2
 
 + new site, <https://yulab-smu.top/biomedical-knowledge-mining-book/> for documentation (2020-09-04, Fri)
