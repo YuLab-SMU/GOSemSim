@@ -1,3 +1,8 @@
+# GOSemSim 2.17.1
+
++ bug fixed according to the update of GO.db (2020-10-29, Thu)
+  - <https://github.com/YuLab-SMU/GOSemSim/issues/32>
+  
 # GOSemSim 2.16.0
 
 + Bioconductor 3.12 release (2020-10-28, Wed)
