@@ -13,7 +13,8 @@
 ##' @importFrom methods new
 ##' @export
 ##' @author Guangchuang Yu
-godata <- function(OrgDb=NULL, keytype = "ENTREZID", ont, computeIC = TRUE) {
+godata <- function(OrgDb=NULL, keytype = "ENTREZID",
+                   ont, computeIC = TRUE, processTCSS = TRUE, cutoff = NULL) {
     ont <- toupper(ont)
     ont <- match.arg(ont, c("BP", "CC", "MF"))
 
