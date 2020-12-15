@@ -35,12 +35,16 @@ godata <- function(OrgDb=NULL, keytype = "ENTREZID",
     if (computeIC) {
         message('preparing IC data...')
         IC <- computeIC(goAnno, ont)
+        if (processTCSS) {
+            tcssdata <- process_tcss(ont, goAnno, IC, cutoff)
+        }
     }
 
     res <- new("GOSemSimDATA",
                keys = kk,
                ont = ont,
                geneAnno = goAnno,
+               tcssdata = tcssdata,
                metadata = metadata(OrgDb))
     if (computeIC) {
         res@IC <- IC
@@ -72,6 +76,7 @@ setClass("GOSemSimDATA",
              ont = "character",
              IC = "numeric",
              geneAnno = "data.frame",
+             tcssdata = "data.frame",
              metadata = "data.frame"
          ))
 
