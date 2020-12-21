@@ -41,13 +41,14 @@ process_tcss <- function(ont, geneAnno, IC, cutoff = NULL) {
     meta_maxIC["meta"] <- mic
 
     #build a data.frame
-    options(stringsAsFactors = FALSE)
 
     res <- data.frame(GO = unname(unlist(meta_graph)),
                       clusid = rep(meta_terms,
-                                  times = sapply(meta_graph, length)))
+                                  times = sapply(meta_graph, length)),
+                      stringsAsFactors = FALSE)
 
-    res <- rbind(res, data.frame(GO = meta_terms, clusid = "meta"))
+    res <- rbind(res, data.frame(GO = meta_terms, clusid = "meta",
+                                 stringsAsFactors = FALSE))
 
     #ICA means altered IC value
     ica <- unname(mapply(
