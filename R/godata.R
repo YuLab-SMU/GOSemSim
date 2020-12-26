@@ -44,10 +44,12 @@ godata <- function(OrgDb=NULL, keytype = "ENTREZID",
                keys = kk,
                ont = ont,
                geneAnno = goAnno,
-               tcssdata = tcssdata,
                metadata = metadata(OrgDb))
     if (computeIC) {
         res@IC <- IC
+    }
+    if (tcssdata) {
+        res@tcssdata <- tcssdata
     }
 
     return(res)
