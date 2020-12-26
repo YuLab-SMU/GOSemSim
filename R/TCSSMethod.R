@@ -10,7 +10,17 @@
 #'
 #' @examples
 #' tcssMethod("GO:0000003", "GO:0009987", semdata)
-tcssMethod <- function(ID1, ID2, semData) {
+#process two term vectors
+tcssMethod <- function(t1, t2, semData) {
+    matrix( mapply( tcssMethod_internal,
+                    rep( t1, length(t2) ),
+                    rep( t2, each = length(t1) ),
+                    MoreArgs = list( semData = semData ) ),
+            dimnames = list( t1, t2 ), ncol = length(t2) ) 
+}
+
+#process one term pair
+tcssMethod_internal <- function(ID1, ID2, semData) {
 
     tcssdata <- semData@tcssdata
     ont <- semData@ont
