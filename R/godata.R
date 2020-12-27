@@ -36,7 +36,8 @@ godata <- function(OrgDb=NULL, keytype = "ENTREZID",
         message('preparing IC data...')
         IC <- computeIC(goAnno, ont)
         if (processTCSS) {
-            tcssdata <- process_tcss(ont, goAnno, IC, cutoff)
+            tcssdata <- process_tcss(ont, geneAnno = goAnno,
+                                     IC = IC, cutoff = cutoff)
         }
     }
 
@@ -48,7 +49,7 @@ godata <- function(OrgDb=NULL, keytype = "ENTREZID",
     if (computeIC) {
         res@IC <- IC
     }
-    if (tcssdata) {
+    if (processTCSS) {
         res@tcssdata <- tcssdata
     }
 
