@@ -25,18 +25,18 @@ process_tcss <- function(ont, geneAnno, IC, cutoff = NULL) {
                       CC = AnnotationDbi::as.list(GOCCOFFSPRING))
 
     #calculate ict
-    ict <- computeICT(GO, offspring)
+    ict <- computeICT(GO, offspring = offspring)
     #those nodes smaller than cutoff are meta-terms
-    meta_terms <- get_meta(ict, GO, cutoff)
+    meta_terms <- get_meta(ict, GO = GO, cutoff = cutoff)
     #if two parent-child's ict value too close
-    meta_terms <- remove_close(meta_terms, ont, ict)
+    meta_terms <- remove_close(meta_terms, ont = ont, ict = ict)
     #get the terms of each sub-graph
-    meta_graph <- get_sub_terms(meta_terms, offspring)
+    meta_graph <- get_sub_terms(meta_terms, offspring = offspring)
 
     #mic : max IC value of all terms
-    mic <- get_maxIC(meta_terms, IC, NULL)
+    mic <- get_maxIC(meta_terms, IC = IC, mic = NULL)
     #get the corrsponding max ic for each meta-term
-    meta_maxIC <- unlist(lapply(meta_graph, get_maxIC, IC, mic))
+    meta_maxIC <- unlist(lapply(meta_graph, get_maxIC, IC = IC, mic = mic))
 
     meta_maxIC["meta"] <- mic
 

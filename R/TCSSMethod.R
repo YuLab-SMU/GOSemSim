@@ -30,7 +30,7 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
     }
 
     #get common ancestors
-    com_anc <- get_common_anc(ID1, ID2, ont)
+    com_anc <- get_common_anc(ID1 = ID1, ID2 = ID2, ont = ont)
 
     if (length(com_anc) == 0) return(NA)
 
@@ -39,8 +39,9 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
     clus2_list <- tcssdata[tcssdata[, "GO"] == ID2, "clusid"]
     #calculate within different clusters
     value <- sapply(clus1_list, function(e) {
-                sapply(clus2_list, get_lca, e, ID1, ID2,
-                       tcssdata, com_anc, ont)
+                sapply(clus2_list, get_lca, e,
+                       ID1 = ID1, ID2 = ID2,
+                       tcssdata = tcssdata, com_anc = com_anc, ont = ont)
     })
 
     #value <- value[value != Inf & value != -Inf]
@@ -76,7 +77,7 @@ get_lca <- function(clus1, clus2, ID1, ID2, tcssdata, com_anc, ont) {
         #get common ancestors in the meta-cluster
         #clus1 replace ID1, clus2 replace ID2
         clus_content <- tcssdata[tcssdata[, "clusid"] == "meta", ]
-        com_anc <- get_common_anc(clus1, clus2, ont)
+        com_anc <- get_common_anc(ID1 = clus1, ID2 = clus2, ont = ont)
         com_anc_loc <- match(com_anc, clus_content[, "GO"])
         value <- clus_content[com_anc_loc, "ica"]
     }
