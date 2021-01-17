@@ -19,7 +19,7 @@ process_tcss <- function(ont, geneAnno, IC, cutoff = NULL) {
     
     if (is.null(cutoff)) {
         message("cutoff value is not specified, default value based on human
-        data will be taken, or you can call the function 'decide_cutoff' with your testdata")
+        data will be taken, or you can call the function 'get_cutoff' with your testdata")
     }
     
     GO <- unique(names(IC))
