@@ -16,7 +16,12 @@ process_tcss <- function(ont, geneAnno, IC, cutoff = NULL) {
     if (length(IC) == 0) {
         stop("IC data not found, please re-generate your `semData` with `computeIC = TRUE`...")
     }
-
+    
+    if (is.null(cutoff)) {
+        message("cutoff value is not specified, default value based on human
+        data will be taken, or you can call the function 'decide_cutoff' with your testdata")
+    }
+    
     GO <- unique(names(IC))
 
     offspring <- switch(ont,
@@ -68,12 +73,11 @@ computeICT <- function(GO, offspring) {
 get_meta <- function(ict, GO, cutoff) {
     if (is.null(cutoff)) {
         cutoff <- switch(ont,
-                         MF = 3.0, #temporary
-                         BP = 3.8, #View(table(ict))
-                         CC = 3.0) #temporary
+                         MF = 3.0, 
+                         BP = 3.8, 
+                         CC = 3.0)
     }
     GO[which(ict <= cutoff)]
-    #remove close!!!
 }
 
 #for each graph get their max IC value
