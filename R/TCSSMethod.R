@@ -107,27 +107,3 @@ get_common_anc <- function(ID1, ID2, ont) {
         setdiff(intersect(ancestor1, ancestor2), "all")
     }
 }
-
-# get_common_anc <- function(ID1, ID2, ont) {
-#     #copy from ICMethods.R 
-#     if (ont %in% c("MF", "BP", "CC", "DO")) {
-#         .anc <- AnnotationDbi::as.list(getAncestors(ont))
-#         allid <- union(ID1, ID2)
-#         .anc <- .anc[allid]
-#         .anc <- .anc[!vapply(.anc, is.empty, logical(1))]
-#     } else {
-#         mesh_getAnc <- eval(parse(text = "meshes:::getAncestors"))
-#         .anc <- lapply(union(ID1, ID2), mesh_getAnc)
-#         names(.anc) <- union(ID1, ID2)
-#     }
-#     #
-#     if (ID1 == ID2) {
-#         ID1
-#     } else if (ID1 %in% .anc[[1]]) {
-#         ID1
-#     } else if (ID2 %in% .anc[[2]]) {
-#         ID2
-#     } else {
-#         setdiff(intersect(.anc[[1]], .anc[[2]]), "all")
-#     }
-# }
