@@ -7,8 +7,8 @@
 #' @param IEAdrop TRUE/FALSE
 #' @param testdata data.frame with three columns:pro1, pro2, label(TRUE/FALSE)
 #'
-#' @importFrom ROCR performance
-#' @importFrom ROCR prediction
+# @importFrom ROCR performance
+# @importFrom ROCR prediction
 #' @return cutoff value
 #' @export
 #'
@@ -95,12 +95,12 @@ get_auc_F1_score <- function(predict_result, test_set) {
 
     #auc value
     auc <- sapply(pre_value, function(e)
-        performance(prediction(e, test_set[, "label"]),
+        ROCR::performance(ROCR::prediction(e, test_set[, "label"]),
                     measure = "auc")@y.values[[1]])
 
     #F1_score at different semantic similarity cutoffs
     all_F1_score <- sapply(pre_value, function(e)
-        performance(prediction(e, test_set[, "label"]),
+        ROCR::performance(ROCR::prediction(e, test_set[, "label"]),
                     measure = "f")@y.values[[1]])
     #average value
     F1_score <- sapply(all_F1_score, mean, na.rm = TRUE)
