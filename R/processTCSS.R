@@ -41,7 +41,7 @@ process_tcss <- function(ont, geneAnno, IC, cutoff = NULL) {
     #mic : max IC value of all terms
     mic <- get_maxIC(meta_terms, IC = IC, mic = NULL)
     #get the corrsponding max ic for each meta-term
-    meta_maxIC <- unlist(lapply(meta_graph, get_maxIC, IC = IC, mic = mic))
+    meta_maxIC <- vapply(meta_graph, get_maxIC, IC = IC, mic = mic, numeric(1))
 
     meta_maxIC["meta"] <- mic
 
@@ -49,7 +49,7 @@ process_tcss <- function(ont, geneAnno, IC, cutoff = NULL) {
 
     res <- data.frame(GO = unname(unlist(meta_graph)),
                       clusid = rep(meta_terms,
-                                  times = sapply(meta_graph, length)),
+                                times = vapply(meta_graph, length, integer(1))),
                       stringsAsFactors = FALSE)
 
     res <- rbind(res, data.frame(GO = meta_terms, clusid = "meta",
@@ -66,7 +66,8 @@ process_tcss <- function(ont, geneAnno, IC, cutoff = NULL) {
 
 #compute ICT (information content topology) for each term
 computeICT <- function(GO, offspring) {
-    sapply(GO, function(e) -log10(length(offspring[[e]]) / length(GO)))
+    vapply(GO, function(e)
+        -log10(length(offspring[[e]]) / length(GO)), numeric(1))
 }
 
 #according to the cutoff select meta-terms

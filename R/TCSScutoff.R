@@ -48,8 +48,8 @@ get_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
 #screen the proteins with none-zero annotations
 get_test_set <- function(all_pro, testdata) {
     #remove those proteins that have zero annotations
-    len1 <- sapply(testdata$pro1, function(e) e %in% all_pro)
-    len2 <- sapply(testdata$pro2, function(e) e %in% all_pro)
+    len1 <- vapply(testdata$pro1, function(e) e %in% all_pro, logical(1))
+    len2 <- vapply(testdata$pro2, function(e) e %in% all_pro, logical(1))
     testdata_in <- testdata[len1 & len2, ]
     #data de-duplication
     test_set <- testdata_in[!duplicated(testdata_in), ]
@@ -94,16 +94,16 @@ get_auc_F1_score <- function(predict_result, test_set) {
     pre_value <- lapply(predict_result, function(e) as.numeric(e[value_loc]))
 
     #auc value
-    auc <- sapply(pre_value, function(e)
+    auc <- vapply(pre_value, function(e)
         ROCR::performance(ROCR::prediction(e, test_set[, "label"]),
-                    measure = "auc")@y.values[[1]])
+                    measure = "auc")@y.values[[1]], numeric(1))
 
     #F1_score at different semantic similarity cutoffs
-    all_F1_score <- sapply(pre_value, function(e)
+    all_F1_score <- lapply(pre_value, function(e)
         ROCR::performance(ROCR::prediction(e, test_set[, "label"]),
                     measure = "f")@y.values[[1]])
     #average value
-    F1_score <- sapply(all_F1_score, mean, na.rm = TRUE)
+    F1_score <- vapply(all_F1_score, mean, na.rm = TRUE, numeric(1))
 
     #save as data.frame
     return(data.frame(auc = auc,

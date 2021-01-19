@@ -38,15 +38,15 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
     clus1_list <- tcssdata[tcssdata[, "GO"] == ID1, "clusid"]
     clus2_list <- tcssdata[tcssdata[, "GO"] == ID2, "clusid"]
     #calculate within different clusters
-    value <- sapply(clus1_list, function(e) {
-                sapply(clus2_list, get_lca, e,
+    value <- lapply(clus1_list, function(e) {
+                lapply(clus2_list, get_lca, e,
                        ID1 = ID1, ID2 = ID2,
                        tcssdata = tcssdata, com_anc = com_anc, ont = ont)
     })
-
-    #value <- value[value != Inf & value != -Inf]
-
+    
     value <- na.omit(unlist(value))
+    
+    value <- value[value != Inf & value != -Inf]
 
     if (is.null(value) || length(value) == 0) {
         NULL
