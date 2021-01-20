@@ -5,9 +5,12 @@
 #' @param ont ontology : "BP", "MF", "CC"
 #' @param combine_method "max", "BMA", "avg", "rcmax", ""rcmax.avg"
 #' @param IEAdrop TRUE/FALSE
-#' @param testdata data.frame with three columns:pro1, pro2, label(TRUE/FALSE)
+#' @param testdata data.frame. PPI data contains positive set and negative set.
+#' Has three columns, and colnames are:"pro1", "pro2", "label".
+#' Column "pro1" and "pro2" are character,
+#' Column "label" must be logical value:TRUE/FALSE.
 #'
-#' @return cutoff value
+#' @return cutoff
 #' @export
 #'
 #' @examples 

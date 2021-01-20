@@ -7,7 +7,7 @@
 ##'@param gene1 Entrez gene id.
 ##'@param gene2 Another entrez gene id.
 ##'@param semData GOSemSimDATA object
-##'@param measure One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.
+##'@param measure One of "Resnik", "Lin", "Rel", "Jiang" "TCSS" and "Wang" methods.
 ##'@param drop A set of evidence codes based on which certain annotations are
 ##'dropped. Use NULL to keep all GO annotations.
 ##'@param combine One of "max", "avg", "rcmax", "BMA" methods, for combining

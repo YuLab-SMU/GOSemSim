@@ -6,7 +6,7 @@
 ##' @param GOID1 GO ID 1.
 ##' @param GOID2 GO ID 2.
 ##' @param semData GOSemSimDATA object
-##' @param measure One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.
+##' @param measure One of "Resnik", "Lin", "Rel", "Jiang", "TCSS" and "Wang" methods.
 ##' @return similarity
 ##' @seealso \code{\link{mgoSim}}
 ##' \code{\link{geneSim}}

@@ -6,7 +6,7 @@
 ##'
 ##'@param t1 term vector
 ##'@param t2 term vector
-##'@param method one of "Wang", "Resnik", "Rel", "Jiang", and "Lin".
+##'@param method one of "Wang", "Resnik", "Rel", "Jiang", and "Lin", "TCSS".
 ##'@param semData GOSemSimDATA object
 ##'@return score matrix
 ##'@export
