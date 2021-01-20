@@ -104,12 +104,11 @@ get_lca <- function(clus1, clus2, ID1, ID2, tcssdata, com_anc, ont) {
     #value <- na.omit(value[value != Inf & value != -Inf])
     value <- na.omit(value)
 
-    if (is.null(value) || length(value) == 0) {
-        NULL
-    }else {
-        #here max value means one of lowest common ancestors
-        return(max(value))
-    }
+    if (is.null(value) || length(value) == 0) return(NULL)
+    
+    #here max value means one of lowest common ancestors
+    max(value)
+    
 }
 
 #' Title get common ancestors
@@ -124,13 +123,11 @@ get_lca <- function(clus1, clus2, ID1, ID2, tcssdata, com_anc, ont) {
 get_common_anc <- function(ID1, ID2, ont) {
     ancestor1 <- getAncestors(ont)[[ID1]]
     ancestor2 <- getAncestors(ont)[[ID2]]
-    if (ID1 == ID2) {
-        ID1
-    } else if (ID1 %in% ancestor2) {
-        ID1
-    } else if (ID2 %in% ancestor1) {
-        ID2
-    } else {
-        setdiff(intersect(ancestor1, ancestor2), "all")
-    }
+    
+    if (ID1 == ID2 || ID1 %in% ancestor2) return(ID1)
+    
+    if (ID2 %in% ancestor1) return(ID2)
+    
+    setdiff(intersect(ancestor1, ancestor2), "all")
+    
 }
