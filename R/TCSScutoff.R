@@ -7,13 +7,17 @@
 #' @param IEAdrop TRUE/FALSE
 #' @param testdata data.frame with three columns:pro1, pro2, label(TRUE/FALSE)
 #'
-# @importFrom ROCR performance
-# @importFrom ROCR prediction
+#' @importFrom ROCR performance
+#' @importFrom ROCR prediction
 #' @return cutoff value
 #' @export
 #'
-#' @examples get_cutoff(OrgDb = prg.Hs.eg.db, keytype = "ENSEMBLPROT",
-#' ont = "BP", combine_method = "max", IEAdrop = FALSE, testdata)
+#' @examples 
+#' \dontrun{
+#'     library(org.Hs.eg.db)
+#'     get_cutoff(OrgDb = org.Hs.eg.db, keytype = "ENSEMBLPROT",
+#'     ont = "BP", combine_method = "max", IEAdrop = FALSE, testdata)
+#' }
 get_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
                        combine_method = "max", IEAdrop = FALSE, testdata) {
 

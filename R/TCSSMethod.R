@@ -1,14 +1,17 @@
-#Method TCSS for semantic similarity measuring
-#' Title
+#' Title Method TCSS for semantic similarity measuring
 #'
-#' @param ID1 term vector
-#' @param ID2 term vector
+#' @param t1 term vector
+#' @param t2 term vector
 #' @param semData GOSemSimDATA object
 #'
 #' @return score vector
+#' @importFrom stats na.omit
 #' @export
 #'
 #' @examples
+#' library(org.Hs.eg.db)
+#' semdata <- godata(org.Hs.eg.db, "ENTREZID", "MF", computeIC = TRUE,
+#' processTCSS = TRUE, cutoff = NULL)
 #' tcssMethod("GO:0000003", "GO:0009987", semdata)
 #process two term vectors
 tcssMethod <- function(t1, t2, semData) {
@@ -45,7 +48,6 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
     })
     
     value <- na.omit(unlist(value))
-    
     value <- value[value != Inf & value != -Inf]
 
     if (is.null(value) || length(value) == 0) {

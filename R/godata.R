@@ -6,6 +6,8 @@
 ##' @param keytype keytype
 ##' @param ont one of 'BP', 'MF', 'CC'
 ##' @param computeIC logical, whether computer IC
+##' @param processTCSS logical, whether to process TCSS
+##' @param cutoff cutoff of TCSS
 ##' @return GOSemSimDATA object
 ##' @importFrom AnnotationDbi keys
 ##' @importFrom AnnotationDbi select
@@ -48,10 +50,11 @@ godata <- function(OrgDb=NULL, keytype = "ENTREZID",
                metadata = metadata(OrgDb))
     if (computeIC) {
         res@IC <- IC
+        if (processTCSS) {
+            res@tcssdata <- tcssdata
+        }
     }
-    if (processTCSS) {
-        res@tcssdata <- tcssdata
-    }
+
 
     return(res)
 }
@@ -69,6 +72,7 @@ godata <- function(OrgDb=NULL, keytype = "ENTREZID",
 ##' @slot ont ontology
 ##' @slot IC IC data
 ##' @slot geneAnno gene to GO mapping
+##' @slot tcssdata tcssdata
 ##' @slot metadata metadata
 ##' @exportClass GOSemSimDATA
 ##' @keywords classes

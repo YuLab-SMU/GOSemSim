@@ -10,7 +10,10 @@
 #' @export
 #'
 #' @examples
-#' tcssdata <- process_tcss("BP", goAnno, IC, 3.8)
+#' \dontrun{
+#'     ## 例子必须要能跑的通，这里goAnno 和 IC都还没赋值，不能直接用。
+#'     tcssdata <- process_tcss("BP", goAnno, IC, 3.8)
+#' }
 process_tcss <- function(ont, geneAnno, IC, cutoff = NULL) {
 
     if (length(IC) == 0) {
@@ -32,7 +35,7 @@ process_tcss <- function(ont, geneAnno, IC, cutoff = NULL) {
     #calculate ict
     ict <- computeICT(GO, offspring = offspring)
     #those nodes smaller than cutoff are meta-terms
-    meta_terms <- get_meta(ict, GO = GO, cutoff = cutoff)
+    meta_terms <- get_meta(ont = ont, ict, GO = GO, cutoff = cutoff)
     #if two parent-child's ict value too close
     meta_terms <- remove_close(meta_terms, ont = ont, ict = ict)
     #get the terms of each sub-graph
@@ -71,7 +74,7 @@ computeICT <- function(GO, offspring) {
 }
 
 #according to the cutoff select meta-terms
-get_meta <- function(ict, GO, cutoff) {
+get_meta <- function(ont, ict, GO, cutoff) {
     if (is.null(cutoff)) {
         cutoff <- switch(ont,
                          MF = 3.0, 
