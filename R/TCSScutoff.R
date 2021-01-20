@@ -7,15 +7,41 @@
 #' @param IEAdrop TRUE/FALSE
 #' @param testdata data.frame with three columns:pro1, pro2, label(TRUE/FALSE)
 #'
-#' @importFrom ROCR performance
-#' @importFrom ROCR prediction
 #' @return cutoff value
 #' @export
 #'
 #' @examples 
 #' \dontrun{
 #'     library(org.Hs.eg.db)
-#'     get_cutoff(OrgDb = org.Hs.eg.db, keytype = "ENSEMBLPROT",
+#'     library(STRINGdb)
+#'     
+#'     string_db <- STRINGdb$new(version = "11.0", species = 9606,
+#'     score_threshold = 900)
+#'     string_proteins <- string_db$get_proteins()
+#'     
+#'     #get realtionship
+#'     ppi <- string_db$get_interactions(string_proteins$protein_external_id)
+#'     
+#'     ppi$from <- vapply(ppi$from, function(e) 
+#'                        strsplit(e, "9606.")[[1]][2], character(1))
+#'     ppi$to <- vapply(ppi$to, function(e)
+#'                        strsplit(e, "9606.")[[1]][2], character(1))
+#'     len <- nrow(ppi)
+#'     
+#'     #select length
+#'     s_len <- 500
+#'     loca_1 <- sample(len, s_len, replace = T)
+#'     #negative set
+#'     loca_2 <- sample(len, s_len, replace = T)
+#'     loca_3 <- sample(len, s_len, replace = T)
+#'     
+#'     #union as testdata
+#'     testdata <- data.frame(pro1 = c(ppi$from[loca_1], ppi$from[loca_2]),
+#'      pro2 = c(ppi$to[loca_1], ppi$to[loca_3]),
+#'      label = c(rep(TRUE, s_len), rep(FALSE, s_len)),
+#'      stringsAsFactors = FALSE)
+
+#'     cutoff <- get_cutoff(OrgDb = org.Hs.eg.db, keytype = "ENSEMBLPROT",
 #'     ont = "BP", combine_method = "max", IEAdrop = FALSE, testdata)
 #' }
 get_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
@@ -49,7 +75,13 @@ get_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
     decide_cutoff(auc_F1_score, cutoffs = cutoffs)
 }
 
-#screen the proteins with none-zero annotations
+#' Title screen the proteins with none-zero annotations
+#'
+#' @param all_pro all proteins have none-zero annotations
+#' @param testdata data.frame
+#'
+#' @return data.frame
+#' @noRd
 get_test_set <- function(all_pro, testdata) {
     #remove those proteins that have zero annotations
     len1 <- vapply(testdata$pro1, function(e) e %in% all_pro, logical(1))
@@ -72,7 +104,19 @@ get_test_set <- function(all_pro, testdata) {
     return(test_set)
 }
 
-#compute prediction value
+#' Title compute prediction value
+#'
+#' @param test_set data.frame
+#' @param OrgDb OrgDb object
+#' @param keytype keytype
+#' @param ont "BP", "MF", "CC"
+#' @param cutoff number 
+#' @param combine_method "max" "BMA", "avg", "rcmax", "rcmax.avg" 
+#' @param IEAdrop TRUE/FALSE
+#'
+#' @return list
+#' @noRd
+#'
 computePre <- function(test_set, OrgDb, keytype, ont, cutoff,
                        combine_method, IEAdrop) {
     #different cutoffs have different semdata
@@ -89,7 +133,14 @@ computePre <- function(test_set, OrgDb, keytype, ont, cutoff,
 }
 
 
-#calculate auc and F1-score
+#' Title calculate auc and F1-score
+#'
+#' @param predict_result list
+#' @param test_set data.frame
+#'
+#' @return data.frame
+#' @noRd
+#'
 get_auc_F1_score <- function(predict_result, test_set) {
     #geneSim returns one value and two characters in once calculation
     len <- dim(test_set)[1]
@@ -115,7 +166,14 @@ get_auc_F1_score <- function(predict_result, test_set) {
                       stringsAsFactors = F))
 }
 
-#select the most appropriate cutoff
+#' Title select the most appropriate cutoff
+#'
+#' @param auc_F1_score data.frame
+#' @param cutoffs vector
+#'
+#' @return vector
+#' @noRd
+#'
 decide_cutoff <- function(auc_F1_score, cutoffs) {
     #product value satisfies the "both maximized" requirement
     auc_mutiply_F1 <- auc_F1_score[, "auc"] * auc_F1_score[, "F1_score"]

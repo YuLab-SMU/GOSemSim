@@ -5,6 +5,7 @@
 #' @param semData GOSemSimDATA object
 #'
 #' @return score vector
+#' @noRd
 #' @importFrom stats na.omit
 #'
 #' @examples
@@ -21,7 +22,15 @@ tcssMethod <- function(t1, t2, semData) {
             dimnames = list( t1, t2 ), ncol = length(t2) ) 
 }
 
-#process one term pair
+#' Title process one term with one term
+#'
+#' @param ID1 term
+#' @param ID2 term
+#' @param semData GOSemSimDATA object
+#'
+#' @return numeric
+#' @noRd
+#'
 tcssMethod_internal <- function(ID1, ID2, semData) {
 
     tcssdata <- semData@tcssdata
@@ -57,10 +66,19 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
     }
 }
 
-
-#lca : lowest common ancestors
-#when term1 belongs to clus1, term2 belongs to clus2
-#calculate the semantic similarity value for term1 and term2
+#' Title get lowest common ancestors's value 
+#'
+#' @param clus1 character, cluster-id for ID1
+#' @param clus2 character, cluster-id for ID2
+#' @param ID1 term
+#' @param ID2 term
+#' @param tcssdata data.frame
+#' @param com_anc character
+#' @param ont ontology
+#'
+#' @return numeric or NULL
+#' @noRd
+#'
 get_lca <- function(clus1, clus2, ID1, ID2, tcssdata, com_anc, ont) {
 
     #
@@ -94,7 +112,15 @@ get_lca <- function(clus1, clus2, ID1, ID2, tcssdata, com_anc, ont) {
     }
 }
 
-#get common ancestors
+#' Title get common ancestors
+#'
+#' @param ID1 term
+#' @param ID2 term
+#' @param ont ontology
+#'
+#' @return character
+#' @noRd
+#'
 get_common_anc <- function(ID1, ID2, ont) {
     ancestor1 <- getAncestors(ont)[[ID1]]
     ancestor2 <- getAncestors(ont)[[ID2]]

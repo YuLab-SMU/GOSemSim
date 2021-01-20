@@ -21,8 +21,7 @@ Imports:
     AnnotationDbi,
     GO.db,
     methods,
-    utils,
-    ROCR
+    utils
 Suggests:
     AnnotationHub,
     BiocManager,
@@ -31,7 +30,8 @@ Suggests:
     knitr,
     org.Hs.eg.db,
     prettydoc,
-    testthat
+    testthat,
+    ROCR
 VignetteBuilder: knitr
 ByteCompile: true
 License: Artistic-2.0

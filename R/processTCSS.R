@@ -1,5 +1,4 @@
-#prepare tcss data for TCSS to calculate semantic similarity
-#' Title
+#' Title prepare tcss data for TCSS to calculate semantic similarity
 #'
 #' @param ont ontology
 #' @param geneAnno the annotation for genes or gene products
@@ -7,7 +6,7 @@
 #' @param cutoff the topology cutoff
 #'
 #' @return data.frame
-#'
+#' @noRd
 process_tcss <- function(ont, geneAnno, IC, cutoff = NULL) {
 
     if (length(IC) == 0) {
@@ -61,13 +60,29 @@ process_tcss <- function(ont, geneAnno, IC, cutoff = NULL) {
     return(res)
 }
 
-#compute ICT (information content topology) for each term
+#' Title compute ICT (information content topology) for each term
+#'
+#' @param GO character
+#' @param offspring list 
+#'
+#' @return numeric
+#' @noRd
+#'
 computeICT <- function(GO, offspring) {
     vapply(GO, function(e)
         -log10(length(offspring[[e]]) / length(GO)), numeric(1))
 }
 
-#according to the cutoff select meta-terms
+#' Title according to the cutoff select meta-terms
+#'
+#' @param ont ontology
+#' @param ict numeric
+#' @param GO character
+#' @param cutoff numeric
+#'
+#' @return character
+#' @noRd
+#'
 get_meta <- function(ont, ict, GO, cutoff) {
     if (is.null(cutoff)) {
         cutoff <- switch(ont,
@@ -78,7 +93,15 @@ get_meta <- function(ont, ict, GO, cutoff) {
     GO[which(ict <= cutoff)]
 }
 
-#for each graph get their max IC value
+#' Title for each graph get their max IC value
+#'
+#' @param terms character
+#' @param IC numeric
+#' @param mic maximum IC
+#'
+#' @return numeric
+#' @noRd
+#'
 get_maxIC <- function(terms, IC, mic) {
     all <- IC[terms]
     all <- all[all != Inf & all != -Inf]
@@ -91,9 +114,14 @@ get_maxIC <- function(terms, IC, mic) {
     }
 }
 
-#Each meta-term represent a sub-graph-root-node,
-#its offspring nodes as the sub-graph-nodes,
-#of course, redundancy is needed.
+#' Title take offspring node as sub-graph-nodes
+#'
+#' @param meta_terms character
+#' @param offspring list
+#'
+#' @return list
+#' @noRd
+#'
 get_sub_terms <- function(meta_terms, offspring) {
     res <- lapply(meta_terms, function(e) {
         all <- offspring[[e]]
@@ -110,9 +138,15 @@ get_sub_terms <- function(meta_terms, offspring) {
     return(res)
 }
 
-#in the meta-terms, if two terms's ict are close(± 20%)
-#and satisfied with parent-child relation, then
-#the child term is removed.
+#' Title remove close-relation in meta_terms
+#'
+#' @param meta_terms character
+#' @param ont ontology
+#' @param ict numeric
+#'
+#' @return character
+#' @noRd
+#'
 remove_close <- function(meta_terms, ont, ict) {
     parents <- switch(ont,
                       MF = AnnotationDbi::as.list(GOMFPARENTS),
