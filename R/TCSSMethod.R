@@ -6,13 +6,12 @@
 #'
 #' @return score vector
 #' @importFrom stats na.omit
-#' @export
 #'
 #' @examples
 #' library(org.Hs.eg.db)
 #' semdata <- godata(org.Hs.eg.db, "ENTREZID", "MF", computeIC = TRUE,
 #' processTCSS = TRUE, cutoff = NULL)
-#' tcssMethod("GO:0000003", "GO:0009987", semdata)
+#' termSim("GO:0000003", "GO:0009987", semdata, method = "TCSS")
 #process two term vectors
 tcssMethod <- function(t1, t2, semData) {
     matrix( mapply( tcssMethod_internal,

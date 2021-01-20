@@ -7,13 +7,7 @@
 #' @param cutoff the topology cutoff
 #'
 #' @return data.frame
-#' @export
 #'
-#' @examples
-#' \dontrun{
-#'     ## 例子必须要能跑的通，这里goAnno 和 IC都还没赋值，不能直接用。
-#'     tcssdata <- process_tcss("BP", goAnno, IC, 3.8)
-#' }
 process_tcss <- function(ont, geneAnno, IC, cutoff = NULL) {
 
     if (length(IC) == 0) {
