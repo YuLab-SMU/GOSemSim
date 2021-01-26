@@ -13,45 +13,45 @@
 #' @return cutoff
 #' @export
 #'
-#' @examples 
+#' @examples
 #' \dontrun{
 #'     library(org.Hs.eg.db)
 #'     library(STRINGdb)
-#'     
+#'
 #'     string_db <- STRINGdb$new(version = "11.0", species = 9606,
 #'     score_threshold = 900)
 #'     string_proteins <- string_db$get_proteins()
-#'     
+#'
 #'     #get realtionship
 #'     ppi <- string_db$get_interactions(string_proteins$protein_external_id)
-#'     
-#'     ppi$from <- vapply(ppi$from, function(e) 
+#'
+#'     ppi$from <- vapply(ppi$from, function(e)
 #'                        strsplit(e, "9606.")[[1]][2], character(1))
 #'     ppi$to <- vapply(ppi$to, function(e)
 #'                        strsplit(e, "9606.")[[1]][2], character(1))
 #'     len <- nrow(ppi)
-#'     
+#'
 #'     #select length
 #'     s_len <- 500
 #'     loca_1 <- sample(len, s_len, replace = T)
 #'     #negative set
 #'     loca_2 <- sample(len, s_len, replace = T)
 #'     loca_3 <- sample(len, s_len, replace = T)
-#'     
+#'
 #'     #union as testdata
 #'     testdata <- data.frame(pro1 = c(ppi$from[loca_1], ppi$from[loca_2]),
 #'      pro2 = c(ppi$to[loca_1], ppi$to[loca_3]),
 #'      label = c(rep(TRUE, s_len), rep(FALSE, s_len)),
 #'      stringsAsFactors = FALSE)
-
+#'
 #'     cutoff <- get_cutoff(OrgDb = org.Hs.eg.db, keytype = "ENSEMBLPROT",
 #'     ont = "BP", combine_method = "max", IEAdrop = FALSE, testdata)
 #' }
 get_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
                        combine_method = "max", IEAdrop = FALSE, testdata) {
 
-    anno_data <- godata(OrgDb, keytype, ont, computeIC = T, processTCSS = F,
-                        cutoff = NULL)
+    anno_data <- godata(OrgDb, keytype = keytype, ont = ont, computeIC = TRUE,
+                        processTCSS = FALSE, cutoff = NULL)
     #cutoff is in the range of ICT value
     GO <- unique(names(anno_data@IC))
     offspring <- switch(ont,
@@ -64,7 +64,7 @@ get_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
     cutoffs <- seq(0.1, max(ict), 0.1)
     #all gene/protein that has none-zero annotation
     all_pro <- unique(anno_data@geneAnno[, keytype])
-
+    #filt the testdata
     test_set <- get_test_set(all_pro, testdata = testdata)
     #calcualte the similarity value for test_set
     predict_result <- lapply(cutoffs, computePre,
@@ -87,11 +87,11 @@ get_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
 #' @noRd
 get_test_set <- function(all_pro, testdata) {
     #remove those proteins that have zero annotations
-    len1 <- vapply(testdata$pro1, function(e) e %in% all_pro, logical(1))
-    len2 <- vapply(testdata$pro2, function(e) e %in% all_pro, logical(1))
+    len1 <- testdata$pro1 %in% all_pro
+    len2 <- testdata$pro2 %in% all_pro
     testdata_in <- testdata[len1 & len2, ]
     #data de-duplication
-    test_set <- testdata_in[!duplicated(testdata_in), ]
+    test_set <- unique(testdata_in)
 
     len <- dim(test_set)[1]
 
@@ -113,8 +113,8 @@ get_test_set <- function(all_pro, testdata) {
 #' @param OrgDb OrgDb object
 #' @param keytype keytype
 #' @param ont "BP", "MF", "CC"
-#' @param cutoff number 
-#' @param combine_method "max" "BMA", "avg", "rcmax", "rcmax.avg" 
+#' @param cutoff number
+#' @param combine_method "max" "BMA", "avg", "rcmax", "rcmax.avg"
 #' @param IEAdrop TRUE/FALSE
 #'
 #' @return list
@@ -184,7 +184,7 @@ decide_cutoff <- function(auc_F1_score, cutoffs) {
     loca <- which(auc_mutiply_F1 == max(auc_mutiply_F1))
 
     if (length(loca) == 1) {
-        cutoff <- cutoffs[loca]
+        return(cutoffs[loca])
     } else {
         #if not only one pair of auc and F1-score have same product
         #take the one with larger auc
@@ -193,12 +193,11 @@ decide_cutoff <- function(auc_F1_score, cutoffs) {
         auc_loca <- which(s_auc == max(s_auc))
 
         if (length(auc_loca) == 1) {
-            cutoff <- cutoffs[loca[auc_loca]]
+            return(cutoffs[loca[auc_loca]])
         } else {
             #if more than one pair of auc and F1-score are both same
-            #take the smaller one
-            cutoff <- cutoffs[loca[min(auc_loca)]]
+            #take the smaller one for time saving
+            return(cutoffs[loca[min(auc_loca)]])
         }
     }
-    return(cutoff)
 }

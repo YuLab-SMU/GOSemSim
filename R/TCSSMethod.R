@@ -15,11 +15,11 @@
 #' termSim("GO:0000003", "GO:0009987", semdata, method = "TCSS")
 #process two term vectors
 tcssMethod <- function(t1, t2, semData) {
-    matrix( mapply( tcssMethod_internal,
-                    rep( t1, length(t2) ),
-                    rep( t2, each = length(t1) ),
-                    MoreArgs = list( semData = semData ) ),
-            dimnames = list( t1, t2 ), ncol = length(t2) ) 
+    matrix(mapply(tcssMethod_internal,
+                    rep(t1, length(t2)),
+                    rep(t2, each = length(t1)),
+                    MoreArgs = list(semData = semData)),
+            dimnames = list(t1, t2), ncol = length(t2))
 }
 
 #' Title process one term with one term
@@ -54,19 +54,16 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
                        ID1 = ID1, ID2 = ID2,
                        tcssdata = tcssdata, com_anc = com_anc, ont = ont)
     })
-    
+
     value <- na.omit(unlist(value))
     value <- value[value != Inf & value != -Inf]
 
-    if (is.null(value) || length(value) == 0) {
-        NULL
-    }else {
-        #here max value means lowest common ancestor
-        return(max(value))
-    }
+    if (is.null(value) || length(value) == 0) return(NULL)
+    #here max value means lowest common ancestor
+    max(value)
 }
 
-#' Title get lowest common ancestors's value 
+#' Title get lowest common ancestors's value
 #'
 #' @param clus1 character, cluster-id for ID1
 #' @param clus2 character, cluster-id for ID2
@@ -101,14 +98,13 @@ get_lca <- function(clus1, clus2, ID1, ID2, tcssdata, com_anc, ont) {
         value <- clus_content[com_anc_loc, "ica"]
     }
 
-    #value <- na.omit(value[value != Inf & value != -Inf])
-    value <- na.omit(value)
+    value <- na.omit(value[value != Inf & value != -Inf])
 
     if (is.null(value) || length(value) == 0) return(NULL)
-    
+
     #here max value means one of lowest common ancestors
     max(value)
-    
+
 }
 
 #' Title get common ancestors
@@ -123,11 +119,11 @@ get_lca <- function(clus1, clus2, ID1, ID2, tcssdata, com_anc, ont) {
 get_common_anc <- function(ID1, ID2, ont) {
     ancestor1 <- getAncestors(ont)[[ID1]]
     ancestor2 <- getAncestors(ont)[[ID2]]
-    
+
     if (ID1 == ID2 || ID1 %in% ancestor2) return(ID1)
-    
+
     if (ID2 %in% ancestor1) return(ID2)
-    
+
     setdiff(intersect(ancestor1, ancestor2), "all")
-    
+
 }

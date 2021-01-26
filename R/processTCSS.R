@@ -1,23 +1,22 @@
 #' Title prepare tcss data for TCSS to calculate semantic similarity
 #'
 #' @param ont ontology
-#' @param geneAnno the annotation for genes or gene products
 #' @param IC information content
 #' @param cutoff the topology cutoff
 #'
 #' @return data.frame
 #' @noRd
-process_tcss <- function(ont, geneAnno, IC, cutoff = NULL) {
+process_tcss <- function(ont, IC, cutoff = NULL) {
 
     if (length(IC) == 0) {
         stop("IC data not found, please re-generate your `semData` with `computeIC = TRUE`...")
     }
-    
+
     if (is.null(cutoff)) {
         message("cutoff value is not specified, default value based on human
         data will be taken, or you can call the function 'get_cutoff' with your testdata")
     }
-    
+
     GO <- unique(names(IC))
 
     offspring <- switch(ont,
@@ -33,16 +32,10 @@ process_tcss <- function(ont, geneAnno, IC, cutoff = NULL) {
     meta_terms <- remove_close(meta_terms, ont = ont, ict = ict)
     #get the terms of each sub-graph
     meta_graph <- get_sub_terms(meta_terms, offspring = offspring)
-
-    #mic : max IC value of all terms
-    mic <- get_maxIC(meta_terms, IC = IC, mic = NULL)
-    #get the corrsponding max ic for each meta-term
-    meta_maxIC <- vapply(meta_graph, get_maxIC, IC = IC, mic = mic, numeric(1))
-
-    meta_maxIC["meta"] <- mic
+    #get the max IC value for each graph
+    meta_maxIC <- get_maxIC(meta_graph = meta_graph, IC = IC)
 
     #build a data.frame
-
     res <- data.frame(GO = unname(unlist(meta_graph)),
                       clusid = rep(meta_terms,
                                 times = vapply(meta_graph, length, integer(1))),
@@ -52,10 +45,8 @@ process_tcss <- function(ont, geneAnno, IC, cutoff = NULL) {
                                  stringsAsFactors = FALSE))
 
     #ICA means altered IC value
-    ica <- unname(mapply(
+    res$ica <- unname(mapply(
         function(e, f) IC[e] / meta_maxIC[f], res$GO, res$clusid))
-
-    res$ica <- ica
 
     return(res)
 }
@@ -63,7 +54,7 @@ process_tcss <- function(ont, geneAnno, IC, cutoff = NULL) {
 #' Title compute ICT (information content topology) for each term
 #'
 #' @param GO character
-#' @param offspring list 
+#' @param offspring list
 #'
 #' @return numeric
 #' @noRd
@@ -86,8 +77,8 @@ computeICT <- function(GO, offspring) {
 get_meta <- function(ont, ict, GO, cutoff) {
     if (is.null(cutoff)) {
         cutoff <- switch(ont,
-                         MF = 3.0, 
-                         BP = 3.8, 
+                         MF = 3.0,
+                         BP = 3.8,
                          CC = 3.0)
     }
     GO[which(ict <= cutoff)]
@@ -95,23 +86,26 @@ get_meta <- function(ont, ict, GO, cutoff) {
 
 #' Title for each graph get their max IC value
 #'
-#' @param terms character
+#' @param meta_graph list, all sub-graphs
 #' @param IC numeric
-#' @param mic maximum IC
 #'
 #' @return numeric
 #' @noRd
 #'
-get_maxIC <- function(terms, IC, mic) {
-    all <- IC[terms]
-    all <- all[all != Inf & all != -Inf]
-    all <- na.omit(all)
-    if (length(all) == 0) {
-        #assign the mic value
-        mic
-    }else {
-        max(all)
-    }
+get_maxIC <- function(meta_graph, IC) {
+    #mic : max IC value of all terms
+    mic <- max(IC[IC != Inf & IC != -Inf])
+
+    meta_maxIC <- vapply(meta_graph, function(e) {
+        all <- IC[e]
+        all <- na.omit(all[all != Inf & all != -Inf])
+        #if value is empty, assign the mic value
+        if (length(all) == 0) mic else max(all)
+        }, numeric(1))
+    #"meta" means the graph contains all meta-terms
+    meta_maxIC["meta"] <- mic
+
+    return(meta_maxIC)
 }
 
 #' Title take offspring node as sub-graph-nodes
