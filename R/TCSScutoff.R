@@ -64,7 +64,7 @@ get_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
     cutoffs <- seq(0.1, max(ict), 0.1)
     #all gene/protein that has none-zero annotation
     all_pro <- unique(anno_data@geneAnno[, keytype])
-    #filt the testdata
+    #filter the testdata
     test_set <- get_test_set(all_pro, testdata = testdata)
     #calcualte the similarity value for test_set
     predict_result <- lapply(cutoffs, computePre,
@@ -87,15 +87,13 @@ get_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
 #' @noRd
 get_test_set <- function(all_pro, testdata) {
     #remove those proteins that have zero annotations
-    len1 <- testdata$pro1 %in% all_pro
-    len2 <- testdata$pro2 %in% all_pro
+    len1 <- testdata[, "pro1"] %in% all_pro
+    len2 <- testdata[, "pro2"] %in% all_pro
     testdata_in <- testdata[len1 & len2, ]
     #data de-duplication
     test_set <- unique(testdata_in)
 
-    len <- dim(test_set)[1]
-
-    if (len == 0) {
+    if (dim(test_set)[1] == 0) {
         stop("the length of test set is 0, none items have GO annotation")
     }
 
@@ -123,7 +121,7 @@ get_test_set <- function(all_pro, testdata) {
 computePre <- function(test_set, OrgDb, keytype, ont, cutoff,
                        combine_method, IEAdrop) {
     #different cutoffs have different semdata
-  suppressMessages(semdata <- godata(OrgDb = OrgDb, keytype = keytype,
+    suppressMessages(semdata <- godata(OrgDb = OrgDb, keytype = keytype,
                     ont = ont, computeIC = TRUE,
                     processTCSS = TRUE, cutoff = cutoff))
     #similarity value is calculated under this cutoff
@@ -183,21 +181,17 @@ decide_cutoff <- function(auc_F1_score, cutoffs) {
     #get the max product value
     loca <- which(auc_mutiply_F1 == max(auc_mutiply_F1))
 
-    if (length(loca) == 1) {
-        return(cutoffs[loca])
-    } else {
-        #if not only one pair of auc and F1-score have same product
-        #take the one with larger auc
-        s_auc <- auc_F1_score[loca, "auc"]
+    if (length(loca) == 1)  return(cutoffs[loca])
+    
+    #if not only one pair of auc and F1-score have same product
+    #take the one with larger auc
+    s_auc <- auc_F1_score[loca, "auc"]
 
-        auc_loca <- which(s_auc == max(s_auc))
+    auc_loca <- which(s_auc == max(s_auc))
 
-        if (length(auc_loca) == 1) {
-            return(cutoffs[loca[auc_loca]])
-        } else {
-            #if more than one pair of auc and F1-score are both same
-            #take the smaller one for time saving
-            return(cutoffs[loca[min(auc_loca)]])
-        }
-    }
+    if (length(auc_loca) == 1) return(cutoffs[loca[auc_loca]])
+
+    #if more than one pair of auc and F1-score are both same
+    #take the smaller cutoff for time saving
+    return(cutoffs[loca[min(auc_loca)]])
 }

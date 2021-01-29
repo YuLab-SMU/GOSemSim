@@ -48,12 +48,15 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
     #get cluster-ids for each ID
     clus1_list <- tcssdata[tcssdata[, "GO"] == ID1, "clusid"]
     clus2_list <- tcssdata[tcssdata[, "GO"] == ID2, "clusid"]
+
     #calculate within different clusters
-    value <- lapply(clus1_list, function(e) {
-                lapply(clus2_list, get_lca, e,
-                       ID1 = ID1, ID2 = ID2,
-                       tcssdata = tcssdata, com_anc = com_anc, ont = ont)
-    })
+    value <- matrix(mapply(get_lca,
+                     rep(clus1_list, length(clus2_list)),
+                     rep(clus2_list, each = length(clus1_list)),
+                     MoreArgs = list(ID1 = ID1, ID2 = ID2,
+                         tcssdata = tcssdata, com_anc = com_anc, ont = ont)),
+                 dimnames = list(clus1_list, clus2_list),
+                 ncol = length(clus2_list))
 
     value <- na.omit(unlist(value))
     value <- value[value != Inf & value != -Inf]
