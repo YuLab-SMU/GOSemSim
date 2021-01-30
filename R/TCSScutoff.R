@@ -96,7 +96,11 @@ get_test_set <- function(all_pro, testdata) {
     if (dim(test_set)[1] == 0) {
         stop("the length of test set is 0, none items have GO annotation")
     }
-
+    
+    if (!all(c("TRUE","FALSE") %in% test_set[, "label"])) {
+        stop("the label in test set must contain TRUE and FALSE")
+    }
+    
     freq <- table(test_set[, "label"])
 
     message(paste("positive set's length is", freq["TRUE"],
