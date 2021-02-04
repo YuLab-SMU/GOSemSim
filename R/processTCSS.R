@@ -1,10 +1,10 @@
-#' Title prepare tcss data for TCSS to calculate semantic similarity
+#' prepare tcss data for TCSS to calculate semantic similarity
 #'
 #' @param ont ontology
 #' @param IC information content
 #' @param cutoff the topology cutoff
 #'
-#' @return data.frame
+#' @return data.frame, tcssdata, the cluster-id and cluster-value of nodes
 #' @noRd
 process_tcss <- function(ont, IC, cutoff = NULL) {
 
@@ -14,7 +14,7 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
 
     if (is.null(cutoff)) {
         message("cutoff value is not specified, default value based on human
-        data will be taken, or you can call the function 'get_cutoff' with your testdata")
+        data will be taken, or you can call the function 'tcss_cutoff' with your testdata")
     }
 
     GO <- unique(names(IC))
@@ -24,16 +24,16 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
                       BP = AnnotationDbi::as.list(GOBPOFFSPRING),
                       CC = AnnotationDbi::as.list(GOCCOFFSPRING))
 
-    #calculate ict
-    ict <- computeICT(GO, offspring = offspring)
+    #calculate ICT
+    ICT <- computeICT(GO, offspring = offspring)
     #those nodes smaller than cutoff are meta-terms
-    meta_terms <- get_meta(ont = ont, ict, GO = GO, cutoff = cutoff)
-    #if two parent-child's ict value too close
-    meta_terms <- remove_close(meta_terms, ont = ont, ict = ict)
+    meta_terms <- create_meta_terms(ont = ont, ICT, GO = GO, cutoff = cutoff)
+    #if two parent-child nodes' ICT value too close
+    meta_terms <- remove_close(meta_terms, ont = ont, ICT = ICT)
     #get the terms of each sub-graph
-    meta_graph <- get_sub_terms(meta_terms, offspring = offspring)
+    meta_graph <- create_sub_terms(meta_terms, offspring = offspring)
     #get the max IC value for each graph
-    meta_maxIC <- get_maxIC(meta_graph = meta_graph, IC = IC)
+    meta_maxIC <- calc_maxIC(meta_graph = meta_graph, IC = IC)
 
     #build a data.frame
     res <- data.frame(GO = unname(unlist(meta_graph)),
@@ -51,12 +51,12 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
     return(res)
 }
 
-#' Title compute ICT (information content topology) for each term
+#' compute ICT (information content topology) for each term
 #'
-#' @param GO character
-#' @param offspring list
+#' @param GO character, all go terms
+#' @param offspring list, offspring nodes
 #'
-#' @return numeric
+#' @return numeric, ICT value
 #' @noRd
 #'
 computeICT <- function(GO, offspring) {
@@ -64,41 +64,41 @@ computeICT <- function(GO, offspring) {
         -log10(length(offspring[[e]]) / length(GO)), numeric(1))
 }
 
-#' Title according to the cutoff select meta-terms
+#' all nodes with ICT value under cutoff are meta_terms
 #'
 #' @param ont ontology
-#' @param ict numeric
-#' @param GO character
-#' @param cutoff numeric
+#' @param ICT numeric, ICT value
+#' @param GO character, all go terms
+#' @param cutoff numeric, topological cutoff
 #'
-#' @return character
+#' @return character, sub-graph-root nodes
 #' @noRd
 #'
-get_meta <- function(ont, ict, GO, cutoff) {
+create_meta_terms <- function(ont, ICT, GO, cutoff) {
     if (is.null(cutoff)) {
         cutoff <- switch(ont,
                          MF = 3.0,
                          BP = 3.8,
                          CC = 3.0)
     }
-    GO[which(ict <= cutoff)]
+    GO[which(ICT <= cutoff)]
 }
 
-#' Title for each graph get their max IC value
+#' for each graph calculate their max IC value
 #'
 #' @param meta_graph list, all sub-graphs
-#' @param IC numeric
+#' @param IC numeric, ICT value
 #'
 #' @return numeric
 #' @noRd
 #'
-get_maxIC <- function(meta_graph, IC) {
+calc_maxIC <- function(meta_graph, IC) {
     #mic : max IC value of all terms
-    mic <- max(IC[IC != Inf & IC != -Inf])
+    mic <- max(IC[!is.infinite(IC)])
 
     meta_maxIC <- vapply(meta_graph, function(e) {
         all <- IC[e]
-        all <- na.omit(all[all != Inf & all != -Inf])
+        all <- all[!is.na(all) & !is.infinite(all)]
         #if value is empty, assign the mic value
         if (length(all) == 0) mic else max(all)
         }, numeric(1))
@@ -108,15 +108,15 @@ get_maxIC <- function(meta_graph, IC) {
     return(meta_maxIC)
 }
 
-#' Title take offspring node as sub-graph-nodes
+#' take offspring nodes as sub-graph-nodes
 #'
 #' @param meta_terms character
 #' @param offspring list
 #'
-#' @return list
+#' @return list, all nodes in sub-graphs
 #' @noRd
 #'
-get_sub_terms <- function(meta_terms, offspring) {
+create_sub_terms <- function(meta_terms, offspring) {
     res <- lapply(meta_terms, function(e) {
         all <- offspring[[e]]
         #other sub-root-node
@@ -132,16 +132,16 @@ get_sub_terms <- function(meta_terms, offspring) {
     return(res)
 }
 
-#' Title remove close-relation in meta_terms
+#' remove close relation in meta_terms
 #'
 #' @param meta_terms character
 #' @param ont ontology
-#' @param ict numeric
+#' @param ICT numeric
 #'
-#' @return character
+#' @return character, meta_terms with less nodes
 #' @noRd
 #'
-remove_close <- function(meta_terms, ont, ict) {
+remove_close <- function(meta_terms, ont, ICT) {
     parents <- switch(ont,
                       MF = AnnotationDbi::as.list(GOMFPARENTS),
                       BP = AnnotationDbi::as.list(GOBPPARENTS),
@@ -152,7 +152,7 @@ remove_close <- function(meta_terms, ont, ict) {
         #parent term
         obj <- intersect(parents[[term1]], all_)
         for (term2 in obj) {
-            if (ict[term2] != 0 & ict[term1] / ict[term2] <= 1.2) {
+            if (ICT[term2] != 0 & ICT[term1] / ICT[term2] <= 1.2) {
             #remove when satisfing the condition
             meta_terms <- setdiff(meta_terms, term1)
             break

@@ -1,16 +1,16 @@
-#' Title detemine the topological cutoff for TCSS method
+#' detemine the topological cutoff for TCSS method
 #'
 #' @param OrgDb OrgDb object
 #' @param keytype keytype
 #' @param ont ontology : "BP", "MF", "CC"
 #' @param combine_method "max", "BMA", "avg", "rcmax", ""rcmax.avg"
 #' @param IEAdrop TRUE/FALSE
-#' @param testdata data.frame. PPI data contains positive set and negative set.
+#' @param ppidata data.frame. PPI data contains positive set and negative set.
 #' Has three columns, and colnames are:"pro1", "pro2", "label".
 #' Column "pro1" and "pro2" are character,
 #' Column "label" must be logical value:TRUE/FALSE.
 #'
-#' @return cutoff
+#' @return numeric, topological cutoff for given parameters
 #' @export
 #'
 #' @examples
@@ -38,17 +38,17 @@
 #'     loca_2 <- sample(len, s_len, replace = T)
 #'     loca_3 <- sample(len, s_len, replace = T)
 #'
-#'     #union as testdata
-#'     testdata <- data.frame(pro1 = c(ppi$from[loca_1], ppi$from[loca_2]),
+#'     #union as ppidata
+#'     ppidata <- data.frame(pro1 = c(ppi$from[loca_1], ppi$from[loca_2]),
 #'      pro2 = c(ppi$to[loca_1], ppi$to[loca_3]),
 #'      label = c(rep(TRUE, s_len), rep(FALSE, s_len)),
 #'      stringsAsFactors = FALSE)
 #'
-#'     cutoff <- get_cutoff(OrgDb = org.Hs.eg.db, keytype = "ENSEMBLPROT",
-#'     ont = "BP", combine_method = "max", IEAdrop = FALSE, testdata)
+#'     cutoff <- tcss_cutoff(OrgDb = org.Hs.eg.db, keytype = "ENSEMBLPROT",
+#'     ont = "BP", combine_method = "max", IEAdrop = FALSE, ppidata)
 #' }
-get_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
-                       combine_method = "max", IEAdrop = FALSE, testdata) {
+tcss_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
+                       combine_method = "max", IEAdrop = FALSE, ppidata) {
 
     anno_data <- godata(OrgDb, keytype = keytype, ont = ont, computeIC = TRUE,
                         processTCSS = FALSE, cutoff = NULL)
@@ -59,39 +59,39 @@ get_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
                         BP = AnnotationDbi::as.list(GOBPOFFSPRING),
                         CC = AnnotationDbi::as.list(GOCCOFFSPRING))
     #compute ICT value for each term
-    ict <- computeICT(GO, offspring)
-    #cutoffs
-    cutoffs <- seq(0.1, max(ict), 0.1)
+    ICT <- computeICT(GO, offspring)
+    #cutoffs, all possible cutoff values
+    cutoffs <- seq(0.1, max(ICT), 0.1)
     #all gene/protein that has none-zero annotation
     all_pro <- unique(anno_data@geneAnno[, keytype])
-    #filter the testdata
-    test_set <- get_test_set(all_pro, testdata = testdata)
+    #filter the ppidata
+    test_set <- create_test_set(all_pro, ppidata = ppidata)
     #calcualte the similarity value for test_set
     predict_result <- lapply(cutoffs, computePre,
                              test_set = test_set, OrgDb = OrgDb,
                              keytype = keytype, ont = ont,
                              combine_method = combine_method, IEAdrop = IEAdrop)
 
-    #get the auc valur and F1_score
-    auc_F1_score <- get_auc_F1_score(predict_result, test_set = test_set)
+    #calculate the auc valur and F1_score
+    auc_F1_score <- calc_auc_F1_score(predict_result, test_set = test_set)
     #decide the most appropriate cutoff
     decide_cutoff(auc_F1_score, cutoffs = cutoffs)
 }
 
-#' Title screen the proteins with none-zero annotations
+#' keep the proteins with none-zero annotations
 #'
-#' @param all_pro all proteins have none-zero annotations
-#' @param testdata data.frame
+#' @param all_pro all proteins that has none-zero annotation
+#' @param ppidata data.frame, already verified PPI data
 #'
-#' @return data.frame
+#' @return data.frame, test set with PPI pairs and labels
 #' @noRd
-get_test_set <- function(all_pro, testdata) {
+create_test_set <- function(all_pro, ppidata) {
     #remove those proteins that have zero annotations
-    len1 <- testdata[, "pro1"] %in% all_pro
-    len2 <- testdata[, "pro2"] %in% all_pro
-    testdata_in <- testdata[len1 & len2, ]
+    len1 <- ppidata[, "pro1"] %in% all_pro
+    len2 <- ppidata[, "pro2"] %in% all_pro
+    ppidata_in <- ppidata[len1 & len2, ]
     #data de-duplication
-    test_set <- unique(testdata_in)
+    test_set <- unique(ppidata_in)
 
     if (dim(test_set)[1] == 0) {
         stop("the length of test set is 0, none items have GO annotation")
@@ -109,17 +109,17 @@ get_test_set <- function(all_pro, testdata) {
     return(test_set)
 }
 
-#' Title compute prediction value
+#' compute prediction value on test set
 #'
-#' @param test_set data.frame
+#' @param test_set data.frame, test set with PPI pairs and labels
 #' @param OrgDb OrgDb object
 #' @param keytype keytype
 #' @param ont "BP", "MF", "CC"
-#' @param cutoff number
+#' @param cutoff numeric, topological cutoff
 #' @param combine_method "max" "BMA", "avg", "rcmax", "rcmax.avg"
 #' @param IEAdrop TRUE/FALSE
-#'
-#' @return list
+#' 
+#' @return list, the prediction value for the cutoff
 #' @noRd
 #'
 computePre <- function(test_set, OrgDb, keytype, ont, cutoff,
@@ -138,15 +138,15 @@ computePre <- function(test_set, OrgDb, keytype, ont, cutoff,
 }
 
 
-#' Title calculate auc and F1-score
+#' calculate auc and F1-score
 #'
-#' @param predict_result list
-#' @param test_set data.frame
-#'
-#' @return data.frame
+#' @param predict_result list, prediction value for all cutoffs
+#' @param test_set data.frame, test set with PPI pairs and labels
+#' 
+#' @return data.frame, auc and F1-score value for different cutoffs
 #' @noRd
 #'
-get_auc_F1_score <- function(predict_result, test_set) {
+calc_auc_F1_score <- function(predict_result, test_set) {
     #geneSim returns one value and two characters in once calculation
     len <- dim(test_set)[1]
     value_loc <- seq(from = 1, to = len * 3, by = 3)
@@ -171,12 +171,12 @@ get_auc_F1_score <- function(predict_result, test_set) {
                       stringsAsFactors = F))
 }
 
-#' Title select the most appropriate cutoff
+#' select the most appropriate cutoff
 #'
-#' @param auc_F1_score data.frame
-#' @param cutoffs vector
-#'
-#' @return vector
+#' @param auc_F1_score data.frame, auc and F1-score value for different cutoffs
+#' @param cutoffs vector, all possible cutoff values
+#' 
+#' @return vector, topological cutoff for given parameters
 #' @noRd
 #'
 decide_cutoff <- function(auc_F1_score, cutoffs) {

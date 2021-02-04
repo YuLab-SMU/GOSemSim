@@ -1,10 +1,10 @@
-#' Title Method TCSS for semantic similarity measuring
+#' Method TCSS for semantic similarity measuring
 #'
 #' @param t1 term vector
 #' @param t2 term vector
 #' @param semData GOSemSimDATA object
 #'
-#' @return score vector
+#' @return vector, similarity score for t1 and t2
 #' @noRd
 #' @importFrom stats na.omit
 #'
@@ -22,13 +22,13 @@ tcssMethod <- function(t1, t2, semData) {
             dimnames = list(t1, t2), ncol = length(t2))
 }
 
-#' Title process one term with one term
+#' process one term with one term
 #'
 #' @param ID1 term
 #' @param ID2 term
 #' @param semData GOSemSimDATA object
 #'
-#' @return numeric
+#' @return numeric, similarity score for ID1 and ID2
 #' @noRd
 #'
 tcssMethod_internal <- function(ID1, ID2, semData) {
@@ -41,16 +41,16 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
     }
 
     #get common ancestors
-    com_anc <- get_common_anc(ID1 = ID1, ID2 = ID2, ont = ont)
+    com_anc <- ancestors_in_common(ID1 = ID1, ID2 = ID2, ont = ont)
 
     if (length(com_anc) == 0) return(NA)
 
-    #get cluster-ids for each ID
+    #belonged cluster-ids for each ID
     clus1_list <- tcssdata[tcssdata[, "GO"] == ID1, "clusid"]
     clus2_list <- tcssdata[tcssdata[, "GO"] == ID2, "clusid"]
 
     #calculate within different clusters
-    value <- matrix(mapply(get_lca,
+    value <- matrix(mapply(calc_lca,
                      rep(clus1_list, length(clus2_list)),
                      rep(clus2_list, each = length(clus1_list)),
                      MoreArgs = list(ID1 = ID1, ID2 = ID2,
@@ -59,29 +59,28 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
                  ncol = length(clus2_list))
 
     value <- na.omit(unlist(value))
-    value <- value[value != Inf & value != -Inf]
+    value <- value[!is.infinite(value)]
 
     if (is.null(value) || length(value) == 0) return(NULL)
     #here max value means lowest common ancestor
     max(value)
 }
 
-#' Title get lowest common ancestors's value
+#' calculate lowest common ancestors's value
 #'
 #' @param clus1 character, cluster-id for ID1
 #' @param clus2 character, cluster-id for ID2
 #' @param ID1 term
 #' @param ID2 term
-#' @param tcssdata data.frame
-#' @param com_anc character
+#' @param tcssdata data.frame, the cluster-id and cluster-value of nodes
+#' @param com_anc character, common ancestors
 #' @param ont ontology
 #'
-#' @return numeric or NULL
+#' @return numeric/NULL, similarity value for ID1 with clus1 and ID2 with clus2
 #' @noRd
 #'
-get_lca <- function(clus1, clus2, ID1, ID2, tcssdata, com_anc, ont) {
+calc_lca <- function(clus1, clus2, ID1, ID2, tcssdata, com_anc, ont) {
 
-    #
     if (clus1 == "meta" || clus2 == "meta") {
         return(NULL)
     }
@@ -96,12 +95,12 @@ get_lca <- function(clus1, clus2, ID1, ID2, tcssdata, com_anc, ont) {
         #get common ancestors in the meta-cluster
         #clus1 replace ID1, clus2 replace ID2
         clus_content <- tcssdata[tcssdata[, "clusid"] == "meta", ]
-        com_anc <- get_common_anc(ID1 = clus1, ID2 = clus2, ont = ont)
+        com_anc <- ancestors_in_common(ID1 = clus1, ID2 = clus2, ont = ont)
         com_anc_loc <- match(com_anc, clus_content[, "GO"])
         value <- clus_content[com_anc_loc, "ica"]
     }
 
-    value <- na.omit(value[value != Inf & value != -Inf])
+    value <- value[!is.na(value) & !is.infinite(value)]
 
     if (is.null(value) || length(value) == 0) return(NULL)
 
@@ -110,16 +109,16 @@ get_lca <- function(clus1, clus2, ID1, ID2, tcssdata, com_anc, ont) {
 
 }
 
-#' Title get common ancestors
+#' collect common ancestors
 #'
 #' @param ID1 term
 #' @param ID2 term
 #' @param ont ontology
 #'
-#' @return character
+#' @return character, common ancestors for ID1 and ID2
 #' @noRd
 #'
-get_common_anc <- function(ID1, ID2, ont) {
+ancestors_in_common <- function(ID1, ID2, ont) {
     ancestor1 <- getAncestors(ont)[[ID1]]
     ancestor2 <- getAncestors(ont)[[ID2]]
 
