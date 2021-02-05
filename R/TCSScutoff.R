@@ -65,15 +65,15 @@ tcss_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
     #all gene/protein that has none-zero annotation
     all_pro <- unique(anno_data@geneAnno[, keytype])
     #filter the ppidata
-    test_set <- create_test_set(all_pro, ppidata = ppidata)
-    #calcualte the similarity value for test_set
+    filtered_ppidata <- create_filtered_ppidata(all_pro, ppidata = ppidata)
+    #calcualte the similarity value for filtered_ppidata
     predict_result <- lapply(cutoffs, computePre,
-                             test_set = test_set, OrgDb = OrgDb,
+                             filtered_ppidata = filtered_ppidata, OrgDb = OrgDb,
                              keytype = keytype, ont = ont,
                              combine_method = combine_method, IEAdrop = IEAdrop)
 
     #calculate the auc valur and F1_score
-    auc_F1_score <- calc_auc_F1_score(predict_result, test_set = test_set)
+    auc_F1_score <- calc_auc_F1_score(predict_result, filtered_ppidata = filtered_ppidata)
     #decide the most appropriate cutoff
     decide_cutoff(auc_F1_score, cutoffs = cutoffs)
 }
@@ -83,42 +83,39 @@ tcss_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
 #' @param all_pro all proteins that has none-zero annotation
 #' @param ppidata data.frame, already verified PPI data
 #'
-#' @return data.frame, test set with PPI pairs and labels
+#' @return data.frame, annotated protein pairs and their labels
 #' @noRd
-create_test_set <- function(all_pro, ppidata) {
+create_filtered_ppidata <- function(all_pro, ppidata) {
     #check data type
-    if (!is.character(ppidata[, 1]) || !is.character(ppidata[, 2]) ||
-        !is.logical(ppidata[, 3])) {
+    if (!(is.character(ppidata[, 1]) & is.character(ppidata[, 2]) &
+        is.logical(ppidata[, 3]))) {
         stop("ppidata must be a data.frame with three columns:character, character, logical")
     }
 
     #remove those proteins that have zero annotations
     len1 <- ppidata[, 1] %in% all_pro
     len2 <- ppidata[, 2] %in% all_pro
-    ppidata_in <- ppidata[len1 & len2, ]
-    #data de-duplication
-    test_set <- unique(ppidata_in)
+    ppidata_exist <- ppidata[len1 & len2, ]
+    filtered_ppidata <- unique(ppidata_exist)
 
-    if (dim(test_set)[1] == 0) {
-        stop("the length of test set is 0, none items have GO annotation")
+    if (dim(filtered_ppidata)[1] == 0) {
+        stop("the length of filtered ppidata is 0, none items have GO annotation")
     }
     
-    if (!all(c(TRUE, FALSE) %in% test_set[, 3])) {
-        stop("column 3 in test set must contain TRUE and FALSE")
+    if (!all(c(TRUE, FALSE) %in% filtered_ppidata[, 3])) {
+        stop("column 3 in filtered ppidata must contain TRUE and FALSE")
     }
-    
-    freq <- table(test_set[, 3])
 
-    message(paste("positive set's length is", freq["TRUE"],
-                ", negative set's length is", freq["FALSE"]))
+    message(paste("positive set's length is", sum(filtered_ppidata[, 3]),
+                ", negative set's length is", sum(!filtered_ppidata[, 3])))
 
-    return(test_set)
+    return(filtered_ppidata)
 }
 
-#' compute prediction value on test set
+#' compute prediction value on filtered ppidata
 #'
 #' @param cutoff numeric, topological cutoff
-#' @param test_set data.frame, test set with PPI pairs and labels
+#' @param filtered_ppidata data.frame, annotated protein pairs and their labels
 #' @param OrgDb OrgDb object
 #' @param keytype keytype
 #' @param ont "BP", "MF", "CC"
@@ -128,46 +125,46 @@ create_test_set <- function(all_pro, ppidata) {
 #' @return list, the prediction value for the cutoff
 #' @noRd
 #'
-computePre <- function(cutoff, test_set, OrgDb, keytype, ont,
+computePre <- function(cutoff, filtered_ppidata, OrgDb, keytype, ont,
                        combine_method, IEAdrop) {
-    #different cutoffs have different semdata
+    #semdata is defined with this input cutoff
     suppressMessages(semdata <- godata(OrgDb = OrgDb, keytype = keytype,
                     ont = ont, computeIC = TRUE,
                     processTCSS = TRUE, cutoff = cutoff))
-    #similarity value is calculated under this cutoff
+    #similarity value is calculated with the semdata
     mapply(function(e, f) geneSim(e, f,
                                   semData = semdata,
                                   measure = "TCSS",
                                   combine = combine_method,
                                   drop = IEAdrop),
-                             test_set[, 1], test_set[, 2])
+                             filtered_ppidata[, 1], filtered_ppidata[, 2])
 }
 
 
 #' calculate auc and F1-score
 #'
 #' @param predict_result list, prediction value for all cutoffs
-#' @param test_set data.frame, test set with PPI pairs and labels
+#' @param filtered_ppidata data.frame, annotated protein pairs and their labels
 #' 
 #' @return data.frame, auc and F1-score value for different cutoffs
 #' @noRd
 #'
-calc_auc_F1_score <- function(predict_result, test_set) {
+calc_auc_F1_score <- function(predict_result, filtered_ppidata) {
     #geneSim returns one value and two characters in once calculation
-    len <- dim(test_set)[1]
+    len <- dim(filtered_ppidata)[1]
     value_loc <- seq(from = 1, to = len * 3, by = 3)
-    #get the number
+    #just the similarity value
     pre_value <- lapply(predict_result, function(e) as.numeric(e[value_loc]))
 
     #auc value
     auc <- vapply(pre_value, function(e)
-        ROCR::performance(ROCR::prediction(e, test_set[, 3],
+        ROCR::performance(ROCR::prediction(e, filtered_ppidata[, 3],
                                            label.ordering = c(FALSE, TRUE)),
                     measure = "auc")@y.values[[1]], numeric(1))
 
     #F1_score at different semantic similarity cutoffs
     all_F1_score <- lapply(pre_value, function(e)
-        ROCR::performance(ROCR::prediction(e, test_set[, 3],
+        ROCR::performance(ROCR::prediction(e, filtered_ppidata[, 3],
                                            label.ordering = c(FALSE, TRUE)),
                     measure = "f")@y.values[[1]])
     #average value
@@ -197,9 +194,9 @@ decide_cutoff <- function(auc_F1_score, cutoffs) {
     
     #if not only one pair of auc and F1-score have same product
     #take the one with larger auc
-    s_auc <- auc_F1_score[loca, "auc"]
+    select_auc <- auc_F1_score[loca, "auc"]
 
-    auc_loca <- which(s_auc == max(s_auc))
+    auc_loca <- which(select_auc == max(select_auc))
 
     if (length(auc_loca) == 1) return(cutoffs[loca[auc_loca]])
 

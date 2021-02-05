@@ -13,7 +13,6 @@
 #' semdata <- godata(org.Hs.eg.db, "ENTREZID", "MF", computeIC = TRUE,
 #' processTCSS = TRUE, cutoff = NULL)
 #' termSim("GO:0000003", "GO:0009987", semdata, method = "TCSS")
-#process two term vectors
 tcssMethod <- function(t1, t2, semData) {
     matrix(mapply(tcssMethod_internal,
                     rep(t1, length(t2)),
@@ -50,7 +49,7 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
     clus2_list <- tcssdata[tcssdata[, "GO"] == ID2, "clusid"]
 
     #calculate within different clusters
-    value <- matrix(mapply(calc_lca,
+    sim_value <- matrix(mapply(calc_lca,
                      rep(clus1_list, length(clus2_list)),
                      rep(clus2_list, each = length(clus1_list)),
                      MoreArgs = list(ID1 = ID1, ID2 = ID2,
@@ -58,12 +57,12 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
                  dimnames = list(clus1_list, clus2_list),
                  ncol = length(clus2_list))
 
-    value <- na.omit(unlist(value))
-    value <- value[!is.infinite(value)]
+    sim_value <- na.omit(unlist(sim_value))
+    sim_value <- sim_value[!is.infinite(sim_value)]
 
-    if (is.null(value) || length(value) == 0) return(NULL)
+    if (is.null(sim_value) || length(sim_value) == 0) return(NULL)
     #here max value means lowest common ancestor
-    max(value)
+    max(sim_value)
 }
 
 #' calculate lowest common ancestors's value
@@ -86,26 +85,27 @@ calc_lca <- function(clus1, clus2, ID1, ID2, tcssdata, com_anc, ont) {
     }
     #if the two clusters are the same one
     if (identical(clus1, clus2)) {
-        #get common ancestors inside the cluster
+        #all cluster-nodes inside cluster
         clus_content <- tcssdata[tcssdata[, "clusid"] == clus1, ]
-        com_anc_loc <- match(com_anc, clus_content[, "GO"])
-        value <- clus_content[com_anc_loc, "ica"]
 
     }else {
-        #get common ancestors in the meta-cluster
-        #clus1 replace ID1, clus2 replace ID2
+        #all cluster-nodes inside "meta" cluster
+        #common ancestors are from clus1 and clus2
         clus_content <- tcssdata[tcssdata[, "clusid"] == "meta", ]
         com_anc <- ancestors_in_common(ID1 = clus1, ID2 = clus2, ont = ont)
-        com_anc_loc <- match(com_anc, clus_content[, "GO"])
-        value <- clus_content[com_anc_loc, "ica"]
     }
 
-    value <- value[!is.na(value) & !is.infinite(value)]
+    #common ancestors is slected further in cluster-nodes
+    com_anc_loc <- match(com_anc, clus_content[, "GO"])
+    #common ancestors' ica value is all possible sim value
+    sim_value <- clus_content[com_anc_loc, "ica"]
 
-    if (is.null(value) || length(value) == 0) return(NULL)
+    sim_value <- sim_value[!is.na(sim_value) & !is.infinite(sim_value)]
 
-    #here max value means one of lowest common ancestors
-    max(value)
+    if (is.null(sim_value) || length(sim_value) == 0) return(NULL)
+
+    #here max simialrity value means one of lowest common ancestors
+    max(sim_value)
 
 }
 
