@@ -5,10 +5,10 @@
 #' @param ont ontology : "BP", "MF", "CC"
 #' @param combine_method "max", "BMA", "avg", "rcmax", ""rcmax.avg"
 #' @param IEAdrop TRUE/FALSE
-#' @param ppidata data.frame. PPI data contains positive set and negative set.
-#' Has three columns, and colnames are:"pro1", "pro2", "label".
-#' Column "pro1" and "pro2" are character,
-#' Column "label" must be logical value:TRUE/FALSE.
+#' @param ppidata A data.frame contains positive set and negative set.
+#' Positive set is PPI pairs that already verified.
+#' ppidata only has three columns, column 1 and 2 are character, column 3 
+#' must be logical value:TRUE/FALSE.
 #'
 #' @return numeric, topological cutoff for given parameters
 #' @export
@@ -86,9 +86,15 @@ tcss_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
 #' @return data.frame, test set with PPI pairs and labels
 #' @noRd
 create_test_set <- function(all_pro, ppidata) {
+    #check data type
+    if (!is.character(ppidata[, 1]) || !is.character(ppidata[, 2]) ||
+        !is.logical(ppidata[, 3])) {
+        stop("ppidata must be a data.frame with three columns:character, character, logical")
+    }
+
     #remove those proteins that have zero annotations
-    len1 <- ppidata[, "pro1"] %in% all_pro
-    len2 <- ppidata[, "pro2"] %in% all_pro
+    len1 <- ppidata[, 1] %in% all_pro
+    len2 <- ppidata[, 2] %in% all_pro
     ppidata_in <- ppidata[len1 & len2, ]
     #data de-duplication
     test_set <- unique(ppidata_in)
@@ -97,11 +103,11 @@ create_test_set <- function(all_pro, ppidata) {
         stop("the length of test set is 0, none items have GO annotation")
     }
     
-    if (!all(c("TRUE","FALSE") %in% test_set[, "label"])) {
-        stop("the label in test set must contain TRUE and FALSE")
+    if (!all(c(TRUE, FALSE) %in% test_set[, 3])) {
+        stop("column 3 in test set must contain TRUE and FALSE")
     }
     
-    freq <- table(test_set[, "label"])
+    freq <- table(test_set[, 3])
 
     message(paste("positive set's length is", freq["TRUE"],
                 ", negative set's length is", freq["FALSE"]))
@@ -111,18 +117,18 @@ create_test_set <- function(all_pro, ppidata) {
 
 #' compute prediction value on test set
 #'
+#' @param cutoff numeric, topological cutoff
 #' @param test_set data.frame, test set with PPI pairs and labels
 #' @param OrgDb OrgDb object
 #' @param keytype keytype
 #' @param ont "BP", "MF", "CC"
-#' @param cutoff numeric, topological cutoff
 #' @param combine_method "max" "BMA", "avg", "rcmax", "rcmax.avg"
 #' @param IEAdrop TRUE/FALSE
 #' 
 #' @return list, the prediction value for the cutoff
 #' @noRd
 #'
-computePre <- function(test_set, OrgDb, keytype, ont, cutoff,
+computePre <- function(cutoff, test_set, OrgDb, keytype, ont,
                        combine_method, IEAdrop) {
     #different cutoffs have different semdata
     suppressMessages(semdata <- godata(OrgDb = OrgDb, keytype = keytype,
@@ -134,7 +140,7 @@ computePre <- function(test_set, OrgDb, keytype, ont, cutoff,
                                   measure = "TCSS",
                                   combine = combine_method,
                                   drop = IEAdrop),
-                             test_set[, "pro1"], test_set[, "pro2"])
+                             test_set[, 1], test_set[, 2])
 }
 
 
@@ -155,12 +161,14 @@ calc_auc_F1_score <- function(predict_result, test_set) {
 
     #auc value
     auc <- vapply(pre_value, function(e)
-        ROCR::performance(ROCR::prediction(e, test_set[, "label"]),
+        ROCR::performance(ROCR::prediction(e, test_set[, 3],
+                                           label.ordering = c(FALSE, TRUE)),
                     measure = "auc")@y.values[[1]], numeric(1))
 
     #F1_score at different semantic similarity cutoffs
     all_F1_score <- lapply(pre_value, function(e)
-        ROCR::performance(ROCR::prediction(e, test_set[, "label"]),
+        ROCR::performance(ROCR::prediction(e, test_set[, 3],
+                                           label.ordering = c(FALSE, TRUE)),
                     measure = "f")@y.values[[1]])
     #average value
     F1_score <- vapply(all_F1_score, mean, na.rm = TRUE, numeric(1))
