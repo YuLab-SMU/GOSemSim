@@ -101,8 +101,8 @@ create_filtered_ppidata <- function(all_pro, ppidata) {
     if (dim(filtered_ppidata)[1] == 0) {
         stop("the length of filtered ppidata is 0, none items have GO annotation")
     }
-    
-    if (!all(c(TRUE, FALSE) %in% filtered_ppidata[, 3])) {
+
+    if (all(filtered_ppidata[, 3]) | all(!filtered_ppidata[, 3])) {
         stop("column 3 in filtered ppidata must contain TRUE and FALSE")
     }
 
