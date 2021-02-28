@@ -3,7 +3,7 @@
 #' @param OrgDb OrgDb object
 #' @param keytype keytype
 #' @param ont ontology : "BP", "MF", "CC"
-#' @param combine_method "max", "BMA", "avg", "rcmax", ""rcmax.avg"
+#' @param combine_method "max", "BMA", "avg", "rcmax", "rcmax.avg"
 #' @param IEAdrop TRUE/FALSE
 #' @param ppidata A data.frame contains positive set and negative set.
 #' Positive set is PPI pairs that already verified.
@@ -50,10 +50,10 @@
 tcss_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
                        combine_method = "max", IEAdrop = FALSE, ppidata) {
 
-    anno_data <- godata(OrgDb, keytype = keytype, ont = ont, computeIC = TRUE,
+    semdata <- godata(OrgDb, keytype = keytype, ont = ont, computeIC = TRUE,
                         processTCSS = FALSE, cutoff = NULL)
     #cutoff is in the range of ICT value
-    GO <- unique(names(anno_data@IC))
+    GO <- unique(names(semdata@IC))
     offspring <- switch(ont,
                         MF = AnnotationDbi::as.list(GOMFOFFSPRING),
                         BP = AnnotationDbi::as.list(GOBPOFFSPRING),
@@ -61,36 +61,43 @@ tcss_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
     #compute ICT value for each term
     ICT <- computeICT(GO, offspring)
     #cutoffs, all possible cutoff values
-    cutoffs <- seq(0.1, max(ICT), 0.1)
-    #all gene/protein that has none-zero annotation
-    all_pro <- unique(anno_data@geneAnno[, keytype])
+    ICT_range <- sort(unique(ICT), decreasing = TRUE)
+
+    cutoffs <- c(seq(0.1, ICT_range[3], 0.1), ceiling(ICT_range[3]*10)/10,
+                 ceiling(ICT_range[2]*10)/10)
+    #all genes/proteins that have none-zero annotations
+    all_pro <- unique(semdata@geneAnno[, keytype])
     #filter the ppidata
     filtered_ppidata <- create_filtered_ppidata(all_pro, ppidata = ppidata)
     #calcualte the similarity value for filtered_ppidata
     predict_result <- lapply(cutoffs, computePre,
-                             filtered_ppidata = filtered_ppidata, OrgDb = OrgDb,
-                             keytype = keytype, ont = ont,
+                             filtered_ppidata = filtered_ppidata,
+                             semdata = semdata,
                              combine_method = combine_method, IEAdrop = IEAdrop)
 
     #calculate the auc valur and F1_score
-    auc_F1_score <- calc_auc_F1_score(predict_result, filtered_ppidata = filtered_ppidata)
+    auc_F1_score <- calc_auc_F1_score(predict_result,
+                                      filtered_ppidata = filtered_ppidata)
     #decide the most appropriate cutoff
     decide_cutoff(auc_F1_score, cutoffs = cutoffs)
 }
 
 #' keep the proteins with none-zero annotations
 #'
-#' @param all_pro all proteins that has none-zero annotation
+#' @param all_pro all proteins that have none-zero annotations
 #' @param ppidata data.frame, already verified PPI data
+#' @importFrom stats na.omit
 #'
 #' @return data.frame, annotated protein pairs and their labels
 #' @noRd
 create_filtered_ppidata <- function(all_pro, ppidata) {
     #check data type
-    if (!(is.character(ppidata[, 1]) & is.character(ppidata[, 2]) &
+    if (!(is.character(ppidata[, 1]) && is.character(ppidata[, 2]) &&
         is.logical(ppidata[, 3]))) {
         stop("ppidata must be a data.frame with three columns:character, character, logical")
     }
+
+    ppidata <- na.omit(ppidata)
 
     #remove those proteins that have zero annotations
     len1 <- ppidata[, 1] %in% all_pro
@@ -99,15 +106,17 @@ create_filtered_ppidata <- function(all_pro, ppidata) {
     filtered_ppidata <- unique(ppidata_exist)
 
     if (dim(filtered_ppidata)[1] == 0) {
-        stop("the length of filtered ppidata is 0, none items have GO annotation")
+        stop("filtered ppidata is empty, none items have GO annotation. Please input more data.")
     }
 
-    if (all(filtered_ppidata[, 3]) | all(!filtered_ppidata[, 3])) {
-        stop("column 3 in filtered ppidata must contain TRUE and FALSE")
+    if (0 == sum(filtered_ppidata[, 3])
+        || sum(filtered_ppidata[, 3]) == length(filtered_ppidata[, 3])) {
+        stop("The filtered ppidata lacks the necessary label. Please input more data.")
     }
 
-    message(paste("positive set's length is", sum(filtered_ppidata[, 3]),
-                ", negative set's length is", sum(!filtered_ppidata[, 3])))
+    message(paste("positive set has", sum(filtered_ppidata[, 3]),
+                  "PPI pairs, negative set has", sum(!filtered_ppidata[, 3]),
+                  "PPI pairs"))
 
     return(filtered_ppidata)
 }
@@ -116,21 +125,20 @@ create_filtered_ppidata <- function(all_pro, ppidata) {
 #'
 #' @param cutoff numeric, topological cutoff
 #' @param filtered_ppidata data.frame, annotated protein pairs and their labels
+#' @param semdata GOSemSimDATA object
 #' @param OrgDb OrgDb object
 #' @param keytype keytype
-#' @param ont "BP", "MF", "CC"
 #' @param combine_method "max" "BMA", "avg", "rcmax", "rcmax.avg"
 #' @param IEAdrop TRUE/FALSE
 #' 
 #' @return list, the prediction value for the cutoff
 #' @noRd
 #'
-computePre <- function(cutoff, filtered_ppidata, OrgDb, keytype, ont,
+computePre <- function(cutoff, filtered_ppidata, semdata,
                        combine_method, IEAdrop) {
-    #semdata is defined with this input cutoff
-    suppressMessages(semdata <- godata(OrgDb = OrgDb, keytype = keytype,
-                    ont = ont, computeIC = TRUE,
-                    processTCSS = TRUE, cutoff = cutoff))
+    #tcssdata is updated with this input cutoff
+    tcssdata <- process_tcss(semdata@ont, semdata@IC, cutoff = cutoff)
+    semdata@tcssdata <- tcssdata
     #similarity value is calculated with the semdata
     mapply(function(e, f) geneSim(e, f,
                                   semData = semdata,
@@ -139,7 +147,6 @@ computePre <- function(cutoff, filtered_ppidata, OrgDb, keytype, ont,
                                   drop = IEAdrop),
                              filtered_ppidata[, 1], filtered_ppidata[, 2])
 }
-
 
 #' calculate auc and F1-score
 #'
@@ -160,7 +167,7 @@ calc_auc_F1_score <- function(predict_result, filtered_ppidata) {
     auc <- vapply(pre_value, function(e)
         ROCR::performance(ROCR::prediction(e, filtered_ppidata[, 3],
                                            label.ordering = c(FALSE, TRUE)),
-                    measure = "auc")@y.values[[1]], numeric(1))
+                          measure = "auc")@y.values[[1]], numeric(1))
 
     #F1_score at different semantic similarity cutoffs
     all_F1_score <- lapply(pre_value, function(e)
@@ -170,7 +177,7 @@ calc_auc_F1_score <- function(predict_result, filtered_ppidata) {
     #average value
     F1_score <- vapply(all_F1_score, mean, na.rm = TRUE, numeric(1))
 
-    #save as data.frame
+    #return as data.frame
     return(data.frame(auc = auc,
                       F1_score = F1_score,
                       stringsAsFactors = F))

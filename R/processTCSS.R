@@ -14,7 +14,7 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
 
     if (is.null(cutoff)) {
         message("cutoff value is not specified, default value based on human
-        data will be taken, or you can call the function 'tcss_cutoff' with your testdata")
+        data will be taken, or you can call the function 'tcss_cutoff' with your ppidata")
     }
 
     GO <- unique(names(IC))
@@ -27,7 +27,7 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
     #calculate ICT
     ICT <- computeICT(GO, offspring = offspring)
     #those nodes smaller than cutoff are meta-terms
-    meta_terms <- create_meta_terms(ont = ont, ICT, GO = GO, cutoff = cutoff)
+    meta_terms <- create_meta_terms(ont, ICT = ICT, GO = GO, cutoff = cutoff)
     #if two parent-child nodes' ICT value too close
     meta_terms <- remove_close(meta_terms, ont = ont, ICT = ICT)
     #get the terms of each sub-graph
@@ -44,7 +44,7 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
     res <- rbind(res, data.frame(GO = meta_terms, clusid = "meta",
                                  stringsAsFactors = FALSE))
 
-    #ICA means altered IC value
+    #ica means altered IC value
     res$ica <- unname(mapply(
         function(e, f) IC[e] / meta_maxIC[f], res$GO, res$clusid))
 
@@ -89,7 +89,7 @@ create_meta_terms <- function(ont, ICT, GO, cutoff) {
 #' @param meta_graph list, all sub-graphs
 #' @param IC numeric, ICT value
 #'
-#' @return numeric
+#' @return numeric, max IC in different graphs
 #' @noRd
 #'
 calc_maxIC <- function(meta_graph, IC) {
@@ -102,7 +102,7 @@ calc_maxIC <- function(meta_graph, IC) {
         #if value is empty, assign the mic value
         if (length(all) == 0) mic else max(all)
         }, numeric(1))
-    #"meta" means the graph contains all meta-terms
+    #"meta" means the graph that contains all meta-terms
     meta_maxIC["meta"] <- mic
 
     return(meta_maxIC)
@@ -136,7 +136,7 @@ create_sub_terms <- function(meta_terms, offspring) {
 #'
 #' @param meta_terms character
 #' @param ont ontology
-#' @param ICT numeric
+#' @param ICT numeric, topological information content value
 #'
 #' @return character, meta_terms with less nodes
 #' @noRd
@@ -146,13 +146,13 @@ remove_close <- function(meta_terms, ont, ICT) {
                       MF = AnnotationDbi::as.list(GOMFPARENTS),
                       BP = AnnotationDbi::as.list(GOBPPARENTS),
                       CC = AnnotationDbi::as.list(GOCCPARENTS))
-    #pre-reserve all nodes in advance
+    #reserve all nodes in advance
     all_ <- meta_terms
     for (term1 in meta_terms) {
         #parent term
         obj <- intersect(parents[[term1]], all_)
         for (term2 in obj) {
-            if (ICT[term2] != 0 & ICT[term1] / ICT[term2] <= 1.2) {
+            if (ICT[term2] != 0 && ICT[term1] / ICT[term2] <= 1.2) {
             #remove when satisfing the condition
             meta_terms <- setdiff(meta_terms, term1)
             break

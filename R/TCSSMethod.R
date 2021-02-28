@@ -6,12 +6,11 @@
 #'
 #' @return vector, similarity score for t1 and t2
 #' @noRd
-#' @importFrom stats na.omit
 #'
 #' @examples
 #' library(org.Hs.eg.db)
-#' semdata <- godata(org.Hs.eg.db, "ENTREZID", "MF", computeIC = TRUE,
-#' processTCSS = TRUE, cutoff = NULL)
+#' semdata <- godata(org.Hs.eg.db, keytype = "ENTREZID", ont = "MF",
+#' computeIC = TRUE, processTCSS = TRUE, cutoff = NULL)
 #' termSim("GO:0000003", "GO:0009987", semdata, method = "TCSS")
 tcssMethod <- function(t1, t2, semData) {
     matrix(mapply(tcssMethod_internal,
@@ -26,6 +25,7 @@ tcssMethod <- function(t1, t2, semData) {
 #' @param ID1 term
 #' @param ID2 term
 #' @param semData GOSemSimDATA object
+#' @importFrom stats na.omit
 #'
 #' @return numeric, similarity score for ID1 and ID2
 #' @noRd
@@ -36,7 +36,7 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
     ont <- semData@ont
 
     if (length(tcssdata) == 0) {
-        stop("tcss data not found, please re-generate your `semData` with `tcssprocess = TRUE`...")
+        stop("tcssdata not found, please re-generate your `semData` with `tcssprocess = TRUE`...")
     }
 
     #get common ancestors
@@ -79,15 +79,12 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
 #' @noRd
 #'
 calc_lca <- function(clus1, clus2, ID1, ID2, tcssdata, com_anc, ont) {
-
-    if (clus1 == "meta" || clus2 == "meta") {
-        return(NULL)
-    }
+    #"meta" only represents meta-graph, do not have relations
+    if (clus1 == "meta" || clus2 == "meta") return(NULL)
     #if the two clusters are the same one
     if (identical(clus1, clus2)) {
         #all cluster-nodes inside cluster
         clus_content <- tcssdata[tcssdata[, "clusid"] == clus1, ]
-
     }else {
         #all cluster-nodes inside "meta" cluster
         #common ancestors are from clus1 and clus2
@@ -95,9 +92,9 @@ calc_lca <- function(clus1, clus2, ID1, ID2, tcssdata, com_anc, ont) {
         com_anc <- ancestors_in_common(ID1 = clus1, ID2 = clus2, ont = ont)
     }
 
-    #common ancestors is slected further in cluster-nodes
+    #get common ancestors' location
     com_anc_loc <- match(com_anc, clus_content[, "GO"])
-    #common ancestors' ica value is all possible sim value
+    #common ancestors' ica value is all the possible sim value
     sim_value <- clus_content[com_anc_loc, "ica"]
 
     sim_value <- sim_value[!is.na(sim_value) & !is.infinite(sim_value)]
