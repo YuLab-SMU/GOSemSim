@@ -7,7 +7,7 @@
 #' @param IEAdrop TRUE/FALSE
 #' @param ppidata A data.frame contains positive set and negative set.
 #' Positive set is PPI pairs that already verified.
-#' ppidata only has three columns, column 1 and 2 are character, column 3 
+#' ppidata only has three columns, column 1 and 2 are character, column 3
 #' must be logical value:TRUE/FALSE.
 #'
 #' @return numeric, topological cutoff for given parameters
@@ -63,8 +63,8 @@ tcss_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
     #cutoffs, all possible cutoff values
     ICT_range <- sort(unique(ICT), decreasing = TRUE)
 
-    cutoffs <- c(seq(0.1, ICT_range[3], 0.1), ceiling(ICT_range[3]*10)/10,
-                 ceiling(ICT_range[2]*10)/10)
+    cutoffs <- c(seq(0.1, ICT_range[3], 0.1), ceiling(ICT_range[3] * 10) / 10,
+                 ceiling(ICT_range[2] * 10) / 10)
     #all genes/proteins that have none-zero annotations
     all_pro <- unique(semdata@geneAnno[, keytype])
     #filter the ppidata
@@ -105,18 +105,21 @@ create_filtered_ppidata <- function(all_pro, ppidata) {
     ppidata_exist <- ppidata[len1 & len2, ]
     filtered_ppidata <- unique(ppidata_exist)
 
-    if (dim(filtered_ppidata)[1] == 0) {
+    len <- dim(filtered_ppidata)[1]
+
+    if (len == 0) {
         stop("filtered ppidata is empty, none items have GO annotation. Please input more data.")
     }
 
-    if (0 == sum(filtered_ppidata[, 3])
-        || sum(filtered_ppidata[, 3]) == length(filtered_ppidata[, 3])) {
-        stop("The filtered ppidata lacks the necessary label. Please input more data.")
+    number_T <- sum(filtered_ppidata[, 3])
+    number_F <- len - number_T
+
+    if (number_T == len || number_F == len) {
+        stop("The filtered ppidata lacks the necessary label:TRUE and FALSE. Please input more data.")
     }
 
-    message(paste("positive set has", sum(filtered_ppidata[, 3]),
-                  "PPI pairs, negative set has", sum(!filtered_ppidata[, 3]),
-                  "PPI pairs"))
+    message(paste("positive set has", number_T,
+                  "PPI pairs, negative set has", number_F, "PPI pairs"))
 
     return(filtered_ppidata)
 }
@@ -130,7 +133,6 @@ create_filtered_ppidata <- function(all_pro, ppidata) {
 #' @param keytype keytype
 #' @param combine_method "max" "BMA", "avg", "rcmax", "rcmax.avg"
 #' @param IEAdrop TRUE/FALSE
-#' 
 #' @return list, the prediction value for the cutoff
 #' @noRd
 #'
@@ -152,7 +154,6 @@ computePre <- function(cutoff, filtered_ppidata, semdata,
 #'
 #' @param predict_result list, prediction value for all cutoffs
 #' @param filtered_ppidata data.frame, annotated protein pairs and their labels
-#' 
 #' @return data.frame, auc and F1-score value for different cutoffs
 #' @noRd
 #'
@@ -187,7 +188,6 @@ calc_auc_F1_score <- function(predict_result, filtered_ppidata) {
 #'
 #' @param auc_F1_score data.frame, auc and F1-score value for different cutoffs
 #' @param cutoffs vector, all possible cutoff values
-#' 
 #' @return vector, topological cutoff for given parameters
 #' @noRd
 #'
@@ -198,7 +198,7 @@ decide_cutoff <- function(auc_F1_score, cutoffs) {
     loca <- which(auc_mutiply_F1 == max(auc_mutiply_F1))
 
     if (length(loca) == 1)  return(cutoffs[loca])
-    
+
     #if not only one pair of auc and F1-score have same product
     #take the one with larger auc
     select_auc <- auc_F1_score[loca, "auc"]
