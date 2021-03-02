@@ -53,7 +53,8 @@ tcss_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
     semdata <- godata(OrgDb, keytype = keytype, ont = ont, computeIC = TRUE,
                         processTCSS = FALSE, cutoff = NULL)
     #cutoff is in the range of ICT value
-    GO <- unique(names(semdata@IC))
+    IC <- semdata@IC
+    GO <- names(IC[!is.infinite(IC)])
     offspring <- switch(ont,
                         MF = AnnotationDbi::as.list(GOMFOFFSPRING),
                         BP = AnnotationDbi::as.list(GOBPOFFSPRING),

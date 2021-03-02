@@ -17,7 +17,7 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
         data will be taken, or you can call the function 'tcss_cutoff' with your ppidata")
     }
 
-    GO <- unique(names(IC))
+    GO <- names(IC[!is.infinite(IC)])
 
     offspring <- switch(ont,
                       MF = AnnotationDbi::as.list(GOMFOFFSPRING),
@@ -53,22 +53,23 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
 
 #' compute ICT (information content topology) for each term
 #'
-#' @param GO character, all go terms
+#' @param GO character, all go terms, species specific
 #' @param offspring list, offspring nodes
 #'
 #' @return numeric, ICT value
 #' @noRd
 #'
 computeICT <- function(GO, offspring) {
+    all <- length(names(offspring))
     vapply(GO, function(e)
-        -log10(length(offspring[[e]]) / length(GO)), numeric(1))
+        -log10(length(offspring[[e]]) / all), numeric(1))
 }
 
 #' all nodes with ICT value under cutoff are meta_terms
 #'
 #' @param ont ontology
 #' @param ICT numeric, ICT value
-#' @param GO character, all go terms
+#' @param GO character, all go terms, species specific
 #' @param cutoff numeric, topological cutoff
 #'
 #' @return character, sub-graph-root nodes

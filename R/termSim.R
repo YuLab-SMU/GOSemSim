@@ -37,5 +37,5 @@ termSim <- function(t1,
         return(wangMethod(t1, t2, semData@ont))
     } else if ( method == "TCSS" ) {
         return(tcssMethod(t1, t2, semData))
-}
+    }
 }
