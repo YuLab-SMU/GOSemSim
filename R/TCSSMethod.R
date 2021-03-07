@@ -116,13 +116,31 @@ calc_lca <- function(clus1, clus2, ID1, ID2, tcssdata, com_anc, ont) {
 #' @noRd
 #'
 ancestors_in_common <- function(ID1, ID2, ont) {
-    ancestor1 <- getAncestors(ont)[[ID1]]
-    ancestor2 <- getAncestors(ont)[[ID2]]
+    ancestor1 <- ancestors_envir(ID1, ont)
+    ancestor2 <- ancestors_envir(ID2, ont)
 
     if (ID1 == ID2 || ID1 %in% ancestor2) return(ID1)
 
     if (ID2 %in% ancestor1) return(ID2)
 
     setdiff(intersect(ancestor1, ancestor2), "all")
+}
 
+#' get ancestors from environment
+#'
+#' @param ID term
+#' @param ont ontology
+#'
+#' @return ancestors for ID
+#' @noRd
+ancestors_envir <- function(ID, ont) {
+    if (!exists(".ancCache")) .initial()
+    .ancCache <- get(".ancCache", envir = .GlobalEnv)
+
+    if (exists(ID, envir = .ancCache)) {
+        return(get(ID, envir = .ancCache))
+    }
+    ancestors <- getAncestors(ont)[[ID]]
+    assign(ID, ancestors, envir = .ancCache)
+    return(ancestors)
 }
