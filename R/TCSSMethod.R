@@ -119,9 +119,9 @@ ancestors_in_common <- function(ID1, ID2, ont) {
     ancestor1 <- ancestors_envir(ID1, ont)
     ancestor2 <- ancestors_envir(ID2, ont)
 
-    if (ID1 == ID2 || ID1 %in% ancestor2) return(ID1)
+    if (ID1 == ID2 || any(ancestor2 == ID1)) return(ID1)
 
-    if (ID2 %in% ancestor1) return(ID2)
+    if (any(ancestor1 == ID2)) return(ID2)
 
     setdiff(intersect(ancestor1, ancestor2), "all")
 }
