@@ -33,14 +33,14 @@
 #'
 #'     #select length
 #'     s_len <- 500
-#'     loca_1 <- sample(len, s_len, replace = T)
+#'     pos_1 <- sample(len, s_len, replace = T)
 #'     #negative set
-#'     loca_2 <- sample(len, s_len, replace = T)
-#'     loca_3 <- sample(len, s_len, replace = T)
+#'     pos_2 <- sample(len, s_len, replace = T)
+#'     pos_3 <- sample(len, s_len, replace = T)
 #'
 #'     #union as ppidata
-#'     ppidata <- data.frame(pro1 = c(ppi$from[loca_1], ppi$from[loca_2]),
-#'      pro2 = c(ppi$to[loca_1], ppi$to[loca_3]),
+#'     ppidata <- data.frame(pro1 = c(ppi$from[pos_1], ppi$from[pos_2]),
+#'      pro2 = c(ppi$to[pos_1], ppi$to[pos_3]),
 #'      label = c(rep(TRUE, s_len), rep(FALSE, s_len)),
 #'      stringsAsFactors = FALSE)
 #'
@@ -62,10 +62,7 @@ tcss_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
     #compute ICT value for each term
     ICT <- computeICT(GO, offspring)
     #cutoffs, all possible cutoff values
-    ICT_range <- sort(unique(ICT), decreasing = TRUE)
-
-    cutoffs <- c(seq(0.1, ICT_range[3], 0.1), ceiling(ICT_range[3] * 10) / 10,
-                 ceiling(ICT_range[2] * 10) / 10)
+    cutoffs <- seq(0.1, max(ICT) + 0.1, by = 0.1)
     #all genes/proteins that have none-zero annotations
     all_pro <- unique(semdata@geneAnno[, keytype])
     #filter the ppidata
@@ -112,15 +109,15 @@ create_filtered_ppidata <- function(all_pro, ppidata) {
         stop("filtered ppidata is empty, none items have GO annotation. Please input more data.")
     }
 
-    number_T <- sum(filtered_ppidata[, 3])
-    number_F <- len - number_T
+    nTrue <- sum(filtered_ppidata[, 3])
+    nFalse <- len - nTrue
 
-    if (number_T == len || number_F == len) {
+    if (nTrue == len || nFalse == len) {
         stop("The filtered ppidata lacks the necessary label:TRUE and FALSE. Please input more data.")
     }
 
-    message(paste("positive set has", number_T,
-                  "PPI pairs, negative set has", number_F, "PPI pairs"))
+    message(paste("positive set has", nTrue,
+                  "PPI pairs, negative set has", nFalse, "PPI pairs"))
 
     return(filtered_ppidata)
 }
@@ -130,8 +127,6 @@ create_filtered_ppidata <- function(all_pro, ppidata) {
 #' @param cutoff numeric, topological cutoff
 #' @param filtered_ppidata data.frame, annotated protein pairs and their labels
 #' @param semdata GOSemSimDATA object
-#' @param OrgDb OrgDb object
-#' @param keytype keytype
 #' @param combine_method "max" "BMA", "avg", "rcmax", "rcmax.avg"
 #' @param IEAdrop TRUE/FALSE
 #' @return list, the prediction value for the cutoff
@@ -142,6 +137,7 @@ computePre <- function(cutoff, filtered_ppidata, semdata,
     #tcssdata is updated with this input cutoff
     tcssdata <- process_tcss(semdata@ont, semdata@IC, cutoff = cutoff)
     semdata@tcssdata <- tcssdata
+    semdata@tcssdata <- na.omit(tcssdata)
     #similarity value is calculated with the semdata
     mapply(function(e, f) geneSim(e, f,
                                   semData = semdata,
@@ -163,17 +159,17 @@ calc_auc_F1_score <- function(predict_result, filtered_ppidata) {
     len <- dim(filtered_ppidata)[1]
     value_loc <- seq(from = 1, to = len * 3, by = 3)
     #just the similarity value
-    pre_value <- lapply(predict_result, function(e) as.numeric(e[value_loc]))
+    pre_value <- lapply(predict_result, function(p) as.numeric(p[value_loc]))
 
     #auc value
-    auc <- vapply(pre_value, function(e)
-        ROCR::performance(ROCR::prediction(e, filtered_ppidata[, 3],
+    auc <- vapply(pre_value, function(pv)
+        ROCR::performance(ROCR::prediction(pv, filtered_ppidata[, 3],
                                            label.ordering = c(FALSE, TRUE)),
                           measure = "auc")@y.values[[1]], numeric(1))
 
     #F1_score at different semantic similarity cutoffs
-    all_F1_score <- lapply(pre_value, function(e)
-        ROCR::performance(ROCR::prediction(e, filtered_ppidata[, 3],
+    all_F1_score <- lapply(pre_value, function(pv)
+        ROCR::performance(ROCR::prediction(pv, filtered_ppidata[, 3],
                                            label.ordering = c(FALSE, TRUE)),
                     measure = "f")@y.values[[1]])
     #average value
@@ -196,19 +192,19 @@ decide_cutoff <- function(auc_F1_score, cutoffs) {
     #product value satisfies the "both maximized" requirement
     auc_mutiply_F1 <- auc_F1_score[, "auc"] * auc_F1_score[, "F1_score"]
     #get the max product value
-    loca <- which(auc_mutiply_F1 == max(auc_mutiply_F1))
+    pos <- which(auc_mutiply_F1 == max(auc_mutiply_F1))
 
-    if (length(loca) == 1)  return(cutoffs[loca])
+    if (length(pos) == 1)  return(cutoffs[pos])
 
     #if not only one pair of auc and F1-score have same product
     #take the one with larger auc
-    select_auc <- auc_F1_score[loca, "auc"]
+    select_auc <- auc_F1_score[pos, "auc"]
 
-    auc_loca <- which(select_auc == max(select_auc))
+    auc_pos <- which(select_auc == max(select_auc))
 
-    if (length(auc_loca) == 1) return(cutoffs[loca[auc_loca]])
+    if (length(auc_pos) == 1) return(cutoffs[pos[auc_pos]])
 
     #if more than one pair of auc and F1-score are both same
     #take the smaller cutoff for time saving
-    return(cutoffs[loca[min(auc_loca)]])
+    return(cutoffs[pos[min(auc_pos)]])
 }
