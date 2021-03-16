@@ -15,6 +15,8 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
     if (is.null(cutoff)) {
         message("cutoff value is not specified, default value based on human
         data will be taken, or you can call the function 'tcss_cutoff' with your ppidata")
+    }else if (cutoff <= 0) {
+        stop("cutoff value must be greater than 0")
     }
 
     GO <- names(IC[!is.infinite(IC)])
@@ -60,9 +62,15 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
 #' @noRd
 #'
 computeICT <- function(GO, offspring) {
-    all <- length(names(offspring))
-    vapply(GO, function(e)
-        -log10(length(offspring[[e]]) / all), numeric(1))
+    filtered_offspring <- offspring[GO]
+    all <- length(GO)
+    
+    vapply(filtered_offspring, function(off)
+        #only term itself
+        if (any(is.na(off))) -log10(1 / all)
+        #add term itself
+        else -log10((sum(off %in% GO) + 1) / all),
+        numeric(1))
 }
 
 #' all nodes with ICT value under cutoff are meta_terms
@@ -97,8 +105,8 @@ calc_maxIC <- function(meta_graph, IC) {
     #mic : max IC value of all terms
     mic <- max(IC[!is.infinite(IC)])
 
-    meta_maxIC <- vapply(meta_graph, function(e) {
-        all <- IC[e]
+    meta_maxIC <- vapply(meta_graph, function(g_terms) {
+        all <- IC[g_terms]
         all <- all[!is.na(all) & !is.infinite(all)]
         #if value is empty, assign the mic value
         if (length(all) == 0) mic else max(all)
@@ -118,8 +126,8 @@ calc_maxIC <- function(meta_graph, IC) {
 #' @noRd
 #'
 create_sub_terms <- function(meta_terms, offspring) {
-    res <- lapply(meta_terms, function(e) {
-        all <- offspring[[e]]
+    res <- lapply(meta_terms, function(term) {
+        all <- offspring[[term]]
         #other sub-root-node
         other_sub <- intersect(all, meta_terms)
         #other sub-root-node's offspring
@@ -127,7 +135,7 @@ create_sub_terms <- function(meta_terms, offspring) {
         #remove
         terms <- setdiff(all, other_sub_offs)
         #add term itself
-        terms <- c(terms, e)
+        terms <- c(terms, term)
     })
     names(res) <- meta_terms
     return(res)
