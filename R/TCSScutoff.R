@@ -4,7 +4,6 @@
 #' @param keytype keytype
 #' @param ont ontology : "BP", "MF", "CC"
 #' @param combine_method "max", "BMA", "avg", "rcmax", "rcmax.avg"
-#' @param IEAdrop TRUE/FALSE
 #' @param ppidata A data.frame contains positive set and negative set.
 #' Positive set is PPI pairs that already verified.
 #' ppidata only has three columns, column 1 and 2 are character, column 3
@@ -45,10 +44,10 @@
 #'      stringsAsFactors = FALSE)
 #'
 #'     cutoff <- tcss_cutoff(OrgDb = org.Hs.eg.db, keytype = "ENSEMBLPROT",
-#'     ont = "BP", combine_method = "max", IEAdrop = FALSE, ppidata)
+#'     ont = "BP", combine_method = "max", ppidata)
 #' }
 tcss_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
-                       combine_method = "max", IEAdrop = FALSE, ppidata) {
+                       combine_method = "max", ppidata) {
 
     semdata <- godata(OrgDb, keytype = keytype, ont = ont, computeIC = TRUE,
                         processTCSS = FALSE, cutoff = NULL)
@@ -71,7 +70,7 @@ tcss_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
     predict_result <- lapply(cutoffs, computePre,
                              filtered_ppidata = filtered_ppidata,
                              semdata = semdata,
-                             combine_method = combine_method, IEAdrop = IEAdrop)
+                             combine_method = combine_method)
 
     #calculate the auc valur and F1_score
     auc_F1_score <- calc_auc_F1_score(predict_result,
@@ -128,12 +127,11 @@ create_filtered_ppidata <- function(all_pro, ppidata) {
 #' @param filtered_ppidata data.frame, annotated protein pairs and their labels
 #' @param semdata GOSemSimDATA object
 #' @param combine_method "max" "BMA", "avg", "rcmax", "rcmax.avg"
-#' @param IEAdrop TRUE/FALSE
 #' @return list, the prediction value for the cutoff
 #' @noRd
 #'
 computePre <- function(cutoff, filtered_ppidata, semdata,
-                       combine_method, IEAdrop) {
+                       combine_method) {
     #tcssdata is updated with this input cutoff
     tcssdata <- process_tcss(semdata@ont, semdata@IC, cutoff = cutoff)
     semdata@tcssdata <- tcssdata
@@ -142,8 +140,7 @@ computePre <- function(cutoff, filtered_ppidata, semdata,
     mapply(function(e, f) geneSim(e, f,
                                   semData = semdata,
                                   measure = "TCSS",
-                                  combine = combine_method,
-                                  drop = IEAdrop),
+                                  combine = combine_method),
                              filtered_ppidata[, 1], filtered_ppidata[, 2])
 }
 
