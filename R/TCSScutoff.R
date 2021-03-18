@@ -75,8 +75,8 @@ tcss_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
     i_pos <- best_cutoff_position(initial_predict,
                                   filtered_ppidata = filtered_ppidata)
     #possible cutoffs in small gap
-    final_cutoffs <- seq(initial_cutoffs[min(i_pos)],
-                         initial_cutoffs[max(i_pos)], by = 0.1)
+    final_cutoffs <- seq(initial_cutoffs[min(i_pos)] - 0.4,
+                         initial_cutoffs[max(i_pos)] + 0.4, by = 0.1)
     #compute prediction value again
     final_predict <- lapply(final_cutoffs, computePre,
                             filtered_ppidata = filtered_ppidata,
@@ -143,13 +143,13 @@ create_filtered_ppidata <- function(all_pro, ppidata) {
 computePre <- function(cutoff, filtered_ppidata, semdata, combine_method) {
     #tcssdata is updated with this input cutoff
     tcssdata <- process_tcss(semdata@ont, semdata@IC, cutoff = cutoff)
-    semdata@tcssdata <- tcssdata
     #NA is produced when cutoff out of range
     semdata@tcssdata <- na.omit(tcssdata)
     #similarity value is calculated with the semdata
     mapply(function(e, f) geneSim(e, f,
                                   semData = semdata,
                                   measure = "TCSS",
+                                  drop = FALSE,
                                   combine = combine_method),
            filtered_ppidata[, 1], filtered_ppidata[, 2])
 }
@@ -166,7 +166,7 @@ best_cutoff_position <- function(predict_result, filtered_ppidata) {
     value_loc <- seq(from = 1, to = len * 3, by = 3)
     #just the similarity value
     pre_value <- lapply(predict_result, function(e) as.numeric(e[value_loc]))
-    
+
     #auc value
     auc <- vapply(pre_value, function(e)
         ROCR::performance(ROCR::prediction(e, filtered_ppidata[, 3],
