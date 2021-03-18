@@ -64,13 +64,17 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
 computeICT <- function(GO, offspring) {
     filtered_offspring <- offspring[GO]
     all <- length(GO)
-    
-    vapply(filtered_offspring, function(off)
-        #only term itself
-        if (any(is.na(off))) -log10(1 / all)
-        #add term itself
-        else -log10((sum(off %in% GO) + 1) / all),
-        numeric(1))
+    num <- -log10(1 / all)
+  
+    vapply(filtered_offspring, function(off) {
+        if (any(is.na(off))) {
+            #only term itself
+            num
+        }else {
+            #add term itself
+            -log10((sum(off %in% GO) + 1) / all)
+        }
+    }, numeric(1))
 }
 
 #' all nodes with ICT value under cutoff are meta_terms
