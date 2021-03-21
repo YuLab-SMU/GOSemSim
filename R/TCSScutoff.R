@@ -158,28 +158,31 @@ computePre <- function(cutoff, filtered_ppidata, semdata, combine_method) {
 #'
 #' @param predict_result list, prediction value for all cutoffs
 #' @param filtered_ppidata data.frame, annotated protein pairs and their labels
+#' @importFrom methods slot
 #' @return vector, the position number in cutoffs
 #' @noRd
 best_cutoff_position <- function(predict_result, filtered_ppidata) {
+    #the label for PPIs, TRUE/FALSE
+    label <- filtered_ppidata[, 3]
+    
     #geneSim returns one value and two characters in once calculation
-    len <- dim(filtered_ppidata)[1]
-    value_loc <- seq(from = 1, to = len * 3, by = 3)
+    value_loc <- seq(from = 1, to = length(label) * 3, by = 3)
     #just the similarity value
     pre_value <- lapply(predict_result, function(e) as.numeric(e[value_loc]))
-
-    #auc value
-    auc <- vapply(pre_value, function(e)
-        ROCR::performance(ROCR::prediction(e, filtered_ppidata[, 3],
-                                           label.ordering = c(FALSE, TRUE)),
-                          measure = "auc")@y.values[[1]], numeric(1))
     
-    #F1_score at different semantic similarity cutoffs
-    all_F1_score <- lapply(pre_value, function(e)
-        ROCR::performance(ROCR::prediction(e, filtered_ppidata[, 3],
-                                           label.ordering = c(FALSE, TRUE)),
-                          measure = "f")@y.values[[1]])
-    #average value
-    F1_score <- vapply(all_F1_score, mean, na.rm = TRUE, numeric(1))
+    #prediction object
+    pred <- lapply(pre_value, function(e) ROCR::prediction(e, label,
+                                            label.ordering = c(FALSE, TRUE)))
+    #performance object for auc
+    perf_auc <- lapply(pred, ROCR::performance, measure = "auc")
+    #auc value
+    auc <- unlist(lapply(perf_auc, function(e) slot(e, "y.values")[[1]]))
+    #performance object for F1-score
+    perf_F1_score <- lapply(pred, ROCR::performance, measure = "f")
+    #F1-score value, average value at different semantic similarity cutoffs
+    F1_score <- unlist(lapply(perf_F1_score, function(e)
+        mean(slot(e, "y.values")[[1]], na.rm = TRUE)))
+    
     #multiplier effect helps to maximize both the auc and F1-score
     auc_mutiply_F1 <- auc * F1_score
     #get the position
