@@ -1,7 +1,7 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-Version: 2.17.1
+Version: 2.17.2
 Authors@R: c( person(given = "Guangchuang", family = "Yu",             email = "guangchuangyu@gmail.com", role  = c("aut", "cre")),
               person(given = "Alexey",      family = "Stukalov",       email = "astukalov@gmail.com",     role  = "ctb"),
               person(given = "Chuanle",     family = "Xiao",           email = "xiaochuanle@126.com",     role  = "ctb"),
@@ -28,6 +28,7 @@ Suggests:
     clusterProfiler,
     DOSE,
     knitr,
+    rmarkdown,
     org.Hs.eg.db,
     prettydoc,
     testthat
