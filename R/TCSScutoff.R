@@ -36,7 +36,6 @@
 #'     #negative set
 #'     pos_2 <- sample(len, s_len, replace = T)
 #'     pos_3 <- sample(len, s_len, replace = T)
-#'
 #'     #union as ppidata
 #'     ppidata <- data.frame(pro1 = c(ppi$from[pos_1], ppi$from[pos_2]),
 #'      pro2 = c(ppi$to[pos_1], ppi$to[pos_3]),
@@ -134,8 +133,8 @@ computePre <- function(cutoff, filtered_ppidata, semdata,
                        combine_method) {
   #tcssdata is updated with this input cutoff
   tcssdata <- process_tcss(semdata@ont, semdata@IC, cutoff = cutoff)
-  
-  semdata@tcssdata <- na.omit(tcssdata)
+
+  semdata@tcssdata <- tcssdata
   #similarity value is calculated with the semdata
   mapply(function(e, f) geneSim(e, f,
                                 semData = semdata,
@@ -150,20 +149,23 @@ computePre <- function(cutoff, filtered_ppidata, semdata,
 #' @param predict_result list, prediction value for all cutoffs
 #' @param filtered_ppidata data.frame, annotated protein pairs and their labels
 #' @return data.frame, auc and F1-score value for different cutoffs
+#' @importFrom methods slot
 #' @noRd
 #'
 calc_auc_F1_score <- function(predict_result, filtered_ppidata) {
   # the label for PPIs, TRUE/FALSE
   label <- filtered_ppidata[, 3]
-  
   #geneSim returns one value and two characters in once calculation
   value_loc <- seq(from = 1, to = length(label) * 3, by = 3)
   #just the similarity value
   pre_value <- lapply(predict_result, function(p) as.numeric(p[value_loc]))
+  #returned value may contains NA
+  pos_stay <- !is.na(pre_value[[1]])
+  label <- label[pos_stay]
   
   # prediction object
   pred <- lapply(pre_value, function(e) {
-    ROCR::prediction(e, label,
+    ROCR::prediction(e[pos_stay], label,
                      label.ordering = c(FALSE, TRUE)
     )
   })

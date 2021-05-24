@@ -71,7 +71,7 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
     sim_value <- sim_value[!is.infinite(sim_value)]
 
     if (is.null(sim_value) || length(sim_value) == 0) {
-        return(NULL)
+        return(NA)
     }
     # here max value means lowest common ancestor
     max(sim_value)
