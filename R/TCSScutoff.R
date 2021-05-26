@@ -6,7 +6,7 @@
 #' @param combine_method "max", "BMA", "avg", "rcmax", "rcmax.avg"
 #' @param ppidata A data.frame contains positive set and negative set.
 #' Positive set is PPI pairs that already verified.
-#' ppidata only has three columns, column 1 and 2 are character, column 3
+#' ppidata has three columns, column 1 and 2 are character, column 3
 #' must be logical value:TRUE/FALSE.
 #'
 #' @return numeric, topological cutoff for given parameters
@@ -18,10 +18,10 @@
 #'     library(STRINGdb)
 #'
 #'     string_db <- STRINGdb$new(version = "11.0", species = 9606,
-#'     score_threshold = 900)
+#'     score_threshold = 700)
 #'     string_proteins <- string_db$get_proteins()
 #'
-#'     #get realtionship
+#'     #get relationship
 #'     ppi <- string_db$get_interactions(string_proteins$protein_external_id)
 #'
 #'     ppi$from <- vapply(ppi$from, function(e)
@@ -65,13 +65,13 @@ tcss_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
   all_pro <- unique(semdata@geneAnno[, keytype])
   #filter the ppidata
   filtered_ppidata <- create_filtered_ppidata(all_pro, ppidata = ppidata)
-  #calcualte the similarity value for filtered_ppidata
+  #calculate the similarity value for filtered_ppidata
   predict_result <- lapply(cutoffs, computePre,
                            filtered_ppidata = filtered_ppidata,
                            semdata = semdata,
                            combine_method = combine_method)
   
-  #calculate the auc valur and F1_score
+  #calculate the auc and F1_score
   auc_F1_score <- calc_auc_F1_score(predict_result,
                                     filtered_ppidata = filtered_ppidata)
   #decide the most appropriate cutoff
@@ -95,7 +95,7 @@ create_filtered_ppidata <- function(all_pro, ppidata) {
   
   ppidata <- na.omit(ppidata)
   
-  #remove those proteins that have zero annotations
+  #remove proteins that have zero annotations
   len1 <- ppidata[, 1] %in% all_pro
   len2 <- ppidata[, 2] %in% all_pro
   ppidata_exist <- ppidata[len1 & len2, ]
@@ -126,7 +126,7 @@ create_filtered_ppidata <- function(all_pro, ppidata) {
 #' @param filtered_ppidata data.frame, annotated protein pairs and their labels
 #' @param semdata GOSemSimDATA object
 #' @param combine_method "max" "BMA", "avg", "rcmax", "rcmax.avg"
-#' @return list, the prediction value for the cutoff
+#' @return list, the prediction value for the input cutoff
 #' @noRd
 #'
 computePre <- function(cutoff, filtered_ppidata, semdata,

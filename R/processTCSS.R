@@ -4,7 +4,7 @@
 #' @param IC information content
 #' @param cutoff the topology cutoff
 #'
-#' @return data.frame, tcssdata, the cluster-id and cluster-value of nodes
+#' @return list, belonged clusters and its elements for all nodes
 #' @noRd
 process_tcss <- function(ont, IC, cutoff = NULL) {
     if (length(IC) == 0) {
@@ -28,11 +28,11 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
 
     # calculate ICT
     ICT <- computeICT(GO, offspring = offspring)
-    # those nodes smaller than cutoff are meta-terms
+    # nodes smaller than cutoff are meta-terms
     meta_terms <- create_meta_terms(ont, ICT = ICT, GO = GO, cutoff = cutoff)
     # if two parent-child nodes' ICT value too close
     meta_terms <- remove_close(meta_terms, ont = ont, ICT = ICT)
-    # relationship between cluster-id with its elements
+    # relationship between cluster-id and its elements
     meta_graph <- create_sub_terms(meta_terms, offspring = offspring)
     #for all GO terms, get the contained elements
     GO_element <- lapply(GO, function(t) {
@@ -42,13 +42,14 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
 
     # get the max IC value for each graph
     meta_maxIC <- calc_maxIC(meta_terms, GO_element = GO_element, IC = IC)
-
     names(GO_element) <- GO
+    
     #return a nested structure, data.frame is nested within list
     res <- lapply(GO, function(t) {
         list("element" = data.frame(GO = GO_element[[t]],
                                     ica = unname(
-                                        IC[GO_element[[t]]] / meta_maxIC[t])),
+                                        IC[GO_element[[t]]] / meta_maxIC[t]
+                                        )),
              "clusid" = meta_graph[meta_graph[, "element"] == t, "cluster"])
     })
 
@@ -99,17 +100,17 @@ computeICT <- function(GO, offspring) {
 create_meta_terms <- function(ont, ICT, GO, cutoff) {
     if (is.null(cutoff)) {
         cutoff <- switch(ont,
-                         MF = 3.0,
-                         BP = 3.8,
-                         CC = 3.0
+                         MF = 3.5,
+                         BP = 3.5,
+                         CC = 3.2
         )
     }
     GO[which(ICT <= cutoff)]
 }
 
-#' for each graph calculate their max IC value
+#' calculate every graph's max IC value
 #'
-#' @param meta_terms all cluster ids but "meta"
+#' @param meta_terms character, all cluster ids but "meta"
 #' @param GO_element the contained elements
 #' @param IC numeric, ICT value
 #'
@@ -133,7 +134,7 @@ calc_maxIC <- function(meta_terms, GO_element, IC) {
 
 #' get the relationship between clusters and elements
 #'
-#' @param meta_terms character
+#' @param meta_terms character, all cluster ids but "meta"
 #' @param offspring list
 #'
 #' @return data.frame, relationship between clusters and elements
@@ -165,11 +166,11 @@ create_sub_terms <- function(meta_terms, offspring) {
 
 #' remove close relation in meta_terms
 #'
-#' @param meta_terms character
+#' @param meta_terms character, all cluster ids but "meta"
 #' @param ont ontology
 #' @param ICT numeric, topological information content value
 #'
-#' @return character, meta_terms with less nodes
+#' @return character, meta_terms with fewer nodes
 #' @noRd
 #'
 remove_close <- function(meta_terms, ont, ICT) {
@@ -185,7 +186,7 @@ remove_close <- function(meta_terms, ont, ICT) {
         obj <- intersect(parents[[term1]], all_)
         for (term2 in obj) {
             if (ICT[term2] != 0 && ICT[term1] / ICT[term2] <= 1.2) {
-                # remove when satisfing the condition
+                # remove when satisfying the condition
                 meta_terms <- setdiff(meta_terms, term1)
                 break
             }

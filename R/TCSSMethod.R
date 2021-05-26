@@ -35,7 +35,7 @@ tcssMethod <- function(t1, t2, semData) {
 #' @noRd
 #'
 tcssMethod_internal <- function(ID1, ID2, semData) {
-    tcssdata <- na.omit(semData@tcssdata)
+    tcssdata <- semData@tcssdata
     ont <- semData@ont
 
     if (length(tcssdata) == 0) {
