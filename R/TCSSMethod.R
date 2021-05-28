@@ -15,11 +15,10 @@
 #' )
 #' termSim("GO:0000003", "GO:0009987", semdata, method = "TCSS")
 tcssMethod <- function(t1, t2, semData) {
-    matrix(unlist(mapply(tcssMethod_internal,
+    matrix(mapply(tcssMethod_internal,
                   rep(t1, length(t2)),
                   rep(t2, each = length(t1)),
-                  MoreArgs = list(semData = semData)
-    , SIMPLIFY = FALSE)),
+                  MoreArgs = list(semData = semData)),
     dimnames = list(t1, t2), ncol = length(t2)
     )
 }
@@ -63,7 +62,8 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
                                )
                                , SIMPLIFY = FALSE))
 
-    sim_value <- sim_value[!is.na(sim_value) & !is.infinite(sim_value)]
+    sim_value <- sim_value[!is.na(sim_value) &
+                               !is.infinite(sim_value)]
 
     if (is.null(sim_value) || length(sim_value) == 0) {
         return(NA)
