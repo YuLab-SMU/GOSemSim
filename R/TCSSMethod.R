@@ -15,11 +15,11 @@
 #' )
 #' termSim("GO:0000003", "GO:0009987", semdata, method = "TCSS")
 tcssMethod <- function(t1, t2, semData) {
-    matrix(mapply(tcssMethod_internal,
+    matrix(unlist(mapply(tcssMethod_internal,
                   rep(t1, length(t2)),
                   rep(t2, each = length(t1)),
                   MoreArgs = list(semData = semData)
-    ),
+    , SIMPLIFY = FALSE)),
     dimnames = list(t1, t2), ncol = length(t2)
     )
 }
@@ -29,7 +29,6 @@ tcssMethod <- function(t1, t2, semData) {
 #' @param ID1 term
 #' @param ID2 term
 #' @param semData GOSemSimDATA object
-#' @importFrom stats na.omit
 #'
 #' @return numeric, similarity score for ID1 and ID2
 #' @noRd
@@ -54,7 +53,7 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
     clus2_list <- tcssdata[[ID2]][["clusid"]]
 
     # calculate within different clusters
-    sim_value <- matrix(mapply(calc_lca,
+    sim_value <- unlist(mapply(calc_lca,
                                rep(clus1_list, length(clus2_list)),
                                rep(clus2_list, each = length(clus1_list)),
                                MoreArgs = list(
@@ -62,13 +61,9 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
                                    tcssdata = tcssdata,
                                    com_anc = com_anc, ont = ont
                                )
-    ),
-    dimnames = list(clus1_list, clus2_list),
-    ncol = length(clus2_list)
-    )
+                               , SIMPLIFY = FALSE))
 
-    sim_value <- na.omit(unlist(sim_value))
-    sim_value <- sim_value[!is.infinite(sim_value)]
+    sim_value <- sim_value[!is.na(sim_value) & !is.infinite(sim_value)]
 
     if (is.null(sim_value) || length(sim_value) == 0) {
         return(NA)
