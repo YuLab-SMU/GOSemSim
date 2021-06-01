@@ -59,10 +59,7 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
                                    ID1 = ID1, ID2 = ID2,
                                    tcssdata = tcssdata,
                                    com_anc = com_anc, ont = ont
-                               )
-                               , SIMPLIFY = FALSE))
-
-    sim_value <- sim_value[!is.na(sim_value) & !is.infinite(sim_value)]
+                               )))
 
     if (is.null(sim_value) || length(sim_value) == 0) {
         return(NA)
@@ -100,17 +97,14 @@ calc_lca <- function(clus1, clus2, ID1, ID2, tcssdata, com_anc, ont) {
         com_anc <- ancestors_in_common(ID1 = clus1, ID2 = clus2, ont = ont)
     }
 
-    # get common ancestors' location
-    com_anc_loc <- match(com_anc, clus_content[, "GO"])
+    # get common ancestors' location, nomatch helps not to introduce NA
+    com_anc_loc <- match(com_anc, clus_content[, "GO"], nomatch = 0)
     # common ancestors' ica value is all the possible sim value
     sim_value <- clus_content[com_anc_loc, "ica"]
-
-    sim_value <- sim_value[!is.na(sim_value) & !is.infinite(sim_value)]
 
     if (is.null(sim_value) || length(sim_value) == 0) {
         return(NULL)
     }
-
     # here max similarity value means one of lowest common ancestors
     max(sim_value)
 }

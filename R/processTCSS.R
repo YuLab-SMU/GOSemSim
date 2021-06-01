@@ -150,7 +150,7 @@ create_sub_terms <- function(meta_terms, offspring) {
         # other sub-root-node's offspring
         other_sub_offs <- unlist(offspring[other_sub])
         # remove
-        terms <- setdiff(all, other_sub_offs)
+        terms <- setdiff(all, c(other_sub_offs, other_sub))
         # add term itself
         terms <- c(terms, term)
     })
