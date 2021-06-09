@@ -47,7 +47,7 @@
 #' }
 tcss_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
                         combine_method = "max", ppidata) {
-  
+
   semdata <- godata(OrgDb, keytype = keytype, ont = ont, computeIC = TRUE,
                     processTCSS = FALSE, cutoff = NULL)
   #cutoff is in the range of ICT value
@@ -70,7 +70,7 @@ tcss_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
                            filtered_ppidata = filtered_ppidata,
                            semdata = semdata,
                            combine_method = combine_method)
-  
+
   #calculate the auc and F1_score
   auc_F1_score <- calc_auc_F1_score(predict_result,
                                     filtered_ppidata = filtered_ppidata)
@@ -92,31 +92,31 @@ create_filtered_ppidata <- function(all_pro, ppidata) {
         is.logical(ppidata[, 3]))) {
     stop("ppidata must be a data.frame with three columns:character, character, logical")
   }
-  
+
   ppidata <- na.omit(ppidata)
-  
+
   #remove proteins that have zero annotations
   len1 <- ppidata[, 1] %in% all_pro
   len2 <- ppidata[, 2] %in% all_pro
   ppidata_exist <- ppidata[len1 & len2, ]
   filtered_ppidata <- unique(ppidata_exist)
-  
+
   len <- dim(filtered_ppidata)[1]
-  
+
   if (len == 0) {
     stop("filtered ppidata is empty, none items have GO annotation. Please input more data.")
   }
-  
+
   nTrue <- sum(filtered_ppidata[, 3])
   nFalse <- len - nTrue
-  
+
   if (nTrue == len || nFalse == len) {
     stop("The filtered ppidata lacks the necessary label:TRUE and FALSE. Please input more data.")
   }
-  
+
   message(paste("positive set has", nTrue,
                 "PPI pairs, negative set has", nFalse, "PPI pairs"))
-  
+
   return(filtered_ppidata)
 }
 
@@ -136,11 +136,10 @@ computePre <- function(cutoff, filtered_ppidata, semdata,
 
   semdata@tcssdata <- tcssdata
   #similarity value is calculated with the semdata
-  mapply(function(e, f) geneSim(e, f,
-                                semData = semdata,
-                                measure = "TCSS",
-                                combine = combine_method,
-                                drop = FALSE),
+  mapply(geneSim, MoreArgs = list(semData = semdata,
+                                  measure = "TCSS",
+                                  combine = combine_method,
+                                  drop = FALSE),
          filtered_ppidata[, 1], filtered_ppidata[, 2])
 }
 
@@ -156,13 +155,13 @@ calc_auc_F1_score <- function(predict_result, filtered_ppidata) {
   # the label for PPIs, TRUE/FALSE
   label <- filtered_ppidata[, 3]
   #geneSim returns one value and two characters in once calculation
-  value_loc <- seq(from = 1, to = length(label) * 3, by = 3)
+  value_pos <- seq(from = 1, to = length(label) * 3, by = 3)
   #just the similarity value
-  pre_value <- lapply(predict_result, function(p) as.numeric(p[value_loc]))
+  pre_value <- lapply(predict_result, function(p) as.numeric(p[value_pos]))
   #returned value may contains NA
   pos_stay <- !is.na(pre_value[[1]])
   label <- label[pos_stay]
-  
+
   # prediction object
   pred <- lapply(pre_value, function(e) {
     ROCR::prediction(e[pos_stay], label,
@@ -179,7 +178,7 @@ calc_auc_F1_score <- function(predict_result, filtered_ppidata) {
   F1_score <- unlist(lapply(perf_F1_score, function(e) {
     mean(slot(e, "y.values")[[1]], na.rm = TRUE)
   }))
-  
+
   #return as data.frame
   return(data.frame(auc = auc,
                     F1_score = F1_score,
@@ -198,17 +197,17 @@ decide_cutoff <- function(auc_F1_score, cutoffs) {
   auc_mutiply_F1 <- auc_F1_score[, "auc"] * auc_F1_score[, "F1_score"]
   #get the max product value
   pos <- which(auc_mutiply_F1 == max(auc_mutiply_F1))
-  
+
   if (length(pos) == 1)  return(cutoffs[pos])
-  
+
   #if not only one pair of auc and F1-score have same product
   #take the one with larger auc
   select_auc <- auc_F1_score[pos, "auc"]
-  
+
   auc_pos <- which(select_auc == max(select_auc))
-  
+
   if (length(auc_pos) == 1) return(cutoffs[pos[auc_pos]])
-  
+
   #if more than one pair of auc and F1-score are both same
   #take the smaller cutoff for time saving
   return(cutoffs[pos[min(auc_pos)]])
