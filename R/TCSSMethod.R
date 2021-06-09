@@ -89,18 +89,18 @@ calc_lca <- function(clus1, clus2, ID1, ID2, tcssdata, com_anc, ont) {
     # if the two clusters are the same one
     if (identical(clus1, clus2)) {
         # all cluster-nodes inside cluster
-        clus_content <- tcssdata[[clus1]][["element"]]
+        clus_content <- tcssdata[[clus1]]
     } else {
         # all cluster-nodes inside "meta" cluster
         # common ancestors are from clus1 and clus2
-        clus_content <- tcssdata[["meta"]][["element"]]
+        clus_content <- tcssdata[["meta"]]
         com_anc <- ancestors_in_common(ID1 = clus1, ID2 = clus2, ont = ont)
     }
 
-    # get common ancestors' location, nomatch helps not to introduce NA
-    com_anc_loc <- match(com_anc, clus_content[, "GO"], nomatch = 0)
+    # get common ancestors' position, nomatch helps not to introduce NA
+    com_anc_pos <- match(com_anc, clus_content[["GO"]], nomatch = 0)
     # common ancestors' ica value is all the possible sim value
-    sim_value <- clus_content[com_anc_loc, "ica"]
+    sim_value <- clus_content[["ica"]][com_anc_pos]
 
     if (is.null(sim_value) || length(sim_value) == 0) {
         return(NULL)
