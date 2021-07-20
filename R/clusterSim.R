@@ -7,7 +7,7 @@
 ##'@param cluster1 A set of gene IDs.
 ##'@param cluster2 Another set of gene IDs.
 ##'@param semData GOSemSimDATA object
-##'@param measure One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.
+##'@param measure One of "Resnik", "Lin", "Rel", "Jiang", "TCSS" and "Wang" methods.
 ##'@param drop A set of evidence codes based on which certain annotations are
 ##'dropped. Use NULL to keep all GO annotations.
 ##'@param combine One of "max", "avg", "rcmax", "BMA" methods, for combining

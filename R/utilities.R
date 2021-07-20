@@ -3,6 +3,7 @@
     envir <- as.environment(pos) 
     assign(".GOSemSimEnv", new.env(), envir = envir)
     assign(".SemSimCache", new.env(), envir = envir)
+    assign(".ancCache", new.env(), envir = envir)
     .GOSemSimEnv <- get(".GOSemSimEnv", envir=.GlobalEnv)
     
     tryCatch(utils::data(list="gotbl",

@@ -4,7 +4,7 @@
 ##' @title information content based methods
 ##' @param ID1 Ontology Term
 ##' @param ID2 Ontology Term
-##' @param method one of "Resnik", "Jiang", "Lin" and "Rel".
+##' @param method one of "Resnik", "Jiang", "Lin" and "Rel", "TCSS".
 ##' @param godata GOSemSimDATA object
 ##' @return semantic similarity score
 ##' @useDynLib GOSemSim
