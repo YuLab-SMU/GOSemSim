@@ -10,10 +10,10 @@
 #' @examples
 #' library(org.Hs.eg.db)
 #' semdata <- godata(org.Hs.eg.db,
-#'   keytype = "ENTREZID", ont = "MF",
+#'   keytype = "ENTREZID", ont = "BP",
 #'   computeIC = TRUE, processTCSS = TRUE, cutoff = NULL
 #' )
-#' termSim("GO:0000003", "GO:0009987", semdata, method = "TCSS")
+#' termSim("GO:0000012", "GO:0009987", semdata, method = "TCSS")
 tcssMethod <- function(t1, t2, semData) {
     matrix(mapply(tcssMethod_internal,
                   rep(t1, length(t2)),

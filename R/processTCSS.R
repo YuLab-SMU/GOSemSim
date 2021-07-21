@@ -42,7 +42,7 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
 
     # get the max IC value for each graph
     meta_maxIC <- calc_maxIC(meta_terms, GO_element = GO_element, IC = IC)
-    
+
     #return a list, represents term's elements and their value, term's clusters
     res <- lapply(GO, function(t) {
         list("GO" = GO_element[[t]],
@@ -50,7 +50,7 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
              "clusid" = meta_graph[meta_graph[, "element"] == t, "cluster"])
     })
     names(res) <- GO
-    
+
     #add "meta" cluster to collect meta_terms
     res$"meta" <- list("GO" = meta_terms,
                        "ica" = IC[meta_terms] / max(meta_maxIC),
@@ -121,7 +121,8 @@ calc_maxIC <- function(meta_terms, GO_element, IC) {
                          function(t) {
                              #all the IC value of elements
                              all <- IC[GO_element[[t]]]
-                             all <- all[!is.infinite(all)]
+                             #all <- all[!is.infinite(all)]
+                             all <- all[!is.infinite(all) & !is.na(all)]
                              # if value is empty, assign the mic value
                              if (length(all) == 0) mic else max(all)
                              }, numeric(1))
