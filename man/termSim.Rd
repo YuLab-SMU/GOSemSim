@@ -4,7 +4,12 @@
 \alias{termSim}
 \title{termSim}
 \usage{
-termSim(t1, t2, semData, method = c("Wang", "Resnik", "Rel", "Jiang", "Lin"))
+termSim(
+  t1,
+  t2,
+  semData,
+  method = c("Wang", "Resnik", "Rel", "Jiang", "Lin", "TCSS")
+)
 }
 \arguments{
 \item{t1}{term vector}
@@ -13,7 +18,7 @@ termSim(t1, t2, semData, method = c("Wang", "Resnik", "Rel", "Jiang", "Lin"))
 
 \item{semData}{GOSemSimDATA object}
 
-\item{method}{one of "Wang", "Resnik", "Rel", "Jiang", and "Lin".}
+\item{method}{one of "Wang", "Resnik", "Rel", "Jiang", and "Lin", "TCSS".}
 }
 \value{
 score matrix

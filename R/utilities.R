@@ -76,7 +76,7 @@ prepare_relation_df <- function() {
     ptb <- lapply(c("BP", "MF", "CC"), function(ont) {
         id <- with(gtb, go_id[Ontology == ont])
         parentMap <- getParents(ont)
-        pid <- mget(id, parentMap)
+        pid <- AnnotationDbi::mget(id, parentMap)
         
         n <- sapply(pid, length)
         cid <- rep(names(pid), times=n)

@@ -18,7 +18,7 @@ mgeneSim(
 
 \item{semData}{GOSemSimDATA object}
 
-\item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
+\item{measure}{One of "Resnik", "Lin", "Rel", "Jiang", "TCSS" and "Wang" methods.}
 
 \item{drop}{A set of evidence codes based on which certain annotations are
 dropped. Use NULL to keep all GO annotations.}

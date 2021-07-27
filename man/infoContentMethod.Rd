@@ -11,7 +11,7 @@ infoContentMethod(ID1, ID2, method, godata)
 
 \item{ID2}{Ontology Term}
 
-\item{method}{one of "Resnik", "Jiang", "Lin" and "Rel".}
+\item{method}{one of "Resnik", "Jiang", "Lin" and "Rel", "TCSS".}
 
 \item{godata}{GOSemSimDATA object}
 }

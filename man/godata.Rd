@@ -4,7 +4,14 @@
 \alias{godata}
 \title{godata}
 \usage{
-godata(OrgDb = NULL, keytype = "ENTREZID", ont, computeIC = TRUE)
+godata(
+  OrgDb = NULL,
+  keytype = "ENTREZID",
+  ont,
+  computeIC = TRUE,
+  processTCSS = TRUE,
+  cutoff = NULL
+)
 }
 \arguments{
 \item{OrgDb}{OrgDb object}
@@ -14,6 +21,10 @@ godata(OrgDb = NULL, keytype = "ENTREZID", ont, computeIC = TRUE)
 \item{ont}{one of 'BP', 'MF', 'CC'}
 
 \item{computeIC}{logical, whether computer IC}
+
+\item{processTCSS}{logical, whether to process TCSS}
+
+\item{cutoff}{cutoff of TCSS}
 }
 \value{
 GOSemSimDATA object
