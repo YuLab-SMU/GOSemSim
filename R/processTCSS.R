@@ -14,6 +14,11 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
     if (is.null(cutoff)) {
         message("cutoff value is not specified, default value based on human
         data will be taken, or you can call the function 'tcss_cutoff' with your ppidata")
+        cutoff <- switch(ont,
+                         MF = 3.5,
+                         BP = 3.5,
+                         CC = 3.2
+                         )
     } else if (cutoff <= 0) {
         stop("cutoff value must be greater than 0")
     }
@@ -29,37 +34,34 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
     # calculate ICT
     ICT <- computeICT(GO, offspring = offspring)
     # nodes smaller than cutoff are meta-terms
-    meta_terms <- create_meta_terms(ont, ICT = ICT, GO = GO, cutoff = cutoff)
+    meta_terms <- create_meta_terms(ICT = ICT, cutoff = cutoff)
     # if two parent-child nodes' ICT value too close
     meta_terms <- remove_close(meta_terms, ont = ont, ICT = ICT)
     # relationship between cluster-id and its elements
     meta_graph <- create_sub_terms(meta_terms, offspring = offspring)
-    #for all GO terms, get the contained elements
-    GO_element <- lapply(GO, function(t) {
-        meta_graph[meta_graph["cluster"] == t, "element"]
-    })
-    names(GO_element) <- GO
 
     # get the max IC value for each graph
-    meta_maxIC <- calc_maxIC(meta_terms, GO_element = GO_element, IC = IC)
-
-    #return a list, represents term's elements and their value, term's clusters
-    res <- lapply(GO, function(t) {
-        list("GO" = GO_element[[t]],
-             "ica" = unname(IC[GO_element[[t]]] / meta_maxIC[t]),
-             "clusid" = meta_graph[meta_graph[, "element"] == t, "cluster"])
+    meta_maxIC <- calc_maxIC(meta_graph, IC = IC)
+    ica <- lapply(seq_along(meta_graph), function(i) {
+        IC[meta_graph[[i]]] / meta_maxIC[i]
     })
-    names(res) <- GO
+    names(ica) <- meta_terms
 
-    #add "meta" cluster to collect meta_terms
-    res$"meta" <- list("GO" = meta_terms,
-                       "ica" = IC[meta_terms] / max(meta_maxIC),
-                       "clusid" = NULL)
+    aa <- stack(meta_graph)
+    bb <- split(as.character(aa$ind), aa$values)
+    clusid <- bb[GO]
+
+    res <- list(
+        ## meta_terms == names(meta_graph)
+        meta_graph = meta_graph,
+        ica = ica,
+        clusid = clusid
+    )
 
     return(res)
 }
 
-#' compute ICT (information content topology) for each term
+#' compute ICT (Topology Information Content) for each term
 #'
 #' @param GO character, all go terms, species specific
 #' @param offspring list, offspring nodes
@@ -72,36 +74,30 @@ computeICT <- function(GO, offspring) {
     all <- length(GO)
     num <- -log10(1 / all)
 
-    vapply(filtered_offspring, function(off) {
+    res <- vapply(filtered_offspring, function(off) {
         if (any(is.na(off))) {
-            # only term itself
+            ## only term itself
             num
         } else {
-            # add term itself
+            ## add term itself
             -log10((sum(off %in% GO) + 1) / all)
         }
     }, numeric(1))
+    names(res) <- GO
+    return(res)
 }
+
 
 #' all nodes with ICT value under cutoff are meta_terms
 #'
-#' @param ont ontology
-#' @param ICT numeric, ICT value
-#' @param GO character, all go terms, species specific
+#' @param ICT numeric, ICT value with corresponding GO term as name attributes
 #' @param cutoff numeric, topological cutoff
 #'
 #' @return character, sub-graph-root nodes
 #' @noRd
-#'
-create_meta_terms <- function(ont, ICT, GO, cutoff) {
-    if (is.null(cutoff)) {
-        cutoff <- switch(ont,
-                         MF = 3.5,
-                         BP = 3.5,
-                         CC = 3.2
-        )
-    }
-    GO[ICT <= cutoff]
+create_meta_terms <- function(ICT, cutoff) {
+    res <- ICT[ICT <= cutoff]
+    names(res)
 }
 
 #' calculate every graph's max IC value
@@ -113,19 +109,20 @@ create_meta_terms <- function(ont, ICT, GO, cutoff) {
 #' @return numeric, max IC in different graphs
 #' @noRd
 #'
-calc_maxIC <- function(meta_terms, GO_element, IC) {
+calc_maxIC <- function(meta_graph, IC) {
     # mic : max IC value of all terms
-    mic <- max(IC[!is.infinite(IC)])
+    mic <- max(IC[is.finite(IC)])
 
-    meta_maxIC <- vapply(meta_terms,
+    meta_maxIC <- vapply(meta_graph,
                          function(t) {
-                             #all the IC value of elements
-                             all <- IC[GO_element[[t]]]
-                             #all <- all[!is.infinite(all)]
-                             all <- all[!is.infinite(all) & !is.na(all)]
-                             # if value is empty, assign the mic value
+                                        #all the IC value of elements
+                             all <- IC[t]
+                                        #all <- all[!is.infinite(all)]
+                                        # all <- all[!is.infinite(all) & !is.na(all)]
+                             all <- all[is.finite(all)]
+                                        # if value is empty, assign the mic value
                              if (length(all) == 0) mic else max(all)
-                             }, numeric(1))
+                         }, numeric(1))
     return(meta_maxIC)
 }
 
@@ -151,14 +148,17 @@ create_sub_terms <- function(meta_terms, offspring) {
         # add term itself
         terms <- c(terms, term)
     })
-    #add "meta" cluster
-    element$"meta" <- meta_terms
-    #to unfold into a data.frame
-    len <- lapply(element, length)
+    ## #add "meta" cluster
+    ## element$"meta" <- meta_terms
+    ## #to unfold into a data.frame
+    ## len <- lapply(element, length)
 
-    res <- data.frame(cluster = rep(c(meta_terms, "meta"), times = len),
-                      element = unlist(element))
-    return(na.omit(res))
+    ## res <- data.frame(cluster = rep(c(meta_terms, "meta"), times = len),
+    ##                   element = unlist(element))
+    ## return(na.omit(res))
+
+    names(element) <- meta_terms
+    return(element)
 }
 
 #' remove close relation in meta_terms
@@ -192,3 +192,4 @@ remove_close <- function(meta_terms, ont, ICT) {
     # return the left nodes
     return(meta_terms)
 }
+
