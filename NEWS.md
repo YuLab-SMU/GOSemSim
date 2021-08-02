@@ -1,3 +1,11 @@
+# GOSemSim 2.19.1
+
++ TCSS method (@qibaiqi, #35; 2021-08-02, Mon)
+
++ GOSemSim 2.18.0
+
++ Bioconductor 3.13 release
+
 # GOSemSim 2.17.1
 
 + bug fixed according to the update of GO.db (2020-10-29, Thu)

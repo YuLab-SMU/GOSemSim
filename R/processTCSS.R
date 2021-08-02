@@ -47,7 +47,7 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
     })
     names(ica) <- meta_terms
 
-    aa <- stack(meta_graph)
+    aa <- utils::stack(meta_graph)
     bb <- split(as.character(aa$ind), aa$values)
     clusid <- bb[GO]
 

@@ -106,6 +106,7 @@ Rcpp::NumericMatrix infoContentMethod_cpp(
     normIcMap["all"] = 0; 
   }
 
+  normIcMap["all"] = 0; 
 
   // convert anc_ into map of sets
   typedef std::map<term_id_t, term_set_t> anc_map_t;
