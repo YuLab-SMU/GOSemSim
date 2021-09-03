@@ -26,7 +26,7 @@
 ##' @export
 ##'@examples
 ##'
-##'     d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
+##' d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
 ##'	geneSim("241", "251", semData=d, measure="Wang")
 ##'
 geneSim <- function(gene1, gene2, semData, measure="Wang", drop="IEA", combine="BMA"){

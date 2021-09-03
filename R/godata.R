@@ -16,7 +16,10 @@
 ##' @export
 ##' @author Guangchuang Yu
 godata <- function(OrgDb = NULL, keytype = "ENTREZID",
-                   ont, computeIC = TRUE, processTCSS = TRUE, cutoff = NULL) {
+                   ont, computeIC = TRUE,
+                   processTCSS = FALSE, cutoff = NULL) {
+    if (processTCSS) computeIC <- TRUE
+
     ont <- toupper(ont)
     ont <- match.arg(ont, c("BP", "CC", "MF"))
 
@@ -42,6 +45,7 @@ godata <- function(OrgDb = NULL, keytype = "ENTREZID",
         message("preparing IC data...")
         IC <- computeIC(goAnno, ont)
         if (processTCSS) {
+            message("preparing TCSS data...")
             tcssdata <- process_tcss(ont, IC = IC, cutoff = cutoff)
         }
     }

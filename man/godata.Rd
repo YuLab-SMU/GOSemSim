@@ -9,7 +9,7 @@ godata(
   keytype = "ENTREZID",
   ont,
   computeIC = TRUE,
-  processTCSS = TRUE,
+  processTCSS = FALSE,
   cutoff = NULL
 )
 }

@@ -2,25 +2,24 @@
 #'
 #' @param ont ontology
 #' @param IC information content
-#' @param cutoff the topology cutoff
+#' @param cutoff the topology cutoff, users can use tcss_cutoff() function to calculate cutoff value  
 #'
 #' @return list, belonged clusters and its elements for all nodes
 #' @noRd
 process_tcss <- function(ont, IC, cutoff = NULL) {
-    if (length(IC) == 0) {
-        stop("IC data not found, please re-generate your `semData` with `computeIC = TRUE`...")
-    }
+    ## if (length(IC) == 0) {
+    ##     stop("IC data not found, please re-generate your `semData` with `computeIC = TRUE`...")
+    ## }
 
     if (is.null(cutoff)) {
-        message("cutoff value is not specified, default value based on human
-        data will be taken, or you can call the function 'tcss_cutoff' with your ppidata")
+        message("As cutoff value is not provided, default value based on human will be used")
         cutoff <- switch(ont,
                          MF = 3.5,
                          BP = 3.5,
                          CC = 3.2
                          )
     } else if (cutoff <= 0) {
-        stop("cutoff value must be greater than 0")
+        stop("cutoff value must be positive")
     }
 
     GO <- names(IC[!is.infinite(IC)])

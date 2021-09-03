@@ -31,7 +31,7 @@ them, and return their semantic similarity and the corresponding GO terms
 }
 \examples{
 
-    d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
+d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
 geneSim("241", "251", semData=d, measure="Wang")
 
 }
