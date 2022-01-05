@@ -20,14 +20,13 @@
 ##' @param OrgDb OrgDb object or OrgDb name
 ##' @return OrgDb object
 ##' @importFrom methods is
+##' @importFrom utils getFromNamespace 
 ##' @export
 ##' @author Guangchuang Yu
 load_OrgDb <- function(OrgDb) {
-    if (is(OrgDb, "character")) {
-        require(OrgDb, character.only = TRUE)
-        OrgDb <- eval(parse(text=OrgDb))
-    }
-    return(OrgDb)
+     if (is(OrgDb, "character")) {
+    utils::getFromNamespace(OrgDb, OrgDb)
+  }
 }
 
 ##' @importFrom GO.db GOMFANCESTOR
