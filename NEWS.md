@@ -1,3 +1,11 @@
+# GOSemSim 2.21.1
+
++ Avoid eval-parse in `load_OrgDb()` (2022-01-10, Mon)
+
+# GOSemSim 2.20
+
++ Bioconductor 3.14 release
+
 # GOSemSim 2.19.1
 
 + TCSS method (@qibaiqi, #35; 2021-08-02, Mon)

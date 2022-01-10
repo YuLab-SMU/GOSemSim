@@ -24,9 +24,15 @@
 ##' @export
 ##' @author Guangchuang Yu
 load_OrgDb <- function(OrgDb) {
-     if (is(OrgDb, "character")) {
-    utils::getFromNamespace(OrgDb, OrgDb)
-  }
+    #if (is(OrgDb, "character")) {
+    #    require(OrgDb, character.only = TRUE)
+    #    OrgDb <- eval(parse(text=OrgDb))
+    #}
+    if (is(OrgDb, "character")) {
+        OrgDb <- utils::getFromNamespace(OrgDb, OrgDb)
+    } 
+    
+    return(OrgDb)
 }
 
 ##' @importFrom GO.db GOMFANCESTOR
