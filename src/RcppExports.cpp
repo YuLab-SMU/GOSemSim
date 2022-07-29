@@ -5,6 +5,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // infoContentMethod_cpp
 Rcpp::NumericMatrix infoContentMethod_cpp(Rcpp::StringVector& id1_, Rcpp::StringVector& id2_, Rcpp::List& anc_, Rcpp::NumericVector& ic_, const std::string& method_, const std::string& ont_);
 RcppExport SEXP _GOSemSim_infoContentMethod_cpp(SEXP id1_SEXP, SEXP id2_SEXP, SEXP anc_SEXP, SEXP ic_SEXP, SEXP method_SEXP, SEXP ont_SEXP) {

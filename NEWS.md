@@ -1,3 +1,7 @@
+# GOSemSim 2.23.0.991
+
++ Replacing DO.db with DOyulab.db (2022-07-29, Mon)
+
 # GOSemSim 2.21.1
 
 + Avoid eval-parse in `load_OrgDb()` (2022-01-10, Mon)
