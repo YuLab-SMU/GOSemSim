@@ -4,8 +4,14 @@
 \alias{clusterSim}
 \title{Semantic Similarity Between Two Gene Clusters}
 \usage{
-clusterSim(cluster1, cluster2, semData, measure = "Wang", drop = "IEA",
-  combine = "BMA")
+clusterSim(
+  cluster1,
+  cluster2,
+  semData,
+  measure = "Wang",
+  drop = "IEA",
+  combine = "BMA"
+)
 }
 \arguments{
 \item{cluster1}{A set of gene IDs.}
@@ -14,7 +20,7 @@ clusterSim(cluster1, cluster2, semData, measure = "Wang", drop = "IEA",
 
 \item{semData}{GOSemSimDATA object}
 
-\item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
+\item{measure}{One of "Resnik", "Lin", "Rel", "Jiang", "TCSS" and "Wang" methods.}
 
 \item{drop}{A set of evidence codes based on which certain annotations are
 dropped. Use NULL to keep all GO annotations.}

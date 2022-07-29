@@ -95,9 +95,18 @@ Rcpp::NumericMatrix infoContentMethod_cpp(
   // set root node IC to 0
   if(ont_ == "DO") {
     normIcMap["DOID:4"] = 0;
+  } else if(ont_ == "BP") {
+    normIcMap["GO:0008150"] = 0;
+  } else if(ont_ == "CC") {
+    normIcMap["GO:0005575"] = 0;
+  } else if(ont_ == "MF") {
+    normIcMap["GO:0003674"] = 0;
   } else {
-    normIcMap["all"] = 0;
+    // seems to remove in GO.db 3.12.0
+    normIcMap["all"] = 0; 
   }
+
+  normIcMap["all"] = 0; 
 
   // convert anc_ into map of sets
   typedef std::map<term_id_t, term_set_t> anc_map_t;
@@ -114,7 +123,9 @@ Rcpp::NumericMatrix infoContentMethod_cpp(
   }
 
   Rcpp::NumericMatrix res( id1_.size(), id2_.size() );
-  res.attr("dimnames") = Rcpp::Rcpp_list2( id1_, id2_ );
+  // res.attr("dimnames") = Rcpp::Rcpp_list2( id1_, id2_ );
+  rownames(res) = id1_;
+  colnames(res) = id2_;
   for ( std::size_t i = 0; i < id1_.size(); i++ ) {
     const std::string id1_term = (std::string)id1_[i];
     const ic_map_t::const_iterator iIcIt = normIcMap.find( id1_term );

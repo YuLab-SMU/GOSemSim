@@ -13,7 +13,7 @@ goSim(GOID1, GOID2, semData, measure = "Wang")
 
 \item{semData}{GOSemSimDATA object}
 
-\item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
+\item{measure}{One of "Resnik", "Lin", "Rel", "Jiang", "TCSS" and "Wang" methods.}
 }
 \value{
 similarity

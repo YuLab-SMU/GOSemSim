@@ -3,6 +3,7 @@
     envir <- as.environment(pos) 
     assign(".GOSemSimEnv", new.env(), envir = envir)
     assign(".SemSimCache", new.env(), envir = envir)
+    assign(".ancCache", new.env(), envir = envir)
     .GOSemSimEnv <- get(".GOSemSimEnv", envir=.GlobalEnv)
     
     tryCatch(utils::data(list="gotbl",
@@ -19,13 +20,18 @@
 ##' @param OrgDb OrgDb object or OrgDb name
 ##' @return OrgDb object
 ##' @importFrom methods is
+##' @importFrom utils getFromNamespace 
 ##' @export
 ##' @author Guangchuang Yu
 load_OrgDb <- function(OrgDb) {
+    #if (is(OrgDb, "character")) {
+    #    require(OrgDb, character.only = TRUE)
+    #    OrgDb <- eval(parse(text=OrgDb))
+    #}
     if (is(OrgDb, "character")) {
-        require(OrgDb, character.only = TRUE)
-        OrgDb <- eval(parse(text=OrgDb))
-    }
+        OrgDb <- utils::getFromNamespace(OrgDb, OrgDb)
+    } 
+    
     return(OrgDb)
 }
 
@@ -74,7 +80,8 @@ prepare_relation_df <- function() {
     
     ptb <- lapply(c("BP", "MF", "CC"), function(ont) {
         id <- with(gtb, go_id[Ontology == ont])
-        pid <- mget(id, getParents(ont))
+        parentMap <- getParents(ont)
+        pid <- AnnotationDbi::mget(id, parentMap)
         
         n <- sapply(pid, length)
         cid <- rep(names(pid), times=n)
@@ -88,6 +95,6 @@ prepare_relation_df <- function() {
     ptb <- do.call('rbind', ptb)
 
     gotbl <- merge(gtb, ptb, by.x="go_id", by.y="id")
-    save(gotbl, file="gotbl", compress="xz")
+    save(gotbl, file="gotbl.rda", compress="xz")
     invisible(gotbl)
 }

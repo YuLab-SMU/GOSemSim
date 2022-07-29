@@ -13,7 +13,7 @@ mgoSim(GO1, GO2, semData, measure = "Wang", combine = "BMA")
 
 \item{semData}{GOSemSimDATA object}
 
-\item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
+\item{measure}{One of "Resnik", "Lin", "Rel", "Jiang", "TCSS" and "Wang" methods.}
 
 \item{combine}{One of "max", "avg", "rcmax", "BMA" methods, for combining
 semantic similarity scores of multiple GO terms associated with protein or

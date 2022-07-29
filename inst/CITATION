@@ -1,4 +1,22 @@
-citHeader("Please cite G. Yu (2010) for using GOSemSim. In addition, please cite G. Yu (2012) when using GO enrichment analysis and G. Yu (2015) for Disease Ontology analysis.")
+citHeader("To cite GOSemSim in publications use:")
+
+citEntry(entry  ="ARTICLE",
+         title = "Gene Ontology Semantic Similarity Analysis Using GOSemSim",
+         author = person("Guangchuang", "Yu"),
+         journal = "Methods in Molecular Biology",
+         shortjournal = "Methods Mol. Biol.",
+         year = "2020",
+         volume = "2117",
+         pages = "207-215",
+         PMID = "31960380",
+         issn = "1940-6029",
+         doi = "10.1007/978-1-0716-0301-7_11",
+         textVersion = paste("Guangchuang Yu.",
+                             "Gene Ontology Semantic Similarity Analysis Using GOSemSim.",
+                             "In: Kidder B. (eds) Stem Cell Transcriptional Networks.",
+                             "Methods in Molecular Biology, 2020, 2117:207-215.",
+                             "Humana, New York, NY.")
+)
 
 citEntry(entry  ="ARTICLE",
          title  = "GOSemSim: an R package for measuring semantic similarity among GO terms and gene products",

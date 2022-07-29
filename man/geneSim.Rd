@@ -4,8 +4,7 @@
 \alias{geneSim}
 \title{Semantic Similarity Between two Genes}
 \usage{
-geneSim(gene1, gene2, semData, measure = "Wang", drop = "IEA",
-  combine = "BMA")
+geneSim(gene1, gene2, semData, measure = "Wang", drop = "IEA", combine = "BMA")
 }
 \arguments{
 \item{gene1}{Entrez gene id.}
@@ -14,7 +13,7 @@ geneSim(gene1, gene2, semData, measure = "Wang", drop = "IEA",
 
 \item{semData}{GOSemSimDATA object}
 
-\item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
+\item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" "TCSS" and "Wang" methods.}
 
 \item{drop}{A set of evidence codes based on which certain annotations are
 dropped. Use NULL to keep all GO annotations.}
@@ -32,7 +31,7 @@ them, and return their semantic similarity and the corresponding GO terms
 }
 \examples{
 
-    d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
+d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
 geneSim("241", "251", semData=d, measure="Wang")
 
 }

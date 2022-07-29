@@ -4,15 +4,14 @@
 \alias{mclusterSim}
 \title{Pairwise Semantic Similarities for a List of Gene Clusters}
 \usage{
-mclusterSim(clusters, semData, measure = "Wang", drop = "IEA",
-  combine = "BMA")
+mclusterSim(clusters, semData, measure = "Wang", drop = "IEA", combine = "BMA")
 }
 \arguments{
 \item{clusters}{A list of gene clusters.}
 
 \item{semData}{GOSemSimDATA object}
 
-\item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" and "Wang" methods.}
+\item{measure}{One of "Resnik", "Lin", "Rel", "Jiang", "TCSS" and "Wang" methods.}
 
 \item{drop}{A set of evidence codes based on which certain annotations are
 dropped. Use NULL to keep all GO annotations.}

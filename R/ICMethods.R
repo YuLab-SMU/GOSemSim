@@ -4,7 +4,7 @@
 ##' @title information content based methods
 ##' @param ID1 Ontology Term
 ##' @param ID2 Ontology Term
-##' @param method one of "Resnik", "Jiang", "Lin" and "Rel".
+##' @param method one of "Resnik", "Jiang", "Lin" and "Rel", "TCSS".
 ##' @param godata GOSemSimDATA object
 ##' @return semantic similarity score
 ##' @useDynLib GOSemSim
@@ -23,12 +23,24 @@ infoContentMethod <- function(ID1,
     }
 
     if (ont %in% c("MF", "BP", "CC", "DO")) {
-        .anc <- tryCatch(getAncestors(ont)[union(ID1,ID2)], error=function(e) NULL)
-        if (is.null(.anc)) {
-            ## https://support.bioconductor.org/p/105822/
-            return(NA)
-        }
-        .anc <- AnnotationDbi::as.list(.anc)
+        ## .anc <- tryCatch(getAncestors(ont)[union(ID1,ID2)], error=function(e) NULL)
+        ## if (is.null(.anc)) {
+        ##     ## https://support.bioconductor.org/p/105822/
+        ##     return(NA)
+        ## }
+        ## .anc <- AnnotationDbi::as.list(.anc)
+
+        ## if some IDs are not valid, the above code will leading to return NA directly.
+        .anc <- AnnotationDbi::as.list(getAncestors(ont))
+        allid <- union(ID1, ID2)
+        .anc <- .anc[allid]
+        .anc <- .anc[!vapply(.anc, is.empty, logical(1))]
+
+        ## invalid_ids <- c(ID1[!ID1 %in% names(.anc)], ID2[!ID2 %in% names(.anc)])
+        ## if (length(invalid_ids) > 0) {
+        ##     message("The following IDs are not valid and will be removed:", paste(invalid_ids, collapse=","))
+        ##     # allid <- allid[!allid %in% invalid_ids]
+        ## }
     } else {
         mesh_getAnc <- eval(parse(text="meshes:::getAncestors"))
         .anc <- lapply(union(ID1, ID2), mesh_getAnc)
@@ -37,6 +49,12 @@ infoContentMethod <- function(ID1,
     return ( infoContentMethod_cpp( ID1, ID2,
                  .anc, IC,
                  method, ont ) )
+}
+
+is.empty <- function(x) {
+    if (is.null(x)) return(TRUE)
+    if (all(is.na(x))) return(TRUE)
+    return(FALSE)
 }
 
 

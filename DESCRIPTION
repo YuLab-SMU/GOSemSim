@@ -1,9 +1,10 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-Version: 2.13.0
+Version: 2.23.0
 Authors@R: c( person(given = "Guangchuang", family = "Yu",             email = "guangchuangyu@gmail.com", role  = c("aut", "cre")),
               person(given = "Alexey",      family = "Stukalov",       email = "astukalov@gmail.com",     role  = "ctb"),
+              person(given= "Pingfan",      family = "Guo",            email = "1178431277@qq.com",       role  = "ctb"),
               person(given = "Chuanle",     family = "Xiao",           email = "xiaochuanle@126.com",     role  = "ctb"),
               person(given = "Lluís",       family = "Revilla Sancho", email = "lluis.revilla@gmail.com", role  = "ctb")
              )
@@ -15,7 +16,7 @@ Description: The semantic comparisons of Gene Ontology (GO) annotations provide
     sets of GO terms, gene products and gene clusters. GOSemSim implemented five
     methods proposed by Resnik, Schlicker, Jiang, Lin and Wang respectively.
 Depends:
-    R (>= 3.4.0)
+    R (>= 3.5.0)
 LinkingTo: Rcpp
 Imports:
     AnnotationDbi,
@@ -28,15 +29,17 @@ Suggests:
     clusterProfiler,
     DOSE,
     knitr,
+    rmarkdown,
     org.Hs.eg.db,
     prettydoc,
-    testthat
+    testthat,
+    ROCR
 VignetteBuilder: knitr
 ByteCompile: true
 License: Artistic-2.0
 Encoding: UTF-8
-URL: https://guangchuangyu.github.io/software/GOSemSim
+URL: https://yulab-smu.top/biomedical-knowledge-mining-book/
 BugReports: https://github.com/YuLab-SMU/GOSemSim/issues
 Packaged: 2012-08-29 06:44:50 UTC; root
 biocViews: Annotation, GO, Clustering, Pathways, Network, Software
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.2
