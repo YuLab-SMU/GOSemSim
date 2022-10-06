@@ -1,6 +1,6 @@
 # GOSemSim 2.23.0.991
 
-+ Replacing DO.db with DOyulab.db (2022-07-29, Mon)
++ Replacing DO.db with HDO.db (2022-07-29, Mon)
 
 # GOSemSim 2.21.1
 
