@@ -43,10 +43,10 @@ getAncestors <- function(ont) {
                         MF = "GOMFANCESTOR",
                         BP = "GOBPANCESTOR",
                         CC = "GOCCANCESTOR",
-                        DO = "DO.db::DOANCESTOR"
+                        DO = "HDO.db::HDOANCESTOR"
                         )
     if (ont == "DO") {
-        db <- "DO.db"
+        db <- "HDO.db"
         ## require(db, character.only=TRUE)
         requireNamespace(db)
     }
@@ -61,10 +61,10 @@ getParents <- function(ont) {
                       MF = "GOMFPARENTS",
                       BP = "GOBPPARENTS",
                       CC = "GOCCPARENTS",
-                      DO = "DO.db::DOPARENTS"
+                      DO = "HDO.db::HDOPARENTS"
                       )
     if (ont == "DO") {
-        db <- "DO.db"
+        db <- "HDO.db"
         requireNamespace(db)
     }
     Parents <- eval(parse(text=Parents))
