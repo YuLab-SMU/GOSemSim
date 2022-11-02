@@ -1,3 +1,7 @@
+# GOSemSim
+
++ Bioconductor RELEASE_3_16 (2022-11-02, Wed)
+
 # GOSemSim 2.23.1
 
 + Replacing DO.db with HDO.db (2022-07-29, Mon)
