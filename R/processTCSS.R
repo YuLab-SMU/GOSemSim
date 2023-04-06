@@ -16,18 +16,31 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
         cutoff <- switch(ont,
                          MF = 3.5,
                          BP = 3.5,
-                         CC = 3.2
+                         CC = 3.2,
+                         DO = 3.5,
+                         MPO = 3.5
                          )
     } else if (cutoff <= 0) {
         stop("cutoff value must be positive")
     }
 
     GO <- names(IC[!is.infinite(IC)])
+    if (ont == "DO") {
+        db <- "HDO.db"
+        ## require(db, character.only=TRUE)
+        requireNamespace(db)
+    }
 
+    if (ont == "MPO") {
+        db <- "MPO.db"
+        requireNamespace(db)
+    }
     offspring <- switch(ont,
                         MF = AnnotationDbi::as.list(GOMFOFFSPRING),
                         BP = AnnotationDbi::as.list(GOBPOFFSPRING),
-                        CC = AnnotationDbi::as.list(GOCCOFFSPRING)
+                        CC = AnnotationDbi::as.list(GOCCOFFSPRING),
+                        DO = AnnotationDbi::as.list(HDO.db::HDOOFFSPRING),
+                        MPO = AnnotationDbi::as.list(MPO.db::MPOOFFSPRING)
     )
 
     # calculate ICT
@@ -170,10 +183,22 @@ create_sub_terms <- function(meta_terms, offspring) {
 #' @noRd
 #'
 remove_close <- function(meta_terms, ont, ICT) {
+    if (ont == "DO") {
+        db <- "HDO.db"
+        ## require(db, character.only=TRUE)
+        requireNamespace(db)
+    }
+
+    if (ont == "MPO") {
+        db <- "MPO.db"
+        requireNamespace(db)
+    }
     parents <- switch(ont,
                       MF = AnnotationDbi::as.list(GOMFPARENTS),
                       BP = AnnotationDbi::as.list(GOBPPARENTS),
-                      CC = AnnotationDbi::as.list(GOCCPARENTS)
+                      CC = AnnotationDbi::as.list(GOCCPARENTS),
+                      DO = AnnotationDbi::as.list(HDO.db::HDOPARENTS),
+                      MPO = AnnotationDbi::as.list(MPO.db::MPOPARENTS)
     )
     # reserve all nodes in advance
     all_ <- meta_terms
