@@ -22,7 +22,7 @@ infoContentMethod <- function(ID1,
         stop("IC data not found, please re-generate your `semData` with `computeIC=TRUE`...")
     }
 
-    if (ont %in% c("MF", "BP", "CC", "DO")) {
+    if (ont %in% c("MF", "BP", "CC", "DO", "MPO")) {
         ## .anc <- tryCatch(getAncestors(ont)[union(ID1,ID2)], error=function(e) NULL)
         ## if (is.null(.anc)) {
         ##     ## https://support.bioconductor.org/p/105822/

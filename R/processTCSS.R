@@ -36,13 +36,13 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
         requireNamespace(db)
     }
     offspring <- switch(ont,
-                        MF = AnnotationDbi::as.list(GOMFOFFSPRING),
-                        BP = AnnotationDbi::as.list(GOBPOFFSPRING),
-                        CC = AnnotationDbi::as.list(GOCCOFFSPRING),
-                        DO = AnnotationDbi::as.list(HDO.db::HDOOFFSPRING),
-                        MPO = AnnotationDbi::as.list(MPO.db::MPOOFFSPRING)
+                        MF = "GOMFOFFSPRING",
+                        BP = "GOBPOFFSPRING",
+                        CC = "GOCCOFFSPRING",
+                        DO = "HDO.db::HDOOFFSPRING",
+                        MPO = "MPO.db::MPOOFFSPRING"
     )
-
+    offspring <- AnnotationDbi::as.list(eval(parse(text=offspring)))
     # calculate ICT
     ICT <- computeICT(GO, offspring = offspring)
     # nodes smaller than cutoff are meta-terms
@@ -194,12 +194,16 @@ remove_close <- function(meta_terms, ont, ICT) {
         requireNamespace(db)
     }
     parents <- switch(ont,
-                      MF = AnnotationDbi::as.list(GOMFPARENTS),
-                      BP = AnnotationDbi::as.list(GOBPPARENTS),
-                      CC = AnnotationDbi::as.list(GOCCPARENTS),
-                      DO = AnnotationDbi::as.list(HDO.db::HDOPARENTS),
-                      MPO = AnnotationDbi::as.list(MPO.db::MPOPARENTS)
+                      MF = "GOMFPARENTS",
+                      BP = "GOBPPARENTS",
+                      CC = "GOCCPARENTS",
+                      DO = "HDO.db::HDOPARENTS",
+                      MPO = "MPO.db::MPOPARENTS"
     )
+
+
+    parents <- AnnotationDbi::as.list(eval(parse(text=parents)))
+
     # reserve all nodes in advance
     all_ <- meta_terms
     for (term1 in meta_terms) {
