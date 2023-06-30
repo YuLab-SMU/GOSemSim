@@ -43,11 +43,17 @@ getAncestors <- function(ont) {
                         MF = "GOMFANCESTOR",
                         BP = "GOBPANCESTOR",
                         CC = "GOCCANCESTOR",
-                        DO = "HDO.db::HDOANCESTOR"
+                        DO = "HDO.db::HDOANCESTOR",
+                        MPO = "MPO.db::MPOANCESTOR"
                         )
     if (ont == "DO") {
         db <- "HDO.db"
         ## require(db, character.only=TRUE)
+        requireNamespace(db)
+    }
+
+    if (ont == "MPO") {
+        db <- "MPO.db"
         requireNamespace(db)
     }
     return (eval(parse(text=Ancestors)))

@@ -33,7 +33,7 @@ termSim <- function(t1,
 
     if ( method %in% c("Resnik", "Jiang", "Lin", "Rel") ) {
         return(infoContentMethod(t1, t2, method = method, semData))
-    } else if ( method == "Wang" ) {
+    } else if (method == "Wang") {
         return(wangMethod(t1, t2, semData@ont))
     } else if ( method == "TCSS" ) {
         return(tcssMethod(t1, t2, semData))

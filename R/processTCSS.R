@@ -16,20 +16,41 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
         cutoff <- switch(ont,
                          MF = 3.5,
                          BP = 3.5,
-                         CC = 3.2
+                         CC = 3.2,
+                         DO = 3.5,
+                         MPO = 3.5,
+                         HPO = 3.5
                          )
     } else if (cutoff <= 0) {
         stop("cutoff value must be positive")
     }
 
     GO <- names(IC[!is.infinite(IC)])
+    if (ont == "DO") {
+        db <- "HDO.db"
+        ## require(db, character.only=TRUE)
+        requireNamespace(db)
+    }
+
+    if (ont == "MPO") {
+        db <- "MPO.db"
+        requireNamespace(db)
+    }
+
+    if (ont == "HPO") {
+        db <- "HPO.db"
+        requireNamespace(db)
+    }
 
     offspring <- switch(ont,
-                        MF = AnnotationDbi::as.list(GOMFOFFSPRING),
-                        BP = AnnotationDbi::as.list(GOBPOFFSPRING),
-                        CC = AnnotationDbi::as.list(GOCCOFFSPRING)
+                        MF = "GOMFOFFSPRING",
+                        BP = "GOBPOFFSPRING",
+                        CC = "GOCCOFFSPRING",
+                        DO = "HDO.db::HDOOFFSPRING",
+                        MPO = "MPO.db::MPOOFFSPRING",
+                        HPO = "HPO.db::HPOOFFSPRING"
     )
-
+    offspring <- AnnotationDbi::as.list(eval(parse(text=offspring)))
     # calculate ICT
     ICT <- computeICT(GO, offspring = offspring)
     # nodes smaller than cutoff are meta-terms
@@ -170,11 +191,34 @@ create_sub_terms <- function(meta_terms, offspring) {
 #' @noRd
 #'
 remove_close <- function(meta_terms, ont, ICT) {
+    if (ont == "DO") {
+        db <- "HDO.db"
+        ## require(db, character.only=TRUE)
+        requireNamespace(db)
+    }
+
+    if (ont == "MPO") {
+        db <- "MPO.db"
+        requireNamespace(db)
+    }
+
+    if (ont == "HPO") {
+        db <- "HPO.db"
+        requireNamespace(db)
+    }
+
     parents <- switch(ont,
-                      MF = AnnotationDbi::as.list(GOMFPARENTS),
-                      BP = AnnotationDbi::as.list(GOBPPARENTS),
-                      CC = AnnotationDbi::as.list(GOCCPARENTS)
+                      MF = "GOMFPARENTS",
+                      BP = "GOBPPARENTS",
+                      CC = "GOCCPARENTS",
+                      DO = "HDO.db::HDOPARENTS",
+                      MPO = "MPO.db::MPOPARENTS",
+                      HPO = "HPO.db::HPOPARENTS"
     )
+
+
+    parents <- AnnotationDbi::as.list(eval(parse(text=parents)))
+
     # reserve all nodes in advance
     all_ <- meta_terms
     for (term1 in meta_terms) {

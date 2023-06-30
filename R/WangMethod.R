@@ -25,6 +25,12 @@ wangMethod_internal <- function(ID1, ID2, ont="BP") {
         if (!exists(".GOSemSimEnv")) .initial()
         .GOSemSimEnv <- get(".GOSemSimEnv", envir=.GlobalEnv)
         rel_df <- get("gotbl", envir=.GOSemSimEnv)
+    } else if (ont == "MPO") {
+        .DOSEEnv <- get(".DOSEEnv", envir=.GlobalEnv)
+        rel_df <- get("mpotbl", envir=.DOSEEnv)
+    } else if (ont == "HPO") {
+        .DOSEEnv <- get(".DOSEEnv", envir=.GlobalEnv)
+        rel_df <- get("hpotbl", envir=.DOSEEnv)
     } else {
         .meshesEnv <- get(".meshesEnv", envir=.GlobalEnv)
         rel_df <- get("meshtbl", envir=.meshesEnv)
@@ -62,6 +68,8 @@ getSV <- function(ID, ont, rel_df, weight=NULL) {
 
     if (ont == "DO") {
         topNode <- "DOID:4"
+    } else if (ont == "MPO") {
+       topNode <- "MP:0000001"
     } else {
         topNode <- "all"
     }
@@ -102,7 +110,7 @@ getSV <- function(ID, ont, rel_df, weight=NULL) {
     sv <- sv[!is.na(names(sv))]
     sv <- sv[!duplicated(names(sv))]
 
-    if(ont != "DO")
+    if (!(ont %in% c("DO", "MPO")))
         sv[topNode] <- 0
 
     if( ! exists(ID, envir=.SemSimCache) ) {

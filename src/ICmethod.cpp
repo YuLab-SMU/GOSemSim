@@ -101,6 +101,8 @@ Rcpp::NumericMatrix infoContentMethod_cpp(
     normIcMap["GO:0005575"] = 0;
   } else if(ont_ == "MF") {
     normIcMap["GO:0003674"] = 0;
+  } else if(ont_ == "MPO") {
+    normIcMap["MP:0000001"] = 0;
   } else {
     // seems to remove in GO.db 3.12.0
     normIcMap["all"] = 0; 
