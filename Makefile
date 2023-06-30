@@ -14,16 +14,18 @@ readme:
 	Rscript -e 'rmarkdown::render("README.Rmd")'
 
 build:
-	cd ..;\
-	R CMD build $(PKGSRC)
-
+	# cd ..;\
+	# R CMD build $(PKGSRC)
+	Rscript -e 'devtools::build()'
+	
 install:
 	cd ..;\
 	R CMD INSTALL $(PKGNAME)_$(PKGVERS).tar.gz
 
-check: build
-	cd ..;\
-	Rscript -e 'rcmdcheck::rcmdcheck("$(PKGNAME)_$(PKGVERS).tar.gz")'
+check: 
+	# cd ..;\
+	# Rscript -e 'rcmdcheck::rcmdcheck("$(PKGNAME)_$(PKGVERS).tar.gz")'
+	Rscript -e 'devtools::check()'
 
 check2: build
 	cd ..;\

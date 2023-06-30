@@ -1,12 +1,13 @@
-# GOSemSim 2.25.0.991
-+ semantic similarity measurement support MPO(2023-04-06, Thu)
-+ TCSS semantic similarity measurement support DO and MPO(2023-04-06, Thu)
+# GOSemSim 2.27.1
+
++ semantic similarity measurement support for MPO (2023-04-06, Thu)
++ TCSS semantic similarity measurement support for DO and MPO (2023-04-06, Thu)
+
+# GOSemSim 2.26.0
+
++ Bioconductor RELEASE_3_17 (2023-05-03, Wed)
 
 # GOSemSim 2.24.0
-
-+ Bioconductor RELEASE_3_17 (2023-05-03, Wed)\n
-
-# GOSemSim
 
 + Bioconductor RELEASE_3_16 (2022-11-02, Wed)
 
