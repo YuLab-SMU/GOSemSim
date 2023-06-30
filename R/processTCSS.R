@@ -18,7 +18,8 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
                          BP = 3.5,
                          CC = 3.2,
                          DO = 3.5,
-                         MPO = 3.5
+                         MPO = 3.5,
+                         HPO = 3.5
                          )
     } else if (cutoff <= 0) {
         stop("cutoff value must be positive")
@@ -35,12 +36,19 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
         db <- "MPO.db"
         requireNamespace(db)
     }
+
+    if (ont == "HPO") {
+        db <- "HPO.db"
+        requireNamespace(db)
+    }
+
     offspring <- switch(ont,
                         MF = "GOMFOFFSPRING",
                         BP = "GOBPOFFSPRING",
                         CC = "GOCCOFFSPRING",
                         DO = "HDO.db::HDOOFFSPRING",
-                        MPO = "MPO.db::MPOOFFSPRING"
+                        MPO = "MPO.db::MPOOFFSPRING",
+                        HPO = "HPO.db::HPOOFFSPRING"
     )
     offspring <- AnnotationDbi::as.list(eval(parse(text=offspring)))
     # calculate ICT
@@ -193,12 +201,19 @@ remove_close <- function(meta_terms, ont, ICT) {
         db <- "MPO.db"
         requireNamespace(db)
     }
+
+    if (ont == "HPO") {
+        db <- "HPO.db"
+        requireNamespace(db)
+    }
+
     parents <- switch(ont,
                       MF = "GOMFPARENTS",
                       BP = "GOBPPARENTS",
                       CC = "GOCCPARENTS",
                       DO = "HDO.db::HDOPARENTS",
-                      MPO = "MPO.db::MPOPARENTS"
+                      MPO = "MPO.db::MPOPARENTS",
+                      HPO = "HPO.db::HPOPARENTS"
     )
 
 
