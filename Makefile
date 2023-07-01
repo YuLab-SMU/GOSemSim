@@ -48,7 +48,7 @@ gitmaintain:
 
 update:
 	git fetch --all;\
-	git checkout master;\
+	git checkout devel;\
 	git merge upstream/devel
 
 rmrelease:
@@ -64,9 +64,9 @@ biocinit:
 
 push:
 	git push upstream devel;\
-	git push origin master
+	git push origin devel
 	#git checkout github;\
-	#git merge -m 'merge from bioc repo' upstream/master;\
-	#git push -f origin HEAD:master;\
-	#git checkout master
+	#git merge -m 'merge from bioc repo' upstream/devel;\
+	#git push -f origin HEAD:devel;\
+	#git checkout devel
 
