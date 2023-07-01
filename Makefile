@@ -49,7 +49,7 @@ gitmaintain:
 update:
 	git fetch --all;\
 	git checkout master;\
-	git merge upstream/master
+	git merge upstream/devel
 
 rmrelease:
 	git branch -D $(BIOCVER)
@@ -63,7 +63,7 @@ biocinit:
 	git fetch --all
 
 push:
-	git push upstream master;\
+	git push upstream devel;\
 	git push origin master
 	#git checkout github;\
 	#git merge -m 'merge from bioc repo' upstream/master;\
