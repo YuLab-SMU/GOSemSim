@@ -1,3 +1,7 @@
+# GOSemSim 2.27.1.001
+
++ move `buildGOmap()` and `read.gaf()` from 'clusterProfiler' (2023-07-10, Mon)
+
 # GOSemSim 2.27.1
 
 + semantic similarity measurement support for MPO (2023-04-06, Thu)
@@ -31,7 +35,7 @@
 
 + TCSS method (@qibaiqi, #35; 2021-08-02, Mon)
 
-+ GOSemSim 2.18.0
+# GOSemSim 2.18.0
 
 + Bioconductor 3.13 release
 
