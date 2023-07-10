@@ -5,9 +5,9 @@
 ##' @return a data frame with two columns: GO and Gene
 ##' @export
 read.blast2go <- function(file) {
-    blast2go <- read.table(file, header = TRUE, sep = "\t", stringsAsFactors = FALSE, fill = TRUE)
+    blast2go <- utils::read.table(file, header = TRUE, sep = "\t", stringsAsFactors = FALSE, fill = TRUE)
     go_annotation_data <- blast2go[, c("Blast.Top.Hit.GOs", "Sequence.Name")]
-    go_annotation_data <- tidyr::separate_rows(go_annotation_data, `Blast.Top.Hit.GOs`, sep = ", ")
+    go_annotation_data <- tidyr::separate_rows(go_annotation_data, tidyselect::all_of("Blast.Top.Hit.GOs"), sep = ", ")
 
     names(go_annotation_data) <- c("GO", "Gene")
     build.df <- buildGOmap(go_annotation_data)
