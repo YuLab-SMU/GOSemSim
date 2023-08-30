@@ -154,7 +154,7 @@ computePre <- function(cutoff, filtered_ppidata, semdata,
 #'
 calc_auc_F1_score <- function(predict_result, filtered_ppidata) {
   # checking whether package 'ROCR' being installed
-  check_installed('ROCR', 'for`calc_auc_F1_score`.')
+  check_installed('ROCR', 'for`calc_auc_F1_score()`.')
   # the label for PPIs, TRUE/FALSE
   label <- filtered_ppidata[, 3]
   #geneSim returns one value and two characters in once calculation
