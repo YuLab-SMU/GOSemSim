@@ -149,9 +149,12 @@ computePre <- function(cutoff, filtered_ppidata, semdata,
 #' @param filtered_ppidata data.frame, annotated protein pairs and their labels
 #' @return data.frame, auc and F1-score value for different cutoffs
 #' @importFrom methods slot
+#' @importFrom rlang check_installed
 #' @noRd
 #'
 calc_auc_F1_score <- function(predict_result, filtered_ppidata) {
+  # checking whether package 'ROCR' being installed
+  check_installed('ROCR', 'for`calc_auc_F1_score()`.')
   # the label for PPIs, TRUE/FALSE
   label <- filtered_ppidata[, 3]
   #geneSim returns one value and two characters in once calculation
