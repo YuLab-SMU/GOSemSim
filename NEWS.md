@@ -1,5 +1,10 @@
-# GOSemSim 2.27.1.001
+# GOSemSim 2.27.3
 
++ use `check_installed()` to check package dependency (2023-09-12, Tue, #43)
+
+# GOSemSim 2.27.2
+
++ `read.blast2go()` to parse 'blast2go' result (2023-07-10, Mon)
 + move `buildGOmap()` and `read.gaf()` from 'clusterProfiler' (2023-07-10, Mon)
 
 # GOSemSim 2.27.1
