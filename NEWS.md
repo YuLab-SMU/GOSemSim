@@ -1,3 +1,7 @@
+# GOSemSim 2.28.0
+
++ Bioconductor RELEASE_3_18 (2023-10-25, Wed)
+
 # GOSemSim 2.27.3
 
 + use `check_installed()` to check package dependency (2023-09-12, Tue, #43)
