@@ -17,16 +17,28 @@
 ##' @author Guangchuang Yu
 godata <- function(OrgDb = NULL, keytype = "ENTREZID",
                    ont, computeIC = TRUE,
-                   processTCSS = FALSE, cutoff = NULL) {
+                   processTCSS = FALSE, cutoff = NULL, is.data_frame = NULL) {
     if (processTCSS) computeIC <- TRUE
 
     ont <- toupper(ont)
     ont <- match.arg(ont, c("BP", "CC", "MF"))
+    
+    # check whether give a data in data_frame format
+    if (!is.null(is.data_frame)) {
+        # check whether frame format is right
+	if (!all(c("GO", "Gene") %in% colnames(is.data_frame))) {
+	  stop("Input data_frame must include 'GO' and 'Gene' columns.")
+	}
 
-    if (is.null(OrgDb)) {
+        # process getted frame into goAnno
+        goAnno <- is.data_frame
+	goAnno <- goAnno[goAnno$Ontology == ont, ]
+    } else {
+      if (is.null(OrgDb)) {
         return(new("GOSemSimDATA",
         ont = ont
         ))
+      }
     }
 
     OrgDb <- load_OrgDb(OrgDb)

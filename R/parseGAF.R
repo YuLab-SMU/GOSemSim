@@ -30,8 +30,20 @@ read.gaf <- function(GafFile) {
   go.ALL <- AnnotationDbi::select(GO.db, keys(GO.db), columns(GO.db))
   need.anno <- go.ALL[go.ALL$GOID %in% unique(bind.info$GO), ]
   
-  list(TERM2GENE = bind.info[, c("GO", "Gene")],
-       TERM2NAME = need.anno[, c("GOID", "TERM")])
+  # get Ontology information
+  if ("Ontology" %in% colnames(go.ALL)) {
+      bind.info$Ontology <- need.anno$Ontology
+      bind.info$Ontology <- gsub("molecular_function", "MF", bind.info$Ontology)
+      bind.info$Ontology <- gsub("cellular_component", "CC", bind.info$Ontology)
+      bind.info$Ontology <- gsub("biological_process", "BP", bind.info$Ontology)
+  } 
+
+  # detach extra output
+  extra.otp <- need.anno[, c("GOID", "TERM")]
+
+  # changed output
+  #list(TERM2GENE = bind.info[, c("GO", "Gene", "Ontology")], TERM2NAME = extra.otp)
+  return(list(TERM2GENE = bind.info[, c("GO", "Gene", "Ontology")], TERM2NAME = extra.otp))
 }
 
 

@@ -20,6 +20,18 @@ read.blast2go <- function(file) {
     bind.info <- bind.info[order(bind.info$GO, bind.info$Gene), ]
     bind.info <- bind.info[!duplicated(bind.info), ]
     bind.info[, "Gene"] <- as.character(bind.info$Gene)
+    
+    # get GO banches information
+    go.ALL <- AnnotationDbi::select(GO.db, keys(GO.db), columns(GO.db))
+    need.anno <- go.ALL[go.ALL$GOID %in% unique(bind.info$GO), ]
+     
+    # get Ontology information
+    if ("Ontology" %in% colnames(go.ALL)) {
+        bind.info$Ontology <- need.anno$Ontology
+        bind.info$Ontology <- gsub("molecular_function", "MF", bind.info$Ontology)
+        bind.info$Ontology <- gsub("cellular_component", "CC", bind.info$Ontology)
+        bind.info$Ontology <- gsub("biological_process", "BP", bind.info$Ontology)
+    }
 
-    return(bind.info[, c("GO", "Gene")])
+    return(bind.info[, c("GO", "Gene", "Ontology")])
 }
