@@ -5,19 +5,23 @@
 \alias{parse_gff}
 \title{read.gaf}
 \usage{
-read.gaf(GafFile)
+read.gaf(file, asis = FALSE, add_indirect_GO = FALSE)
 
-parse_gff(GafFile)
+parse_gff(file, asis = FALSE, add_indirect_GO = FALSE)
 }
 \arguments{
-\item{GafFile}{GAF file}
+\item{file}{GAF file}
+
+\item{asis}{logical, whether output the original contains of the file and only works if 'add_indirect_GO = FALSE'}
+
+\item{add_indirect_GO}{whether to add indirect GO annotation}
 }
 \value{
-a list with two dataframes
+A data.frame. Original table if 'asis' works, otherwise contains 3 conlumns of 'GENE', 'GO' and 'ONTOLOGY'
 }
 \description{
 parse GAF files
 }
 \details{
-given a GAF file, this function extracts the information from it and add indirect GO annotation
+given a GAF file, this function extracts the information from it
 }

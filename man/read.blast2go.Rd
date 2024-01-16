@@ -4,13 +4,15 @@
 \alias{read.blast2go}
 \title{read.blast2go}
 \usage{
-read.blast2go(file)
+read.blast2go(file, add_indirect_GO = FALSE)
 }
 \arguments{
 \item{file}{BLAST2GO file}
+
+\item{add_indirect_GO}{whether add indirect GO annotation}
 }
 \value{
-a data frame with two columns: GO and Gene
+a data frame with three columns: GENE, GO and ONTOLOGY
 }
 \description{
 given a BLAST2GO file, this function extracts the information from it and make it use for TERM2GENE.

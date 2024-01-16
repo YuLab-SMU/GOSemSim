@@ -4,21 +4,21 @@
 \alias{buildGOmap}
 \title{buildGOmap}
 \usage{
-buildGOmap(gomap)
+buildGOmap(x)
 }
 \arguments{
-\item{gomap}{data.frame with two columns of GO and gene ID}
+\item{x}{data.frame with two or three columns of GENE, GO and ONTOLOGY (optional)}
 }
 \value{
-data.frame, GO annotation with indirect annotation
+data.frame, GO annotation with direct and indirect annotation
 }
 \description{
-building GO mapping files
+Addding indirect GO annotation
 }
 \details{
-provided by a data.frame of GO (column 1) and gene (column 2) direct annotation
-this function will building gene to GO and GO to gene mapping,
-with directly and undirectly (ancestor GO term) annotation.
+provided by a data.frame of GENE (column 1), GO (column 2) and ONTOLOGY (optional) that
+describes GO direct annotation, 
+this function will add indirect GO annotation of genes.
 }
 \author{
 Yu Guangchuang

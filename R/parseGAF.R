@@ -1,45 +1,45 @@
 ##' parse GAF files
 ##'
-##' given a GAF file, this function extracts the information from it and add indirect GO annotation
+##' given a GAF file, this function extracts the information from it
 ##' @title read.gaf
 ##' @rdname read-gaf
-##' @param GafFile GAF file
-##' @return a list with two dataframes
+##' @param file GAF file
+##' @param asis logical, whether output the original contains of the file and only works if 'add_indirect_GO = FALSE'
+##' @param add_indirect_GO whether to add indirect GO annotation 
+##' @return A data.frame. Original table if 'asis' works, otherwise contains 3 conlumns of 'GENE', 'GO' and 'ONTOLOGY'
 ##' @export
-##' @importFrom GO.db GO.db
-##' @importFrom utils read.delim
-##' @importFrom AnnotationDbi columns
-read.gaf <- function(GafFile) {
-  GafFile <- read.gaf2(GafFile)
-  new.data.frame <- GafFile[, c("GOID", "DB_Object_ID")]
-  
-  ##use buildGOmap function to get information related
-  build.df <- buildGOmap(new.data.frame)
-  
-  ##rename this colnames to be same with the buildGOmap function to facilatate bind information.
-  names(new.data.frame) <- c("GO", "Gene")
-  
-  ##bind the information needed
-  bind.info <- rbind(build.df, new.data.frame)
-  
-  ##process  data
-  bind.info <- bind.info[order(bind.info$GO, bind.info$Gene), ]
-  bind.info <- bind.info[!duplicated(bind.info), ]
-  bind.info[, "Gene"] <- as.character(bind.info$Gene)
-  
-  go.ALL <- AnnotationDbi::select(GO.db, keys(GO.db), columns(GO.db))
-  need.anno <- go.ALL[go.ALL$GOID %in% unique(bind.info$GO), ]
-  
-  list(TERM2GENE = bind.info[, c("GO", "Gene")],
-       TERM2NAME = need.anno[, c("GOID", "TERM")])
+read.gaf <- function(file, asis = FALSE, add_indirect_GO = FALSE) {
+  GafFile <- read.gaf2(file)
+  if (!add_indirect_GO && asis) return(GafFile)
+
+  new.data.frame <- GafFile[, c("DB_Object_ID", "GOID", "Aspect")]
+  names(new.data.frame) <- c("GENE", "GO", "ONTOLOGY")
+  ont <- setNames(c("MF", "CC", "BP"), c("F", "C", "P"))
+  new.data.frame$ONTOLOGY <- ont[new.data.frame$ONTOLOGY]
+
+  if (!add_indirect_GO) return(new.data.frame)
+
+  ## use buildGOmap function to append indirect annotation
+  buildGOmap(new.data.frame)
 }
 
+##' @importFrom GO.db GO.db
+##' @importFrom AnnotationDbi columns
+goid2term <- function(simplify = TRUE) {
+  go.ALL <- AnnotationDbi::select(GO.db, keys(GO.db), columns(GO.db))
+  if (simplify) {
+    go.ALL <- go.ALL[, c("GOID", "TERM")]
+  }
+
+  return(go.ALL)
+}
 
 ##' @rdname read-gaf
 ##' @export
 parse_gff <- read.gaf
 
 # only read the file with selected columns
+##' @importFrom utils read.delim
 read.gaf2 <- function(GafFile, nrows = -1) {
   cat("Reading ", GafFile, ": ", sep = "")
   GafFile <-

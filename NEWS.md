@@ -1,3 +1,10 @@
+# GOSemSim 2.29.0.001
+
++ extend `godata()` to support passing a data.frame (can be output of `read.gaf()` or `read.blast2go()`) to 'annoDb' (2023-01-16, Tue)
++ deprecate 'OrgDb' and introduce new parameter 'annoDb' in `godata()` 
++ standardize the output of `read.gaf()` and `read.blast2go()`
++ optimize `buildGOmap()`
+
 # GOSemSim 2.28.0
 
 + Bioconductor RELEASE_3_18 (2023-10-25, Wed)

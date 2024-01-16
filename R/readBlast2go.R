@@ -2,24 +2,36 @@
 ##' given a BLAST2GO file, this function extracts the information from it and make it use for TERM2GENE.
 ##' @title read.blast2go
 ##' @param file BLAST2GO file
+##' @param add_indirect_GO whether add indirect GO annotation 
 ##' @importFrom rlang check_installed
-##' @return a data frame with two columns: GO and Gene
+##' @return a data frame with three columns: GENE, GO and ONTOLOGY
 ##' @export
-read.blast2go <- function(file) {
-    blast2go <- utils::read.table(file, header = TRUE, sep = "\t", stringsAsFactors = FALSE, fill = TRUE)
-    go_annotation_data <- blast2go[, c("Blast.Top.Hit.GOs", "Sequence.Name")]
+read.blast2go <- function(file, add_indirect_GO = FALSE) {
+    check_installed("readr", 'for `read.blast2go()`.')
     check_installed('tidyr', 'for `read.blast2go()`.')
     check_installed('tidyselect', 'for `read.blaset2go()`.')
-    go_annotation_data <- tidyr::separate_rows(go_annotation_data, tidyselect::all_of("Blast.Top.Hit.GOs"), sep = ", ")
 
-    names(go_annotation_data) <- c("GO", "Gene")
-    build.df <- buildGOmap(go_annotation_data)
+    # blast2go <- utils::read.table(file, header = TRUE, sep = "\t", stringsAsFactors = FALSE, fill = TRUE) # has bugs
+    blast2go <- yulab.utils::yread(file, readr::read_delim)
+    x <- blast2go[, c("Sequence Name", "GO Accession", "GO Domains")]
+    names(x) <- c("GENE", "GO", "ONTOLOGY")
+    x <- x[!is.na(x[["GO"]]), ]
 
-    bind.info <- rbind(build.df, go_annotation_data)
+    y <- tidyr::separate_rows(x, tidyselect::all_of(c("GO", "ONTOLOGY")), sep = ", ")
+    y$GO <- sub("^\\s+", "", y$GO)
+    y$ONTOLOGY <- sub("^\\s+", "", y$ONTOLOGY)
+    
+    ont <- setNames(c("MF", "CC", "BP"), c("F", "C", "P"))
+    y$ONTOLOGY <- ont[y$ONTOLOGY]
+    y <- as.data.frame(y)
 
-    bind.info <- bind.info[order(bind.info$GO, bind.info$Gene), ]
-    bind.info <- bind.info[!duplicated(bind.info), ]
-    bind.info[, "Gene"] <- as.character(bind.info$Gene)
+    if (!add_indirect_GO) {
+        return(y)
+    }
 
-    return(bind.info[, c("GO", "Gene")])
+    buildGOmap(y)
 }
+
+
+
+

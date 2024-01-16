@@ -6,6 +6,7 @@
 \usage{
 godata(
   OrgDb = NULL,
+  annoDb = NULL,
   keytype = "ENTREZID",
   ont,
   computeIC = TRUE,
@@ -14,7 +15,10 @@ godata(
 )
 }
 \arguments{
-\item{OrgDb}{OrgDb object}
+\item{OrgDb}{OrgDb object (will be removed in future, please use annoDb instead)}
+
+\item{annoDb}{GO annotation database, 
+can be OrgDb or a data.frame contains three columns of 'GENE', 'GO' and 'ONTOLOGY'.}
 
 \item{keytype}{keytype}
 
