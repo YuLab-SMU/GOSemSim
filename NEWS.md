@@ -1,4 +1,4 @@
-# GOSemSim 2.29.0.001
+# GOSemSim 2.29.1
 
 + extend `godata()` to support passing a data.frame (can be output of `read.gaf()` or `read.blast2go()`) to 'annoDb' (2023-01-16, Tue)
 + deprecate 'OrgDb' and introduce new parameter 'annoDb' in `godata()` 
@@ -15,7 +15,7 @@
 
 # GOSemSim 2.27.2
 
-+ `read.blast2go()` to parse 'blast2go' result (2023-07-10, Mon)
++ `read.blast2go()` to parse 'blast2go' result (2023-07-10, Mon, #41, #42)
 + move `buildGOmap()` and `read.gaf()` from 'clusterProfiler' (2023-07-10, Mon)
 
 # GOSemSim 2.27.1
