@@ -4,10 +4,10 @@
 \alias{buildGOmap}
 \title{buildGOmap}
 \usage{
-buildGOmap(x)
+buildGOmap(TERM2GENE)
 }
 \arguments{
-\item{x}{data.frame with two or three columns of GENE, GO and ONTOLOGY (optional)}
+\item{TERM2GENE}{data.frame with two or three columns of GO TERM, GENE and ONTOLOGY (optional)}
 }
 \value{
 data.frame, GO annotation with direct and indirect annotation
@@ -16,7 +16,7 @@ data.frame, GO annotation with direct and indirect annotation
 Addding indirect GO annotation
 }
 \details{
-provided by a data.frame of GENE (column 1), GO (column 2) and ONTOLOGY (optional) that
+provided by a data.frame of GO TERM (column 1), GENE (column 2) and ONTOLOGY (optional) that
 describes GO direct annotation, 
 this function will add indirect GO annotation of genes.
 }

@@ -1,7 +1,7 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-Version: 2.29.1
+Version: 2.29.1.001
 Authors@R: c( person(given = "Guangchuang", family = "Yu",             email = "guangchuangyu@gmail.com", role  = c("aut", "cre")),
               person(given = "Alexey",      family = "Stukalov",       email = "astukalov@gmail.com",     role  = "ctb"),
               person(given= "Pingfan",      family = "Guo",            email = "1178431277@qq.com",       role  = "ctb"),
@@ -48,4 +48,4 @@ URL: https://yulab-smu.top/biomedical-knowledge-mining-book/
 BugReports: https://github.com/YuLab-SMU/GOSemSim/issues
 Packaged: 2012-08-29 06:44:50 UTC; root
 biocViews: Annotation, GO, Clustering, Pathways, Network, Software
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.0

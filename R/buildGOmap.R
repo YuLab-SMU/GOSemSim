@@ -1,10 +1,10 @@
 ##' Addding indirect GO annotation
 ##'
-##' provided by a data.frame of GENE (column 1), GO (column 2) and ONTOLOGY (optional) that
+##' provided by a data.frame of GO TERM (column 1), GENE (column 2) and ONTOLOGY (optional) that
 ##' describes GO direct annotation, 
 ##' this function will add indirect GO annotation of genes.
 ##' @title buildGOmap
-##' @param x data.frame with two or three columns of GENE, GO and ONTOLOGY (optional)
+##' @param TERM2GENE data.frame with two or three columns of GO TERM, GENE and ONTOLOGY (optional)
 ##' @return data.frame, GO annotation with direct and indirect annotation
 ##' @importMethodsFrom AnnotationDbi as.list
 ##' @importFrom GO.db GOMFANCESTOR
@@ -12,19 +12,19 @@
 ##' @importFrom GO.db GOCCANCESTOR
 ##' @export
 ##' @author Yu Guangchuang
-buildGOmap <- function(x) {
+buildGOmap <- function(TERM2GENE) {
     mfanc <- as.list(GOMFANCESTOR)
     ccanc <- as.list(GOCCANCESTOR)
     bpanc <- as.list(GOBPANCESTOR)
 
-    if (!'ONTOLOGY' %in% names(x)) {
+    if (!'ONTOLOGY' %in% names(TERM2GENE)) {
         anc <- c(mfanc, ccanc, bpanc)
-        res <- buildGOmap_internal(x, anc)
+        res <- buildGOmap_internal(TERM2GENE, anc)
         return(res)
     }
 
     anc <- list(MF=mfanc, CC=ccanc, BP=bpanc)
-    y <- split(x, x$ONTOLOGY)
+    y <- split(TERM2GENE, TERM2GENE$ONTOLOGY)
 
     res <- lapply(names(y), function(i) {
         d <- buildGOmap_internal(y[[i]], anc[[i]])
@@ -37,15 +37,14 @@ buildGOmap <- function(x) {
 
 ##' @importFrom stats setNames
 ##' @importFrom yulab.utils ls2df
-buildGOmap_internal <- function(y, anc) {
-    res <- setNames(anc[y$GO], y[,1]) |> 
+buildGOmap_internal <- function(TERM2GENE, anc) {
+    res <- setNames(anc[TERM2GENE[,1]], TERM2GENE[,2]) |> 
         ls2df() |>
         unique()
 
-    names(res) <- c(names(y)[1], "GO")
-    res <- res[res$GO != "all", ]
-
-    res <- rbind(y[, names(res)], res)
+    res <- setNames(res[, c(2,1)], names(TERM2GENE)[1:2])
+    res <- res[res[,1] != "all", ]
+    res <- rbind(TERM2GENE[,1:2], res)
     return(res)
 }
 

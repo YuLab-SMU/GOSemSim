@@ -1,3 +1,7 @@
+# GOSemSim 2.29.1.001
+
++ update `buildGOmap()` parameter to consistent with `enricher()` and `GSEA()` (2024-02-06, Tue, #47)
+
 # GOSemSim 2.29.1
 
 + extend `godata()` to support passing a data.frame (can be output of `read.gaf()` or `read.blast2go()`) to 'annoDb' (2023-01-16, Tue)
