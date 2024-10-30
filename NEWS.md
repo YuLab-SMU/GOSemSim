@@ -1,3 +1,7 @@
+# GOSemSim 2.32.0
+
++ Bioconductor RELEASE_3_20 (2024-10-30, Wed)
+
 # GOSemSim 2.31.1
 
 + `get_rel_df()` to access ontology relation data frame required by the Wang method (2024-08-13, Tue)
