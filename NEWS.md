@@ -1,3 +1,7 @@
+# GOSemSim 2.34.0
+
++ Bioconductor RELEASE_3_21 (2025-04-17, Thu)
+
 # GOSemSim 2.32.0
 
 + Bioconductor RELEASE_3_20 (2024-10-30, Wed)
