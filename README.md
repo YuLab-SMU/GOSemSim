@@ -7,10 +7,10 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 [![platform](http://www.bioconductor.org/shields/availability/devel/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#archives)
 [![codecov](https://codecov.io/gh/GuangchuangYu/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/GuangchuangYu/GOSemSim/)
 
-[![](https://img.shields.io/badge/release%20version-2.30.0-green.svg)](https://www.bioconductor.org/packages/GOSemSim)
-[![](https://img.shields.io/badge/devel%20version-2.31.1-green.svg)](https://github.com/guangchuangyu/GOSemSim)
-[![](https://img.shields.io/badge/download-817806/total-blue.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
-[![](https://img.shields.io/badge/download-17918/month-blue.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![](https://img.shields.io/badge/release%20version-2.34.0-green.svg)](https://www.bioconductor.org/packages/GOSemSim)
+[![](https://img.shields.io/badge/devel%20version-2.35.0-green.svg)](https://github.com/guangchuangyu/GOSemSim)
+[![](https://img.shields.io/badge/download-1061088/total-blue.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![](https://img.shields.io/badge/download-21399/month-blue.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 
 The semantic comparisons of Gene Ontology (GO) annotations provide
 quantitative ways to compute similarities between genes and gene groups,

@@ -100,7 +100,15 @@ load_onto <- function(onto = "HDO") {
     dbfile <- file.path(dir, dbfile0)
 
     if (file.exists(dbfile)) {
-        md5 <- read.delim('https://yulab-smu.top/DOSE/md5.txt', header=FALSE)
+        base_url <- 'https://yulab-smu.top/DOSE'
+        md5_url <- sprintf("%s/md5.txt", base_url)
+        md5 <- tryCatch(read.delim(md5_url, header=FALSE), 
+            error = function(e) NULL)
+        if (is.null(md5)) {
+            base_url <- 'https://raw.githubusercontent.com/YuLab-SMU/DOSE/refs/heads/gh-pages'
+            md5_url <- sprintf("%s/md5.txt", base_url)
+            md5 <- read.delim(md5_url, header=FALSE)
+        }
         md5_remote <- md5[md5[,1] == dbfile0, 2]
         md5_local <- digest::digest(dbfile, algo='md5', file=TRUE)
         if (md5_remote != md5_local) {
@@ -117,7 +125,7 @@ load_onto <- function(onto = "HDO") {
     }
 
     if (need_dl) {
-        url <- sprintf('https://yulab-smu.top/DOSE/%s.gz', dbfile0)
+        url <- sprintf('%s/%s.gz', base_url, dbfile0)
         gzdbfile <- sprintf("%s.gz", dbfile)
         yulab.utils:::mydownload(url, gzdbfile)
         R.utils::gunzip(gzdbfile, overwrite = TRUE)

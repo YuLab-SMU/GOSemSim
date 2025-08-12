@@ -1,3 +1,7 @@
+# GOSemSim 2.35.1
+
++ alternative url for `load_onto()` (2025-08-12, Tue)
+
 # GOSemSim 2.34.0
 
 + Bioconductor RELEASE_3_21 (2025-04-17, Thu)
