@@ -102,21 +102,24 @@ load_onto <- function(onto = "HDO") {
     if (file.exists(dbfile)) {
         base_url <- 'https://yulab-smu.top/DOSE'
         md5_url <- sprintf("%s/md5.txt", base_url)
-        md5 <- tryCatch(read.delim(md5_url, header=FALSE), 
-            error = function(e) NULL)
+        md5 <- tryCatch(read.delim(md5_url, header=FALSE), error = function(e) NULL)
         if (is.null(md5)) {
             base_url <- 'https://raw.githubusercontent.com/YuLab-SMU/DOSE/refs/heads/gh-pages'
             md5_url <- sprintf("%s/md5.txt", base_url)
-            md5 <- read.delim(md5_url, header=FALSE)
+            md5 <- tryCatch(read.delim(md5_url, header=FALSE), error = function(e) NULL)
         }
-        md5_remote <- md5[md5[,1] == dbfile0, 2]
-        md5_local <- digest::digest(dbfile, algo='md5', file=TRUE)
-        if (md5_remote != md5_local) {
-            msg <- sprintf("%s is outdated, download the latest version...\n", dbfile0)
-            cat(msg)
-            need_dl <- TRUE
-        } else {
+        if (is.null(md5)) {
             need_dl <- FALSE
+        } else {
+            md5_remote <- md5[md5[,1] == dbfile0, 2]
+            md5_local <- digest::digest(dbfile, algo='md5', file=TRUE)
+            if (md5_remote != md5_local) {
+                msg <- sprintf("%s is outdated, download the latest version...\n", dbfile0)
+                cat(msg)
+                need_dl <- TRUE
+            } else {
+                need_dl <- FALSE
+            }
         }
     } else {
         msg <- sprintf("%s is not found, download it online...\n", dbfile0)
