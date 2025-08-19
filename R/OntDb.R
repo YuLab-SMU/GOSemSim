@@ -92,9 +92,7 @@ load_onto <- function(onto = "HDO") {
         return(db)
     }
 
-    dir <- rappdirs::user_data_dir("GOSemSim", appauthor=NULL)
-
-    if (!dir.exists(dir)) dir.create(dir)
+    dir <- yulab.utils::user_dir("GOSemSim")
 
     dbfile0 <- sprintf("%s.sqlite", onto)
     dbfile <- file.path(dir, dbfile0)
