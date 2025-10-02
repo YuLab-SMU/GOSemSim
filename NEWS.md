@@ -1,3 +1,8 @@
+# GOSemSim 2.35.2
+
++ bug fixed that introduced in previous commit (2025-10-03, Fri)
+  - <https://github.com/YuLab-SMU/DOSE/issues/86#issuecomment-3361787836>
+
 # GOSemSim 2.35.1
 
 + alternative url for `load_onto()` (2025-08-12, Tue)

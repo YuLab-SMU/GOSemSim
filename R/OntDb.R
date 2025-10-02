@@ -97,8 +97,8 @@ load_onto <- function(onto = "HDO") {
     dbfile0 <- sprintf("%s.sqlite", onto)
     dbfile <- file.path(dir, dbfile0)
 
+    base_url <- 'https://yulab-smu.top/DOSE'
     if (file.exists(dbfile)) {
-        base_url <- 'https://yulab-smu.top/DOSE'
         md5_url <- sprintf("%s/md5.txt", base_url)
         md5 <- tryCatch(read.delim(md5_url, header=FALSE), error = function(e) NULL)
         if (is.null(md5)) {
