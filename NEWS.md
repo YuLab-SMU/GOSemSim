@@ -1,3 +1,7 @@
+# GOSemSim 2.36.0
+
++ Bioconductor RELEASE_3_22 (2025-11-01, Sat)
+
 # GOSemSim 2.35.2
 
 + bug fixed that introduced in previous commit (2025-10-03, Fri)
