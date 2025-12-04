@@ -1,4 +1,4 @@
-# GOSemSim 2.37.0.001
+# GOSemSim 2.37.0.002
 
 + move `load_OrgDb()` to 'yulab.utils' (2025-12-05, Fri)
 
