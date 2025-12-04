@@ -1,22 +1,23 @@
-##' prepare GO DATA for measuring semantic similarity
-##'
-##'
-##' @title godata
-##' @param OrgDb OrgDb object (will be removed in future, please use annoDb instead)
-##' @param annoDb GO annotation database, 
-##' can be OrgDb or a data.frame contains three columns of 'GENE', 'GO' and 'ONTOLOGY'.
-##' @param keytype keytype
-##' @param ont one of 'BP', 'MF', 'CC'
-##' @param computeIC logical, whether computer IC
-##' @param processTCSS logical, whether to process TCSS
-##' @param cutoff cutoff of TCSS
-##' @return GOSemSimDATA object
-##' @importFrom AnnotationDbi keys
-##' @importFrom AnnotationDbi select
-##' @importFrom AnnotationDbi metadata
-##' @importFrom methods new
-##' @export
-##' @author Guangchuang Yu
+#' prepare GO DATA for measuring semantic similarity
+#'
+#'
+#' @title godata
+#' @param OrgDb OrgDb object (will be removed in future, please use annoDb instead)
+#' @param annoDb GO annotation database, 
+#' can be OrgDb or a data.frame contains three columns of 'GENE', 'GO' and 'ONTOLOGY'.
+#' @param keytype keytype
+#' @param ont one of 'BP', 'MF', 'CC'
+#' @param computeIC logical, whether computer IC
+#' @param processTCSS logical, whether to process TCSS
+#' @param cutoff cutoff of TCSS
+#' @return GOSemSimDATA object
+#' @importFrom AnnotationDbi keys
+#' @importFrom AnnotationDbi select
+#' @importFrom AnnotationDbi metadata
+#' @importFrom methods new
+#' @importFrom yulab.utils load_OrgDb
+#' @export
+#' @author Guangchuang Yu
 godata <- function(OrgDb = NULL, annoDb = NULL, keytype = "ENTREZID",
                    ont, computeIC = TRUE,
                    processTCSS = FALSE, cutoff = NULL) {
@@ -101,24 +102,24 @@ parse_orgDb <- function(OrgDb, keytype) {
     return(goAnno)
 }
 
-##' Class "GOSemSimDATA"
-##' This class stores IC and gene to go mapping for semantic similarity measurement
-##'
-##'
-##' @name GOSemSimDATA-class
-##' @aliases GOSemSimDATA-class
-##'   show,GOSemSimDATA-method
-##'
-##' @docType class
-##' @slot keys gene ID
-##' @slot ont ontology
-##' @slot IC IC data
-##' @slot geneAnno gene to GO mapping
-##' @slot tcssdata tcssdata
-##' @slot metadata metadata
-##' @exportClass GOSemSimDATA
-##' @keywords classes
-##' @importFrom methods setClass
+#' Class "GOSemSimDATA"
+#' This class stores IC and gene to go mapping for semantic similarity measurement
+#'
+#'
+#' @name GOSemSimDATA-class
+#' @aliases GOSemSimDATA-class
+#'   show,GOSemSimDATA-method
+#'
+#' @docType class
+#' @slot keys gene ID
+#' @slot ont ontology
+#' @slot IC IC data
+#' @slot geneAnno gene to GO mapping
+#' @slot tcssdata tcssdata
+#' @slot metadata metadata
+#' @exportClass GOSemSimDATA
+#' @keywords classes
+#' @importFrom methods setClass
 setClass("GOSemSimDATA",
   representation = representation(
     keys = "character",
@@ -130,7 +131,7 @@ setClass("GOSemSimDATA",
   )
 )
 
-##' @importFrom methods setMethod
+#' @importFrom methods setMethod
 setMethod(
   "show", signature(object = "GOSemSimDATA"),
   function(object) {

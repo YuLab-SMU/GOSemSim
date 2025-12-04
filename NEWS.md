@@ -1,3 +1,7 @@
+# GOSemSim 2.37.0.001
+
++ move `load_OrgDb()` to 'yulab.utils' (2025-12-05, Fri)
+
 # GOSemSim 2.36.0
 
 + Bioconductor RELEASE_3_22 (2025-11-01, Sat)
