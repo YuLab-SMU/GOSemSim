@@ -2,43 +2,43 @@
 % Please edit documentation in R/goSim.R
 \name{goSim}
 \alias{goSim}
-\title{Semantic Similarity Between Two GO Terms}
+\title{Semantic similarity between two GO terms}
 \usage{
 goSim(GOID1, GOID2, semData, measure = "Wang")
 }
 \arguments{
-\item{GOID1}{GO ID 1.}
+\item{GOID1}{GO ID 1}
 
-\item{GOID2}{GO ID 2.}
+\item{GOID2}{GO ID 2}
 
 \item{semData}{GOSemSimDATA object}
 
 \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang", "TCSS" and "Wang" methods.}
+
+\item{combine}{One of "max", "avg", "rcmax", "BMA" methods, used to combine multiple term scores.}
 }
 \value{
 similarity
 }
 \description{
-Given two GO IDs, this function calculates their semantic similarity.
+Given two GO IDs, calculate their semantic similarity.
 }
 \examples{
-
-    d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
-goSim("GO:0004022", "GO:0005515", semData=d, measure="Wang")
-
+d <- godata('org.Hs.eg.db', ont = "MF", computeIC = FALSE)
+goSim("GO:0004022", "GO:0005515", semData = d, measure = "Wang")
 }
 \references{
-Yu et al. (2010) GOSemSim: an R package for measuring semantic
-similarity among GO terms and gene products \emph{Bioinformatics} (Oxford,
-England), 26:7 976--978, April 2010. ISSN 1367-4803
-\url{http://bioinformatics.oxfordjournals.org/cgi/content/abstract/26/7/976}
-PMID: 20179076
+Yu et al. (2010) GOSemSim: an R package for measuring semantic similarity among GO terms and gene products.
+Bioinformatics, 26(7): 976–978. https://academic.oup.com/bioinformatics/article/26/7/976/211914
 }
 \seealso{
-\code{\link{mgoSim}}
-\code{\link{geneSim}}
-\code{\link{mgeneSim}}
-\code{\link{clusterSim}}
-\code{\link{mclusterSim}}
+\code{\link[=goSim]{goSim()}}, \code{\link[=mgoSim]{mgoSim()}}, \code{\link[=geneSim]{geneSim()}}, \code{\link[=mgeneSim]{mgeneSim()}}, \code{\link[=clusterSim]{clusterSim()}}, \code{\link[=mclusterSim]{mclusterSim()}}, \code{\link[=termSim]{termSim()}}
+
+Other similarity: 
+\code{\link{clusterSim}()},
+\code{\link{geneSim}()},
+\code{\link{mclusterSim}()},
+\code{\link{mgeneSim}()},
+\code{\link{mgoSim}()}
 }
-\keyword{manip}
+\concept{similarity}

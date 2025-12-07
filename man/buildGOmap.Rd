@@ -17,7 +17,7 @@ Addding indirect GO annotation
 }
 \details{
 provided by a data.frame of GO TERM (column 1), GENE (column 2) and ONTOLOGY (optional) that
-describes GO direct annotation, 
+describes GO direct annotation,
 this function will add indirect GO annotation of genes.
 }
 \author{

@@ -2,48 +2,46 @@
 % Please edit documentation in R/mgoSim.R
 \name{mgoSim}
 \alias{mgoSim}
-\title{Semantic Similarity Between two GO terms lists}
+\title{Semantic similarity between two GO term sets}
 \usage{
 mgoSim(GO1, GO2, semData, measure = "Wang", combine = "BMA")
 }
 \arguments{
-\item{GO1}{A set of go terms.}
+\item{GO1}{A set of GO terms}
 
-\item{GO2}{Another set of go terms.}
+\item{GO2}{Another set of GO terms}
 
 \item{semData}{GOSemSimDATA object}
 
 \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang", "TCSS" and "Wang" methods.}
 
-\item{combine}{One of "max", "avg", "rcmax", "BMA" methods, for combining
-semantic similarity scores of multiple GO terms associated with protein or
-multiple proteins assiciated with protein cluster.}
+\item{combine}{One of "max", "avg", "rcmax", "BMA" methods, used to combine multiple term scores.}
 }
 \value{
 similarity
 }
 \description{
-Given two GO term sets, this function will calculate the semantic similarity
-between them, and return their semantic similarity
+Given two sets of GO terms, calculate their semantic similarity.
 }
 \examples{
-
-    d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
+d <- godata('org.Hs.eg.db', ont = "MF", computeIC = FALSE)
 go1 <- c("GO:0004022", "GO:0004024", "GO:0004023")
 go2 <- c("GO:0009055", "GO:0020037")
-mgoSim("GO:0003824", go2, semData=d, measure="Wang")
-mgoSim(go1, go2, semData=d, measure="Wang")
-
+mgoSim("GO:0003824", go2, semData = d, measure = "Wang")
+mgoSim(go1, go2, semData = d, measure = "Wang")
 }
 \references{
-Yu et al. (2010) GOSemSim: an R package for measuring semantic
-similarity among GO terms and gene products \emph{Bioinformatics} (Oxford,
-England), 26:7 976--978, April 2010. ISSN 1367-4803
-\url{http://bioinformatics.oxfordjournals.org/cgi/content/abstract/26/7/976}
-PMID: 20179076
+Yu et al. (2010) GOSemSim: an R package for measuring semantic similarity among GO terms and gene products.
+Bioinformatics, 26(7): 976–978. https://academic.oup.com/bioinformatics/article/26/7/976/211914
 }
 \seealso{
-\code{\link{goSim}} \code{\link{geneSim}} \code{\link{mgeneSim}}
-\code{\link{clusterSim}} \code{\link{mclusterSim}}
+\code{\link[=goSim]{goSim()}}, \code{\link[=mgoSim]{mgoSim()}}, \code{\link[=geneSim]{geneSim()}}, \code{\link[=mgeneSim]{mgeneSim()}}, \code{\link[=clusterSim]{clusterSim()}}, \code{\link[=mclusterSim]{mclusterSim()}}, \code{\link[=termSim]{termSim()}}
+
+Other similarity: 
+\code{\link{clusterSim}()},
+\code{\link{geneSim}()},
+\code{\link{goSim}()},
+\code{\link{mclusterSim}()},
+\code{\link{mgeneSim}()}
 }
-\keyword{manip}
+\concept{similarity}

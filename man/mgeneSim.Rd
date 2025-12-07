@@ -2,7 +2,7 @@
 % Please edit documentation in R/mgeneSim.R
 \name{mgeneSim}
 \alias{mgeneSim}
-\title{Pairwise Semantic Similarity for a List of Genes}
+\title{Pairwise semantic similarity for a list of genes}
 \usage{
 mgeneSim(
   genes,
@@ -14,43 +14,40 @@ mgeneSim(
 )
 }
 \arguments{
-\item{genes}{A list of entrez gene IDs.}
+\item{genes}{A list of Entrez gene IDs}
 
 \item{semData}{GOSemSimDATA object}
 
 \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang", "TCSS" and "Wang" methods.}
 
-\item{drop}{A set of evidence codes based on which certain annotations are
-dropped. Use NULL to keep all GO annotations.}
+\item{drop}{Evidence codes to drop; use \code{NULL} to keep all GO annotations}
 
-\item{combine}{One of "max", "avg", "rcmax", "BMA" methods, for combining
-semantic similarity scores of multiple GO terms associated with protein or
-multiple proteins assiciated with protein cluster.}
+\item{combine}{One of "max", "avg", "rcmax", "BMA" methods, used to combine multiple term scores.}
 
-\item{verbose}{show progress bar or not.}
+\item{verbose}{Whether to show a progress bar}
 }
 \value{
 similarity matrix
 }
 \description{
-Given a list of genes, this function calculates pairwise semantic
-similarities.
+Calculate pairwise semantic similarities for a given list of genes.
 }
 \examples{
-
-d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
-mgeneSim(c("835", "5261","241"), semData=d, measure="Wang")
-
+d <- godata('org.Hs.eg.db', ont = "MF", computeIC = FALSE)
+mgeneSim(c("835", "5261", "241"), semData = d, measure = "Wang")
 }
 \references{
-Yu et al. (2010) GOSemSim: an R package for measuring semantic
-similarity among GO terms and gene products \emph{Bioinformatics} (Oxford,
-England), 26:7 976--978, April 2010. ISSN 1367-4803
-\url{http://bioinformatics.oxfordjournals.org/cgi/content/abstract/26/7/976}
-PMID: 20179076
+Yu et al. (2010) GOSemSim: an R package for measuring semantic similarity among GO terms and gene products.
+Bioinformatics, 26(7): 976–978. https://academic.oup.com/bioinformatics/article/26/7/976/211914
 }
 \seealso{
-\code{\link{goSim}} \code{\link{mgoSim}} \code{\link{geneSim}}
-\code{\link{clusterSim}} \code{\link{mclusterSim}}
+\code{\link[=goSim]{goSim()}}, \code{\link[=mgoSim]{mgoSim()}}, \code{\link[=geneSim]{geneSim()}}, \code{\link[=mgeneSim]{mgeneSim()}}, \code{\link[=clusterSim]{clusterSim()}}, \code{\link[=mclusterSim]{mclusterSim()}}, \code{\link[=termSim]{termSim()}}
+
+Other similarity: 
+\code{\link{clusterSim}()},
+\code{\link{geneSim}()},
+\code{\link{goSim}()},
+\code{\link{mclusterSim}()},
+\code{\link{mgoSim}()}
 }
-\keyword{manip}
+\concept{similarity}

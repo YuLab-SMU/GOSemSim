@@ -12,23 +12,23 @@ termSim(
 )
 }
 \arguments{
-\item{t1}{term vector}
+\item{t1}{Term vector}
 
-\item{t2}{term vector}
+\item{t2}{Term vector}
 
 \item{semData}{GOSemSimDATA object}
 
-\item{method}{one of "Wang", "Resnik", "Rel", "Jiang", and "Lin", "TCSS".}
+\item{method}{One of "Wang", "Resnik", "Rel", "Jiang", "Lin", "TCSS"}
 }
 \value{
 score matrix
 }
 \description{
-measuring similarities between two term vectors.
+Measure similarities between two term vectors.
 }
 \details{
-provide two term vectors, this function will calculate their similarities.
+Provide two term vectors, this function calculates their similarities.
 }
 \author{
-Guangchuang Yu \url{http://guangchuangyu.github.io}
+Guangchuang Yu \url{https://yulab-smu.top}
 }

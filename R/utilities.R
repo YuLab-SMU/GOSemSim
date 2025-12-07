@@ -110,5 +110,5 @@ prepare_relation_df <- function() {
 #' @author Guangchuang Yu
 get_organism <- function(object) {
     OrgDb <- load_OrgDb(object)
-    AnnotationDbi::species(object)
+    AnnotationDbi::species(OrgDb)
 }

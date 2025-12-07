@@ -1,16 +1,16 @@
-##'termSim
-##'
-##'measuring similarities between two term vectors.
-##'
-##'provide two term vectors, this function will calculate their similarities.
-##'
-##'@param t1 term vector
-##'@param t2 term vector
-##'@param method one of "Wang", "Resnik", "Rel", "Jiang", and "Lin", "TCSS".
-##'@param semData GOSemSimDATA object
-##'@return score matrix
-##'@export
-##'@author Guangchuang Yu \url{http://guangchuangyu.github.io}
+#' termSim
+#'
+#' Measure similarities between two term vectors.
+#'
+#' Provide two term vectors, this function calculates their similarities.
+#'
+#' @param t1 Term vector
+#' @param t2 Term vector
+#' @param method One of "Wang", "Resnik", "Rel", "Jiang", "Lin", "TCSS"
+#' @param semData GOSemSimDATA object
+#' @return score matrix
+#' @export
+#' @author Guangchuang Yu <https://yulab-smu.top>
 termSim <- function(t1,
                     t2,
                     semData,

@@ -2,7 +2,7 @@
 % Please edit documentation in R/clusterSim.R
 \name{clusterSim}
 \alias{clusterSim}
-\title{Semantic Similarity Between Two Gene Clusters}
+\title{Semantic similarity between two gene clusters}
 \usage{
 clusterSim(
   cluster1,
@@ -14,45 +14,42 @@ clusterSim(
 )
 }
 \arguments{
-\item{cluster1}{A set of gene IDs.}
+\item{cluster1}{A set of gene IDs}
 
-\item{cluster2}{Another set of gene IDs.}
+\item{cluster2}{Another set of gene IDs}
 
 \item{semData}{GOSemSimDATA object}
 
 \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang", "TCSS" and "Wang" methods.}
 
-\item{drop}{A set of evidence codes based on which certain annotations are
-dropped. Use NULL to keep all GO annotations.}
+\item{drop}{Evidence codes to drop; use \code{NULL} to keep all GO annotations}
 
-\item{combine}{One of "max", "avg", "rcmax", "BMA" methods, for combining
-semantic similarity scores of multiple GO terms associated with protein or
-multiple proteins assiciated with protein cluster.}
+\item{combine}{One of "max", "avg", "rcmax", "BMA" methods, used to combine multiple term scores.}
 }
 \value{
 similarity
 }
 \description{
-Given two gene clusters, this function calculates semantic similarity between
-them.
+Given two gene clusters, calculate their semantic similarity.
 }
 \examples{
-
-    d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
-    cluster1 <- c("835", "5261","241", "994")
+d <- godata('org.Hs.eg.db', ont = "MF", computeIC = FALSE)
+cluster1 <- c("835", "5261", "241", "994")
 cluster2 <- c("307", "308", "317", "321", "506", "540", "378", "388", "396")
-clusterSim(cluster1, cluster2, semData=d, measure="Wang")
-
+clusterSim(cluster1, cluster2, semData = d, measure = "Wang")
 }
 \references{
-Yu et al. (2010) GOSemSim: an R package for measuring semantic
-similarity among GO terms and gene products \emph{Bioinformatics} (Oxford,
-England), 26:7 976--978, April 2010. ISSN 1367-4803
-\url{http://bioinformatics.oxfordjournals.org/cgi/content/abstract/26/7/976}
-PMID: 20179076
+Yu et al. (2010) GOSemSim: an R package for measuring semantic similarity among GO terms and gene products.
+Bioinformatics, 26(7): 976–978. https://academic.oup.com/bioinformatics/article/26/7/976/211914
 }
 \seealso{
-\code{\link{goSim}} \code{\link{mgoSim}} \code{\link{geneSim}}
-\code{\link{mgeneSim}} \code{\link{mclusterSim}}
+\code{\link[=goSim]{goSim()}}, \code{\link[=mgoSim]{mgoSim()}}, \code{\link[=geneSim]{geneSim()}}, \code{\link[=mgeneSim]{mgeneSim()}}, \code{\link[=clusterSim]{clusterSim()}}, \code{\link[=mclusterSim]{mclusterSim()}}, \code{\link[=termSim]{termSim()}}
+
+Other similarity: 
+\code{\link{geneSim}()},
+\code{\link{goSim}()},
+\code{\link{mclusterSim}()},
+\code{\link{mgeneSim}()},
+\code{\link{mgoSim}()}
 }
-\keyword{manip}
+\concept{similarity}

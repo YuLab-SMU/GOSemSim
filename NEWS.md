@@ -1,5 +1,6 @@
-# GOSemSim 2.37.0.003
+# GOSemSim 2.37.0.004
 
++ update roxygen to use 'markdown' syntax and unify duplicated docs into templates (in 'man-roxygen' folder) (2025-12-07, Sun)
 + move `get_organism()` from 'DOSE' (2025-12-07, Sun)
 + move `load_OrgDb()` to 'yulab.utils' (2025-12-05, Fri)
 

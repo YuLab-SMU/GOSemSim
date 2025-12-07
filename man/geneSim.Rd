@@ -2,48 +2,45 @@
 % Please edit documentation in R/geneSim.R
 \name{geneSim}
 \alias{geneSim}
-\title{Semantic Similarity Between two Genes}
+\title{Semantic similarity between two genes}
 \usage{
 geneSim(gene1, gene2, semData, measure = "Wang", drop = "IEA", combine = "BMA")
 }
 \arguments{
-\item{gene1}{Entrez gene id.}
+\item{gene1}{Entrez gene ID}
 
-\item{gene2}{Another entrez gene id.}
+\item{gene2}{Another Entrez gene ID}
 
 \item{semData}{GOSemSimDATA object}
 
-\item{measure}{One of "Resnik", "Lin", "Rel", "Jiang" "TCSS" and "Wang" methods.}
+\item{measure}{One of "Resnik", "Lin", "Rel", "Jiang", "TCSS" and "Wang" methods.}
 
-\item{drop}{A set of evidence codes based on which certain annotations are
-dropped. Use NULL to keep all GO annotations.}
+\item{drop}{Evidence codes to drop; use \code{NULL} to keep all GO annotations}
 
-\item{combine}{One of "max", "avg", "rcmax", "BMA" methods, for combining
-semantic similarity scores of multiple GO terms associated with protein or
-multiple proteins assiciated with protein cluster.}
+\item{combine}{One of "max", "avg", "rcmax", "BMA" methods, used to combine multiple term scores.}
 }
 \value{
-list of similarity value and corresponding GO.
+A list containing similarity value and corresponding GO terms
 }
 \description{
-Given two genes, this function will calculate the semantic similarity between
-them, and return their semantic similarity and the corresponding GO terms
+Given two genes, calculate their semantic similarity and return the score with corresponding GO terms.
 }
 \examples{
-
-d <- godata('org.Hs.eg.db', ont="MF", computeIC=FALSE)
-geneSim("241", "251", semData=d, measure="Wang")
-
+d <- godata('org.Hs.eg.db', ont = "MF", computeIC = FALSE)
+geneSim("241", "251", semData = d, measure = "Wang")
 }
 \references{
-Yu et al. (2010) GOSemSim: an R package for measuring semantic
-similarity among GO terms and gene products \emph{Bioinformatics} (Oxford,
-England), 26:7 976--978, April 2010. ISSN 1367-4803
-\url{http://bioinformatics.oxfordjournals.org/cgi/content/abstract/26/7/976}
-PMID: 20179076
+Yu et al. (2010) GOSemSim: an R package for measuring semantic similarity among GO terms and gene products.
+Bioinformatics, 26(7): 976–978. https://academic.oup.com/bioinformatics/article/26/7/976/211914
 }
 \seealso{
-\code{\link{goSim}} \code{\link{mgoSim}} \code{\link{mgeneSim}}
-\code{\link{clusterSim}} \code{\link{mclusterSim}}
+\code{\link[=goSim]{goSim()}}, \code{\link[=mgoSim]{mgoSim()}}, \code{\link[=geneSim]{geneSim()}}, \code{\link[=mgeneSim]{mgeneSim()}}, \code{\link[=clusterSim]{clusterSim()}}, \code{\link[=mclusterSim]{mclusterSim()}}, \code{\link[=termSim]{termSim()}}
+
+Other similarity: 
+\code{\link{clusterSim}()},
+\code{\link{goSim}()},
+\code{\link{mclusterSim}()},
+\code{\link{mgeneSim}()},
+\code{\link{mgoSim}()}
 }
-\keyword{manip}
+\concept{similarity}
