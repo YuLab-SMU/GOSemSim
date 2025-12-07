@@ -101,3 +101,14 @@ prepare_relation_df <- function() {
     save(gotbl, file="gotbl.rda", compress="xz")
     invisible(gotbl)
 }
+
+#' @title Get organism name from OrgDb object
+#' @param object OrgDb object or OrgDb package name
+#' @return Organism name
+#' @importFrom yulab.utils load_OrgDb
+#' @export
+#' @author Guangchuang Yu
+get_organism <- function(object) {
+    OrgDb <- load_OrgDb(object)
+    AnnotationDbi::species(object)
+}
