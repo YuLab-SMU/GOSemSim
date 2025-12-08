@@ -99,13 +99,8 @@ get_rel_df <- function(ont) {
 
 
 getSV <- function(ID, ont, rel_df, weight=NULL) {
-    if (!exists(".SemSimCache")) .initial()
-    .SemSimCache <- get(".SemSimCache", envir=.GlobalEnv)
-    
-    if( exists(ID, envir=.SemSimCache) ) {
-        sv <- get(ID, envir=.SemSimCache)
-        return(sv)
-    }
+    sv <- yulab.utils::get_cache_element("GOSemSim_SemSimCache", ID)
+    if (!is.null(sv)) return(sv)
 
     if (ont == "HDO") {
         topNode <- "DOID:4"
@@ -154,11 +149,9 @@ getSV <- function(ID, ont, rel_df, weight=NULL) {
     if (!(ont %in% c("DO", "MPO")))
         sv[topNode] <- 0
 
-    if( ! exists(ID, envir=.SemSimCache) ) {
-        assign(ID,
-               sv,
-               envir=.SemSimCache)
-    }
+    e <- list()
+    e[[ID]] <- sv
+    yulab.utils::update_cache_item("GOSemSim_SemSimCache", e)
     
     return(sv)
 }

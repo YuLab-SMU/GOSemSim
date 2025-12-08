@@ -151,13 +151,11 @@ ancestors_in_common <- function(ID1, ID2, ont) {
 #' @return ancestors for ID
 #' @noRd
 ancestors_envir <- function(ID, ont) {
-    if (!exists(".ancCache")) .initial()
-    .ancCache <- get(".ancCache", envir = .GlobalEnv)
-
-    if (exists(ID, envir = .ancCache)) {
-        return(get(ID, envir = .ancCache))
-    }
+    anc <- yulab.utils::get_cache_element("GOSemSim_ancCache", ID)
+    if (!is.null(anc)) return(anc)
     ancestors <- getAncestors(ont)[[ID]]
-    assign(ID, ancestors, envir = .ancCache)
-    return(ancestors)
+    e <- list()
+    e[[ID]] <- ancestors
+    yulab.utils::update_cache_item("GOSemSim_ancCache", e)
+    ancestors
 }
