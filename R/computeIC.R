@@ -19,9 +19,13 @@ computeIC <- function(goAnno, ont) {
     names(gocount) <- goname
     gocount        <- c(gocount, m)
 
-    Offsprings <- getOffsprings(ont) 
-        
-    cnt <- gocount[goids] + sapply(goids, function(i) sum(gocount[Offsprings[[i]]], na.rm=TRUE))
+    offspring_idx <- getOffspringIdx(ont, goids)
+    gc <- gocount[goids]
+    desc_sum <- vapply(goids, function(id) {
+        ids <- offspring_idx[[id]]
+        if (length(ids) == 0) 0 else sum(gc[ids], na.rm = TRUE)
+    }, numeric(1))
+    cnt <- gc + desc_sum
     names(cnt) <- goids
     
     ## the probabilities of occurrence of GO terms in a specific corpus.

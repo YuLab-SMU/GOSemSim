@@ -11,3 +11,4 @@ mkdocs
 site_src
 CONDUCT.md
 README.md
+^man-roxygen$

@@ -1,9 +1,22 @@
 wangMethod <- function(t1, t2, ont) {
-    matrix( mapply( wangMethod_internal,
-                   rep( t1, length(t2) ),
-                   rep( t2, each=length(t1) ),
-                   MoreArgs = list( ont = ont ) ),
-           dimnames = list( t1, t2 ), ncol=length(t2) ) 
+    n1 <- length(t1)
+    n2 <- length(t2)
+    if (n2 > 256) {
+        res <- matrix(NA_real_, nrow = n1, ncol = n2, dimnames = list(t1, t2))
+        step <- 256L
+        for (start in seq.int(1L, n2, by = step)) {
+            end <- min(start + step - 1L, n2)
+            block <- t2[start:end]
+            cols <- lapply(block, function(b) vapply(t1, function(a) wangMethod_internal(a, b, ont = ont), numeric(1)))
+            res[, start:end] <- do.call(cbind, cols)
+        }
+        return(res)
+    }
+    matrix(mapply(wangMethod_internal,
+                  rep(t1, n2),
+                  rep(t2, each = n1),
+                  MoreArgs = list(ont = ont)),
+           dimnames = list(t1, t2), ncol = n2)
 }
 
 

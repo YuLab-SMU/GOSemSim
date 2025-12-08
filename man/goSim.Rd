@@ -14,8 +14,6 @@ goSim(GOID1, GOID2, semData, measure = "Wang")
 \item{semData}{GOSemSimDATA object}
 
 \item{measure}{One of "Resnik", "Lin", "Rel", "Jiang", "TCSS" and "Wang" methods.}
-
-\item{combine}{One of "max", "avg", "rcmax", "BMA" methods, used to combine multiple term scores.}
 }
 \value{
 similarity

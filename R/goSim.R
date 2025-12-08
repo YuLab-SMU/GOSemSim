@@ -4,7 +4,7 @@
 #'
 #' @param GOID1 GO ID 1
 #' @param GOID2 GO ID 2
-#' @template params-measure-combine
+#' @template params-measure
 #' @return similarity
 #' @template seealso-similarity
 #' @template references
