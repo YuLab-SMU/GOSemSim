@@ -1,7 +1,7 @@
 Package: GOSemSim
 Type: Package
 Title: GO-terms Semantic Similarity Measures
-Version: 2.37.0.005
+Version: 2.37.1
 Authors@R: c( person(given = "Guangchuang", family = "Yu",             email = "guangchuangyu@gmail.com", role  = c("aut", "cre")),
               person(given = "Alexey",      family = "Stukalov",       email = "astukalov@gmail.com",     role  = "ctb"),
               person(given= "Pingfan",      family = "Guo",            email = "1178431277@qq.com",       role  = "ctb"),
@@ -25,10 +25,9 @@ Imports:
     GO.db,
     methods,
     rlang,
-    R.utils,
     stats,
     utils,
-    yulab.utils (> 0.2.2)
+    yulab.utils (>= 0.2.3)
 Suggests:
     AnnotationHub,
     BiocManager,

@@ -81,56 +81,28 @@ get_onto_data <- function(ont = "HDO", output='list', table="offspring") {
     split(res[,2], res[,1]) 
 }
 
+#' Load Ontology Database
+#' 
+#' @param onto character. The ontology to load (e.g., "HDO").
+#' @return An `AnnotationDb` object.
 #' @importFrom digest digest
 #' @importFrom AnnotationDbi loadDb
-#' @importFrom R.utils gunzip
+#' @importFrom yulab.utils download_yulab_file
+#' @importFrom yulab.utils user_dir
+#' @keywords internal
 load_onto <- function(onto = "HDO") {
     .env <- get_gosemsim_env()
     .onto <- sprintf(".onto_%s", onto)
-    if (exists(.onto, envir=.env)) {
-        db <- get(.onto, envir=.env)
+    if (exists(.onto, envir = .env)) {
+        db <- get(.onto, envir = .env)
         return(db)
     }
 
-    dir <- yulab.utils::user_dir("GOSemSim")
+    dbfile <- sprintf("%s.sqlite", onto)
+    urls <- c("https://yulab-smu.top/DOSE",
+              "https://raw.githubusercontent.com/YuLab-SMU/DOSE/refs/heads/gh-pages")
 
-    dbfile0 <- sprintf("%s.sqlite", onto)
-    dbfile <- file.path(dir, dbfile0)
-
-    base_url <- 'https://yulab-smu.top/DOSE'
-    if (file.exists(dbfile)) {
-        md5_url <- sprintf("%s/md5.txt", base_url)
-        md5 <- tryCatch(read.delim(md5_url, header=FALSE), error = function(e) NULL)
-        if (is.null(md5)) {
-            base_url <- 'https://raw.githubusercontent.com/YuLab-SMU/DOSE/refs/heads/gh-pages'
-            md5_url <- sprintf("%s/md5.txt", base_url)
-            md5 <- tryCatch(read.delim(md5_url, header=FALSE), error = function(e) NULL)
-        }
-        if (is.null(md5)) {
-            need_dl <- FALSE
-        } else {
-            md5_remote <- md5[md5[,1] == dbfile0, 2]
-            md5_local <- digest::digest(dbfile, algo='md5', file=TRUE)
-            if (md5_remote != md5_local) {
-                msg <- sprintf("%s is outdated, download the latest version...\n", dbfile0)
-                cat(msg)
-                need_dl <- TRUE
-            } else {
-                need_dl <- FALSE
-            }
-        }
-    } else {
-        msg <- sprintf("%s is not found, download it online...\n", dbfile0)
-        cat(msg)
-        need_dl <- TRUE
-    }
-
-    if (need_dl) {
-        url <- sprintf('%s/%s.gz', base_url, dbfile0)
-        gzdbfile <- sprintf("%s.gz", dbfile)
-        yulab.utils:::mydownload(url, gzdbfile)
-        R.utils::gunzip(gzdbfile, overwrite = TRUE)
-    } 
+    dbfile <- download_yulab_file(dbfile, urls, gzfile = TRUE, appname = "GOSemSim")
 
     db <- loadDb(dbfile)
     assign(.onto, db, envir = .env)

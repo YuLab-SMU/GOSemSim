@@ -17,7 +17,7 @@ get_gosemsim_env <- function() {
     if (!exists(".GOSemSimEnv")) {
         .initial()
     }
-    get(".GOSemSimEnv")    
+    get(".GOSemSimEnv")
 }
 
 

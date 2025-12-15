@@ -1,4 +1,4 @@
-# GOSemSim 2.37.0.005
+# GOSemSim 2.37.1
 
 + use cache mechanisms defined in 'yulab.utils' for caching (2025-12-08, Mon) 
 + update roxygen to use 'markdown' syntax and unify duplicated docs into templates (in 'man-roxygen' folder) (2025-12-07, Sun)
