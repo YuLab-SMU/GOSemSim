@@ -33,10 +33,10 @@ wangMethod_internal <- function(ID1, ID2, ont="BP") {
     if (ID1 == ID2)
         return (sim=1)
 
-    if (ont %in% c("BP", "CC", "MF")) {
+    if (is_supported_go(ont)) {
         .GOSemSimEnv <- get_gosemsim_env()
         rel_df <- get("gotbl", envir=.GOSemSimEnv)
-    } else if (ont %in% c("HDO", "HPO", "MPO")) {
+    } else if (is_supported_do(ont)) {
         rel_df <- get_rel_df(ont)
     } else {
         .meshesEnv <- get(".meshesEnv", envir=.GlobalEnv)

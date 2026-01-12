@@ -18,7 +18,7 @@ godata <- function(OrgDb=NULL, annoDb=NULL, keytype = "ENTREZID",
     if (processTCSS) computeIC <- TRUE
 
     ont <- toupper(ont)
-    ont <- match.arg(ont, c("BP", "CC", "MF"))
+    ont <- match.arg(ont, supported_GO())
 
     if (is.null(OrgDb) && is.null(annoDb)) {
         return(new("GOSemSimDATA",
@@ -72,11 +72,18 @@ godata <- function(OrgDb=NULL, annoDb=NULL, keytype = "ENTREZID",
 
 check_goAnno <- function(goAnno) {
   # check whether the data frame contains neccessary columns.
+  if (!is.data.frame(goAnno)) {
+      stop("annoDb should be a data.frame (or OrgDb object).")
+  }
 
   ## suppose 1st column is GENE ID and should contains GO and ONTOLOGY columns
   ## maybe we should force names(goAnno)[1] == "GENE"
   if (!all(c("GO", "ONTOLOGY") %in% names(goAnno))) {
     stop("annoDb as a data.frame should contains 'GO' and 'ONTOLOGY' columns.")
+  }
+
+  if (ncol(goAnno) < 3) {
+      warning("annoDb as a data.frame should have at least 3 columns: GENE, GO and ONTOLOGY. Assuming the first column is GENE ID.")
   }
 
   return(goAnno)

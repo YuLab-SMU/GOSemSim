@@ -101,6 +101,7 @@ load_onto <- function(onto = "HDO") {
     urls <- c("https://yulab-smu.top/DOSE",
               "https://raw.githubusercontent.com/YuLab-SMU/DOSE/refs/heads/gh-pages")
 
+    # use download_yulab_file from yulab.utils to handle multiple mirrors
     dbfile <- download_yulab_file(dbfile, urls, gzfile = TRUE, appname = "GOSemSim")
 
     db <- loadDb(dbfile)

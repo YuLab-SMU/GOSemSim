@@ -1,32 +1,30 @@
 .initial <- function() {
-    pos <- 1
-    envir <- as.environment(pos) 
-    assign(".GOSemSimEnv", new.env(), envir = envir)
-    assign(".SemSimCache", new.env(), envir = envir)
-    assign(".ancCache", new.env(), envir = envir)
-    .GOSemSimEnv <- get(".GOSemSimEnv", envir=.GlobalEnv)
+    gotbl <- tryCatch(utils::data(list="gotbl", package="GOSemSim", envir=environment()),
+                      error = function(e) NULL)
+    if (is.null(gotbl)) return(NULL)
     
-    tryCatch(utils::data(list="gotbl",
-                         package="GOSemSim"))
-    gotbl <- get("gotbl")
-    assign("gotbl", gotbl, envir = .GOSemSimEnv)
-    rm(gotbl, envir = .GlobalEnv)
+    yulab.utils::update_cache_item(".GOSemSimEnv", "gotbl", get("gotbl"))
 }
 
 get_gosemsim_env <- function() {
-    if (!exists(".GOSemSimEnv")) {
+    if (is.null(yulab.utils::get_cache_element(".GOSemSimEnv", "gotbl"))) {
         .initial()
     }
-    get(".GOSemSimEnv")
+    return(yulab.utils::get_cache_table(".GOSemSimEnv"))
 }
 
+supported_GO <- function() c("BP", "CC", "MF")
+supported_DO <- function() c("DO", "HDO", "HPO", "MPO")
+
+is_supported_go <- function(ont) ont %in% supported_GO()
+is_supported_do <- function(ont) ont %in% supported_DO()
 
 
 ##' @importFrom GO.db GOMFANCESTOR
 ##' @importFrom GO.db GOBPANCESTOR
 ##' @importFrom GO.db GOCCANCESTOR
 getAncestors <- function(ont) {
-    if (ont %in% c("MF", "BP", "CC")) {
+    if (is_supported_go(ont)) {
         Ancestors <- switch(ont,
                             MF = GOMFANCESTOR,
                             BP = GOBPANCESTOR,
@@ -43,7 +41,7 @@ getAncestors <- function(ont) {
 ##' @importFrom GO.db GOBPPARENTS
 ##' @importFrom GO.db GOCCPARENTS
 getParents <- function(ont) {
-    if (ont %in% c("MF", "BP", "CC")) {
+    if (is_supported_go(ont)) {
         Parents <- switch(ont,
                         MF = GOMFPARENTS,
                         BP = GOBPPARENTS,
@@ -60,7 +58,7 @@ getParents <- function(ont) {
 ##' @importFrom GO.db GOBPOFFSPRING
 ##' @importFrom GO.db GOCCOFFSPRING
 getOffsprings <- function(ont) {
-    if (ont %in% c("MF", "BP", "CC")) {
+    if (is_supported_go(ont)) {
         Offsprings <- switch(ont,
                         MF = GOMFOFFSPRING,
                         BP = GOBPOFFSPRING,
