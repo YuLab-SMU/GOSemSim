@@ -1,21 +1,16 @@
-#' termSim
-#'
 #' Measure similarities between two term vectors.
 #'
 #' Provide two term vectors, this function calculates their similarities.
 #'
+#' @title termSim
 #' @param t1 Term vector
 #' @param t2 Term vector
-#' @param method One of "Wang", "Resnik", "Rel", "Jiang", "Lin", "TCSS"
 #' @param semData GOSemSimDATA object
+#' @param method One of "Wang", "Resnik", "Rel", "Jiang", "Lin", "TCSS"
 #' @return score matrix
 #' @export
 #' @author Guangchuang Yu <https://yulab-smu.top>
-termSim <- function(t1,
-                    t2,
-                    semData,
-                    method=c("Wang","Resnik","Rel","Jiang","Lin", "TCSS")
-                    ) {
+termSim <- function(t1, t2, semData, method=c("Wang", "Resnik", "Rel", "Jiang", "Lin", "TCSS")) {
 
     method <- match.arg(method)
 

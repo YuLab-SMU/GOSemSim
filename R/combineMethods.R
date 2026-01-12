@@ -1,13 +1,13 @@
-##'combining similarity matrix to similarity score
-##'
-##'Functions for combining similarity matrix to similarity score
-##'
-##'
-##'@param SimScores similarity matrix
-##'@param combine combine method
-##'@return similarity value
-##'@export
-##'@author Guangchuang Yu \url{http://guangchuangyu.github.io}
+#' combining similarity matrix to similarity score
+#'
+#' Functions for combining similarity matrix to similarity score
+#'
+#'
+#' @param SimScores similarity matrix
+#' @param combine combine method
+#' @return similarity value
+#' @export
+#' @author Guangchuang Yu <https://yulab-smu.top>
 combineScores <- function(SimScores, combine) {
 
     if (length(combine) == 0) {  #if not define combine

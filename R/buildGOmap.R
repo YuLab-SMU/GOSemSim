@@ -1,17 +1,18 @@
-##' Addding indirect GO annotation
-##'
-##' provided by a data.frame of GO TERM (column 1), GENE (column 2) and ONTOLOGY (optional) that
-##' describes GO direct annotation, 
-##' this function will add indirect GO annotation of genes.
-##' @title buildGOmap
-##' @param TERM2GENE data.frame with two or three columns of GO TERM, GENE and ONTOLOGY (optional)
-##' @return data.frame, GO annotation with direct and indirect annotation
-##' @importMethodsFrom AnnotationDbi as.list
-##' @importFrom GO.db GOMFANCESTOR
-##' @importFrom GO.db GOBPANCESTOR
-##' @importFrom GO.db GOCCANCESTOR
-##' @export
-##' @author Yu Guangchuang
+#' Addding indirect GO annotation
+#'
+#' provided by a data.frame of GO TERM (column 1), GENE (column 2) and ONTOLOGY (optional) that
+#' describes GO direct annotation,
+#' this function will add indirect GO annotation of genes.
+#'
+#' @title buildGOmap
+#' @param TERM2GENE data.frame with two or three columns of GO TERM, GENE and ONTOLOGY (optional)
+#' @return data.frame, GO annotation with direct and indirect annotation
+#' @importMethodsFrom AnnotationDbi as.list
+#' @importFrom GO.db GOMFANCESTOR
+#' @importFrom GO.db GOBPANCESTOR
+#' @importFrom GO.db GOCCANCESTOR
+#' @export
+#' @author Yu Guangchuang
 buildGOmap <- function(TERM2GENE) {
     mfanc <- as.list(GOMFANCESTOR)
     ccanc <- as.list(GOCCANCESTOR)

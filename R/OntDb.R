@@ -24,8 +24,7 @@ setMethod("keytypes", "OntDb",
 #' @importFrom DBI dbReadTable
 setMethod("toTable", "OntDb",
     function(x) {
-        dbReadTable(dbconn(x), 'term') |>
-        setNames(c("id", "term"))
+        setNames(dbReadTable(dbconn(x), 'term'), c("id", "term"))
     }
 )
 

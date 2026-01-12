@@ -36,18 +36,9 @@ Calculate pairwise semantic similarities for a given list of genes.
 d <- godata('org.Hs.eg.db', ont = "MF", computeIC = FALSE)
 mgeneSim(c("835", "5261", "241"), semData = d, measure = "Wang")
 }
-\references{
-Yu et al. (2010) GOSemSim: an R package for measuring semantic similarity among GO terms and gene products.
-Bioinformatics, 26(7): 976–978. https://academic.oup.com/bioinformatics/article/26/7/976/211914
-}
 \seealso{
-\code{\link[=goSim]{goSim()}}, \code{\link[=mgoSim]{mgoSim()}}, \code{\link[=geneSim]{geneSim()}}, \code{\link[=mgeneSim]{mgeneSim()}}, \code{\link[=clusterSim]{clusterSim()}}, \code{\link[=mclusterSim]{mclusterSim()}}, \code{\link[=termSim]{termSim()}}
-
-Other similarity: 
-\code{\link{clusterSim}()},
-\code{\link{geneSim}()},
-\code{\link{goSim}()},
-\code{\link{mclusterSim}()},
-\code{\link{mgoSim}()}
+\code{\link[=goSim]{goSim()}} \code{\link[=mgoSim]{mgoSim()}} \code{\link[=geneSim]{geneSim()}} \code{\link[=mgeneSim]{mgeneSim()}} \code{\link[=clusterSim]{clusterSim()}} \code{\link[=mclusterSim]{mclusterSim()}}
 }
-\concept{similarity}
+\author{
+Guangchuang Yu \url{https://yulab-smu.top}
+}

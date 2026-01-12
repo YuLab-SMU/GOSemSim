@@ -3,7 +3,7 @@ CHANGES IN VERSION 2.3.1
  o new project site using blogdown <2017-09-28, Thu>
  o speed up by pre-calculating GO similarities <2017-05-22, Mon>
    + contributed by Lluís Revilla Sancho
-   + https://github.com/GuangchuangYu/GOSemSim/pull/13
+   + https://github.com/YuLab-SMU/GOSemSim/pull/13
 
 CHANGES IN VERSION 2.2.0
 ------------------------
@@ -12,8 +12,8 @@ CHANGES IN VERSION 2.2.0
 CHANGES IN VERSION 2.1.3
 ------------------------
  o friendly error message for using IC method without IC computed <2017-02-17, Fri>
-   + https://github.com/GuangchuangYu/GOSemSim/issues/11
- o fixed https://github.com/GuangchuangYu/GOSemSim/issues/9 <2016-12-20, Tue>
+   + https://github.com/YuLab-SMU/GOSemSim/issues/11
+ o fixed https://github.com/YuLab-SMU/GOSemSim/issues/9 <2016-12-20, Tue>
 
 CHANGES IN VERSION 2.1.2
 ------------------------
@@ -40,7 +40,7 @@ CHANGES IN VERSION 1.99.3
 CHANGES IN VERSION 1.99.2
 ------------------------
  o fixed Rcpp issue <2016-07-19, Tue>
-   + https://github.com/GuangchuangYu/GOSemSim/issues/6
+   + https://github.com/YuLab-SMU/GOSemSim/issues/6
 
 CHANGES IN VERSION 1.99.1
 ------------------------

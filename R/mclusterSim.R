@@ -1,13 +1,12 @@
-#' Pairwise semantic similarities for a list of gene clusters
-#'
 #' Calculate pairwise semantic similarities for a list of gene clusters.
 #'
+#'
+#' @title Pairwise semantic similarities for a list of gene clusters
 #' @param clusters A list of gene clusters
 #' @template params-measure-combine
 #' @param drop Evidence codes to drop; use `NULL` to keep all GO annotations
 #' @return similarity matrix
-#' @template seealso-similarity
-#' @template references
+#' @seealso [goSim()] [mgoSim()] [geneSim()] [mgeneSim()] [clusterSim()] [mclusterSim()]
 #' @export
 #' @examples
 #' d <- godata('org.Hs.eg.db', ont = "MF", computeIC = FALSE)
@@ -16,8 +15,8 @@
 #' cluster3 <- c("307", "308", "317")
 #' clusters <- list(a = cluster1, b = cluster2, c = cluster3)
 #' mclusterSim(clusters, semData = d, measure = "Wang")
-
-mclusterSim <- function(clusters, semData, measure = "Wang", drop = "IEA", combine = "BMA") {
+#' @author Guangchuang Yu <https://yulab-smu.top>
+mclusterSim <- function(clusters, semData, measure="Wang", drop="IEA", combine="BMA") {
     n <- length(clusters)
     cluster_gos <- list()
     for (i in 1:n) {

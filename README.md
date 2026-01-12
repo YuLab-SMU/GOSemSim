@@ -5,10 +5,10 @@
 state and is being actively
 developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![platform](http://www.bioconductor.org/shields/availability/devel/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#archives)
-[![codecov](https://codecov.io/gh/GuangchuangYu/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/GuangchuangYu/GOSemSim/)
+[![codecov](https://codecov.io/gh/YuLab-SMU/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/YuLab-SMU/GOSemSim/)
 
 [![](https://img.shields.io/badge/release%20version-2.34.0-green.svg)](https://www.bioconductor.org/packages/GOSemSim)
-[![](https://img.shields.io/badge/devel%20version-2.35.0-green.svg)](https://github.com/guangchuangyu/GOSemSim)
+[![](https://img.shields.io/badge/devel%20version-2.35.0-green.svg)](https://github.com/YuLab-SMU/GOSemSim)
 [![](https://img.shields.io/badge/download-1061088/total-blue.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 [![](https://img.shields.io/badge/download-21399/month-blue.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 
@@ -57,7 +57,7 @@ Or the development version from github:
 
 ``` r
 ## install.packages("remotes")
-remotes::install_github("GuangchuangYu/GOSemSim")
+remotes::install_github("YuLab-SMU/GOSemSim")
 ```
 
 ## :sparkling_heart: Contributing

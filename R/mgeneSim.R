@@ -1,22 +1,19 @@
-#' Pairwise semantic similarity for a list of genes
-#'
 #' Calculate pairwise semantic similarities for a given list of genes.
 #'
+#'
+#' @title Pairwise semantic similarity for a list of genes
 #' @param genes A list of Entrez gene IDs
 #' @template params-measure-combine
 #' @param drop Evidence codes to drop; use `NULL` to keep all GO annotations
 #' @param verbose Whether to show a progress bar
 #' @return similarity matrix
-#' @template seealso-similarity
-#' @template references
-#' @importFrom utils setTxtProgressBar
-#' @importFrom utils txtProgressBar
+#' @seealso [goSim()] [mgoSim()] [geneSim()] [mgeneSim()] [clusterSim()] [mclusterSim()]
 #' @export
 #' @examples
 #' d <- godata('org.Hs.eg.db', ont = "MF", computeIC = FALSE)
 #' mgeneSim(c("835", "5261", "241"), semData = d, measure = "Wang")
-
-mgeneSim <- function (genes, semData, measure = "Wang", drop = "IEA", combine = "BMA", verbose = TRUE) {
+#' @author Guangchuang Yu <https://yulab-smu.top>
+mgeneSim <- function(genes, semData, measure="Wang", drop="IEA", combine="BMA", verbose=TRUE) {
     genes <- unique(as.character(genes))
     n <- length(genes)
     scores <- matrix(NA, nrow=n, ncol=n)

@@ -17,11 +17,11 @@ library("yulab.utils")
 [![Bioc](http://www.bioconductor.org/shields/years-in-bioc/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#since)
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![platform](http://www.bioconductor.org/shields/availability/devel/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#archives)
-[![codecov](https://codecov.io/gh/GuangchuangYu/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/GuangchuangYu/GOSemSim/)
+[![codecov](https://codecov.io/gh/YuLab-SMU/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/YuLab-SMU/GOSemSim/)
 
 
 `r badge_bioc_release("GOSemSim", "green")`
-`r badge_devel("guangchuangyu/GOSemSim", "green")`
+`r badge_devel("YuLab-SMU/GOSemSim", "green")`
 `r badge_bioc_download("GOSemSim", "total", "blue")`
 `r badge_bioc_download("GOSemSim", "month", "blue")`
 
@@ -63,7 +63,7 @@ Or the development version from github:
 
 ```r
 ## install.packages("remotes")
-remotes::install_github("GuangchuangYu/GOSemSim")
+remotes::install_github("YuLab-SMU/GOSemSim")
 ```
 
 

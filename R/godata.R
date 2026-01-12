@@ -3,7 +3,7 @@
 #'
 #' @title godata
 #' @param OrgDb OrgDb object (will be removed in future, please use annoDb instead)
-#' @param annoDb GO annotation database, 
+#' @param annoDb GO annotation database,
 #' can be OrgDb or a data.frame contains three columns of 'GENE', 'GO' and 'ONTOLOGY'.
 #' @param keytype keytype
 #' @param ont one of 'BP', 'MF', 'CC'
@@ -11,16 +11,10 @@
 #' @param processTCSS logical, whether to process TCSS
 #' @param cutoff cutoff of TCSS
 #' @return GOSemSimDATA object
-#' @importFrom AnnotationDbi keys
-#' @importFrom AnnotationDbi select
-#' @importFrom AnnotationDbi metadata
-#' @importFrom methods new
-#' @importFrom yulab.utils load_OrgDb
 #' @export
 #' @author Guangchuang Yu
-godata <- function(OrgDb = NULL, annoDb = NULL, keytype = "ENTREZID",
-                   ont, computeIC = TRUE,
-                   processTCSS = FALSE, cutoff = NULL) {
+godata <- function(OrgDb=NULL, annoDb=NULL, keytype = "ENTREZID",
+                   ont, computeIC = TRUE, processTCSS = FALSE, cutoff = NULL) {
     if (processTCSS) computeIC <- TRUE
 
     ont <- toupper(ont)

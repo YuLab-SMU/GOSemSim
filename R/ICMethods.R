@@ -1,14 +1,14 @@
-##' Information Content Based Methods for semantic similarity measuring
-##'
-##' implemented for methods proposed by Resnik, Jiang, Lin and Schlicker.
-##' @title information content based methods
-##' @param ID1 Ontology Term
-##' @param ID2 Ontology Term
-##' @param method one of "Resnik", "Jiang", "Lin" and "Rel", "TCSS".
-##' @param godata GOSemSimDATA object
-##' @return semantic similarity score
-##' @useDynLib GOSemSim
-##' @author Guangchuang Yu \url{https://guangchuangyu.github.io}
+#' Information Content Based Methods for semantic similarity measuring
+#'
+#' implemented for methods proposed by Resnik, Jiang, Lin and Schlicker.
+#' @title information content based methods
+#' @param ID1 Ontology Term
+#' @param ID2 Ontology Term
+#' @param method one of "Resnik", "Jiang", "Lin" and "Rel", "TCSS".
+#' @param godata GOSemSimDATA object
+#' @return semantic similarity score
+#' @useDynLib GOSemSim
+#' @author Guangchuang Yu <https://yulab-smu.top>
 infoContentMethod <- function(ID1,
                               ID2,
                               method,

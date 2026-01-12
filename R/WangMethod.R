@@ -20,15 +20,15 @@ wangMethod <- function(t1, t2, ont) {
 }
 
 
-##' Method Wang for semantic similarity measuring
-##'
-##'
-##' @title wangMethod
-##' @param ID1 Ontology Term
-##' @param ID2 Ontology Term
-##' @param ont Ontology
-##' @return semantic similarity score
-##' @author Guangchuang Yu \url{https://yulab-smu.top}
+#' Method Wang for semantic similarity measuring
+#'
+#' @title wangMethod
+#' @param ID1 Ontology Term
+#' @param ID2 Ontology Term
+#' @param ont Ontology
+#' @return semantic similarity score
+#' @export
+#' @author Guangchuang Yu <https://yulab-smu.top>
 wangMethod_internal <- function(ID1, ID2, ont="BP") {
     if (ID1 == ID2)
         return (sim=1)

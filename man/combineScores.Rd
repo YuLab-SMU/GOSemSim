@@ -18,5 +18,5 @@ similarity value
 Functions for combining similarity matrix to similarity score
 }
 \author{
-Guangchuang Yu \url{http://guangchuangyu.github.io}
+Guangchuang Yu \url{https://yulab-smu.top}
 }
