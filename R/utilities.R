@@ -1,16 +1,16 @@
 .initial <- function() {
-    gotbl <- tryCatch(utils::data(list="gotbl", package="GOSemSim", envir=environment()),
+    gotbl <- tryCatch(utils::data("gotbl", package="GOSemSim", envir=environment()),
                       error = function(e) NULL)
     if (is.null(gotbl)) return(NULL)
     
-    yulab.utils::update_cache_item(".GOSemSimEnv", "gotbl", get("gotbl"))
+    yulab.utils::update_cache_item(".GOSemSimEnv", list(gotbl = get("gotbl", envir = environment())))
 }
 
 get_gosemsim_env <- function() {
     if (is.null(yulab.utils::get_cache_element(".GOSemSimEnv", "gotbl"))) {
         .initial()
     }
-    return(yulab.utils::get_cache_table(".GOSemSimEnv"))
+    invisible(NULL)
 }
 
 supported_GO <- function() c("BP", "CC", "MF")

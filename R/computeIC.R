@@ -1,9 +1,14 @@
 computeIC <- function(goAnno, ont) {
     ## goAnno, see godata function
-    .GOSemSimEnv <- get_gosemsim_env()
-    godata <- get("gotbl", envir=.GOSemSimEnv)        
+    get_gosemsim_env()
+    gotbl_df <- yulab.utils::get_cache_element(".GOSemSimEnv", "gotbl")
+    if (is.null(gotbl_df) || !is.data.frame(gotbl_df)) {
+        utils::data("gotbl", package = "GOSemSim")
+        gotbl_df <- get("gotbl")
+        yulab.utils::update_cache_item(".GOSemSimEnv", list(gotbl = gotbl_df))
+    }
     
-    goids <- unique(godata[godata$Ontology == ont, "go_id"])
+    goids <- unique(gotbl_df[gotbl_df$Ontology == ont, "go_id"])
     ## all GO terms appearing in an given ontology ###########
     goterms=goAnno$GO
     gocount <- table(goterms)

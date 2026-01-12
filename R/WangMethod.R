@@ -34,8 +34,8 @@ wangMethod_internal <- function(ID1, ID2, ont="BP") {
         return (sim=1)
 
     if (is_supported_go(ont)) {
-        .GOSemSimEnv <- get_gosemsim_env()
-        rel_df <- get("gotbl", envir=.GOSemSimEnv)
+        get_gosemsim_env()
+        rel_df <- yulab.utils::get_cache_element(".GOSemSimEnv", "gotbl")
     } else if (is_supported_do(ont)) {
         rel_df <- get_rel_df(ont)
     } else {
@@ -66,12 +66,10 @@ wangMethod_internal <- function(ID1, ID2, ont="BP") {
 
 get_rel_df <- function(ont) {
     ontbl <- sprintf("%stbl", ont)
-    .GOSemSimEnv <- get_gosemsim_env()
+    get_gosemsim_env()
 
-    if (exists(ontbl, envir=.GOSemSimEnv)) {
-        res <- get(ontbl, envir=.GOSemSimEnv)
-        return(res)
-    }
+    res <- yulab.utils::get_cache_element(".GOSemSimEnv", ontbl)
+    if (!is.null(res)) return(res)
 
     ont_db <- load_onto(ont)
     gtb <- toTable(ont_db)
@@ -93,7 +91,9 @@ get_rel_df <- function(ont) {
     rel_df <- rel_df[!is.na(rel_df$id), ]
     rel_df <- rel_df[!is.na(rel_df$parent), ]
 
-    assign(ontbl, rel_df, envir = .GOSemSimEnv)
+    e <- list()
+    e[[ontbl]] <- rel_df
+    yulab.utils::update_cache_item(".GOSemSimEnv", e)
     return(rel_df)
 }
 

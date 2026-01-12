@@ -37,7 +37,7 @@ godata <- function(OrgDb=NULL, annoDb=NULL, keytype = "ENTREZID",
     md <- data.frame()
     if (inherits(annoDb, 'OrgDb')) {
       goAnno <- parse_orgDb(annoDb, keytype)
-      md <- metadata(annoDb)
+      md <- AnnotationDbi::metadata(annoDb)
     } else if (inherits(annoDb, 'gson')) {
       ## to be supported
     } else { # for data.frame
