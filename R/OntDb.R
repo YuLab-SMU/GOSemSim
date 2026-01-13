@@ -90,12 +90,10 @@ get_onto_data <- function(ont = "HDO", output='list', table="offspring") {
 #' @importFrom yulab.utils user_dir
 #' @keywords internal
 load_onto <- function(onto = "HDO") {
-    .env <- get_gosemsim_env()
     .onto <- sprintf(".onto_%s", onto)
-    if (exists(.onto, envir = .env)) {
-        db <- get(.onto, envir = .env)
-        return(db)
-    }
+    
+    db <- yulab.utils::get_cache_element(".GOSemSimEnv", .onto)
+    if (!is.null(db)) return(db)
 
     dbfile <- sprintf("%s.sqlite", onto)
     urls <- c("https://yulab-smu.top/DOSE",
@@ -105,7 +103,8 @@ load_onto <- function(onto = "HDO") {
     dbfile <- download_yulab_file(dbfile, urls, gzfile = TRUE, appname = "GOSemSim")
 
     db <- loadDb(dbfile)
-    assign(.onto, db, envir = .env)
+    
+    yulab.utils::update_cache_item(".GOSemSimEnv", setNames(list(db), .onto))
     return(db)
 }
 

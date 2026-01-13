@@ -1,9 +1,10 @@
-# GOSemSim 2.37.1.002
+# GOSemSim 2.37.1.003
 
 + update `load_onto()` documentation (2026-01-12, Mon)
 + enhance `godata()` input validation (2026-01-12, Mon)
 + refactor internal ontology type checking (2026-01-12, Mon)
 + fix cache integration in `.initial` and refactor consumers to use `get_cache_element` (2026-01-12, Mon)
++ fix `load_onto()` using cache incorrectly (2026-01-12, Mon)
 + use cache mechanisms defined in 'yulab.utils' for caching (2026-01-12, Mon) 
 + update URLs, fix typos and refine roxygen documentation (2026-01-12, Mon)
 
