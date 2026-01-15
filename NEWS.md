@@ -1,4 +1,4 @@
-# GOSemSim 2.37.1.003
+# GOSemSim 2.37.2
 
 + refactor `.initial()` to use a controlled environment for robust data loading (2026-01-15, Thu)
 + enhance cache reading robustness in `computeIC()` and `wangMethod_internal()` (2026-01-15, Thu)
