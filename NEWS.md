@@ -1,5 +1,7 @@
 # GOSemSim 2.37.1.003
 
++ refactor `.initial()` to use a controlled environment for robust data loading (2026-01-15, Thu)
++ enhance cache reading robustness in `computeIC()` and `wangMethod_internal()` (2026-01-15, Thu)
 + update `load_onto()` documentation (2026-01-12, Mon)
 + enhance `godata()` input validation (2026-01-12, Mon)
 + refactor internal ontology type checking (2026-01-12, Mon)

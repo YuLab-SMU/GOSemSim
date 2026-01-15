@@ -34,8 +34,7 @@ wangMethod_internal <- function(ID1, ID2, ont="BP") {
         return (sim=1)
 
     if (is_supported_go(ont)) {
-        get_gosemsim_env()
-        rel_df <- yulab.utils::get_cache_element(".GOSemSimEnv", "gotbl")
+        rel_df <- ensure_gotbl_cached()
     } else if (is_supported_do(ont)) {
         rel_df <- get_rel_df(ont)
     } else {
