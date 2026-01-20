@@ -118,3 +118,7 @@ get_organism <- function(object) {
     OrgDb <- load_OrgDb(object)
     AnnotationDbi::species(OrgDb)
 }
+
+#' @importFrom yulab.utils load_OrgDb
+#' @export
+yulab.utils::load_OrgDb
