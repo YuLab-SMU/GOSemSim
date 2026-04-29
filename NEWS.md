@@ -1,3 +1,7 @@
+# GOSemSim 2.38.0
+
++ Bioconductor RELEASE_3_23 (2026-04-29, Wed)
+
 # GOSemSim 2.37.2
 
 + refactor `.initial()` to use a controlled environment for robust data loading (2026-01-15, Thu)
