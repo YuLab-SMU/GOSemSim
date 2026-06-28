@@ -1,5 +1,6 @@
 # GOSemSim 2.39.1
 
++ support optional `BiocParallel` parallel pairwise calculation in `mgeneSim()` and `mclusterSim()` (#31, 2026-06-28, Sun)
 + improve TCSS robustness and document TCSS usage with topology cutoff preprocessing (2026-06-28, Sun)
 + fix Wang method semantic value cache to avoid reusing GO term values across ontologies (#30, 2026-06-28, Sun)
 + fix Wang method edge weighting for GO relationships by normalizing `isa` and `part of` relationship names (#51, 2026-06-28, Sun)

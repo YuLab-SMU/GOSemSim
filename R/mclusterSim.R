@@ -5,6 +5,9 @@
 #' @param clusters A list of gene clusters
 #' @template params-measure-combine
 #' @param drop Evidence codes to drop; use `NULL` to keep all GO annotations
+#' @param BPPARAM optional [BiocParallel::BiocParallelParam-class] object for
+#' parallel pairwise similarity calculation. The default `NULL` uses serial
+#' calculation.
 #' @return similarity matrix
 #' @seealso [goSim()] [mgoSim()] [geneSim()] [mgeneSim()] [clusterSim()] [mclusterSim()]
 #' @export
@@ -16,7 +19,8 @@
 #' clusters <- list(a = cluster1, b = cluster2, c = cluster3)
 #' mclusterSim(clusters, semData = d, measure = "Wang")
 #' @author Guangchuang Yu <https://yulab-smu.top>
-mclusterSim <- function(clusters, semData, measure="Wang", drop="IEA", combine="BMA") {
+mclusterSim <- function(clusters, semData, measure="Wang", drop="IEA", combine="BMA",
+                        BPPARAM = NULL) {
     n <- length(clusters)
     cluster_gos <- list()
     for (i in 1:n) {
@@ -26,21 +30,17 @@ mclusterSim <- function(clusters, semData, measure="Wang", drop="IEA", combine="
     uniqueGO <- uniqueGOFrom(cluster_gos)
     go_matrix <- buildGoMatrix(uniqueGO, semData, measure)
 
-    scores <- matrix(NA, nrow=n, ncol=n)
-    rownames(scores) <- names(clusters)
-    colnames(scores) <- names(clusters)
+    cluster_gos <- lapply(cluster_gos, function(gos) {
+        gos <- unlist(gos)
+        gos[!is.na(gos)]
+    })
 
-    for (i in seq_along(clusters)) {
-        gos1 <- unlist(cluster_gos[[i]])
-        gos1 <- gos1[!is.na(gos1)]
-        for (j in seq_len(i)) {
-            gos2 <- unlist(cluster_gos[[j]])
-            gos2 <- gos2[!is.na(gos2)]
-            if (length(gos1) != 0 && length(gos2) !=0)
-                scores[i, j] <- subsetCombine(go_matrix, gos1, gos2, combine)
-                scores[j, i] <- scores[i, j]
-        }
+    labels <- names(clusters)
+    if (is.null(labels) || all(is.na(labels)) || all(labels == "")) {
+        labels <- NULL
     }
+    scores <- pairwiseCombineMatrix(labels, cluster_gos, go_matrix, combine, BPPARAM = BPPARAM)
+
     removeRowNA <- apply(!is.na(scores), 1, sum) > 0
     removeColNA <- apply(!is.na(scores), 2, sum) > 0
     return(scores[removeRowNA, removeColNA, drop = FALSE])

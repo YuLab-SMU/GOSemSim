@@ -13,6 +13,50 @@ subsetCombine <- function(go_matrix, gos1, gos2, combine) {
     combineScores(go_matrix[gos1, gos2, drop = FALSE], combine = combine)
 }
 
+pairwiseCombineMatrix <- function(labels, golist, go_matrix, combine, BPPARAM = NULL) {
+    n <- length(golist)
+    scores <- matrix(NA_real_, nrow = n, ncol = n)
+    if (!is.null(labels)) {
+        rownames(scores) <- labels
+        colnames(scores) <- labels
+    }
+    pair_index <- as.list(seq_len(n))
+    if (n > 1) {
+        pair_index <- c(pair_index, utils::combn(seq_len(n), 2, simplify = FALSE))
+    }
+
+    compute_pair <- function(idx) {
+        if (length(idx) == 1) {
+            i <- idx
+            j <- idx
+        } else {
+            i <- idx[1]
+            j <- idx[2]
+        }
+
+        gos1 <- golist[[i]]
+        gos2 <- golist[[j]]
+        if (length(gos1) == 0 || length(gos2) == 0) {
+            return(list(i = i, j = j, score = NA_real_))
+        }
+        list(i = i, j = j, score = subsetCombine(go_matrix, gos1, gos2, combine))
+    }
+
+    if (is.null(BPPARAM)) {
+        res <- lapply(pair_index, compute_pair)
+    } else {
+        rlang::check_installed("BiocParallel", "for parallel pairwise similarity calculation")
+        res <- BiocParallel::bplapply(pair_index, compute_pair, BPPARAM = BPPARAM)
+    }
+
+    for (x in res) {
+        scores[x$i, x$j] <- x$score
+        scores[x$j, x$i] <- x$score
+    }
+
+    scores
+}
+
 getOffspringIdx <- function(ont, goids) {
     key <- paste0("offspring_idx_", ont, "_", digest::digest(goids))
     res <- yulab.utils::get_cache_element("GOSemSim_offspring_idx", key)

@@ -7,18 +7,18 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 [![platform](http://www.bioconductor.org/shields/availability/devel/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#archives)
 [![codecov](https://codecov.io/gh/YuLab-SMU/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/YuLab-SMU/GOSemSim/)
 
-[![](https://img.shields.io/badge/release%20version-2.34.0-green.svg)](https://www.bioconductor.org/packages/GOSemSim)
-[![](https://img.shields.io/badge/devel%20version-2.35.0-green.svg)](https://github.com/YuLab-SMU/GOSemSim)
-[![](https://img.shields.io/badge/download-1061088/total-blue.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
-[![](https://img.shields.io/badge/download-21399/month-blue.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![](https://img.shields.io/badge/release%20version-2.38.0-green.svg)](https://www.bioconductor.org/packages/GOSemSim)
+[![](https://img.shields.io/badge/devel%20version-2.39.1-green.svg)](https://github.com/YuLab-SMU/GOSemSim)
+[![](https://img.shields.io/badge/download-NA/total-blue.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![](https://img.shields.io/badge/download-NA/month-blue.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 
-The semantic comparisons of Gene Ontology (GO) annotations provide
-quantitative ways to compute similarities between genes and gene groups,
-and have became important basis for many bioinformatics analysis
-approaches. GOSemSim is an R package for semantic similarity computation
-among GO terms, sets of GO terms, gene products and gene clusters.
-GOSemSim implemented five methods proposed by Resnik, Schlicker, Jiang,
-Lin and Wang respectively.
+Semantic similarity analysis of Gene Ontology (GO) annotations provides
+a quantitative framework for comparing GO terms, gene products, and gene
+clusters. GOSemSim implements widely used information content- and
+graph-based similarity measures, including the methods of Resnik,
+Schlicker, Jiang, Lin, Wang and TCSS. It also provides utilities for
+preparing annotation data and combining term-level similarities into
+gene- and cluster-level scores.
 
 ## :writing_hand: Authors
 

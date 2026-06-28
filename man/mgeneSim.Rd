@@ -10,7 +10,8 @@ mgeneSim(
   measure = "Wang",
   drop = "IEA",
   combine = "BMA",
-  verbose = TRUE
+  verbose = TRUE,
+  BPPARAM = NULL
 )
 }
 \arguments{
@@ -25,12 +26,23 @@ mgeneSim(
 \item{combine}{One of "max", "avg", "rcmax", "BMA" methods, used to combine multiple term scores.}
 
 \item{verbose}{Whether to show a progress bar}
+
+\item{BPPARAM}{optional \link[BiocParallel:BiocParallelParam-class]{BiocParallel::BiocParallelParam} object for
+parallel pairwise similarity calculation. The default \code{NULL} uses the
+original serial implementation.}
 }
 \value{
 similarity matrix
 }
 \description{
 Calculate pairwise semantic similarities for a given list of genes.
+}
+\details{
+Parallel calculation is opt-in. With the default \code{BPPARAM = NULL},
+\code{mgeneSim()} keeps the original serial behavior and can show a progress bar
+when \code{verbose = TRUE}. When a \code{BPPARAM} object is supplied, pairwise
+similarities are calculated through \code{\link[BiocParallel:bplapply]{BiocParallel::bplapply()}} and the
+progress bar is not shown.
 }
 \examples{
 d <- godata('org.Hs.eg.db', ont = "MF", computeIC = FALSE)

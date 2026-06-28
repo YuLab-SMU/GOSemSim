@@ -4,7 +4,14 @@
 \alias{mclusterSim}
 \title{Pairwise semantic similarities for a list of gene clusters}
 \usage{
-mclusterSim(clusters, semData, measure = "Wang", drop = "IEA", combine = "BMA")
+mclusterSim(
+  clusters,
+  semData,
+  measure = "Wang",
+  drop = "IEA",
+  combine = "BMA",
+  BPPARAM = NULL
+)
 }
 \arguments{
 \item{clusters}{A list of gene clusters}
@@ -16,6 +23,10 @@ mclusterSim(clusters, semData, measure = "Wang", drop = "IEA", combine = "BMA")
 \item{drop}{Evidence codes to drop; use \code{NULL} to keep all GO annotations}
 
 \item{combine}{One of "max", "avg", "rcmax", "BMA" methods, used to combine multiple term scores.}
+
+\item{BPPARAM}{optional \link[BiocParallel:BiocParallelParam-class]{BiocParallel::BiocParallelParam} object for
+parallel pairwise similarity calculation. The default \code{NULL} uses serial
+calculation.}
 }
 \value{
 similarity matrix
