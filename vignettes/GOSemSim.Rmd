@@ -26,9 +26,7 @@ knitr::opts_chunk$set(tidy = FALSE,
 ```
 
 ```{r echo=FALSE, results="hide", message=FALSE}
-Biocpkg <- function (pkg) {
-    sprintf("[%s](http://bioconductor.org/packages/%s)", pkg, pkg)
-}
+Biocpkg <- yulab.utils::Biocpkg
 ```
 
 # Vignette

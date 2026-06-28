@@ -9,6 +9,7 @@
 #' @return similarity matrix
 #' @seealso [goSim()] [mgoSim()] [geneSim()] [mgeneSim()] [clusterSim()] [mclusterSim()]
 #' @export
+#' @importFrom utils setTxtProgressBar txtProgressBar
 #' @examples
 #' d <- godata('org.Hs.eg.db', ont = "MF", computeIC = FALSE)
 #' mgeneSim(c("835", "5261", "241"), semData = d, measure = "Wang")

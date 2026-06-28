@@ -11,6 +11,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{yulab.utils}{\code{\link[yulab.utils]{load_OrgDb}}}
+  \item{yulab.utils}{\code{\link[yulab.utils:load_OrgDb]{load_OrgDb()}}}
 }}
 

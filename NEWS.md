@@ -1,3 +1,8 @@
+# GOSemSim 2.39.1
+
++ fix Wang method semantic value cache to avoid reusing GO term values across ontologies (#30, 2026-06-28, Sun)
++ fix Wang method edge weighting for GO relationships by normalizing `isa` and `part of` relationship names (#51, 2026-06-28, Sun)
+
 # GOSemSim 2.38.0
 
 + Bioconductor RELEASE_3_23 (2026-04-29, Wed)

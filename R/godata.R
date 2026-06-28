@@ -12,6 +12,7 @@
 #' @param cutoff cutoff of TCSS
 #' @return GOSemSimDATA object
 #' @export
+#' @importFrom methods new
 #' @author Guangchuang Yu
 godata <- function(OrgDb=NULL, annoDb=NULL, keytype = "ENTREZID",
                    ont, computeIC = TRUE, processTCSS = FALSE, cutoff = NULL) {
@@ -108,8 +109,7 @@ parse_orgDb <- function(OrgDb, keytype) {
 #'
 #'
 #' @name GOSemSimDATA-class
-#' @aliases GOSemSimDATA-class
-#'   show,GOSemSimDATA-method
+#' @aliases GOSemSimDATA-class show,GOSemSimDATA-method
 #'
 #' @docType class
 #' @slot keys gene ID

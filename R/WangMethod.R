@@ -98,9 +98,6 @@ get_rel_df <- function(ont) {
 
 
 getSV <- function(ID, ont, rel_df, weight=NULL) {
-    sv <- yulab.utils::get_cache_element("GOSemSim_SemSimCache", ID)
-    if (!is.null(sv)) return(sv)
-
     if (ont == "HDO") {
         topNode <- "DOID:4"
     } else if (ont == "MPO") {
@@ -119,6 +116,11 @@ getSV <- function(ID, ont, rel_df, weight=NULL) {
         weight <- c(0.8, 0.6, 0.7)
         names(weight) <- c("is_a", "part_of", "other")
     }
+
+    weight_key <- paste(names(weight), weight, sep = "=", collapse = ";")
+    cache_key <- paste(ID, ont, weight_key, sep = "|")
+    sv <- yulab.utils::get_cache_element("GOSemSim_SemSimCache", cache_key)
+    if (!is.null(sv)) return(sv)
 
     rel_df <- rel_df[rel_df$Ontology == ont,]
     if (! 'relationship' %in% colnames(rel_df))
@@ -156,7 +158,7 @@ getSV <- function(ID, ont, rel_df, weight=NULL) {
         sv[topNode] <- 0
 
     e <- list()
-    e[[ID]] <- sv
+    e[[cache_key]] <- sv
     yulab.utils::update_cache_item("GOSemSim_SemSimCache", e)
     
     return(sv)

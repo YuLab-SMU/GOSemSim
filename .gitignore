@@ -9,4 +9,4 @@ __init__.pyc
 src/*.o
 src/*.so
 src/*dll
-.trae
+.trae/
