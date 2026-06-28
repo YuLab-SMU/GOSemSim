@@ -123,9 +123,16 @@ getSV <- function(ID, ont, rel_df, weight=NULL) {
     rel_df <- rel_df[rel_df$Ontology == ont,]
     if (! 'relationship' %in% colnames(rel_df))
         rel_df$relationship <- "other"
-    
+
+    ## GO.db emits relationship names as "isa" / "part of" (see GOBPPARENTS),
+    ## but the weight table above is keyed on "is_a" / "part_of". Without
+    ## normalising these spellings, every edge fails the match below and is
+    ## remapped to "other", so Wang similarity silently uses a uniform 0.7
+    ## weight for all edges instead of is_a = 0.8 / part_of = 0.6.
+    rel_df$relationship[rel_df$relationship %in% c("isa", "is a")] <- "is_a"
+    rel_df$relationship[rel_df$relationship %in% c("part of")]     <- "part_of"
     rel_df$relationship[!rel_df$relationship %in% c("is_a", "part_of")] <- "other"
-    
+
 
     sv <- 1
     names(sv) <- ID
