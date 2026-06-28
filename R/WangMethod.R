@@ -1,22 +1,60 @@
 wangMethod <- function(t1, t2, ont) {
     n1 <- length(t1)
     n2 <- length(t2)
-    if (n2 > 256) {
-        res <- matrix(NA_real_, nrow = n1, ncol = n2, dimnames = list(t1, t2))
-        step <- 256L
-        for (start in seq.int(1L, n2, by = step)) {
-            end <- min(start + step - 1L, n2)
-            block <- t2[start:end]
-            cols <- lapply(block, function(b) vapply(t1, function(a) wangMethod_internal(a, b, ont = ont), numeric(1)))
-            res[, start:end] <- do.call(cbind, cols)
+
+    if (is_supported_go(ont)) {
+        rel_df <- ensure_gotbl_cached()
+    } else if (is_supported_do(ont)) {
+        rel_df <- get_rel_df(ont)
+    } else {
+        .meshesEnv <- get(".meshesEnv", envir=.GlobalEnv)
+        rel_df <- get("meshtbl", envir=.meshesEnv)
+    }
+
+    terms <- unique(c(t1, t2))
+    sv_list <- lapply(terms, getSV, ont = ont, rel_df = rel_df)
+    names(sv_list) <- terms
+
+    calc_sim <- function(ID1, ID2) {
+        if (ID1 == ID2) {
+            return(1)
+        }
+        sv.a <- sv_list[[ID1]]
+        sv.b <- sv_list[[ID2]]
+
+        if(all(is.na(sv.a)) || all(is.na(sv.b)))
+            return (NA)
+
+        idx         <- intersect(names(sv.a), names(sv.b))
+        inter.sva   <- sv.a[idx]
+        inter.svb   <- sv.b[idx]
+        if (is.null(inter.sva) ||
+            is.null(inter.svb) ||
+            length(inter.sva) == 0 ||
+            length(inter.svb) ==0) {
+            return (NA)
+        }
+
+        sum(inter.sva,inter.svb) / sum(sv.a, sv.b)
+    }
+
+    res <- matrix(NA_real_, nrow = n1, ncol = n2, dimnames = list(t1, t2))
+    if (identical(t1, t2)) {
+        for (i in seq_len(n1)) {
+            for (j in seq_len(i)) {
+                res[i, j] <- calc_sim(t1[i], t2[j])
+                res[j, i] <- res[i, j]
+            }
         }
         return(res)
     }
-    matrix(mapply(wangMethod_internal,
-                  rep(t1, n2),
-                  rep(t2, each = n1),
-                  MoreArgs = list(ont = ont)),
-           dimnames = list(t1, t2), ncol = n2)
+
+    for (j in seq_len(n2)) {
+        for (i in seq_len(n1)) {
+            res[i, j] <- calc_sim(t1[i], t2[j])
+        }
+    }
+    res
 }
 
 

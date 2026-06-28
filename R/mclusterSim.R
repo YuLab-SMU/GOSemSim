@@ -41,7 +41,7 @@ mclusterSim <- function(clusters, semData, measure="Wang", drop="IEA", combine="
     }
     scores <- pairwiseCombineMatrix(labels, cluster_gos, go_matrix, combine, BPPARAM = BPPARAM)
 
-    removeRowNA <- apply(!is.na(scores), 1, sum) > 0
-    removeColNA <- apply(!is.na(scores), 2, sum) > 0
+    removeRowNA <- rowSums(!is.na(scores)) > 0
+    removeColNA <- colSums(!is.na(scores)) > 0
     return(scores[removeRowNA, removeColNA, drop = FALSE])
 }

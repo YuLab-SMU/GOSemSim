@@ -35,8 +35,8 @@ mgeneSim <- function(genes, semData, measure="Wang", drop="IEA", combine="BMA", 
     go_matrix <- buildGoMatrix(uniqueGO, semData, measure)
     if (!is.null(BPPARAM)) {
         scores <- pairwiseCombineMatrix(genes, gos, go_matrix, combine, BPPARAM = BPPARAM)
-        removeRowNA <- apply(!is.na(scores), 1, sum) > 0
-        removeColNA <- apply(!is.na(scores), 2, sum) > 0
+        removeRowNA <- rowSums(!is.na(scores)) > 0
+        removeColNA <- colSums(!is.na(scores)) > 0
         return(scores[removeRowNA, removeColNA, drop = FALSE])
     }
 
@@ -56,8 +56,8 @@ mgeneSim <- function(genes, semData, measure="Wang", drop="IEA", combine="BMA", 
     }
     if (verbose)
         close(pb)
-    removeRowNA <- apply(!is.na(scores), 1, sum) > 0
-    removeColNA <- apply(!is.na(scores), 2, sum) > 0
+    removeRowNA <- rowSums(!is.na(scores)) > 0
+    removeColNA <- colSums(!is.na(scores)) > 0
     return(scores[removeRowNA, removeColNA, drop = FALSE])
 }
 

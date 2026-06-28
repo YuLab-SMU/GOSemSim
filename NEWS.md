@@ -1,5 +1,6 @@
 # GOSemSim 2.39.1
 
++ improve pairwise similarity performance by reducing repeated matrix scans in score combination (2026-06-28, Sun)
 + support optional `BiocParallel` parallel pairwise calculation in `mgeneSim()` and `mclusterSim()` (#31, 2026-06-28, Sun)
 + improve TCSS robustness and document TCSS usage with topology cutoff preprocessing (2026-06-28, Sun)
 + fix Wang method semantic value cache to avoid reusing GO term values across ontologies (#30, 2026-06-28, Sun)

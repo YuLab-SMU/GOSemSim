@@ -20,10 +20,6 @@ pairwiseCombineMatrix <- function(labels, golist, go_matrix, combine, BPPARAM = 
         rownames(scores) <- labels
         colnames(scores) <- labels
     }
-    pair_index <- as.list(seq_len(n))
-    if (n > 1) {
-        pair_index <- c(pair_index, utils::combn(seq_len(n), 2, simplify = FALSE))
-    }
 
     compute_pair <- function(idx) {
         if (length(idx) == 1) {
@@ -43,11 +39,22 @@ pairwiseCombineMatrix <- function(labels, golist, go_matrix, combine, BPPARAM = 
     }
 
     if (is.null(BPPARAM)) {
-        res <- lapply(pair_index, compute_pair)
-    } else {
-        rlang::check_installed("BiocParallel", "for parallel pairwise similarity calculation")
-        res <- BiocParallel::bplapply(pair_index, compute_pair, BPPARAM = BPPARAM)
+        for (i in seq_len(n)) {
+            for (j in seq_len(i)) {
+                x <- compute_pair(c(i, j))
+                scores[x$i, x$j] <- x$score
+                scores[x$j, x$i] <- x$score
+            }
+        }
+        return(scores)
     }
+
+    pair_index <- as.list(seq_len(n))
+    if (n > 1) {
+        pair_index <- c(pair_index, utils::combn(seq_len(n), 2, simplify = FALSE))
+    }
+    rlang::check_installed("BiocParallel", "for parallel pairwise similarity calculation")
+    res <- BiocParallel::bplapply(pair_index, compute_pair, BPPARAM = BPPARAM)
 
     for (x in res) {
         scores[x$i, x$j] <- x$score

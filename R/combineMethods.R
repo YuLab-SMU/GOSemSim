@@ -26,13 +26,13 @@ combineScores <- function(SimScores, combine) {
     }
 
 
-    row.na.idx <- apply(SimScores, 1, function(i) all(is.na(i)))
+    row.na.idx <- rowSums(!is.na(SimScores)) == 0
     if (any(row.na.idx)) {
         SimScores <- SimScores[-which(row.na.idx), ]
     }
 
     if (! is.null(dim(SimScores)) ) {
-        col.na.idx <- apply(SimScores, 2, function(i) all(is.na(i)))
+        col.na.idx <- colSums(!is.na(SimScores)) == 0
         if (any(col.na.idx)) {
             SimScores <- SimScores[ , -which(col.na.idx)]
         }
@@ -50,13 +50,15 @@ combineScores <- function(SimScores, combine) {
     } else if (combine == "max") {
         result   <- max(SimScores, na.rm=TRUE)
     } else if (combine == "rcmax") {
-        rowScore <- mean(apply(SimScores, 1, max, na.rm=TRUE))
-        colScore <- mean(apply(SimScores, 2, max, na.rm=TRUE))
+        rowMax <- do.call(pmax, c(as.data.frame(SimScores), na.rm = TRUE))
+        colMax <- do.call(pmax, c(as.data.frame(t(SimScores)), na.rm = TRUE))
+        rowScore <- mean(rowMax)
+        colScore <- mean(colMax)
         result   <- max(rowScore, colScore)
     } else if (combine == "rcmax.avg" || combine == "BMA") {
-        result   <- sum( apply(SimScores, 1, max, na.rm=TRUE),
-                        apply(SimScores, 2, max, na.rm=TRUE)
-                        ) / sum(dim(SimScores))
+        rowMax <- do.call(pmax, c(as.data.frame(SimScores), na.rm = TRUE))
+        colMax <- do.call(pmax, c(as.data.frame(t(SimScores)), na.rm = TRUE))
+        result   <- sum(rowMax, colMax) / sum(dim(SimScores))
     }
 
     return (round(result, digits=3))
