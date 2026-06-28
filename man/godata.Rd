@@ -26,9 +26,11 @@ can be OrgDb or a data.frame contains three columns of 'GENE', 'GO' and 'ONTOLOG
 
 \item{computeIC}{logical, whether computer IC}
 
-\item{processTCSS}{logical, whether to process TCSS}
+\item{processTCSS}{logical, whether to prepare TCSS data. TCSS requires
+\code{computeIC = TRUE}, which is enabled automatically when \code{processTCSS = TRUE}.}
 
-\item{cutoff}{cutoff of TCSS}
+\item{cutoff}{topology cutoff for TCSS subgraph construction. If \code{NULL},
+empirical defaults are used; users can estimate a cutoff with \code{\link[=tcss_cutoff]{tcss_cutoff()}}.}
 }
 \value{
 GOSemSimDATA object

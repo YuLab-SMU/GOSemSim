@@ -3,13 +3,15 @@
 #' @param OrgDb OrgDb object
 #' @param keytype keytype
 #' @param ont ontology : "BP", "MF", "CC"
-#' @param combine_method "max", "BMA", "avg", "rcmax", "rcmax.avg"
+#' @param combine_method one of "max", "BMA", "avg", "rcmax", "rcmax.avg"
 #' @param ppidata A data.frame contains positive set and negative set.
 #' Positive set is PPI pairs that already verified.
 #' ppidata has three columns, column 1 and 2 are character, column 3
 #' must be logical value:TRUE/FALSE.
 #'
-#' @return numeric, topological cutoff for given parameters
+#' @return numeric, topological cutoff for TCSS subgraph construction. The
+#' returned value can be passed to [godata()] via the `cutoff` argument together
+#' with `processTCSS = TRUE`.
 #' @export
 #'
 #' @examples
@@ -44,9 +46,15 @@
 #'
 #'     cutoff <- tcss_cutoff(OrgDb = org.Hs.eg.db, keytype = "ENSEMBLPROT",
 #'     ont = "BP", combine_method = "max", ppidata)
+#'
+#'     semData <- godata(annoDb = org.Hs.eg.db, keytype = "ENSEMBLPROT",
+#'     ont = "BP", computeIC = TRUE, processTCSS = TRUE, cutoff = cutoff)
 #' }
 tcss_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
                         combine_method = "max", ppidata) {
+
+  combine_method <- match.arg(combine_method,
+                              c("max", "BMA", "avg", "rcmax", "rcmax.avg"))
 
   semdata <- godata(OrgDb, keytype = keytype, ont = ont, computeIC = TRUE,
                     processTCSS = FALSE, cutoff = NULL)
@@ -124,7 +132,7 @@ create_filtered_ppidata <- function(all_pro, ppidata) {
 #' @param filtered_ppidata data.frame, annotated protein pairs and their labels
 #' @param semdata GOSemSimDATA object
 #' @param combine_method "max" "BMA", "avg", "rcmax", "rcmax.avg"
-#' @return list, the prediction value for the input cutoff
+#' @return numeric, the prediction value for the input cutoff
 #' @noRd
 #'
 computePre <- function(cutoff, filtered_ppidata, semdata,
@@ -134,11 +142,13 @@ computePre <- function(cutoff, filtered_ppidata, semdata,
 
   semdata@tcssdata <- tcssdata
   #similarity value is calculated with the semdata
-  mapply(geneSim, MoreArgs = list(semData = semdata,
-                                  measure = "TCSS",
-                                  combine = combine_method,
-                                  drop = FALSE),
-         filtered_ppidata[, 1], filtered_ppidata[, 2])
+  vapply(seq_len(nrow(filtered_ppidata)), function(i) {
+    res <- geneSim(filtered_ppidata[i, 1], filtered_ppidata[i, 2],
+                   semData = semdata, measure = "TCSS",
+                   combine = combine_method, drop = FALSE)
+    if (is.list(res)) return(as.numeric(res[["geneSim"]]))
+    as.numeric(res)
+  }, numeric(1))
 }
 
 #' calculate auc and F1-score
@@ -155,17 +165,12 @@ calc_auc_F1_score <- function(predict_result, filtered_ppidata) {
   check_installed('ROCR', 'for`calc_auc_F1_score()`.')
   # the label for PPIs, TRUE/FALSE
   label <- filtered_ppidata[, 3]
-  #geneSim returns one value and two characters in once calculation
-  value_pos <- seq(from = 1, to = length(label) * 3, by = 3)
-  #just the similarity value
-  pre_value <- lapply(predict_result, function(p) as.numeric(p[value_pos]))
-  #returned value may contains NA
-  pos_stay <- !is.na(pre_value[[1]])
-  label <- label[pos_stay]
+  pre_value <- lapply(predict_result, as.numeric)
 
   # prediction object
   pred <- lapply(pre_value, function(e) {
-    ROCR::prediction(e[pos_stay], label,
+    pos_stay <- !is.na(e)
+    ROCR::prediction(e[pos_stay], label[pos_stay],
                      label.ordering = c(FALSE, TRUE)
     )
   })

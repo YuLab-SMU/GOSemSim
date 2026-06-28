@@ -19,7 +19,7 @@ tcss_cutoff(
 
 \item{ont}{ontology : "BP", "MF", "CC"}
 
-\item{combine_method}{"max", "BMA", "avg", "rcmax", "rcmax.avg"}
+\item{combine_method}{one of "max", "BMA", "avg", "rcmax", "rcmax.avg"}
 
 \item{ppidata}{A data.frame contains positive set and negative set.
 Positive set is PPI pairs that already verified.
@@ -27,7 +27,9 @@ ppidata has three columns, column 1 and 2 are character, column 3
 must be logical value:TRUE/FALSE.}
 }
 \value{
-numeric, topological cutoff for given parameters
+numeric, topological cutoff for TCSS subgraph construction. The
+returned value can be passed to \code{\link[=godata]{godata()}} via the \code{cutoff} argument together
+with \code{processTCSS = TRUE}.
 }
 \description{
 determine the topological cutoff for TCSS method
@@ -64,5 +66,8 @@ determine the topological cutoff for TCSS method
 
     cutoff <- tcss_cutoff(OrgDb = org.Hs.eg.db, keytype = "ENSEMBLPROT",
     ont = "BP", combine_method = "max", ppidata)
+
+    semData <- godata(annoDb = org.Hs.eg.db, keytype = "ENSEMBLPROT",
+    ont = "BP", computeIC = TRUE, processTCSS = TRUE, cutoff = cutoff)
 }
 }

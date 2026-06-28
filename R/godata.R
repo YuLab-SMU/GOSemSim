@@ -8,8 +8,10 @@
 #' @param keytype keytype
 #' @param ont one of 'BP', 'MF', 'CC'
 #' @param computeIC logical, whether computer IC
-#' @param processTCSS logical, whether to process TCSS
-#' @param cutoff cutoff of TCSS
+#' @param processTCSS logical, whether to prepare TCSS data. TCSS requires
+#' `computeIC = TRUE`, which is enabled automatically when `processTCSS = TRUE`.
+#' @param cutoff topology cutoff for TCSS subgraph construction. If `NULL`,
+#' empirical defaults are used; users can estimate a cutoff with [tcss_cutoff()].
 #' @return GOSemSimDATA object
 #' @export
 #' @importFrom methods new

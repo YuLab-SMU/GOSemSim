@@ -7,9 +7,9 @@
 #' @return list, belonged clusters and its elements for all nodes
 #' @noRd
 process_tcss <- function(ont, IC, cutoff = NULL) {
-    ## if (length(IC) == 0) {
-    ##     stop("IC data not found, please re-generate your `semData` with `computeIC = TRUE`...")
-    ## }
+    if (length(IC) == 0 || !any(is.finite(IC))) {
+        stop("IC data not found, please re-generate your `semData` with `computeIC = TRUE`...")
+    }
 
     if (is.null(cutoff)) {
         message("As cutoff value is not provided, default value based on human will be used")

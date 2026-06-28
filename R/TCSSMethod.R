@@ -37,12 +37,13 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
     ont <- semData@ont
 
     if (length(tcssdata) == 0) {
-        stop("tcssdata not found, please re-generate your `semData` with `tcssprocess = TRUE`...")
+        stop("tcssdata not found, please re-generate your `semData` with `processTCSS = TRUE`...")
     }
 
     GOs <- names(tcssdata$clusid)
 
     if ((!ID1 %in% GOs) || (!ID2 %in% GOs)) return(NA)
+    if (ID1 == ID2) return(1)
 
     # get common ancestors
     com_anc <- ancestors_in_common(ID1 = ID1, ID2 = ID2, ont = ont)
@@ -151,11 +152,11 @@ ancestors_in_common <- function(ID1, ID2, ont) {
 #' @return ancestors for ID
 #' @noRd
 ancestors_envir <- function(ID, ont) {
-    anc <- yulab.utils::get_cache_element("GOSemSim_ancCache", ID)
+    cache_key <- paste(ID, ont, sep = "|")
+    anc <- yulab.utils::get_cache_element("GOSemSim_ancCache", cache_key)
     if (!is.null(anc)) return(anc)
     ancestors <- getAncestors(ont)[[ID]]
-    e <- list()
-    e[[ID]] <- ancestors
+    e <- stats::setNames(list(ancestors), cache_key)
     yulab.utils::update_cache_item("GOSemSim_ancCache", e)
     ancestors
 }
