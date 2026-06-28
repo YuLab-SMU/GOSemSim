@@ -1,21 +1,18 @@
 ---
 title: "GO Semantic Similarity Analysis"
-author: 
-- name: Guangchuang Yu
-  email: guangchuangyu@gmail.com
-  affiliation: Department of Bioinformatics, School of Basic Medical Sciences, Southern Medical University
+format: 
+    html:
+        theme: none
+        embed-resources: true
+        fontsize: 1.1em
+        linestretch: 1.7
+author: "Guangchuang Yu\
+
+        School of Basic Medical Sciences, Southern Medical University"
 date: "`r Sys.Date()`"
-output:
-  prettydoc::html_pretty:
-    toc: true
-    theme: cayman
-    highlight: github
-  pdf_document:
-    toc: true
 vignette: >
-  % \VignetteIndexEntry{GOSemSim}
-  % \VignetteEngine{knitr::rmarkdown}
-  % \usepackage[utf8]{inputenc}
+  %\VignetteIndexEntry{GOSemSim}
+  %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
 ---
 
@@ -30,6 +27,13 @@ Biocpkg <- yulab.utils::Biocpkg
 ```
 
 # Vignette
+
+`r Biocpkg('GOSemSim')` provides methods and utilities for semantic similarity analysis of Gene Ontology annotations, including:
+
++ semantic similarity measurement among GO terms, gene products, and gene clusters;
++ support for multiple similarity methods, including Wang, Resnik, Lin, Rel, Jiang, and TCSS;
++ preparation of GO annotation data from OrgDb objects or user-supplied annotation data frames;
++ score combination strategies for comparing sets of GO terms or genes.
 
 Please go to <https://yulab-smu.top/biomedical-knowledge-mining-book/> for the full vignette.
 

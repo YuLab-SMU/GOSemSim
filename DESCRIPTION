@@ -35,14 +35,13 @@ Suggests:
     DOSE,
     knitr,
     org.Hs.eg.db,
-    prettydoc,
+    quarto,
     readr,
-    rmarkdown,
     testthat,
     tidyr,
     tidyselect,
     ROCR
-VignetteBuilder: knitr
+VignetteBuilder: quarto
 ByteCompile: true
 License: Artistic-2.0
 Encoding: UTF-8
