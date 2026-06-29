@@ -54,7 +54,7 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
     }
 
     sim_value <- lapply(com_anc, function(x) {
-        vapply(tcssdata$ica[tcssdata$clusid[[x]]], function(y) y[x], numeric(1))
+        tcssdata$ica[[ tcssdata$clusid[[x]] ]][x]
     })
     sim_value <- unlist(sim_value)
 

@@ -3,10 +3,12 @@
 #' @param ont ontology
 #' @param IC information content
 #' @param cutoff the topology cutoff, users can use tcss_cutoff() function to calculate cutoff value  
+#' @param ICT optional pre-computed ICT vector (to avoid recomputation in tcss_cutoff)
+#' @param offspring optional pre-fetched offspring list
 #'
 #' @return list, belonged clusters and its elements for all nodes
 #' @noRd
-process_tcss <- function(ont, IC, cutoff = NULL) {
+process_tcss <- function(ont, IC, cutoff = NULL, ICT = NULL, offspring = NULL) {
     if (length(IC) == 0 || !any(is.finite(IC))) {
         stop("IC data not found, please re-generate your `semData` with `computeIC = TRUE`...")
     }
@@ -27,13 +29,19 @@ process_tcss <- function(ont, IC, cutoff = NULL) {
 
     GO <- names(IC[!is.infinite(IC)])
 
-    offspring <- getOffsprings(ont) 
-    # calculate ICT
-    ICT <- computeICT(GO, offspring = offspring)
+    if (is.null(offspring)) {
+        offspring <- getOffsprings(ont) 
+    }
+    if (is.null(ICT)) {
+        # calculate ICT
+        ICT <- computeICT(GO, offspring = offspring)
+    }
     # nodes smaller than cutoff are meta-terms
     meta_terms <- create_meta_terms(ICT = ICT, cutoff = cutoff)
     # if two parent-child nodes' ICT value too close
     meta_terms <- remove_close(meta_terms, ont = ont, ICT = ICT)
+    # sort by ICT descending for deterministic cluster assignment
+    meta_terms <- meta_terms[order(ICT[meta_terms], decreasing = TRUE)]
     # relationship between cluster-id and its elements
     meta_graph <- create_sub_terms(meta_terms, offspring = offspring)
 

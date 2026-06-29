@@ -75,7 +75,9 @@ tcss_cutoff <- function(OrgDb = NULL, keytype = "ENTREZID", ont,
   predict_result <- lapply(cutoffs, computePre,
                            filtered_ppidata = filtered_ppidata,
                            semdata = semdata,
-                           combine_method = combine_method)
+                           combine_method = combine_method,
+                           ICT = ICT,
+                           offspring = offspring)
 
   #calculate the auc and F1_score
   auc_F1_score <- calc_auc_F1_score(predict_result,
@@ -132,13 +134,16 @@ create_filtered_ppidata <- function(all_pro, ppidata) {
 #' @param filtered_ppidata data.frame, annotated protein pairs and their labels
 #' @param semdata GOSemSimDATA object
 #' @param combine_method "max" "BMA", "avg", "rcmax", "rcmax.avg"
+#' @param ICT optional pre-computed ICT vector
+#' @param offspring optional pre-fetched offspring list
 #' @return numeric, the prediction value for the input cutoff
 #' @noRd
 #'
 computePre <- function(cutoff, filtered_ppidata, semdata,
-                       combine_method) {
+                       combine_method, ICT = NULL, offspring = NULL) {
   #tcssdata is updated with this input cutoff
-  tcssdata <- process_tcss(semdata@ont, semdata@IC, cutoff = cutoff)
+  tcssdata <- process_tcss(semdata@ont, semdata@IC, cutoff = cutoff,
+                           ICT = ICT, offspring = offspring)
 
   semdata@tcssdata <- tcssdata
   #similarity value is calculated with the semdata
