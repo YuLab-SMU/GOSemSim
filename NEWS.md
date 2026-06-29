@@ -1,3 +1,7 @@
+# GOSemSim 2.39.2
+
++ add `set_auto_update()` to control auto-update of ontology databases (2026-06-29, Mon)
+
 # GOSemSim 2.39.1
 
 + improve pairwise similarity performance by reducing repeated matrix scans in score combination (2026-06-28, Sun)

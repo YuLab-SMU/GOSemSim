@@ -70,6 +70,18 @@ setMethod("columns", "OntDb",
 )
 
 
+#' Control auto-update of ontology databases
+#' 
+#' When enabled, outdated local ontology SQLite databases will be
+#' automatically updated from remote mirrors.
+#' 
+#' @param x logical, whether to enable auto-update (default: TRUE)
+#' @export
+set_auto_update <- function(x = TRUE) {
+    stopifnot(is.logical(x), length(x) == 1)
+    options(DOSE.auto_update = x)
+}
+
 get_onto_data <- function(ont = "HDO", output='list', table="offspring") {
     x <- load_onto(ont)
     output <- match.arg(output, c("data.frame", "list"))
@@ -98,6 +110,38 @@ load_onto <- function(onto = "HDO") {
     dbfile <- sprintf("%s.sqlite", onto)
     urls <- c("https://yulab-smu.top/DOSE",
               "https://raw.githubusercontent.com/YuLab-SMU/DOSE/refs/heads/gh-pages")
+
+    auto_update <- getOption("DOSE.auto_update", default = FALSE)
+    local_file <- file.path(yulab.utils::user_dir("GOSemSim"), dbfile)
+
+    if (!auto_update && file.exists(local_file)) {
+        ## check if remote version is newer
+        outdated <- FALSE
+        for (url in urls) {
+            md5_url <- sprintf("%s/md5.txt", url)
+            md5 <- tryCatch(read.delim(md5_url, header = FALSE),
+                            error = function(e) NULL)
+            if (!is.null(md5)) {
+                md5_remote <- md5[md5[, 1] == dbfile, 2]
+                if (length(md5_remote) > 0) {
+                    md5_local <- digest::digest(local_file, algo = "md5", file = TRUE)
+                    if (md5_remote != md5_local) {
+                        outdated <- TRUE
+                    }
+                    break
+                }
+            }
+        }
+        if (outdated) {
+            message(sprintf(
+                "%s is outdated. Call `set_auto_update(TRUE)` to update.",
+                dbfile
+            ))
+        }
+        db <- loadDb(local_file)
+        yulab.utils::update_cache_item(".GOSemSimEnv", setNames(list(db), .onto))
+        return(db)
+    }
 
     # use download_yulab_file from yulab.utils to handle multiple mirrors
     dbfile <- download_yulab_file(dbfile, urls, gzfile = TRUE, appname = "GOSemSim")
