@@ -124,26 +124,29 @@ calc_maxIC <- function(meta_graph, IC) {
                                         #all <- all[!is.infinite(all)]
                                         # all <- all[!is.infinite(all) & !is.na(all)]
                              all <- all[is.finite(all)]
-                                        # A cluster with a single member has no
-                                        # internal spread, so `IC / max(IC)` is
-                                        # identically 1 no matter how general or
-                                        # how specific that term is. Dividing by
-                                        # `mic` instead scores such a term on the
-                                        # same scale as every other term.
+                                        # `all` holds this cluster's *finite* IC
+                                        # values. When there is exactly one, the
+                                        # ratio `IC / max(IC)` is identically 1
+                                        # no matter how general or how specific
+                                        # that term is, because the term is only
+                                        # being compared against itself. Dividing
+                                        # by the global `mic` instead scores such
+                                        # a term on the same scale as every other
+                                        # term.
                                         #
                                         # This is not a rare corner case: at the
                                         # default BP cutoff (3.5) GO:0008150, the
-                                        # root of the ontology, is the only
-                                        # member of its own cluster. Every pair
-                                        # of BP terms has the root as a common
-                                        # ancestor, so an ICA of 1 for the root
-                                        # made `max(sim_value)` in
+                                        # root of the ontology, is such a cluster.
+                                        # Every pair of BP terms has the root as a
+                                        # common ancestor, so an ICA of 1 for the
+                                        # root made `max(sim_value)` in
                                         # tcssMethod_internal() return 1 for
                                         # essentially every pair. Other cutoffs
-                                        # and other ontologies produce further
-                                        # singletons (GO:0050896 and GO:0046337
-                                        # for BP, GO:0052745 for MF), which the
-                                        # same collapse would inflate to 1.
+                                        # and ontologies have more of them (5 at
+                                        # BP cutoff 4, 1141 at cutoff 5, 3 for MF
+                                        # and 3 for CC including the CC root
+                                        # GO:0005575), so special casing the root
+                                        # would have fixed only one instance.
                              if (length(all) <= 1) mic else max(all)
                          }, numeric(1))
     return(meta_maxIC)
