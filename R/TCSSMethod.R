@@ -54,7 +54,12 @@ tcssMethod_internal <- function(ID1, ID2, semData) {
     }
 
     sim_value <- lapply(com_anc, function(x) {
-        tcssdata$ica[[ tcssdata$clusid[[x]] ]][x]
+        ## A term can belong to more than one cluster: GO is a DAG, so a term
+        ## may have several meta-term ancestors and `clusid[[x]]` is then a
+        ## vector rather than a scalar. Indexing `ica` with `[[` would attempt
+        ## recursive indexing ("recursive indexing failed at level 2"), so
+        ## subset the list of clusters with `[` instead.
+        vapply(tcssdata$ica[tcssdata$clusid[[x]]], function(y) y[x], numeric(1))
     })
     sim_value <- unlist(sim_value)
 

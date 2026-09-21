@@ -76,6 +76,26 @@ test_that("TCSS cutoff helpers validate and return numeric predictions", {
     expect_length(pred, nrow(filtered))
 })
 
+test_that("TCSS handles terms that belong to more than one cluster", {
+    hsGO <- godata(annoDb = "org.Hs.eg.db", ont = "BP", computeIC = TRUE, processTCSS = TRUE)
+    tcssdata <- hsGO@tcssdata
+
+    ## GO is a DAG, so a term can have several meta-term ancestors and
+    ## `clusid[[term]]` is then a vector rather than a scalar. Indexing `ica`
+    ## with `[[` used to raise "subscript out of bounds" / "recursive indexing
+    ## failed at level 2".
+    n_clusters <- vapply(tcssdata$clusid, length, integer(1))
+    expect_gt(sum(n_clusters > 1), 0)
+
+    ## GO:0000018 is a common ancestor of GO:0000019 and sits in two clusters
+    skip_if(!"GO:0000018" %in% names(tcssdata$clusid),
+            "GO:0000018 is not part of this ontology build")
+
+    expect_no_error(termSim("GO:0000018", "GO:0000019", hsGO, method = "TCSS"))
+    res <- termSim("GO:0000018", "GO:0000019", hsGO, method = "TCSS")
+    expect_true(is.finite(unname(res[1, 1])))
+})
+
 test_that("TCSS cutoff AUC/F1 helper consumes numeric predictions", {
     testthat::skip_if_not_installed("ROCR")
     filtered <- data.frame(
