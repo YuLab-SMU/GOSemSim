@@ -1,3 +1,7 @@
+# GOSemSim 2.39.3
+
++ fix TCSS similarity collapsing to 1 for (nearly) every term pair. A cluster with a single member has no internal spread, so normalising it by its own maximum IC made its ICA identically 1 regardless of how general the term was. `GO:0008150`, the root of BP, is such a cluster and is a common ancestor of every BP pair, so `max(sim_value)` returned 1 for 99.7% of random BP pairs and `mgeneSim(measure = "TCSS")` was an all-ones matrix. Single-member clusters are now normalised by the global maximum IC, which also fixes the same collapse for `GO:0050896` and `GO:0046337` (BP, larger cutoffs) and `GO:0052745` (MF) (2026-09-21, Mon)
+
 # GOSemSim 2.39.2
 
 + fix `termSim(..., method = "TCSS")` for terms belonging to more than one cluster, where `ica[[clusid[[term]]]]` attempted recursive indexing ("subscript out of bounds") (2026-09-21, Mon)

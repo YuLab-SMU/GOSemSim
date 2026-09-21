@@ -96,6 +96,39 @@ test_that("TCSS handles terms that belong to more than one cluster", {
     expect_true(is.finite(unname(res[1, 1])))
 })
 
+test_that("TCSS does not collapse to 1 for every term pair", {
+    hsGO <- godata(annoDb = "org.Hs.eg.db", ont = "BP", computeIC = TRUE, processTCSS = TRUE)
+    tcssdata <- hsGO@tcssdata
+
+    ## A cluster with a single member has no internal spread, so normalising it
+    ## by its own max IC makes ICA identically 1 no matter how general the term
+    ## is. GO:0008150 (the BP root) is such a cluster, and because it is a
+    ## common ancestor of every BP pair, `max(sim_value)` used to return 1 for
+    ## essentially every pair -- the whole method degenerated to a constant.
+    sz <- vapply(tcssdata$meta_graph, length, numeric(1))
+    singleton <- names(sz)[sz == 1]
+    expect_gt(length(singleton), 0)      # the degenerate case does occur
+
+    for (s in singleton) {
+        expect_lt(tcssdata$ica[[s]], 1)
+    }
+
+    ## the root must score like the general term it is, not like a leaf
+    if ("GO:0008150" %in% singleton) {
+        expect_lt(tcssdata$ica[["GO:0008150"]], 1e-3)
+    }
+
+    ## and pairwise scores must actually vary instead of being constant
+    set.seed(1)
+    go <- sample(names(tcssdata$clusid), 30)
+    m <- termSim(go, go, hsGO, method = "TCSS")
+    off_diagonal <- m[upper.tri(m)]
+
+    expect_false(any(is.na(off_diagonal)))
+    expect_gt(length(unique(off_diagonal)), 1)
+    expect_lt(mean(off_diagonal == 1), 0.5)
+})
+
 test_that("TCSS cutoff AUC/F1 helper consumes numeric predictions", {
     testthat::skip_if_not_installed("ROCR")
     filtered <- data.frame(

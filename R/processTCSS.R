@@ -45,7 +45,7 @@ process_tcss <- function(ont, IC, cutoff = NULL, ICT = NULL, offspring = NULL) {
     # relationship between cluster-id and its elements
     meta_graph <- create_sub_terms(meta_terms, offspring = offspring)
 
-    # get the max IC value for each graph
+    # the value each graph is normalised by
     meta_maxIC <- calc_maxIC(meta_graph, IC = IC)
     ica <- lapply(seq_along(meta_graph), function(i) {
         IC[meta_graph[[i]]] / meta_maxIC[i]
@@ -105,13 +105,12 @@ create_meta_terms <- function(ICT, cutoff) {
     names(res)
 }
 
-#' calculate every graph's max IC value
+#' the IC value each graph is normalised by
 #'
-#' @param meta_terms character, all cluster ids but "meta"
-#' @param GO_element the contained elements
-#' @param IC numeric, ICT value
+#' @param meta_graph list, the elements of each cluster
+#' @param IC numeric, information content
 #'
-#' @return numeric, max IC in different graphs
+#' @return numeric, the IC each graph is divided by
 #' @noRd
 #'
 calc_maxIC <- function(meta_graph, IC) {
@@ -125,8 +124,27 @@ calc_maxIC <- function(meta_graph, IC) {
                                         #all <- all[!is.infinite(all)]
                                         # all <- all[!is.infinite(all) & !is.na(all)]
                              all <- all[is.finite(all)]
-                                        # if value is empty, assign the mic value
-                             if (length(all) == 0) mic else max(all)
+                                        # A cluster with a single member has no
+                                        # internal spread, so `IC / max(IC)` is
+                                        # identically 1 no matter how general or
+                                        # how specific that term is. Dividing by
+                                        # `mic` instead scores such a term on the
+                                        # same scale as every other term.
+                                        #
+                                        # This is not a rare corner case: at the
+                                        # default BP cutoff (3.5) GO:0008150, the
+                                        # root of the ontology, is the only
+                                        # member of its own cluster. Every pair
+                                        # of BP terms has the root as a common
+                                        # ancestor, so an ICA of 1 for the root
+                                        # made `max(sim_value)` in
+                                        # tcssMethod_internal() return 1 for
+                                        # essentially every pair. Other cutoffs
+                                        # and other ontologies produce further
+                                        # singletons (GO:0050896 and GO:0046337
+                                        # for BP, GO:0052745 for MF), which the
+                                        # same collapse would inflate to 1.
+                             if (length(all) <= 1) mic else max(all)
                          }, numeric(1))
     return(meta_maxIC)
 }
