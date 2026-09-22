@@ -1,8 +1,22 @@
 computeIC <- function(goAnno, ont) {
     ## goAnno, see godata function
-    godata <- ensure_gotbl_cached()
-    
-    goids <- unique(godata[godata$Ontology == ont, "go_id"])
+
+    ## The set of terms to score has to come from the *installed* GO.db, not from
+    ## the `gotbl` table shipped in data/. That table was last rebuilt in 2021,
+    ## and 524 BP terms added to GO.db since then are missing from it. They were
+    ## therefore given no IC at all, and goSim()/geneSim() returned NA for them
+    ## even though their descendants carry annotations and their IC is perfectly
+    ## computable -- 167 of those terms are annotated in org.Hs.eg.db (issue
+    ## #33). The missing terms also biased every other IC slightly: they are
+    ## counted in the `sum(gocount)` denominator below but can never contribute
+    ## to an ancestor's descendant sum.
+    ##
+    ## names(getAncestors(ont)) is exactly the set of terms of `ont` in the
+    ## installed GO.db, root included, and onto_relation() caches it. Terms
+    ## annotated in this organism are added on top, so that a term the local
+    ## annotation package still uses keeps its IC even if GO.db has retired it.
+    goids <- union(names(getAncestors(ont)), goAnno$GO)
+
     ## all GO terms appearing in an given ontology ###########
     goterms=goAnno$GO
     gocount <- table(goterms)

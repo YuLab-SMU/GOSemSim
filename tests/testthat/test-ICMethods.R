@@ -46,3 +46,21 @@ test_that("IC based methods work for the other ontologies", {
         expect_no_error(termSim(go, go, hsGO, method = "Lin"))
     }
 })
+
+test_that("every annotated term gets an IC", {
+    ## computeIC() used to take its term universe from the `gotbl` table shipped
+    ## in data/, which was last rebuilt in 2021. Any term GO.db added since then
+    ## was given no IC at all, so goSim()/geneSim() returned NA for it even
+    ## though its descendants carry annotations and its IC is computable (issue
+    ## #33). The universe now comes from the installed GO.db, so a term that is
+    ## actually annotated must always be scorable.
+    for (ont in c("BP", "CC", "MF")) {
+        hsGO <- godata(annoDb = "org.Hs.eg.db", ont = ont, computeIC = TRUE)
+        annotated <- unique(hsGO@geneAnno$GO)
+
+        expect_gt(length(annotated), 1000)
+        expect_true(all(annotated %in% names(hsGO@IC)))
+        expect_false(any(is.na(hsGO@IC[annotated])))
+        expect_true(all(is.finite(hsGO@IC[annotated])))
+    }
+})
