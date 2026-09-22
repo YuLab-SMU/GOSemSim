@@ -8,6 +8,7 @@
 #' @param godata GOSemSimDATA object
 #' @return semantic similarity score
 #' @useDynLib GOSemSim
+#' @importFrom Rcpp evalCpp
 #' @author Guangchuang Yu <https://yulab-smu.top>
 infoContentMethod <- function(ID1,
                               ID2,

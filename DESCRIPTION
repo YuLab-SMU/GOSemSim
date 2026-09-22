@@ -25,6 +25,7 @@ Imports:
     digest,
     GO.db,
     methods,
+    Rcpp,
     rlang,
     stats,
     utils,

@@ -28,21 +28,53 @@ is_supported_go <- function(ont) ont %in% supported_GO()
 is_supported_do <- function(ont) ont %in% supported_DO()
 
 
+## getAncestors(), getParents() and getOffsprings() each materialise a whole
+## ontology mapping before the caller picks out a single term with `[[ID]]`.
+## For GO that means AnnotationDbi::as.list(GOBPANCESTOR) and friends, which
+## costs about half a second; for the downloadable ontologies it is a full
+## dbReadTable() of the relation table. The callers typically ask for only one
+## or two IDs, so without caching the very same mapping is rebuilt over and
+## over again -- a single geneSim() call can rebuild it hundreds of times, and
+## it dominates the running time of TCSS and of the IC-based measures.
+##
+## The mappings are derived from an annotation source that is itself cached
+## (GO.db is a static annotation package and load_onto() caches the OntDb), so
+## they cannot change within a session and are cached here on the same basis.
+##
+## Note that the cache key is the ontology as a whole, not the individual term.
+## The per-term cache in tcssMethod_internal() does not help here: it saves the
+## lookup but every newly seen term still pays for building the whole mapping.
+onto_relation <- function(ont, kind, fun) {
+    cache_key <- paste(kind, ont, sep = "|")
+    res <- yulab.utils::get_cache_element("GOSemSim_ontoRelation", cache_key)
+    if (!is.null(res)) {
+        return(res)
+    }
+
+    res <- fun()
+
+    yulab.utils::update_cache_item("GOSemSim_ontoRelation",
+                                   setNames(list(res), cache_key))
+    return(res)
+}
+
 ##' @importFrom GO.db GOMFANCESTOR
 ##' @importFrom GO.db GOBPANCESTOR
 ##' @importFrom GO.db GOCCANCESTOR
 getAncestors <- function(ont) {
     if (is_supported_go(ont)) {
-        Ancestors <- switch(ont,
-                            MF = GOMFANCESTOR,
-                            BP = GOBPANCESTOR,
-                            CC = GOCCANCESTOR
-                            )
-        anc <- AnnotationDbi::as.list(Ancestors)
-        return(anc)
+        return(onto_relation(ont, 'ancestor', function() {
+            Ancestors <- switch(ont,
+                                MF = GOMFANCESTOR,
+                                BP = GOBPANCESTOR,
+                                CC = GOCCANCESTOR
+                                )
+            AnnotationDbi::as.list(Ancestors)
+        }))
     }
 
-    get_onto_data(ont, output = 'list', 'ancestor') 
+    onto_relation(ont, 'ancestor',
+                  function() get_onto_data(ont, output = 'list', 'ancestor'))
 }
 
 ##' @importFrom GO.db GOMFPARENTS
@@ -50,16 +82,18 @@ getAncestors <- function(ont) {
 ##' @importFrom GO.db GOCCPARENTS
 getParents <- function(ont) {
     if (is_supported_go(ont)) {
-        Parents <- switch(ont,
-                        MF = GOMFPARENTS,
-                        BP = GOBPPARENTS,
-                        CC = GOCCPARENTS
-                        )
-        parent <- AnnotationDbi::as.list(Parents)
-        return(parent)
+        return(onto_relation(ont, 'parent', function() {
+            Parents <- switch(ont,
+                            MF = GOMFPARENTS,
+                            BP = GOBPPARENTS,
+                            CC = GOCCPARENTS
+                            )
+            AnnotationDbi::as.list(Parents)
+        }))
     }
 
-    get_onto_data(ont, output = 'list', 'parent') 
+    onto_relation(ont, 'parent',
+                  function() get_onto_data(ont, output = 'list', 'parent'))
 }
 
 ##' @importFrom GO.db GOMFOFFSPRING
@@ -67,16 +101,18 @@ getParents <- function(ont) {
 ##' @importFrom GO.db GOCCOFFSPRING
 getOffsprings <- function(ont) {
     if (is_supported_go(ont)) {
-        Offsprings <- switch(ont,
-                        MF = GOMFOFFSPRING,
-                        BP = GOBPOFFSPRING,
-                        CC = GOCCOFFSPRING
-                        )
-        offspring <- AnnotationDbi::as.list(Offsprings)
-        return(offspring)
+        return(onto_relation(ont, 'offspring', function() {
+            Offsprings <- switch(ont,
+                            MF = GOMFOFFSPRING,
+                            BP = GOBPOFFSPRING,
+                            CC = GOCCOFFSPRING
+                            )
+            AnnotationDbi::as.list(Offsprings)
+        }))
     }
 
-    get_onto_data(ont, output = 'list', 'offspring') 
+    onto_relation(ont, 'offspring',
+                  function() get_onto_data(ont, output = 'list', 'offspring'))
 }
 
 ##' @importFrom GO.db GOTERM
