@@ -20,40 +20,52 @@ export(termSim)
 export(wangMethod_internal)
 exportClasses(GOSemSimDATA)
 importClassesFrom(AnnotationDbi,AnnotationDb)
-importFrom(AnnotationDbi,columns)
-importFrom(AnnotationDbi,loadDb)
-importFrom(AnnotationDbi,toTable)
+importFrom(AnnotationDbi,
+  columns,
+  loadDb,
+  toTable
+)
 importFrom(DBI,dbReadTable)
-importFrom(GO.db,GO.db)
-importFrom(GO.db,GOBPANCESTOR)
-importFrom(GO.db,GOBPOFFSPRING)
-importFrom(GO.db,GOBPPARENTS)
-importFrom(GO.db,GOCCANCESTOR)
-importFrom(GO.db,GOCCOFFSPRING)
-importFrom(GO.db,GOCCPARENTS)
-importFrom(GO.db,GOMFANCESTOR)
-importFrom(GO.db,GOMFOFFSPRING)
-importFrom(GO.db,GOMFPARENTS)
-importFrom(GO.db,GOTERM)
+importFrom(GO.db,
+  GO.db,
+  GOBPANCESTOR,
+  GOBPOFFSPRING,
+  GOBPPARENTS,
+  GOCCANCESTOR,
+  GOCCOFFSPRING,
+  GOCCPARENTS,
+  GOMFANCESTOR,
+  GOMFOFFSPRING,
+  GOMFPARENTS,
+  GOTERM
+)
 importFrom(Rcpp,evalCpp)
 importFrom(digest,digest)
-importFrom(methods,new)
-importFrom(methods,setClass)
-importFrom(methods,setMethod)
-importFrom(methods,setRefClass)
-importFrom(methods,slot)
+importFrom(methods,
+  new,
+  setClass,
+  setMethod,
+  setRefClass,
+  slot
+)
 importFrom(rlang,check_installed)
-importFrom(stats,na.omit)
-importFrom(stats,setNames)
-importFrom(utils,read.delim)
-importFrom(utils,setTxtProgressBar)
-importFrom(utils,stack)
-importFrom(utils,txtProgressBar)
-importFrom(yulab.utils,download_yulab_file)
-importFrom(yulab.utils,load_OrgDb)
-importFrom(yulab.utils,ls2df)
-importFrom(yulab.utils,user_dir)
-importFrom(yulab.utils,yulab_msg)
+importFrom(stats,
+  na.omit,
+  setNames
+)
+importFrom(utils,
+  read.delim,
+  setTxtProgressBar,
+  stack,
+  txtProgressBar
+)
+importFrom(yulab.utils,
+  download_yulab_file,
+  load_OrgDb,
+  ls2df,
+  user_dir,
+  yulab_msg
+)
 importMethodsFrom(AnnotationDbi,as.list)
 importMethodsFrom(AnnotationDbi,columns)
 importMethodsFrom(AnnotationDbi,dbconn)
