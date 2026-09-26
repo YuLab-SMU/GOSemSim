@@ -7,10 +7,10 @@ developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repo
 [![platform](http://www.bioconductor.org/shields/availability/devel/GOSemSim.svg)](https://www.bioconductor.org/packages/devel/bioc/html/GOSemSim.html#archives)
 [![codecov](https://codecov.io/gh/YuLab-SMU/GOSemSim/branch/master/graph/badge.svg)](https://codecov.io/gh/YuLab-SMU/GOSemSim/)
 
-[![](https://img.shields.io/badge/release%20version-2.38.0-green.svg)](https://www.bioconductor.org/packages/GOSemSim)
-[![](https://img.shields.io/badge/devel%20version-2.39.1-green.svg)](https://github.com/YuLab-SMU/GOSemSim)
-[![](https://img.shields.io/badge/download-NA/total-blue.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
-[![](https://img.shields.io/badge/download-NA/month-blue.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![](https://img.shields.io/badge/release%20version-2.38.3-green.svg)](https://www.bioconductor.org/packages/GOSemSim)
+[![](https://img.shields.io/badge/devel%20version-2.39.3-green.svg)](https://github.com/YuLab-SMU/GOSemSim)
+[![](https://img.shields.io/badge/download-1410471/total-blue.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
+[![](https://img.shields.io/badge/download-27372/month-blue.svg)](https://bioconductor.org/packages/stats/bioc/GOSemSim)
 
 Semantic similarity analysis of Gene Ontology (GO) annotations provides
 a quantitative framework for comparing GO terms, gene products, and gene
@@ -28,7 +28,7 @@ School of Basic Medical Sciences, Southern Medical University
 
 Learn more at <https://yulab-smu.top/contribution-knowledge-mining/>.
 
-If you use [GOSemSim](http://bioconductor.org/packages/GOSemSim) in
+If you use [GOSemSim](https://bioconductor.org/packages/GOSemSim) in
 published research, please cite:
 
 - **Yu G**. [Gene Ontology Semantic Similarity Analysis Using
