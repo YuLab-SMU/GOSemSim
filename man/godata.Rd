@@ -18,7 +18,9 @@ godata(
 \item{OrgDb}{OrgDb object (will be removed in future, please use annoDb instead)}
 
 \item{annoDb}{GO annotation database,
-can be OrgDb or a data.frame contains three columns of 'GENE', 'GO' and 'ONTOLOGY'.}
+can be OrgDb, a 'GSON' object of GO annotations (e.g. the output of
+\code{clusterProfiler::gson_GO()}) or a data.frame contains three columns of
+'GENE', 'GO' and 'ONTOLOGY'.}
 
 \item{keytype}{keytype}
 

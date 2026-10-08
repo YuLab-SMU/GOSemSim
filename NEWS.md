@@ -1,174 +1,179 @@
+# GOSemSim 2.39.3.001
+
+- let `godata()` take a 'GSON' object of GO annotations as `annoDb`, closing the `## to be supported` branch of #44. The branch was already present but could never fire -- it tested `inherits(annoDb, 'gson')` while the S4 class is `GSON` -- so passing e.g. the output of `clusterProfiler::gson_GO()` fell through to `check_goAnno()` and failed with "annoDb as a data.frame should contains 'GO' and 'ONTOLOGY' columns". `GSON` carries no ontology information, so `ONTOLOGY` is recovered from 'GO.db' term by term; against `AnnotationDbi::toTable(GOTERM)` on an 80,000-row sample of `gson_GO(org.Hs.eg.db, ont = "ALL")` the resulting BP/CC/MF split (51058/16942/12000) agrees with GO.db for every term. GO IDs held without the `GO:` prefix are recognised, terms absent from 'GO.db' are dropped with a warning, and a gene set containing no GO IDs at all is now rejected instead of quietly yielding an empty dataset. 'gson' goes to Suggests rather than Imports, because reading the slots autoloads the namespace and the route should cost nothing to users who do not take it (2026-10-08, Thu)
+
 # GOSemSim 2.39.3
 
-+ take the set of terms to score in `computeIC()` from the installed 'GO.db' instead of from the `gotbl` table shipped in `data/`. That table was last rebuilt in 2021 and 524 BP terms added to GO.db since then are missing from it, so `goSim()` and `geneSim()` returned NA for them even though their descendants carry annotations and their IC is computable -- 167 of them are annotated in org.Hs.eg.db, plus 45 for CC and 367 for MF (#33). The missing terms also biased every other IC slightly, since they count towards the denominator but can never contribute to an ancestor's descendant sum; about 0.3% of terms were overestimated by more than 0.5 (2026-09-22, Tue)
-+ import a symbol from 'Rcpp', so that the compiled `infoContentMethod_cpp()` can actually be called. 'Rcpp' was listed in `LinkingTo` only, so loading GOSemSim never loaded the Rcpp namespace, and the `Rcpp::RNGScope` in the generated wrapper resolved `enterRNGScope` through `R_GetCCallable("Rcpp", ...)` only if the user happened to attach Rcpp first. Without it every `Resnik`, `Lin`, `Jiang` and `Rel` call failed with `function 'enterRNGScope' not provided by package 'Rcpp'` (2026-09-21, Mon)
-+ cache the ontology mappings behind `getAncestors()`, `getParents()` and `getOffsprings()`. Each call rebuilt its whole mapping -- `AnnotationDbi::as.list(GOBPANCESTOR)` and friends cost about 0.5 s -- while callers only ever pick out one or two terms, so the same mapping was rebuilt hundreds of times within a single `geneSim()` call. The mappings are now cached per ontology, which makes TCSS and the IC-based measures several times faster without changing any result (2026-09-21, Mon)
-+ fix TCSS similarity collapsing to a constant. A cluster is normalised by the largest finite IC among its members, so a cluster with exactly one finite-IC member always yielded an ICA of 1, however general that term was. `GO:0008150`, the root of BP, is such a cluster at the default cutoff and is a common ancestor of every BP pair, so `max(sim_value)` returned 1 for all 300 random BP pairs tested and `mgeneSim(measure = "TCSS")` was an all-ones matrix. The collapse also made the objective of `tcss_cutoff()` degenerate: at cutoffs of 3.5 and above the predictions were constant and AUC was pinned at exactly 0.5, so only F1 carried any signal. Such clusters are now normalised by the global maximum IC instead. The change is confined to exactly those clusters -- the set of clusters whose ICA changes equals the set with a single finite-IC member, at every cutoff and ontology tested -- and it removes the same collapse at other settings, e.g. `GO:0050896`, `GO:0046683`, `GO:0014074`, `GO:0018193` (BP), `GO:0016651`, `GO:0052745`, `GO:0003824` (MF) and `GO:0005575`, `GO:0098644`, `GO:0019898` (CC) (2026-09-21, Mon)
+- take the set of terms to score in `computeIC()` from the installed 'GO.db' instead of from the `gotbl` table shipped in `data/`. That table was last rebuilt in 2021 and 524 BP terms added to GO.db since then are missing from it, so `goSim()` and `geneSim()` returned NA for them even though their descendants carry annotations and their IC is computable -- 167 of them are annotated in org.Hs.eg.db, plus 45 for CC and 367 for MF (#33). The missing terms also biased every other IC slightly, since they count towards the denominator but can never contribute to an ancestor's descendant sum; about 0.3% of terms were overestimated by more than 0.5 (2026-09-22, Tue)
+- import a symbol from 'Rcpp', so that the compiled `infoContentMethod_cpp()` can actually be called. 'Rcpp' was listed in `LinkingTo` only, so loading GOSemSim never loaded the Rcpp namespace, and the `Rcpp::RNGScope` in the generated wrapper resolved `enterRNGScope` through `R_GetCCallable("Rcpp", ...)` only if the user happened to attach Rcpp first. Without it every `Resnik`, `Lin`, `Jiang` and `Rel` call failed with `function 'enterRNGScope' not provided by package 'Rcpp'` (2026-09-21, Mon)
+- cache the ontology mappings behind `getAncestors()`, `getParents()` and `getOffsprings()`. Each call rebuilt its whole mapping -- `AnnotationDbi::as.list(GOBPANCESTOR)` and friends cost about 0.5 s -- while callers only ever pick out one or two terms, so the same mapping was rebuilt hundreds of times within a single `geneSim()` call. The mappings are now cached per ontology, which makes TCSS and the IC-based measures several times faster without changing any result (2026-09-21, Mon)
+- fix TCSS similarity collapsing to a constant. A cluster is normalised by the largest finite IC among its members, so a cluster with exactly one finite-IC member always yielded an ICA of 1, however general that term was. `GO:0008150`, the root of BP, is such a cluster at the default cutoff and is a common ancestor of every BP pair, so `max(sim_value)` returned 1 for all 300 random BP pairs tested and `mgeneSim(measure = "TCSS")` was an all-ones matrix. The collapse also made the objective of `tcss_cutoff()` degenerate: at cutoffs of 3.5 and above the predictions were constant and AUC was pinned at exactly 0.5, so only F1 carried any signal. Such clusters are now normalised by the global maximum IC instead. The change is confined to exactly those clusters -- the set of clusters whose ICA changes equals the set with a single finite-IC member, at every cutoff and ontology tested -- and it removes the same collapse at other settings, e.g. `GO:0050896`, `GO:0046683`, `GO:0014074`, `GO:0018193` (BP), `GO:0016651`, `GO:0052745`, `GO:0003824` (MF) and `GO:0005575`, `GO:0098644`, `GO:0019898` (CC) (2026-09-21, Mon)
 
 # GOSemSim 2.39.2
 
-+ fix `termSim(..., method = "TCSS")` for terms belonging to more than one cluster, where `ica[[clusid[[term]]]]` attempted recursive indexing ("subscript out of bounds") (2026-09-21, Mon)
-+ add `set_auto_update()` to control auto-update of ontology databases (2026-06-29, Mon)
+- fix `termSim(..., method = "TCSS")` for terms belonging to more than one cluster, where `ica[[clusid[[term]]]]` attempted recursive indexing ("subscript out of bounds") (2026-09-21, Mon)
+- add `set_auto_update()` to control auto-update of ontology databases (2026-06-29, Mon)
 
 # GOSemSim 2.39.1
 
-+ improve pairwise similarity performance by reducing repeated matrix scans in score combination (2026-06-28, Sun)
-+ support optional `BiocParallel` parallel pairwise calculation in `mgeneSim()` and `mclusterSim()` (#31, 2026-06-28, Sun)
-+ improve TCSS robustness and document TCSS usage with topology cutoff preprocessing (2026-06-28, Sun)
-+ fix Wang method semantic value cache to avoid reusing GO term values across ontologies (#30, 2026-06-28, Sun)
-+ fix Wang method edge weighting for GO relationships by normalizing `isa` and `part of` relationship names (#51, 2026-06-28, Sun)
+- improve pairwise similarity performance by reducing repeated matrix scans in score combination (2026-06-28, Sun)
+- support optional `BiocParallel` parallel pairwise calculation in `mgeneSim()` and `mclusterSim()` (#31, 2026-06-28, Sun)
+- improve TCSS robustness and document TCSS usage with topology cutoff preprocessing (2026-06-28, Sun)
+- fix Wang method semantic value cache to avoid reusing GO term values across ontologies (#30, 2026-06-28, Sun)
+- fix Wang method edge weighting for GO relationships by normalizing `isa` and `part of` relationship names (#51, 2026-06-28, Sun)
 
 # GOSemSim 2.38.0
 
-+ Bioconductor RELEASE_3_23 (2026-04-29, Wed)
+- Bioconductor RELEASE_3_23 (2026-04-29, Wed)
 
 # GOSemSim 2.37.2
 
-+ refactor `.initial()` to use a controlled environment for robust data loading (2026-01-15, Thu)
-+ enhance cache reading robustness in `computeIC()` and `wangMethod_internal()` (2026-01-15, Thu)
-+ update `load_onto()` documentation (2026-01-12, Mon)
-+ enhance `godata()` input validation (2026-01-12, Mon)
-+ refactor internal ontology type checking (2026-01-12, Mon)
-+ fix cache integration in `.initial` and refactor consumers to use `get_cache_element` (2026-01-12, Mon)
-+ fix `load_onto()` using cache incorrectly (2026-01-12, Mon)
-+ use cache mechanisms defined in 'yulab.utils' for caching (2026-01-12, Mon) 
-+ update URLs, fix typos and refine roxygen documentation (2026-01-12, Mon)
+- refactor `.initial()` to use a controlled environment for robust data loading (2026-01-15, Thu)
+- enhance cache reading robustness in `computeIC()` and `wangMethod_internal()` (2026-01-15, Thu)
+- update `load_onto()` documentation (2026-01-12, Mon)
+- enhance `godata()` input validation (2026-01-12, Mon)
+- refactor internal ontology type checking (2026-01-12, Mon)
+- fix cache integration in `.initial` and refactor consumers to use `get_cache_element` (2026-01-12, Mon)
+- fix `load_onto()` using cache incorrectly (2026-01-12, Mon)
+- use cache mechanisms defined in 'yulab.utils' for caching (2026-01-12, Mon)
+- update URLs, fix typos and refine roxygen documentation (2026-01-12, Mon)
 
 # GOSemSim 2.37.1
 
-+ use cache mechanisms defined in 'yulab.utils' for caching (2025-12-08, Mon) 
-+ update roxygen to use 'markdown' syntax and unify duplicated docs into templates (in 'man-roxygen' folder) (2025-12-07, Sun)
-+ move `get_organism()` from 'DOSE' (2025-12-07, Sun)
-+ move `load_OrgDb()` to 'yulab.utils' (2025-12-05, Fri)
+- use cache mechanisms defined in 'yulab.utils' for caching (2025-12-08, Mon)
+- update roxygen to use 'markdown' syntax and unify duplicated docs into templates (in 'man-roxygen' folder) (2025-12-07, Sun)
+- move `get_organism()` from 'DOSE' (2025-12-07, Sun)
+- move `load_OrgDb()` to 'yulab.utils' (2025-12-05, Fri)
 
 # GOSemSim 2.36.0
 
-+ Bioconductor RELEASE_3_22 (2025-11-01, Sat)
+- Bioconductor RELEASE_3_22 (2025-11-01, Sat)
 
 # GOSemSim 2.35.2
 
-+ bug fixed that introduced in previous commit (2025-10-03, Fri)
+- bug fixed that introduced in previous commit (2025-10-03, Fri)
   - <https://github.com/YuLab-SMU/DOSE/issues/86#issuecomment-3361787836>
 
 # GOSemSim 2.35.1
 
-+ alternative url for `load_onto()` (2025-08-12, Tue)
+- alternative url for `load_onto()` (2025-08-12, Tue)
 
 # GOSemSim 2.34.0
 
-+ Bioconductor RELEASE_3_21 (2025-04-17, Thu)
+- Bioconductor RELEASE_3_21 (2025-04-17, Thu)
 
 # GOSemSim 2.32.0
 
-+ Bioconductor RELEASE_3_20 (2024-10-30, Wed)
+- Bioconductor RELEASE_3_20 (2024-10-30, Wed)
 
 # GOSemSim 2.31.1
 
-+ `get_rel_df()` to access ontology relation data frame required by the Wang method (2024-08-13, Tue)
-+ a set of 'OntDb' methods for accessing sqlite data generated by the 'obolite' package (2024-08-13, Tue)
-+ use `yulab.utils::yulab_msg()` for startup message (2024-07-26, Fri)
+- `get_rel_df()` to access ontology relation data frame required by the Wang method (2024-08-13, Tue)
+- a set of 'OntDb' methods for accessing sqlite data generated by the 'obolite' package (2024-08-13, Tue)
+- use `yulab.utils::yulab_msg()` for startup message (2024-07-26, Fri)
 
 # GOSemSim 2.30.0
 
-+ Bioconductor RELEASE_3_19 (2024-05-15, Wed)
+- Bioconductor RELEASE_3_19 (2024-05-15, Wed)
 
 # GOSemSim 2.29.2
 
-+ update `buildGOmap()` parameter to be consistent with `enricher()` and `GSEA()` (2024-02-06, Tue, #47)
+- update `buildGOmap()` parameter to be consistent with `enricher()` and `GSEA()` (2024-02-06, Tue, #47)
 
 # GOSemSim 2.29.1
 
-+ extend `godata()` to support passing a data.frame (can be output of `read.gaf()` or `read.blast2go()`) to 'annoDb' (2023-01-16, Tue)
-+ deprecate 'OrgDb' and introduce new parameter 'annoDb' in `godata()` 
-+ standardize the output of `read.gaf()` and `read.blast2go()`
-+ optimize `buildGOmap()`
+- extend `godata()` to support passing a data.frame (can be output of `read.gaf()` or `read.blast2go()`) to 'annoDb' (2023-01-16, Tue)
+- deprecate 'OrgDb' and introduce new parameter 'annoDb' in `godata()`
+- standardize the output of `read.gaf()` and `read.blast2go()`
+- optimize `buildGOmap()`
 
 # GOSemSim 2.28.0
 
-+ Bioconductor RELEASE_3_18 (2023-10-25, Wed)
+- Bioconductor RELEASE_3_18 (2023-10-25, Wed)
 
 # GOSemSim 2.27.3
 
-+ use `check_installed()` to check package dependency (2023-09-12, Tue, #43)
+- use `check_installed()` to check package dependency (2023-09-12, Tue, #43)
 
 # GOSemSim 2.27.2
 
-+ `read.blast2go()` to parse 'blast2go' result (2023-07-10, Mon, #41, #42)
-+ move `buildGOmap()` and `read.gaf()` from 'clusterProfiler' (2023-07-10, Mon)
+- `read.blast2go()` to parse 'blast2go' result (2023-07-10, Mon, #41, #42)
+- move `buildGOmap()` and `read.gaf()` from 'clusterProfiler' (2023-07-10, Mon)
 
 # GOSemSim 2.27.1
 
-+ semantic similarity measurement support for MPO (2023-04-06, Thu)
-+ TCSS semantic similarity measurement support for DO and MPO (2023-04-06, Thu)
+- semantic similarity measurement support for MPO (2023-04-06, Thu)
+- TCSS semantic similarity measurement support for DO and MPO (2023-04-06, Thu)
 
 # GOSemSim 2.26.0
 
-+ Bioconductor RELEASE_3_17 (2023-05-03, Wed)
+- Bioconductor RELEASE_3_17 (2023-05-03, Wed)
 
 # GOSemSim 2.24.0
 
-+ Bioconductor RELEASE_3_16 (2022-11-02, Wed)
+- Bioconductor RELEASE_3_16 (2022-11-02, Wed)
 
 # GOSemSim 2.23.1
 
-+ Replacing DO.db with HDO.db (2022-07-29, Mon)
+- Replacing DO.db with HDO.db (2022-07-29, Mon)
 
 # GOSemSim 2.22.0
 
-+ Bioconductor 3.15 release
+- Bioconductor 3.15 release
 
 # GOSemSim 2.21.1
 
-+ Avoid eval-parse in `load_OrgDb()` (2022-01-10, Mon)
+- Avoid eval-parse in `load_OrgDb()` (2022-01-10, Mon)
 
 # GOSemSim 2.20
 
-+ Bioconductor 3.14 release
+- Bioconductor 3.14 release
 
 # GOSemSim 2.19.1
 
-+ TCSS method (@qibaiqi, #35; 2021-08-02, Mon)
+- TCSS method (@qibaiqi, #35; 2021-08-02, Mon)
 
 # GOSemSim 2.18.0
 
-+ Bioconductor 3.13 release
+- Bioconductor 3.13 release
 
 # GOSemSim 2.17.1
 
-+ bug fixed according to the update of GO.db (2020-10-29, Thu)
+- bug fixed according to the update of GO.db (2020-10-29, Thu)
   - <https://github.com/YuLab-SMU/GOSemSim/issues/32>
-  
+
 # GOSemSim 2.16.0
 
-+ Bioconductor 3.12 release (2020-10-28, Wed)
+- Bioconductor 3.12 release (2020-10-28, Wed)
 
 # GOSemSim 2.15.2
 
-+ new site, <https://yulab-smu.top/biomedical-knowledge-mining-book/> for documentation (2020-09-04, Fri)
-+ update vignette
-+ update `data/gotbl`
+- new site, <https://yulab-smu.top/biomedical-knowledge-mining-book/> for documentation (2020-09-04, Fri)
+- update vignette
+- update `data/gotbl`
 
 # GOSemSim 2.15.1
 
-+ bug fixed of IC method when input IDs contain invalid terms. (2020-07-25, Sat)
+- bug fixed of IC method when input IDs contain invalid terms. (2020-07-25, Sat)
 
 # GOSemSim 2.14.0
 
-+ Bioconductor 3.11 release
+- Bioconductor 3.11 release
 
 
 # GOSemSim 2.13.1
 
-+ add new citation (2020-03-19, Thu)
-+ fixed compiling error due to the change of Rcpp 
+- add new citation (2020-03-19, Thu)
+- fixed compiling error due to the change of Rcpp
   - <https://github.com/YuLab-SMU/GOSemSim/issues/27>
 
 # GOSemSim 2.7.1
 
-+ `mgeneSim` and `mclusterSim` now always return matrix (2018-08-08, Wed)
-    - <https://www.biostars.org/p/330642/#331598>
+- `mgeneSim` and `mclusterSim` now always return matrix (2018-08-08, Wed)
+  - <https://www.biostars.org/p/330642/#331598>
 
 # GOSemSim 2.5.1
 
-+ return NA for deprecated IDs (2018-01-09, Fri)
-    - <https://support.bioconductor.org/p/105822/#105840>
+- return NA for deprecated IDs (2018-01-09, Fri)
+  - <https://support.bioconductor.org/p/105822/#105840>
+
