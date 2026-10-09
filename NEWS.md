@@ -1,4 +1,4 @@
-# GOSemSim 2.39.3.001
+# GOSemSim 2.39.4
 
 - let `godata()` take a 'GSON' object of GO annotations as `annoDb`, closing the `## to be supported` branch of #44. The branch was already present but could never fire -- it tested `inherits(annoDb, 'gson')` while the S4 class is `GSON` -- so passing e.g. the output of `clusterProfiler::gson_GO()` fell through to `check_goAnno()` and failed with "annoDb as a data.frame should contains 'GO' and 'ONTOLOGY' columns". `GSON` carries no ontology information, so `ONTOLOGY` is recovered from 'GO.db' term by term; against `AnnotationDbi::toTable(GOTERM)` on an 80,000-row sample of `gson_GO(org.Hs.eg.db, ont = "ALL")` the resulting BP/CC/MF split (51058/16942/12000) agrees with GO.db for every term. GO IDs held without the `GO:` prefix are recognised, terms absent from 'GO.db' are dropped with a warning, and a gene set containing no GO IDs at all is now rejected instead of quietly yielding an empty dataset. 'gson' goes to Suggests rather than Imports, because reading the slots autoloads the namespace and the route should cost nothing to users who do not take it (2026-10-08, Thu)
 
