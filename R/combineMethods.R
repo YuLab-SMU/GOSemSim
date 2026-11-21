@@ -4,7 +4,8 @@
 #'
 #'
 #' @param SimScores similarity matrix
-#' @param combine combine method
+#' @param combine combine method, one of "avg", "max", "rcmax", "rcmax.avg"
+#'   or "BMA"
 #' @return similarity value
 #' @export
 #' @author Guangchuang Yu <https://yulab-smu.top>
@@ -17,38 +18,38 @@ combineScores <- function(SimScores, combine) {
     ## if combine was defined...
     if(!sum(!is.na(SimScores))) return (NA)
 
-    if (is.vector(SimScores) || nrow(SimScores)==1 || ncol(SimScores)==1) {
-        if (combine == "avg") {
-            return(round(mean(SimScores, na.rm=TRUE), digits=3))
-        } else {
-            return (round(max(SimScores, na.rm=TRUE), digits=3))
-        }
+    ## a bare vector is treated as a single row, so that one set of row and
+    ## column rules applies to every input shape
+    if (is.null(dim(SimScores))) {
+        SimScores <- matrix(SimScores, nrow = 1)
     }
 
-
+    ## drop the rows and columns that carry no score at all
     row.na.idx <- rowSums(!is.na(SimScores)) == 0
     if (any(row.na.idx)) {
-        SimScores <- SimScores[-which(row.na.idx), ]
+        SimScores <- SimScores[-which(row.na.idx), , drop = FALSE]
     }
-
-    if (! is.null(dim(SimScores)) ) {
-        col.na.idx <- colSums(!is.na(SimScores)) == 0
-        if (any(col.na.idx)) {
-            SimScores <- SimScores[ , -which(col.na.idx)]
-        }
-    }
-    if (is.vector(SimScores) || nrow(SimScores)==1 || ncol(SimScores)==1) {
-        if (combine == "avg") {
-            return(round(mean(SimScores, na.rm=TRUE), digits=3))
-        } else {
-            return (round(max(SimScores, na.rm=TRUE), digits=3))
-        }
+    col.na.idx <- colSums(!is.na(SimScores)) == 0
+    if (any(col.na.idx)) {
+        SimScores <- SimScores[, -which(col.na.idx), drop = FALSE]
     }
 
     if (combine        == "avg") {
         result   <- mean(SimScores, na.rm=TRUE)
     } else if (combine == "max") {
         result   <- max(SimScores, na.rm=TRUE)
+    } else if (nrow(SimScores) == 1 || ncol(SimScores) == 1) {
+        ## With a single row or column the row maxima average to the max and
+        ## the column maxima average to the mean, so 'rcmax' is still the max
+        ## but 'BMA' / 'rcmax.avg' is not -- it reduces to (max + sum) / (n + 1)
+        ## over the n cells in that one row or column. Returning the max here
+        ## made a set holding one term score 1 against any set containing it.
+        if (combine == "rcmax.avg" || combine == "BMA") {
+            result <- (max(SimScores, na.rm=TRUE) + sum(SimScores, na.rm=TRUE)) /
+                (length(SimScores) + 1)
+        } else {  # "rcmax"
+            result <- max(SimScores, na.rm=TRUE)
+        }
     } else if (combine == "rcmax") {
         rowMax <- do.call(pmax, c(as.data.frame(SimScores), na.rm = TRUE))
         colMax <- do.call(pmax, c(as.data.frame(t(SimScores)), na.rm = TRUE))

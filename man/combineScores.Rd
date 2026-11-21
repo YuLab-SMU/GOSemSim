@@ -9,7 +9,8 @@ combineScores(SimScores, combine)
 \arguments{
 \item{SimScores}{similarity matrix}
 
-\item{combine}{combine method}
+\item{combine}{combine method, one of "avg", "max", "rcmax", "rcmax.avg"
+or "BMA"}
 }
 \value{
 similarity value
