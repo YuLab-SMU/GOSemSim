@@ -1,3 +1,7 @@
+# GOSemSim 2.40.0
+
++ Bioconductor RELEASE_3_24 (2026-11-25, Wed)
+
 # GOSemSim 2.39.5
 
 - fix `combineScores()` handing back the maximum instead of the best-match average when one of the two term sets holds a single term. The early return for a one-row or one-column score matrix applied `max()` to every method but `avg()`, so `mgoSim()`, `geneSim()`, `clusterSim()` and `mclusterSim()` scored a single-term set 1 against any set whose annotation contained that term, however many terms the other side carried. The branch is the common route rather than an edge case: `drop = FALSE` in `subsetCombine()` (#48) sends every single-term gene through it, and 25% of the genes annotated in MF in 'org.Hs.eg.db' have exactly one term. Such a matrix now follows the same definition as a larger one -- the row and column maxima average, `(max + sum) / (n + 1)` for a single row or column -- which leaves `max` and `rcmax` where they were, since both do equal the maximum there. The result is identical for all five methods on 12,500 two-dimensional score matrices; in a 24-gene `mgeneSim()` run 134 pairs that read 1.0 took their proper value and no pair between multi-term genes moved. The `combine` documentation now states what BMA averages (#52, 2026-11-21, Sat)
